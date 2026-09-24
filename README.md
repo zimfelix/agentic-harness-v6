@@ -2,22 +2,30 @@
 
 ![Harness overview](assets/images/img.png)
 
-Schablone für Entwicklungsagenten in mittelgroßen Projekten. **Dieses Repository ist noch kein initialisiertes Produktprojekt:** Projektprofil, Architektur und Produktprüfungen sind nicht eingerichtet. Die kurzen Dateien markieren offene Punkte, statt Produktfakten vorzugeben.
+**Ohne ZIP übernehmen:** Quelle einmal klonen, Kopierplan ansehen und den Harness ins Zielprojekt installieren (Python 3):
 
-| Pfad | Verantwortung |
+```bash
+git clone https://github.com/FelixZimmermannDev/agentic-harness-v3.git ~/agentic-harness-starter
+python3 ~/agentic-harness-starter/scripts/install.py --dry-run /pfad/zum/projekt
+python3 ~/agentic-harness-starter/scripts/install.py /pfad/zum/projekt
+```
+
+Das Zielprojekt wird **kein Git-Clone** der Quelle. Die Quelle kann später mit `git -C ~/agentic-harness-starter pull --ff-only` aktualisiert werden; Projektdateien ändern sich dadurch nicht automatisch.
+
+| Übernommene Markdown-Dateien | Umgang im Zielprojekt |
 | --- | --- |
-| `AGENTS.md` | Einstieg und bedarfsgeladene Verweise; keine zweite Ablaufanleitung. |
-| `harness/core.md` | Wiederverwendbarer Ablauf von Auftrag bis Übergabe. |
-| `harness/init.md` | Neues Produktprojekt klären und initialisieren. |
-| `harness/project.md` | Nach Init aktive Projektgrenzen und Prüf-Einstieg. |
-| `harness/verification/` | Anforderungen prüfen, Implementierung belegen, Fehler behandeln. |
-| `harness/templates/` | Formate für Ideas und Specs; keine ausgefüllten Aufträge. |
-| `docs/` | Geltendes Produktwissen; weitere Themen nach `docs/README.md`. |
-| `ideas/` | Noch ungeklärte Vorhaben; kein Implementierungsauftrag. |
-| `specs/` | Beauftragtes Soll-Verhalten mit Akzeptanzkriterien. |
-| `src/` | Anwendungscode des späteren Produkts. |
-| `tests/` | Ausführbare Tests des späteren Produkts. |
+| `harness/core.md`, `harness/init.md` | Universeller Arbeitsablauf und Project Init: grundsätzlich unverändert. |
+| `harness/verification/gate.md`, `harness/verification/requirements.md`, `harness/verification/implementation.md`, `harness/verification/fail.md` | Prüf- und Korrekturablauf: grundsätzlich unverändert. |
+| `harness/templates/idea.md`, `harness/templates/spec.md` | Vorlagen unverändert; ausgefüllte Ideas und Specs später getrennt anlegen. |
+| `ideas/README.md`, `specs/README.md` | Allgemeine Ablageregeln: unverändert. |
+| `harness/project.md` | **Pflicht:** Mit bestätigten Projektgrenzen, Befehlen und Gate-Status befüllen. |
+| `docs/architecture.md`, `docs/code.md`, `docs/testing.md` | **Bei Relevanz** mit Produktfakten und Konventionen befüllen; ungenutzte Platzhalter können entfallen. |
+| `AGENTS.md` | Einstieg übernehmen; bei Bedarf um Verweise auf weitere geltende Projektdokumente ergänzen. |
+| `docs/README.md` | Themenindex übernehmen; beim Anlegen zusätzlicher Docs ergänzen. |
+| `src/README.md`, `tests/README.md` | Platzhalter bei echtem Anwendungscode beziehungsweise Produkttests ersetzen oder entfernen. |
 
-**Ablauf:** `AGENTS.md` → `harness/core.md` → bei neuem Projekt `harness/init.md` → aktives `harness/project.md` → passende `docs/` und `specs/` → `harness/verification/gate.md`. Details nur lesen, wenn sie für die Aufgabe gelten. `docs/testing.md` erklärt die Testpraxis; `tests/` enthält Tests; das Gate entscheidet anhand tatsächlich ausgeführter Nachweise über den Abschluss. `docs/` ersetzt weder `specs/` noch die Arbeitsregeln in `harness/`.
+Die Root-`README.md` dieses Starter-Kits wird **nicht kopiert**. Eine Produkt-README wird bei Project Init neu erstellt oder eine vorhandene ergänzt. `scripts/install.py` und `tests/test_install.py` bleiben in der Quelle.
 
-Beim Einsatz als Vorlage: eigene Projektfakten ermitteln, Platzhalter im Profil gezielt ersetzen und einen echten Gate-Einstieg einrichten. Keine Regeln, Tools, Skills oder Dokumente für ungenutzte Technologien auf Vorrat erfinden. Das Weiterentwickeln **dieser Schablone** ist nicht die Project Init einer fiktiven Anwendung.
+**Ablauf:** `AGENTS.md` → `harness/core.md` → bei neuem Projekt `harness/init.md` → aktives `harness/project.md` → passende `docs/` und `specs/` → `harness/verification/gate.md`. Dieses Repository ist noch **kein initialisiertes Produktprojekt**: Installation legt nur die Struktur an, nicht Produktfakten oder ein funktionierendes Quality Gate. Neue Produktspecs dürfen erst nach tatsächlich bestandenen Nachweisen `Implemented` werden.
+
+Der Installer überschreibt keine abweichenden Dateien. Besteht bereits eine andere `AGENTS.md`, erfordert die Übernahme `--keep-agents` und anschließend einen **manuellen** Verweis auf `harness/core.md` und gegebenenfalls `harness/init.md`. Vorhandene Projektregeln und Docs müssen ebenfalls bewusst abgeglichen werden. Installer-Tests: `python3 -m unittest discover -s tests -p 'test_install.py'` – diese prüfen nicht das spätere Produkt.
