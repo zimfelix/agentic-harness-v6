@@ -4,7 +4,7 @@ Diese README ist bewusst kurz: Erst die Grafik lesen, danach bei Bedarf die gena
 
 ```mermaid
 flowchart TD
-    A([Start: Agent bekommt Aufgabe]) --> B[AGENTS.md lesen<br/>Einstiegskarte und Verweise]
+    A([Start: Agent bekommt Aufgabe]) --> B[AGENTS.md lesen<br/>Startpunkt, Grenzen und Verweise]
     B --> C[harness/rules/universal/core.md<br/>entscheidet: welcher Pfad ist nötig?]
 
     C --> D{Projekt schon initialisiert?}
