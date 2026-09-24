@@ -1,4 +1,4 @@
-# Specs – beauftragtes Soll-Verhalten
+# Spec 000 – beauftragtes Soll-Verhalten
 
 > **Zuständigkeit:** Beauftragtes Soll-Verhalten dokumentieren; keine Gesprächsnotizen oder Ist-Architektur.
 

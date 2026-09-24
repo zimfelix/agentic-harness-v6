@@ -35,7 +35,6 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
 | `docs/testing.md` | Risiken, Testebenen, Isolation und Teststruktur | Bei Testarbeit; konkrete Befehle → `harness/project.md`. |
 | `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Beim Init anlegen; technische Einzelregeln bleiben in den zuständigen Docs. |
-| `docs/README.md` | Index zusätzlicher Projekt-Docs | Nur bei neuem Doku-Thema; Leseauslöser zusätzlich in `AGENTS.md` oder `harness/project.md`. |
 | `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Dateien lesen; erst bei Bedarf anlegen. |
 
 Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md`, `docs/testing.md` und der Produkt-`README.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt den Bereich „Projektspezifische Befüllung“. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.

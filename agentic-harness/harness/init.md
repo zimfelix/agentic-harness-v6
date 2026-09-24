@@ -31,8 +31,7 @@ Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung�
 - `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten und Datenfluss; Geplantes und Offenes gesondert kennzeichnen.
 - `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack.
 - `agentic-harness/docs/testing.md`: passende Testebenen und Testpraxis für den ersten Ablauf.
-- `agentic-harness/docs/README.md`: weitere Projekt-Docs nur bei konkretem Bedarf unter „Weitere Projektdokumente“ verlinken.
-- Root-`AGENTS.md`: nur nötige zusätzliche Ladeverweise unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.
+- Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser unter „Projektspezifische Ergänzungen“ verlinken; keine Detailregeln kopieren.
 
 Fülle die Produkt-`README.md` mit bestätigtem Zweck und geprüften Startschritten. Ersetze ihren Platzhalter-Titel durch den Produktnamen. Überschreibe keine bereits vorhandenen Produktinformationen; erfinde keine Fakten.
 
