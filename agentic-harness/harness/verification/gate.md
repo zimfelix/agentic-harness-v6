@@ -14,8 +14,9 @@ Schematische Übersicht mit verkürzten Dateinamen. Bei Änderungen an Harness-R
 AGENTS.md → core.md + project.md (Grenzen und eingerichtete Prüfungen)
                           ↓
                         gate.md
-           ├─ requirements.md → Soll aus Auftrag, ggf. Spec und Projektgrenzen
-           └─ implementation.md → Ist und Nachweise gegen dieses Soll prüfen
+           ├─ requirements.md → Soll aus Auftrag + project.md; ggf. Spec/Architektur
+           └─ implementation.md → Ist gegen Soll; Befehle aus project.md,
+                                   passende Docs und beobachtete Nachweise
                          ↓
              Soll durch Ist und Nachweise belegt?
              ├─ ja   → Ergebnis berichten; ggf. Spec „Implemented“
@@ -24,6 +25,8 @@ AGENTS.md → core.md + project.md (Grenzen und eingerichtete Prüfungen)
 ```
 
 ## Entscheidung
+
+Requirements und Implementation lesen `agentic-harness/harness/project.md` und öffnen die für ihre Prüfung nötigen Specs oder Projekt-Docs nach den jeweiligen Auslösern – auch wenn diese bei der Umsetzung noch nicht geladen waren.
 
 - Gleiche das Soll aus `agentic-harness/harness/verification/requirements.md` mit der beobachteten Änderung und den tatsächlich ausgeführten Nachweisen aus `agentic-harness/harness/verification/implementation.md` ab. Ein grüner Build oder Testlauf allein belegt nicht, dass der beauftragte Ablauf und die Projektgrenzen erfüllt sind.
 - Bei beauftragtem Nutzerverhalten: Jedes betroffene Akzeptanzkriterium muss belegt sein; erforderliche Prüfungen müssen bestanden sein. Nur dann darf die betroffene Spec `Implemented` werden.

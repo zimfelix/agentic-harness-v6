@@ -2,7 +2,7 @@
 
 > - **Typ:** Prozess
 > - **Zuständigkeit:** Ein neues, leeres Produktprojekt für den ersten beauftragten Arbeitsschritt vorbereiten.
-> - **Gilt bei:** Vor der ersten Produktumsetzung, wenn `agentic-harness/harness/project.md` noch `Pending Project Init` enthält. Nicht bei Harness-Engineering.
+> - **Gilt bei:** Beauftragtem Project Init für ein neues, leeres Produktprojekt oder vor der ersten Produktumsetzung, wenn `agentic-harness/harness/project.md` noch `Pending Project Init` enthält. Nicht bei Harness-Engineering.
 > - **Ladebeziehungen:**
 >   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`.
 >   - Für Dateirollen und Format: `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md`.
@@ -49,4 +49,4 @@ Entferne `Pending Project Init` erst, wenn Ziel, Grenzen und erster Schritt ausr
 
 Für beauftragtes Nutzerverhalten nutze `agentic-harness/specs/S000-readme.md` und `agentic-harness/harness/templates/spec.md`.
 
-Eine Idea nach `agentic-harness/ideas/S000-readme.md` ist nur bei offenem Klärungsbedarf nötig. Danach gilt wieder `agentic-harness/harness/core.md`.
+Eine Idea nach `agentic-harness/ideas/S000-readme.md` ist nur bei offenem Klärungsbedarf nötig. Nach dem Init lies das aktualisierte `agentic-harness/harness/project.md` und kehre für den aktuellen Auftrag zu `agentic-harness/harness/core.md` zurück. Init allein ist keine Implementierungsfreigabe. Bleibt eine dafür nötige Entscheidung offen, berichte den Blocker statt auf einer Annahme umzusetzen.

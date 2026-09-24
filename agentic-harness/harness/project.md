@@ -3,7 +3,7 @@
 > - **Typ:** Projektdoku
 > - **Status:** Pending Project Init; noch keine Produktentscheidung bestätigt.
 > - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen und ausführbare Befehle festhalten.
-> - **Gilt bei:** Jeder Projektaufgabe; beim ersten Befüllen nach `agentic-harness/harness/init.md`.
+> - **Gilt bei:** Einordnung jeder Aufgabe über `AGENTS.md`; projektspezifisches Befüllen bei `agentic-harness/harness/init.md`.
 > - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `agentic-harness/harness/core.md`. Architektur bei Bedarf: `agentic-harness/docs/architecture.md`; Testpraxis: `agentic-harness/docs/testing.md`.
 > - **Nicht zuständig:** Architekturdetails, Codekonventionen oder Akzeptanzkriterien wiederholen.
 

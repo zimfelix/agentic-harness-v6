@@ -11,6 +11,8 @@
 
 Die README spricht Menschen an und beschreibt nur tatsächlich nutzbares Verhalten. Technische Detailregeln stehen in den zuständigen Docs; nicht geprüfte Befehle nicht als funktionierend ausgeben.
 
+![img.png](assets/images/001-img.png)
+
 ## Projektspezifische Befüllung
 
 ### Zweck und erster Ablauf

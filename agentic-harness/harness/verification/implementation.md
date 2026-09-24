@@ -3,7 +3,7 @@
 > - **Typ:** Prozess
 > - **Zuständigkeit:** Das tatsächlich geänderte Verhalten und ausgeführte Prüfungen gegen das ermittelte Soll belegen.
 > - **Gilt bei:** Abschlussprüfung durch `agentic-harness/harness/verification/gate.md` nach einer Änderung.
-> - **Ladebeziehungen:** Vom Gate geladen; Soll aus `agentic-harness/harness/verification/requirements.md`, aktive Befehle und Grenzen aus `agentic-harness/harness/project.md`. Bei Codearbeit `agentic-harness/docs/code.md`, bei Tests `agentic-harness/docs/testing.md`, bei Strukturänderungen `agentic-harness/docs/architecture.md` beachten. Ergebnis ans Gate.
+> - **Ladebeziehungen:** Vom Gate geladen; Soll aus `agentic-harness/harness/verification/requirements.md`, aktive Befehle und Grenzen aus `agentic-harness/harness/project.md`. Bei Codearbeit `agentic-harness/docs/code.md`, bei Tests `agentic-harness/docs/testing.md`, bei Strukturänderungen `agentic-harness/docs/architecture.md` lesen. Ergebnis ans Gate.
 > - **Nicht zuständig:** Teststrategie oder Projektbefehle festlegen; Abschluss und Spec-Status entscheidet das Gate.
 
 ## Ist und Belege ermitteln

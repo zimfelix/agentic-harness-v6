@@ -3,7 +3,7 @@
 > - **Typ:** Prozess
 > - **Zuständigkeit:** Für das Gate Auftrag, betroffene Kriterien und Projektgrenzen als prüfbares Soll abgleichen.
 > - **Gilt bei:** Jeder Abschlussprüfung durch `agentic-harness/harness/verification/gate.md`.
-> - **Ladebeziehungen:** Vom Gate geladen; vorher `agentic-harness/harness/project.md` für Grenzen lesen. Bei neuem oder geändertem Nutzerverhalten betroffene Specs unter `agentic-harness/specs/` lesen; bei Strukturänderungen `agentic-harness/docs/architecture.md`. Ergebnis an das Gate und `agentic-harness/harness/verification/implementation.md` geben.
+> - **Ladebeziehungen:** Vom Gate geladen; vorher `agentic-harness/harness/project.md` für Grenzen lesen. Bei neuem oder geändertem Nutzerverhalten betroffene Specs unter `agentic-harness/specs/` lesen; bei Strukturänderungen `agentic-harness/docs/architecture.md` lesen. Ergebnis an das Gate und `agentic-harness/harness/verification/implementation.md` geben.
 > - **Nicht zuständig:** Umsetzung oder Testergebnisse beurteilen; das macht `agentic-harness/harness/verification/implementation.md`.
 
 ## Soll abgleichen

@@ -3,7 +3,7 @@
 > - **Typ:** Prozess
 > - **Zuständigkeit:** Entscheidungen und Rücksprünge zwischen Klärung, Umsetzung, Verifikation und Übergabe steuern.
 > - **Gilt bei:** Jeder Aufgabe nach dem Einstieg über `AGENTS.md`, auch bei Harness-Arbeit.
-> - **Ladebeziehungen:** Vorher `AGENTS.md` und `agentic-harness/harness/project.md`; bei erster Produktumsetzung mit `Pending Project Init` → `agentic-harness/harness/init.md`. Bei offener Idee → `agentic-harness/ideas/S000-readme.md`, bei beauftragtem Nutzerverhalten → `agentic-harness/specs/S000-readme.md` und betroffene Specs. Weitere Docs nach dem Auslöser in `AGENTS.md`; vor Abschluss → `agentic-harness/harness/verification/gate.md`.
+> - **Ladebeziehungen:** Vorher `AGENTS.md` und `agentic-harness/harness/project.md`; bei beauftragtem Project Init für ein leeres Produktprojekt oder vor erster Produktumsetzung mit `Pending Project Init` → `agentic-harness/harness/init.md`. Bei offener Idee → `agentic-harness/ideas/S000-readme.md`, bei beauftragtem Nutzerverhalten → `agentic-harness/specs/S000-readme.md` und betroffene Specs. Weitere Docs nach dem Auslöser in `AGENTS.md`; vor Abschluss → `agentic-harness/harness/verification/gate.md`.
 > - **Nicht zuständig:** Aufgabenrouting, Dokumentformat, Produktfakten, Testbefehle oder die Entscheidung des Verification-Gates duplizieren.
 
 ## Entscheidungsfluss
@@ -11,8 +11,8 @@
 ```text
 AGENTS.md → core.md + project.md
                  │
-                 ├─ erste Produktumsetzung und Init offen? → init.md
-                 │                                        → Projektdateien → zurück zum Auftrag
+                 ├─ Init beauftragt / erste Produktumsetzung bei Pending?
+                 │     └─ init.md → Projektdateien → zurück zum Auftrag
                  └─ Ziel, Umfang und Freigaben klären
                        ├─ größeres Vorhaben noch offen? → Idea → Klärung → zurück
                        ├─ neues/geändertes Nutzerverhalten beauftragt? → Spec
@@ -29,7 +29,7 @@ Die Dateinamen im Bild sind verkürzt; maßgeblich sind die Pfade im Kopf und da
 
 ## 1. Auftrag einordnen
 
-Lies das Projektprofil für bestätigte Grenzen und tatsächlich eingerichtete Prüfungen. Steht dort `Pending Project Init`, nutze `agentic-harness/harness/init.md` **vor der ersten Produktimplementierung**, nicht allein wegen einer Harness- oder Dokumentationsaufgabe. Erfinde keine fehlenden Projektfakten.
+Lies das Projektprofil für bestätigte Grenzen und tatsächlich eingerichtete Prüfungen. Ist Project Init für ein neues, leeres Produktprojekt beauftragt oder steht vor der ersten Produktimplementierung noch `Pending Project Init` im Profil, nutze `agentic-harness/harness/init.md`. Allein Harness- oder Dokumentationsarbeit löst kein Init aus. Erfinde keine fehlenden Projektfakten.
 
 Kläre das gewünschte Ergebnis, den Umfang und Nicht-Ziele. Bei fehlender Entscheidung oder Freigabe nicht stillschweigend eine Annahme zur Projektregel machen.
 
@@ -43,7 +43,7 @@ Lade die durch den Aufgabeninhalt ausgelösten Docs über `AGENTS.md`. Bei über
 
 ## 3. Änderung ausführen und Umfang nachführen
 
-Setze die kleinste Änderung um, die den **ganzen beauftragten Umfang** erfüllt. Beachte bestätigte Projektgrenzen; kläre Rechte, echte Daten und irreversible Aktionen vor dem Eingriff.
+Setze die kleinste Änderung um, die den **ganzen beauftragten Umfang** erfüllt. Wenn sich dabei neue Architektur-, Code- oder Testfragen ergeben, prüfe die Auslöser in `AGENTS.md` erneut und lies die jetzt betroffenen Docs vor dem Eingriff. Beachte bestätigte Projektgrenzen; kläre Rechte, echte Daten und irreversible Aktionen vor dem Eingriff.
 
 Erfordert die Arbeit eine neue Produktentscheidung oder ändert sich das Soll, gehe zur Klärung zurück und aktualisiere betroffene Projektdateien oder Specs, bevor du auf der neuen Annahme weiterarbeitest. Bei Strukturänderungen prüfe Ziel, tatsächlichen Baum und Folgen für Abhängigkeiten und Tests; übernimm keine projektspezifische Ordnerstruktur als allgemeine Pflicht.
 

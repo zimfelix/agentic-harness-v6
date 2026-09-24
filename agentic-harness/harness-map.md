@@ -16,7 +16,7 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
 | `AGENTS.md` | Einstieg und Aufgaben-Routing | Immer → `harness/core.md` und `harness/project.md`; weitere Ziele nur nach Auslöser. |
-| `harness/core.md` | Entscheidungen und Rücksprünge von Auftrag bis Übergabe | Mit `harness/project.md` über `AGENTS.md`; bei erster Produktumsetzung und `Pending Project Init` → `harness/init.md`; je nach Auftrag Ideas/Specs und Docs; vor Abschluss → `harness/verification/gate.md`. |
+| `harness/core.md` | Entscheidungen und Rücksprünge von Auftrag bis Übergabe | Mit `harness/project.md` über `AGENTS.md`; bei beauftragtem Init für ein leeres Produktprojekt oder erster Produktumsetzung mit `Pending Project Init` → `harness/init.md`; je nach Auftrag Ideas/Specs und Docs; vor Abschluss → `harness/verification/gate.md`. |
 | `harness/init.md` | Leeres Projekt für ersten Schritt klären | Bei Init → `harness/harness-map.md` und `harness/document-contract.md`; danach Projektdateien befüllen. |
 | `harness/harness-map.md` | Dateirollen und Ladewege | Bei Orientierung oder Änderungen der Dokumentstruktur; keine Projektfakten. |
 | `harness/document-contract.md` | Format und Pflege neuer Markdown-Dateien | Beim Anlegen/Befüllen von Projekt-Docs und bei Pfadänderungen. |
