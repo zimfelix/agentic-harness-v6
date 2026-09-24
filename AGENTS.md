@@ -3,7 +3,7 @@
 > - **Typ:** Einstieg
 > - **Zuständigkeit:** Aufgaben den zuständigen Harness-Dateien zuordnen.
 > - **Gilt bei:** Arbeit in diesem Repository und später in Projekten mit diesem Harness.
-> - **Ladebeziehungen:** Root-`AGENTS.md` gilt zusätzlich. Immer `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md` lesen; weitere Dateien nur nach den Auslösern unten.
+> - **Ladebeziehungen:** Immer `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md` lesen; weitere Dateien nur nach den Auslösern unten.
 > - **Nicht zuständig:** Den Arbeitsablauf, Produktfakten oder Qualitätsregeln hier erneut erklären.
 
 ## Wohin mit der Aufgabe?
@@ -30,3 +30,9 @@ Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-wei
 Produktcode und Produkttests liegen außerhalb der Harness-Dokumente. Bei Widersprüchen zwischen Auftrag, bestehenden Projektanweisungen und Harness kläre die Zuständigkeit vor riskanten Änderungen. Ändere nicht stillschweigend weitere Dateien, nur weil sie verlinkt sind.
 
 Bei Commits beschreibt der Betreff in einem kurzen, konkreten Satz die tatsächliche Änderung. Vermeide ungenaue Betreffe wie „Update files“.
+
+Bei Project Init nur nötige zusätzliche Projektverweise unter der folgenden Überschrift eintragen. Universelle Regeln oben nicht kopieren.
+
+## Projektspezifische Ergänzungen
+
+(Im Projekt ersetzt: Hier kommen projektspezifische Neuerungen rein, die für agents.md in dem projekt wichtig sind):
