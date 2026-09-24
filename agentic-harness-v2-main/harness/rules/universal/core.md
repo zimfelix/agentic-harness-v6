@@ -1,5 +1,7 @@
 # Core – universeller Arbeitsablauf
 
+> **Verantwortung:** Diese Datei beschreibt den universellen Ablauf von Einordnung über Spec, Umsetzung, Prüfung bis Abschluss. Sie entscheidet, wann Idea, Spec und Quality Gate nötig sind, aber enthält keine projektspezifischen Befehle.
+
 ## Geltung
 
 Dieser Ablauf gilt für neue Projekte unabhängig von Sprache und Plattform. `AGENTS.md` ist die Einstiegskarte; `harness/rules/project-specific/project.md` enthält die konkreten Projektfakten und Grenzen. Ist das Profil noch `Pending Project Init`, kläre das Projekt einmal anhand von `harness/templates/project-init.md`, bevor du mit der ersten Implementierung beginnst. Technik, Architektur und Befehle gehören nicht in diesen Core. Lies die betroffene Spec und nur die für die Aufgabe passenden Regeln; lade keine Ordner auf Vorrat.

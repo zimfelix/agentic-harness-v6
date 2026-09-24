@@ -1,5 +1,7 @@
 # Ideas – größere Vorhaben klären
 
+> **Verantwortung:** Diese Datei regelt, wie ein größeres oder unklares Vorhaben im Dialog geklärt wird. Sie schützt Ideas davor, bereits Specs oder Implementierungsaufträge zu werden.
+
 Der Core entscheidet, ob eine Idea nötig ist. Diese Datei regelt nur die Klärung; `harness/templates/idea.md` gibt die Form vor. Eine Idea ist keine Spec und kein Implementierungsauftrag.
 
 ## Im Dialog

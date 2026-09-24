@@ -1,5 +1,7 @@
 # Quality – risikobasiert nachweisen
 
+> **Verantwortung:** Diese Datei hilft, passende Nachweise nach Risiko auszuwählen. Sie erklärt Testarten und Gate-Prinzipien, führt aber selbst keine Checks aus und ersetzt keine Projektkonfiguration.
+
 Diese Datei hilft bei der **Auswahl** von Prüfungen, nicht bei deren Ausführung. Der Core regelt Spec-State und Korrekturschleife; das Projektprofil benennt das Gate, eine projektspezifische Qualitätsmatrix ordnet bei Bedarf Bereiche zu und die Gate-Konfiguration enthält konkrete Befehle. Keine Testart ist allein wegen ihres Namens Pflicht.
 
 ## Passende Nachweise wählen
