@@ -9,7 +9,7 @@
 
 ## Pfadbasis
 
-Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `harness/` und `docs/` noch unter `agentic-harness/`; `AGENTS.md` liegt bereits im Root. Vertrag und Landkarte liegen derzeit unter `agentic-harness/` und bleiben auch in der Zielstruktur im Harness (`harness/document-contract.md`, `harness/harness-map.md`). Bis zu einer Migration sind die tatsächlichen Pfade im Root-`AGENTS.md` maßgeblich.
+Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `harness/` und `docs/` noch unter `agentic-harness/`; `AGENTS.md` liegt bereits im Root. Vertrag und Landkarte liegen derzeit unter `agentic-harness/` und bleiben auch in der Zielstruktur im Harness (`harness/document-contract.md`, `harness/harness-map.md`). Beim Kopieren von Root-`AGENTS.md` und `agentic-harness/` in ein neues Projekt bleiben diese aktuellen Pfade gültig; die Tabelle ist keine Installationsanweisung. Die `README.md` dieses Quell-Repositories ist eine Harness-Anleitung, nicht die Produkt-README im Zielprojekt. Bis zu einer Migration sind die tatsächlichen Pfade im Root-`AGENTS.md` maßgeblich.
 
 ## Universelle Dateien
 
@@ -35,10 +35,10 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `docs/architecture.md` | Bausteine, Schnittstellen und Datenfluss | Bei Architektur/Struktur; Codekonventionen → `docs/code.md`. |
 | `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
 | `docs/testing.md` | Risiken, Testebenen, Isolation und Teststruktur | Bei Testarbeit; konkrete Befehle → `harness/project.md`. |
-| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Beim Init befüllen oder ergänzen; technische Einzelregeln bleiben in den zuständigen Docs. |
+| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Im Zielprojekt beim Init ohne Metakopf anlegen oder bestehende Produktinformationen ergänzen. |
 | `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte lesen; neue erst bei Bedarf anlegen. |
 
-Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md`, `docs/testing.md` und der Produkt-`README.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt den Bereich „Projektspezifische Befüllung“. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.
+Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md` und `docs/testing.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt dort den Bereich „Projektspezifische Befüllung“; die Produkt-`README.md` ist ein menschlicher Einstieg ohne Metakopf. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.
 
 ## Bei neuen oder verschobenen Dateien
 

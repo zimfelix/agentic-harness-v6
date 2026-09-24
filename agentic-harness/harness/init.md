@@ -23,7 +23,7 @@ Fasse den ersten Schritt und offene Entscheidungen zusammen. Hole die nötige fa
 
 ## 2. Bestätigtes an die richtige Stelle schreiben
 
-Lies die Inhaltsvorgaben der Projektdateien. Behalte Dokumentkopf und „Universeller Rahmen“, aber prüfe den Kopf beim Befüllen: Stimmen Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung zum bestätigten Projekt und zu den tatsächlichen Pfaden?
+Lies die Inhaltsvorgaben von `agentic-harness/harness/project.md` und den Projekt-Docs. Behalte dort Dokumentkopf und „Universeller Rahmen“, aber prüfe den Kopf beim Befüllen: Stimmen Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung zum bestätigten Projekt und zu den tatsächlichen Pfaden?
 
 Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Ist ein Bereich nicht entscheidbar oder nicht relevant, kennzeichne ihn ausdrücklich. Entferne den Platzhalterstatus erst nach tatsächlicher Befüllung.
 
@@ -33,7 +33,7 @@ Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung�
 - `agentic-harness/docs/testing.md`: passende Testebenen und Testpraxis für den ersten Ablauf.
 - Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser unter „Projektspezifische Ergänzungen“ verlinken; keine Detailregeln kopieren.
 
-Fülle die Produkt-`README.md` mit bestätigtem Zweck und geprüften Startschritten. Ersetze ihren Platzhalter-Titel durch den Produktnamen. Überschreibe keine bereits vorhandenen Produktinformationen; erfinde keine Fakten.
+Erstelle im Zielprojekt eine kurze Produkt-`README.md` ohne Metakopf oder ergänze eine vorhandene um bestätigten Zweck und geprüfte Startschritte. Liegt dort stattdessen noch die Harness-Anleitung aus dem Quell-Repository, ersetze sie durch die Produkt-README. Bewahre vorhandene Produktinformationen; erfinde keine Fakten.
 
 ## 3. Prüf-Einstieg und Verweise prüfen
 

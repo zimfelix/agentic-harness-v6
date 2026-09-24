@@ -1,28 +1,25 @@
-# Produkt-README – beim Project Init befüllen
+# Agentic Harness für neue Produktprojekte
 
-> - **Typ:** Projektdoku
-> - **Status:** Pending Project Init; noch kein Produkt oder Startbefehl bestätigt.
-> - **Zuständigkeit:** Menschen einen kurzen Einstieg in Produkt, Einrichtung und Start geben.
-> - **Gilt bei:** Project Init und späteren Änderungen an Einrichtung oder Bedienung.
-> - **Ladebeziehungen:** Grenzen und Befehle aus `agentic-harness/harness/project.md`; Bausteine bei Bedarf aus `agentic-harness/docs/architecture.md`.
-> - **Nicht zuständig:** Interne Agentenregeln oder detaillierte Code- und Testkonventionen wiederholen.
+Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht – vom kleinen CLI- oder Web-Produkt bis zu größeren Vorhaben mit klar begrenztem erstem Meilenstein. Kopiere `AGENTS.md` und `agentic-harness/` in das neue Projekt; dort führt der Harness von Project Init über beauftragte Änderungen bis zur Verifikation.
 
-## Universeller Rahmen
+![001-img.png](assets/images/001-img.png)
 
-Die README spricht Menschen an und beschreibt nur tatsächlich nutzbares Verhalten. Technische Detailregeln stehen in den zuständigen Docs; nicht geprüfte Befehle nicht als funktionierend ausgeben.
+## Empfohlen: in ein leeres Projekt kopieren
 
-![img.png](assets/images/001-img.png)
+Kopiere **`AGENTS.md` und den gesamten Ordner `agentic-harness/`** aus diesem Repository unverändert ins Root des neuen Projekts. Nur zusammen stimmen die aktuellen Ladepfade.
 
-## Projektspezifische Befüllung
+```sh
+HARNESS=/pfad/zum/agentic-harness-repo
+PROJEKT=/pfad/zum/neuen-leeren-projekt
+mkdir -p "$PROJEKT"
+cp "$HARNESS/AGENTS.md" "$PROJEKT/"
+cp -R "$HARNESS/agentic-harness" "$PROJEKT/"
+```
 
-### Zweck und erster Ablauf
+Öffne danach das Zielprojekt mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent befüllt `agentic-harness/harness/project.md` und die betroffenen Projekt-Docs. Eine **Produkt-`README.md`** wird im Zielprojekt neu erstellt oder, falls vorhanden, mit bestätigten Produktinformationen ergänzt.
 
-Noch offen (Project Init): Für wen ist das Produkt? Welches Problem und welchen ersten Ablauf deckt es ab?
+**Nicht mitkopieren:** Diese README ist nur die Anleitung zum Harness. `main.py` ist hier leer; `.venv/` ist eine lokale virtuelle Python-Umgebung (virtual environment). Auch `.idea/`, `assets/` und `.git/` sind kein benötigter Teil des Harnesses. Richte Umgebung und Produktcode für das Zielprojekt nach dessen Entscheidungen ein.
 
-### Einrichten und starten
+## Ganzes Repository als Ausgangspunkt
 
-Noch offen (Project Init): benötigte Voraussetzungen und geprüfte Schritte in ausführbarer Reihenfolge. Befehle mit `agentic-harness/harness/project.md` abgleichen.
-
-### Prüfen und weiterlesen
-
-Noch offen (Project Init): tatsächlich verfügbare Checks und passende Links auf `agentic-harness/docs/architecture.md` oder `agentic-harness/docs/testing.md`.
+Du kannst das Repository auch klonen oder als Vorlage kopieren, musst dann aber die Harness-README durch eine Produkt-README ersetzen und nicht benötigte Dateien wie `main.py` und `assets/` entfernen. Das ist derzeit **kein automatischer Installer**; für ein neues Produkt ist das gezielte Kopieren der beiden oben genannten Bestandteile der einfachere Weg.
