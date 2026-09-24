@@ -1,5 +1,7 @@
 # IXXX – Kurzer Titel
 
+> **Verantwortung:** Diese Vorlage gibt einer Idea eine einheitliche Form. Sie hilft, Problem, Nutzen, Umfang, Entscheidungen und offene Punkte zu sammeln, bevor daraus Specs entstehen.
+
 ## Meta
 
 - **State:** Draft

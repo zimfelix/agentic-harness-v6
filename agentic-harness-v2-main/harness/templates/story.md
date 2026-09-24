@@ -1,5 +1,7 @@
 # SXXX – Kurzer Titel
 
+> **Verantwortung:** Diese Vorlage beschreibt eine kleine, beauftragte Verhaltensänderung als prüfbare Story. Sie trennt Ziel, Umfang, Akzeptanzkriterien und Nachweise von technischen Lösungsdetails.
+
 ## Meta
 
 - **State:** Modified

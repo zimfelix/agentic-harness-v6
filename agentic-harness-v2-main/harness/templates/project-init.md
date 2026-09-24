@@ -1,5 +1,7 @@
 # Project Init – einmal pro neuem Projekt
 
+> **Verantwortung:** Diese Vorlage führt durch die einmalige Initialisierung eines konkreten Projekts. Sie legt fest, welche Fakten und Regeln wohin gehören, damit der Harness nicht blind oder doppelt befüllt wird.
+
 Vor der ersten Implementierung das Projektprofil klären; später nur betroffene Themen neu prüfen, nicht den gesamten Katalog wiederholen. Lies `harness/rules/universal/core.md`. Bei bestehendem Code zuerst Einstieg, Hauptablauf (Eingabe → Logik → Ergebnis), Verantwortlichkeiten, Zustand und vorhandene Tests nachvollziehen; Fakten daraus im Projektprofil festhalten. Stelle bei offenen Produkt- oder Sicherheitsentscheidungen gezielte Fragen, statt Antworten zu erfinden.
 
 ## Relevanzcheck
