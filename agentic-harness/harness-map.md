@@ -17,7 +17,7 @@ Für diesen Entwurf gibt es **keinen Installer-Schritt**. `scripts/install.py` u
 
 | Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `AGENTS.md` | Einstieg; ordnet Aufgabentypen Dateien zu | Immer → `harness/core.md` und `harness/project.md`. Bei Fachaufgaben gezielt passende Docs/Ideas/Specs. |
+| `AGENTS.md` | Einstieg; ordnet Aufgabentypen Dateien zu | Immer → `harness/core.md` und `harness/project.md`. Bedingte Ziele stehen in den Zeilen unten. |
 | `harness/core.md` | Universelle Schritte von Auftrag bis Übergabe | Nach Einstieg → Projektgrenzen beachten; bei ausstehendem Init → `harness/init.md`; vor Abschluss → `harness/verification/gate.md`. |
 | `harness/project.md` | Bestätigte Projektgrenzen, Befehle und Gate-Status | Mit Core lesen. Bei Architekturdetails → `docs/architecture.md`; bei Testregeln → `docs/testing.md`. |
 | `harness/init.md` | Zielprojekt einmalig klären und Profil füllen | Nur bei offenem Project Init → `harness/project.md` und betroffene Projekt-Docs. |
@@ -26,7 +26,7 @@ Für diesen Entwurf gibt es **keinen Installer-Schritt**. `scripts/install.py` u
 
 | Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `docs/architecture.md` | Produktbausteine, Datenfluss und Abhängigkeitsrichtung | Bei Architektur/Struktur. Wenn Codekonventionen oder Tests betroffen sind → jeweiliges Doc. |
+| `docs/architecture.md` | Produktbausteine, Datenfluss und Abhängigkeitsrichtung | Bei Architektur/Struktur. Bei Codekonventionen → `docs/code.md`; bei Teststruktur → `docs/testing.md`. |
 | `docs/code.md` | Code-, Import- und Packaging-Konventionen | Bei Codearbeit. Bei Modulgrenzen → `docs/architecture.md`. |
 | `docs/testing.md` | Teststrategie und Testkonventionen | Bei Testarbeit. Für ausführbare Befehle → `harness/project.md`. |
 | `harness/templates/idea.md` | Format einer offenen Idea | Beim Anlegen einer Idea → `ideas/`. Keine Implementierungsfreigabe. |
@@ -37,16 +37,16 @@ Für diesen Entwurf gibt es **keinen Installer-Schritt**. `scripts/install.py` u
 
 | Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `harness/verification/gate.md` | Abschlussentscheidung | Nach Umsetzung → `requirements.md` und `implementation.md`; bei Fehlschlag → `fail.md`. |
+| `harness/verification/gate.md` | Abschlussentscheidung | Nach Umsetzung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Fehlschlag → `harness/verification/fail.md`. |
 | `harness/verification/requirements.md` | Auftrag und Kriterien gegen Soll prüfen | Vom Gate geladen; betroffene Spec und `harness/project.md` nutzen. |
 | `harness/verification/implementation.md` | Umsetzung und Nachweise prüfen | Vom Gate geladen; Projektbefehle aus `harness/project.md` nutzen. |
 | `harness/verification/fail.md` | Fehlschlag oder fehlenden Nachweis behandeln | Nur bei fehlgeschlagener oder unvollständiger Prüfung. |
 
-## Wenn neue Dateien entstehen
+## Wenn Dateien entstehen oder Pfade sich ändern
 
-1. Gib ihnen eine Verantwortung, die nicht bereits einer anderen Datei gehört.
-2. Benenne den Aufgabenauslöser und den Einstieg, der zu ihnen führt.
-3. Trage nur direkte Ladebeziehungen ein: **vorher**, **wenn …**, **danach**.
-4. Prüfe den Pfad am tatsächlichen Zielbaum. Passe den Einstieg gezielt an; wiederhole seine Regeln nicht im neuen Doc.
+1. Gib neuen Dateien eine eigene Verantwortung und einen Aufgabenauslöser.
+2. Trage nur direkte Ladebeziehungen ein: **vorher**, **wenn …**, **danach**.
+3. Bei Umbenennung, Verschieben oder Löschen: Suche zuerst alle eingehenden Verweise im Repo. Passe Landkarte und betroffene Dateien im selben Schritt an.
+4. Prüfe danach reale Ziele und die Erreichbarkeit vom Einstieg aus. Geplante Pfade sind kein Nachweis für vorhandene Dateien.
 
 Offen vor der Neuordnung: Welche der heutigen `README.md`-Indizes bleiben reine Orientierung, und welche Ladebedingungen wandern in den Projekt-Einstieg? Diese Entscheidung nicht durch doppelte Trigger vorwegnehmen.
