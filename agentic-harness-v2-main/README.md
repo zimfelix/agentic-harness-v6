@@ -1,8 +1,52 @@
 # Agentic Harness V2 – Starter-Kit
 
+> **Verantwortung:** Diese README erklärt das Starter-Kit als Ganzes: was kopiert wird, welche Datei wofür zuständig ist und wie der aktuelle Workflow läuft. Sie ist die visuelle Orientierung, nicht die detaillierte Regelquelle.
+
 **Status: Prototyp.** Die Runner-Tests und kurze Wegwerf-Piloten sind bestanden, aber der Harness wurde noch nicht durch vollständige Project-Init-Abläufe in realen Projekten validiert. Zur Nutzung werden die Harness-Dateien in ein bestehendes oder neues Projekt kopiert, dort per Project Init angepasst und mit projektspezifischen Checks vervollständigt.
 
 Kopiere `AGENTS.md`, `learning-state.md`, `harness/rules/`, `harness/templates/` und, sofern Python verfügbar ist, `scripts/verify.py` in das Root eines neuen Projekts. Die Entwicklungsartefakte unter `ideas/`, `specs/` und `tests/` gehören **nicht** in das Zielprojekt. Überschreibe vorhandene Projektdateien nicht blind: Führe bestehende `AGENTS.md`-Regeln zusammen und übernimm diese README-Zuständigkeitskarte in eine vorhandene Projekt-README. Bei Project Init wird `learning-state.md` zur knappen, manuellen Sammlung bestätigter Erkenntnisse aus diesem Projekt. Sie wird nur auf ausdrücklichen Sammelauftrag am Ende eines Chats/Tages aktualisiert; Projektstatus bleibt in README, Specs und Git nachvollziehbar. Allgemeine, übertragbare Learnings werden später separat kuratiert und nur auf ausdrücklichen Auftrag in globale Agent-Dateien übernommen. Diese Einleitung wird in der Projekt-README durch Projektziel, Start und Testeinstieg ersetzt. `project-specific/*.md` bleiben sichtbar auf `Pending Project Init`, solange sie nicht benötigt und definiert sind.
+
+## Aktueller Workflow auf einen Blick
+
+```text
+1. Einstieg
+   AGENTS.md
+      │
+      ▼
+2. Universellen Ablauf lesen
+   harness/rules/universal/core.md
+      │
+      ├─ Projekt noch nicht initialisiert?
+      │     ▼
+      │   harness/templates/project-init.md
+      │     ▼
+      │   harness/rules/project-specific/project.md
+      │   + nur wirklich benötigte project-specific/*.md
+      │
+      ├─ Vorhaben groß oder unklar?
+      │     ▼
+      │   harness/rules/universal/ideas.md
+      │     ▼
+      │   ideas/IXXX-...
+      │     ▼  nach Bestätigung + separatem Umsetzungsauftrag
+      │
+      └─ Konkretes Verhalten ändern?
+            ▼
+          harness/templates/story.md
+            ▼
+          specs/SXXX-...
+            ▼
+          kleinste passende Implementierung
+            ▼
+          passende Nachweise wählen
+          harness/rules/universal/quality.md
+            ▼
+          projektspezifisches Quality Gate ausführen
+            ▼
+          Spec erst auf Implemented setzen, wenn AK + Gate grün sind
+```
+
+Kurzform: **AGENTS.md startet**, der **Core entscheidet den nächsten Schritt**, **Project Init** macht ein Projekt konkret, **Ideas** klären offene Vorhaben, **Specs** beschreiben beauftragtes Verhalten und das **Quality Gate** beweist den Abschluss.
 
 ## Zuständigkeiten – eine Quelle pro Regel
 

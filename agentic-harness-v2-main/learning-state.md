@@ -1,5 +1,7 @@
 # Learning State – Harness V2
 
+> **Verantwortung:** Diese Datei sammelt nur ausdrücklich bestätigte Erkenntnisse und Lernnotizen aus diesem Projekt. Sie ist kein Statuslog, keine Spec und kein Ort für automatisch gespeicherte Chatverläufe.
+
 Lokale Sammelstelle für Erkenntnisse aus diesem Projekt. Ich ergänze sie nur,
 wenn Felix ausdrücklich sagt, etwas zu speichern oder eine Zusammenfassung hier
 festzuhalten. Einträge bleiben kurz; Unsicheres wird als offen markiert.
