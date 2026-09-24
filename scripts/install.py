@@ -1,110 +1,115 @@
 #!/usr/bin/env python3
-"""Install the reusable harness into a project without overwriting project files."""
+"""Copy the bundled agentic-harness directory into a project and connect AGENTS.md."""
 
 import argparse
 from pathlib import Path
+import shutil
 import sys
+import tempfile
 
-SOURCE = Path(__file__).resolve().parent.parent
-
-# Explicit allowlist: never distribute this repository's .git, image, main.py or own tests.
-FILES = (
-    "AGENTS.md",
-    "harness/core.md",
-    "harness/init.md",
-    "harness/project.md",
-    "harness/verification/gate.md",
-    "harness/verification/requirements.md",
-    "harness/verification/implementation.md",
-    "harness/verification/fail.md",
-    "harness/templates/idea.md",
-    "harness/templates/spec.md",
-    "docs/README.md",
-    "docs/architecture.md",
-    "docs/code.md",
-    "docs/testing.md",
-    "ideas/README.md",
-    "specs/README.md",
-    "src/README.md",
-    "tests/README.md",
-)
-# The starter-kit README describes this repository, not the target product.
-# Project Init creates a product README later; never copy or create one here.
+SOURCE = Path(__file__).resolve().parent.parent / "agentic-harness"
+BUNDLE_NAME = "agentic-harness"
+AGENTS_NAME = "AGENTS.md"
+START = "<!-- BEGIN AGENTIC HARNESS -->"
+END = "<!-- END AGENTIC HARNESS -->"
+BLOCK = f"{START}\nFor project work, follow `{BUNDLE_NAME}/AGENTS.md`. Existing project instructions remain in force; resolve conflicts before acting.\n{END}"
 
 
-def install(target: Path, *, keep_agents: bool = False, dry_run: bool = False) -> list[str]:
-    """Preflight all collisions, then copy missing files; return actions taken/planned."""
-    target = target.absolute()
+def _bundle_matches(destination: Path) -> bool:
+    """Return whether an existing bundle has exactly the source files and contents."""
+    if not destination.is_dir() or destination.is_symlink():
+        return False
+    if any(path.is_symlink() for path in destination.rglob("*")):
+        return False
+    source_files = {p.relative_to(SOURCE) for p in SOURCE.rglob("*") if p.is_file()}
+    destination_files = {p.relative_to(destination) for p in destination.rglob("*") if p.is_file()}
+    if source_files != destination_files:
+        return False
+    return all((SOURCE / rel).read_bytes() == (destination / rel).read_bytes()
+               for rel in source_files)
+
+
+def _agents_result(path: Path) -> tuple[str, str | None]:
+    """Return action and replacement content for the target AGENTS.md."""
+    if path.is_symlink():
+        raise ValueError(f"Refusing symlink: {path}")
+    if not path.exists():
+        return "ADD", BLOCK + "\n"
+    if not path.is_file():
+        raise ValueError(f"AGENTS.md is not a regular file: {path}")
+    current = path.read_text(encoding="utf-8")
+    has_start, has_end = START in current, END in current
+    if (current.count(START) > 1 or current.count(END) > 1
+            or has_start != has_end or (has_start and current.index(START) > current.index(END))):
+        raise ValueError("Malformed Agentic Harness markers in AGENTS.md; repair them manually.")
+    if has_start:
+        section = current[current.index(START):current.index(END) + len(END)]
+        if section != BLOCK:
+            raise ValueError("AGENTS.md contains a different managed Harness section; "
+                             "review and update it manually.")
+        return "SAME", None
+    separator = "" if not current or current.endswith("\n\n") else "\n"
+    return "UPDATE", current + separator + BLOCK + "\n"
+
+
+def install(target: Path, *, dry_run: bool = False) -> list[str]:
+    """Preflight, then install one bundle directory and append an idempotent AGENTS entry."""
+    if not SOURCE.is_dir():
+        raise ValueError(f"Harness bundle missing from source: {SOURCE}")
+    target = target.expanduser().absolute()
     if target.is_symlink() or (target.exists() and not target.is_dir()):
         raise ValueError(f"Target is not a normal directory: {target}")
 
-    planned = [(relative, relative) for relative in FILES]
-    actions = []
-    conflicts = []
-    for source_name, destination_name in planned:
-        source = SOURCE / source_name
-        if not source.is_file():
-            raise ValueError(f"Missing installer source: {source}")
-        destination = target / destination_name
-        # Refuse links INSIDE the target; macOS /var itself is commonly a symlink.
-        parts = Path(destination_name).parts
-        inside = [target, *(target.joinpath(*parts[:i]) for i in range(1, len(parts) + 1))]
-        if any(path.is_symlink() for path in inside):
-            raise ValueError(f"Symlink in target path: {destination}")
-        if any(path.exists() and not path.is_dir() for path in inside[:-1]):
-            raise ValueError(f"Parent is not a directory: {destination}")
-        if destination.exists() and not destination.is_file():
-            conflicts.append(destination_name)
-            continue
-        if destination_name == "AGENTS.md" and destination.exists() and keep_agents:
-            actions.append(f"KEEP {destination_name} (manual integration required)")
-        elif destination.exists():
-            if destination.is_file() and destination.read_bytes() == source.read_bytes():
-                actions.append(f"SAME {destination_name}")
-            else:
-                conflicts.append(destination_name)
-        else:
-            actions.append(f"ADD  {destination_name}")
-    if conflicts:
-        raise ValueError(
-            "Existing files differ; nothing installed: " + ", ".join(conflicts)
-            + ". Merge them manually; for an existing AGENTS.md use --keep-agents "
-            "and add a link to harness/core.md yourself."
-        )
+    bundle = target / BUNDLE_NAME
+    if bundle.is_symlink():
+        raise ValueError(f"Refusing symlink: {bundle}")
+    if bundle.exists() and not _bundle_matches(bundle):
+        raise ValueError(f"{BUNDLE_NAME}/ already exists and differs; nothing installed. "
+                         "Review or back it up before installing the bundle.")
+    bundle_action = "SAME" if bundle.exists() else "ADD"
+    agents = target / AGENTS_NAME
+    agents_action, agents_content = _agents_result(agents)
+    actions = [f"{bundle_action}  {BUNDLE_NAME}/", f"{agents_action}  {AGENTS_NAME}"]
+    if dry_run:
+        return actions
 
-    if not dry_run:
-        for source_name, destination_name in planned:
-            destination = target / destination_name
-            if destination.exists():
-                continue
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            # Exclusive creation: even if the target changes after preflight, do not overwrite it.
-            with destination.open("xb") as output:
-                output.write((SOURCE / source_name).read_bytes())
+    target.mkdir(parents=True, exist_ok=True)
+    if not bundle.exists():
+        # Stage in the destination filesystem and rename only after the complete copy succeeds.
+        with tempfile.TemporaryDirectory(prefix=".agentic-harness-", dir=target) as temporary:
+            staged = Path(temporary) / BUNDLE_NAME
+            shutil.copytree(SOURCE, staged)
+            staged.rename(bundle)
+    if agents_content is not None:
+        if agents_action == "ADD":
+            # Exclusive create protects an AGENTS.md created after preflight.
+            with agents.open("x", encoding="utf-8") as output:
+                output.write(agents_content)
+        else:
+            # Atomic replacement; preserve existing file permissions.
+            mode = agents.stat().st_mode
+            with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=target,
+                                             prefix=".AGENTS.", delete=False) as output:
+                temporary = Path(output.name)
+                output.write(agents_content)
+            temporary.chmod(mode)
+            temporary.replace(agents)
     return actions
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("target", type=Path, help="New or existing project directory")
-    parser.add_argument("--dry-run", action="store_true", help="Show actions without writing")
-    parser.add_argument(
-        "--keep-agents", action="store_true",
-        help="Keep an existing AGENTS.md; manually add a reference to harness/core.md afterwards",
-    )
+    parser.add_argument("--dry-run", action="store_true", help="Show changes without writing")
     args = parser.parse_args()
-    existing_agents = (args.target / "AGENTS.md").exists()
     try:
-        actions = install(args.target, keep_agents=args.keep_agents, dry_run=args.dry_run)
+        actions = install(args.target, dry_run=args.dry_run)
     except (ValueError, OSError) as error:
         print(f"Installation stopped: {error}", file=sys.stderr)
         return 1
     print("\n".join(actions))
-    if args.keep_agents and existing_agents:
-        print("ACTION REQUIRED: Update the existing AGENTS.md to load harness/core.md "
-              "and, while Pending Project Init, harness/init.md.")
-    print("Next: complete harness/init.md, including the product README; "
-          "installation is NOT Project Init or a passing gate.")
+    if not args.dry_run:
+        print("Next: initialize agentic-harness/harness/project.md; installation is not Project Init.")
     return 0
 
 

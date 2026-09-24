@@ -1,6 +1,6 @@
 # [Idee – kurzer Titel]
 
-> **Vorlage:** Offenes Vorhaben vor einem Umsetzungsauftrag; fertige Ideas liegen unter `ideas/`.
+> **Vorlage:** Offenes Vorhaben vor einem Umsetzungsauftrag; fertige Ideas liegen unter `agentic-harness/ideas/`.
 
 - **Status:** Draft | Ready
 - **Problem und Nutzer:** [Für wen besteht welches Problem?]

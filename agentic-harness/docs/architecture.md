@@ -1,0 +1,5 @@
+# Architektur – tatsächlichen Produktaufbau erklären
+
+> **Status:** Pending Project Init – noch keine Produktarchitektur festgelegt.
+
+**Zuständigkeit:** Nach Project Init den tatsächlichen Aufbau des Produkts erklären: Bausteine, Verantwortlichkeiten, Datenflüsse, Schnittstellen und begründete Architekturentscheidungen. Geplante, aber noch nicht umgesetzte Bausteine ausdrücklich als „geplant“ kennzeichnen; nicht als Ist-Zustand ausgeben. `agentic-harness/specs/` beschreibt gewünschtes Funktionsverhalten, `agentic-harness/harness/` den Agentenablauf; Architektur-Details nicht dorthin kopieren. Weitere Integrationsdokumente nur bei Bedarf ergänzen.
