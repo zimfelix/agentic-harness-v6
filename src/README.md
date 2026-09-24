@@ -1,3 +1,3 @@
 # Source – Anwendungscode nach Project Init
 
-**Zuständigkeit:** Code des konkreten Produkts nach Project Init. Sprache und Struktur richten sich nach dem gewählten Stack; dieses Verzeichnis der Schablone enthält noch keine Anwendung. Der vorhandene leere `main.py` im Root ist kein Projektstart oder Beispielprodukt.
+**Zuständigkeit:** Code des konkreten Produkts nach Project Init. Sprache und Struktur richten sich nach dem gewählten Stack; dieser Ordner enthält anfangs noch keine Anwendung. Entferne diese Platzhalter-README, wenn die tatsächliche Projektstruktur ihren Zweck übernimmt.

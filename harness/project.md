@@ -1,15 +1,27 @@
 # Projektprofil – aktive Grenzen, Werkzeuge, Befehle
 
-> **Status:** Pending Project Init – Platzhalter für das Profil eines künftigen Produktprojekts. Vorgehen: `harness/init.md`. Dieser Status ist keine aktive Projektregel.
+> **Status:** Pending Project Init – noch kein bestätigtes Produktprofil. Vorgehen: `harness/init.md`. Dieser Status ist keine aktive Projektregel.
 
 **Zuständigkeit:** Kurzprofil und Einstieg in tatsächlich geltende Projektgrenzen, Werkzeuge, Start und Prüfungen. Keine zweite Architektur-, Code- oder Testdokumentation; Details in `docs/` verlinken.
 
-Bei Project Init anhand bestätigter Fakten ausfüllen:
+## Produkt und Grenzen
 
-- **Produkt und Grenzen:** Nutzer, wichtigster Ablauf, Nicht-Ziele, offene Entscheidungen.
-- **Technik und Betrieb:** tatsächliche Runtime, Startweg, relevante Integrationen; Details unter `docs/architecture.md`.
-- **Daten und Freigaben:** Umgang mit echten Daten, Secrets, externen Schreibaktionen und irreversiblen Schritten.
-- **Arbeits- und Prüfwerkzeuge:** nur verwendete Befehle für Start, Tests und Gate; betroffene Konventionen unter `docs/code.md` und `docs/testing.md`.
-- **Gate-Status:** eingerichteter Befehl und Geltungsbereich oder ausdrücklich „nicht eingerichtet“. Bei fehlendem Gate kein `Implemented`.
+- **Nutzer, Problem und erster Ablauf:** offen.
+- **MVP und Nicht-Ziele:** offen.
 
-In dieser Schablone sind **noch kein konkretes Produkt, kein Stack, keine Produktprüfungen und kein Gate-Befehl bestätigt**. Beim Befüllen Platzhalter ersetzen, statt sie als Fakten stehen zu lassen.
+## Technik und Betrieb
+
+- **Runtime, verwendete Werkzeuge, Startbefehl:** offen.
+- **Bausteine und Integrationen:** offen; Details und Ist-Stand unter `docs/architecture.md`.
+
+## Daten und Freigaben
+
+- **Echte Daten, Secrets und Zugriffsrechte:** offen.
+- **Externe Schreibaktionen und irreversible Schritte:** offen; vor Ausführung Freigaben klären.
+
+## Prüf-Einstieg
+
+- **Betroffene Testbereiche und Befehle:** offen; Konventionen unter `docs/testing.md`, Codekonventionen unter `docs/code.md`.
+- **Gate-Befehl, Geltungsbereich und Status:** nicht eingerichtet. Kein `Implemented` ohne tatsächliche Prüfungen.
+
+Bei Project Init bestätigte Fakten einsetzen, nicht zutreffende Felder kennzeichnen und entscheidungsrelevante Lücken offen lassen. `Pending Project Init` erst entfernen, wenn die Grenzen für die erste Umsetzung geklärt sind; ein noch nicht eingerichtetes Gate bleibt trotzdem ausdrücklich offen.
