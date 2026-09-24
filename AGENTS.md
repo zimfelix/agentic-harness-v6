@@ -20,6 +20,7 @@
 | Harness erstmals einordnen oder Project Init durchführen | `agentic-harness/harness-map.md` | Dateirollen und geplante Ladewege verstehen; tatsächliche Pfade prüfen. |
 | Markdown-Datei neu anlegen oder befüllen | `agentic-harness/document-contract.md`; bei neuer Datei oder Rolle auch `agentic-harness/harness-map.md` | Passende Form, Verweise und gegebenenfalls Kopf gegen tatsächliche Rollen und Pfade prüfen. |
 | Harness-Pfade, Dateirollen oder Ladeauslöser ändern | `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` | Betroffene Dokumentköpfe, Einstieg und Verweise gemeinsam abgleichen. |
+| Beim Einsatz im Zielprojekt fällt eine möglicherweise universelle Stärke, Schwäche oder Unklarheit des Harnesses auf | `agentic-harness/harness/harness-learnings.md` | Beobachtung lokal als Kandidat festhalten; Projektfakten bleiben in den zuständigen Projektdateien. |
 
 Treffen mehrere Auslöser zu, lies die betreffenden Dateien. Lade nicht alle Docs auf Vorrat. Neue thematische Projekt-Docs brauchen einen klaren Auslöser im Einstieg; verweise auf Regeln statt sie hier zu kopieren.
 

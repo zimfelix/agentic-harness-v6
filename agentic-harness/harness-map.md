@@ -27,6 +27,12 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `harness/verification/implementation.md` | Tatsächliche Änderung und Nachweise zum Soll prüfen | Vom Gate geladen; Prüfungen aus `harness/project.md`, Testpraxis bei Bedarf aus `docs/testing.md`; Ist und Belege ans Gate. |
 | `harness/verification/fail.md` | Lücke eingrenzen, korrigieren oder blockiert melden | Nur bei Gate-Lücke; nach Korrektur betroffene Nachweise und Gate wiederholen. |
 
+## Lokale Rückmeldungen zum universellen Harness
+
+| Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
+|---|---|---|
+| `harness/harness-learnings.md` | Übertragbare Stärken, Schwächen und offene Verbesserungsfragen aus einem Zielprojekt sammeln | Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`; keine automatisch geltende Regel oder Übernahme ins Quell-Repository. |
+
 ## Projektspezifisch durch Init zu befüllen
 
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |

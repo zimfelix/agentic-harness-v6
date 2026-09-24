@@ -16,7 +16,7 @@ cp "$HARNESS/AGENTS.md" "$PROJEKT/"
 cp -R "$HARNESS/agentic-harness" "$PROJEKT/"
 ```
 
-Öffne danach das Zielprojekt mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent befüllt `agentic-harness/harness/project.md` und die betroffenen Projekt-Docs. Eine **Produkt-`README.md`** wird im Zielprojekt neu erstellt oder, falls vorhanden, mit bestätigten Produktinformationen ergänzt.
+Öffne danach das Zielprojekt mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent befüllt `agentic-harness/harness/project.md` und die betroffenen Projekt-Docs. Eine **Produkt-`README.md`** wird im Zielprojekt neu erstellt oder, falls vorhanden, mit bestätigten Produktinformationen ergänzt. Beobachtungen über mögliche **universelle** Harness-Verbesserungen können dort in `agentic-harness/harness/harness-learnings.md` gesammelt werden; sie werden nicht automatisch in dieses Quell-Repository übernommen.
 
 **Nicht mitkopieren:** Diese README ist nur die Anleitung zum Harness. `main.py` ist hier leer; `.venv/` ist eine lokale virtuelle Python-Umgebung (virtual environment). Auch `.idea/`, `assets/` und `.git/` sind kein benötigter Teil des Harnesses. Richte Umgebung und Produktcode für das Zielprojekt nach dessen Entscheidungen ein.
 
