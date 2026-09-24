@@ -1,73 +1,67 @@
-# Agentic Harness V2 – Starter-Kit
+# Agentic Harness V2 – Workflow
 
-> **Verantwortung:** Diese README erklärt das Starter-Kit als Ganzes: was kopiert wird, welche Datei wofür zuständig ist und wie der aktuelle Workflow läuft. Sie ist die visuelle Orientierung, nicht die detaillierte Regelquelle.
+```mermaid
+flowchart TD
+    A([Start: Agent bekommt Aufgabe]) --> B[AGENTS.md lesen<br/>Einstiegskarte und Verweise]
+    B --> C[harness/rules/universal/core.md<br/>entscheidet: welcher Pfad ist nötig?]
 
-**Status: Prototyp.** Die Runner-Tests und kurze Wegwerf-Piloten sind bestanden, aber der Harness wurde noch nicht durch vollständige Project-Init-Abläufe in realen Projekten validiert. Zur Nutzung werden die Harness-Dateien in ein bestehendes oder neues Projekt kopiert, dort per Project Init angepasst und mit projektspezifischen Checks vervollständigt.
+    C --> D{Projekt schon initialisiert?}
+    D -->|Nein, Pflicht vor erster Umsetzung| E[harness/templates/project-init.md<br/>Projekt einmal sauber klären]
+    E --> F[harness/rules/project-specific/project.md<br/>Ziel, Grenzen, Start, Gate-Einstieg]
+    F --> G[optional: passende project-specific/*.md<br/>nur benötigte Regeln aktivieren]
+    G --> C
+    D -->|Ja| H{Aufgabe groß oder unklar?}
 
-Kopiere `AGENTS.md`, `learning-state.md`, `harness/rules/`, `harness/templates/` und, sofern Python verfügbar ist, `scripts/verify.py` in das Root eines neuen Projekts. Die Entwicklungsartefakte unter `ideas/`, `specs/` und `tests/` gehören **nicht** in das Zielprojekt. Überschreibe vorhandene Projektdateien nicht blind: Führe bestehende `AGENTS.md`-Regeln zusammen und übernimm diese README-Zuständigkeitskarte in eine vorhandene Projekt-README. Bei Project Init wird `learning-state.md` zur knappen, manuellen Sammlung bestätigter Erkenntnisse aus diesem Projekt. Sie wird nur auf ausdrücklichen Sammelauftrag am Ende eines Chats/Tages aktualisiert; Projektstatus bleibt in README, Specs und Git nachvollziehbar. Allgemeine, übertragbare Learnings werden später separat kuratiert und nur auf ausdrücklichen Auftrag in globale Agent-Dateien übernommen. Diese Einleitung wird in der Projekt-README durch Projektziel, Start und Testeinstieg ersetzt. `project-specific/*.md` bleiben sichtbar auf `Pending Project Init`, solange sie nicht benötigt und definiert sind.
+    H -->|Ja, optionaler Klärpfad| I[harness/rules/universal/ideas.md<br/>Dialogregeln für offene Vorhaben]
+    I --> J[harness/templates/idea.md<br/>Form der Idea]
+    J --> K[ideas/IXXX-...<br/>Problem, Nutzen, Umfang, offene Punkte]
+    K --> L{Bestätigt + separater Umsetzungsauftrag?}
+    L -->|Nein| M([Stop: nur geklärt, kein Code])
+    L -->|Ja| N[harness/templates/story.md<br/>kleine prüfbare Story ableiten]
 
-## Aktueller Workflow auf einen Blick
+    H -->|Nein, Auftrag ist konkret| O{Ändert Nutzerverhalten?}
+    O -->|Ja, Pflicht| N
+    O -->|Nein: Doku/Bugfix/Refactor| P[kleinste passende Änderung<br/>bestehende Regeln beachten]
 
-```text
-1. Einstieg
-   AGENTS.md
-      │
-      ▼
-2. Universellen Ablauf lesen
-   harness/rules/universal/core.md
-      │
-      ├─ Projekt noch nicht initialisiert?
-      │     ▼
-      │   harness/templates/project-init.md
-      │     ▼
-      │   harness/rules/project-specific/project.md
-      │   + nur wirklich benötigte project-specific/*.md
-      │
-      ├─ Vorhaben groß oder unklar?
-      │     ▼
-      │   harness/rules/universal/ideas.md
-      │     ▼
-      │   ideas/IXXX-...
-      │     ▼  nach Bestätigung + separatem Umsetzungsauftrag
-      │
-      └─ Konkretes Verhalten ändern?
-            ▼
-          harness/templates/story.md
-            ▼
-          specs/SXXX-...
-            ▼
-          kleinste passende Implementierung
-            ▼
-          passende Nachweise wählen
-          harness/rules/universal/quality.md
-            ▼
-          projektspezifisches Quality Gate ausführen
-            ▼
-          Spec erst auf Implemented setzen, wenn AK + Gate grün sind
+    N --> Q[specs/SXXX-...<br/>AK, Nicht-Umfang, Nachweise]
+    Q --> P
+    P --> R[harness/rules/universal/quality.md<br/>passende Nachweise nach Risiko wählen]
+    R --> S[Quality Gate ausführen<br/>z. B. scripts/verify.py + Projektchecks]
+    S --> T{AK erfüllt und Gate grün?}
+    T -->|Nein| U[Korrigieren<br/>Code, Test oder Spec gezielt anpassen]
+    U --> R
+    T -->|Ja| V[Spec auf Implemented setzen<br/>kurz zusammenfassen]
+    V --> W[optional: learning-state.md<br/>nur auf ausdrücklichen Speicherauftrag]
+    W --> X([Fertig])
+
+    classDef required fill:#e7f3ff,stroke:#1b6ca8,stroke-width:1px;
+    classDef optional fill:#fff7df,stroke:#b07d00,stroke-width:1px;
+    classDef stop fill:#eeeeee,stroke:#666,stroke-width:1px;
+    class B,C,E,F,N,Q,R,S,V required;
+    class G,I,J,K,W optional;
+    class A,M,X stop;
 ```
 
-Kurzform: **AGENTS.md startet**, der **Core entscheidet den nächsten Schritt**, **Project Init** macht ein Projekt konkret, **Ideas** klären offene Vorhaben, **Specs** beschreiben beauftragtes Verhalten und das **Quality Gate** beweist den Abschluss.
+**Legende:** Blau = normalerweise Pflicht im passenden Fall, Gelb = optional/bedarfsgeladen. Der Core ist die Weiche: Er entscheidet, ob Project Init, Idea, Spec oder direkt eine kleine Änderung genügt.
 
-## Zuständigkeiten – eine Quelle pro Regel
+## Mini-Kommentar je Markdown-Datei
 
-| Ort | Einzige Aufgabe |
+| Datei | Verantwortung |
 |---|---|
-| `AGENTS.md` | Einstieg und Verweise auf relevante Dateien; kein zweiter Core. |
-| `harness/rules/universal/core.md` | Universeller Ablauf und Entscheidung, *wann* Idea, Spec und Gate nötig sind. |
-| `harness/rules/universal/ideas.md` | *Wie* ein unklares Vorhaben im Dialog geklärt und bestätigt wird. |
-| `harness/rules/universal/quality.md` | Prinzipien zur Auswahl passender Nachweise, keine Projektbefehle. |
-| `harness/templates/idea.md`, `story.md` | Form der jeweiligen Artefakte, keine parallelen Prozessregeln. |
-| `harness/templates/project-init.md` | Fragen und Schritte zur einmaligen projektspezifischen Initialisierung. |
-| `harness/rules/project-specific/project.md` | Tatsächliche Ziele, Grenzen, Architektur und Gate-Einstieg des neuen Projekts. |
-| `harness/rules/project-specific/code.md`, `python.md`, `web.md`, `testing.md` | Nur benötigte Code-, Sprach-, Plattform- oder Testkonventionen; keine Kopie der universellen Regeln. |
-| `harness/rules/project-specific/quality-matrix.md` | Bei Bedarf Zuordnung von Checks zu Projektbereichen; keine zweite Befehlsquelle. |
-| Gate-Konfiguration und -Einstieg (z. B. `quality-gate.json` und `scripts/verify.py`) | Konkrete Checks beziehungsweise deren Ausführung; keine Produkt- oder Testpolitik. |
-| `ideas/`, `specs/`, `learning-state.md` | Unklare Vorhaben, konkrete Anforderungen und manuell gesammelte Erkenntnisse – keine Harness-Regeln oder laufenden Chatprotokolle. |
-
-## Quality Gate
-
-`scripts/verify.py` ist als neutraler Python-Runner fertig: Er startet konfigurierte Befehle und scheitert ohne gültige Checks. **Ein wirksames Projekt-Gate ist damit noch nicht eingerichtet.** Bei Project Init wählt das Projekt passende Prüfungen und konfiguriert sie in `harness/rules/project-specific/quality-gate.json`; Format und Grenzen stehen in `harness/templates/project-init.md`. Ohne Python braucht das Zielprojekt einen eigenen Gate-Einstieg. Markdown-Dateien erweitern den Runner nicht automatisch. Dieser Abschnitt wird bei Project Init auf das tatsächliche Projekt-Gate angepasst.
-
-`tests/test_verify.py` testet nur den Runner des Starter-Kits. Diese Entwicklungstests werden nicht ins Zielprojekt kopiert; dort entstehen Anwendungstests passend zu den Specs.
-
-Universelle Regeln beschreiben das *Wie* der Zusammenarbeit; das Projektprofil beschreibt konkrete Fakten und Grenzen, die Gate-Konfiguration ausführbare Befehle. Keine Dokumentation ersetzt eine tatsächlich durchgeführte Prüfung.
+| `AGENTS.md` | Einstiegskarte für Agenten; verweist auf die passenden Regeln, ohne den Core zu duplizieren. |
+| `README.md` | Visuelle Orientierung über Workflow und Zuständigkeiten. |
+| `learning-state.md` | Manuelle Sammlung bestätigter Erkenntnisse; nur auf ausdrücklichen Speicherauftrag pflegen. |
+| `harness/rules/universal/core.md` | Universeller Ablauf und Entscheidung, wann Idea, Spec und Gate nötig sind. |
+| `harness/rules/universal/ideas.md` | Regeln zur Klärung größerer oder unklarer Vorhaben vor einer Umsetzung. |
+| `harness/rules/universal/quality.md` | Auswahlhilfe für passende Nachweise nach Risiko; keine Projektbefehle. |
+| `harness/rules/project-specific/project.md` | Konkretes Projektprofil mit Ziel, Grenzen, Startweg und Gate-Einstieg. |
+| `harness/rules/project-specific/code.md` | Projektweite Code- und Architekturkonventionen, falls benötigt. |
+| `harness/rules/project-specific/python.md` | Python-Regeln für Projekte oder Aufgaben mit Python-Code. |
+| `harness/rules/project-specific/web.md` | Web-Regeln für UI, Browser, Netzwerk und Accessibility, falls relevant. |
+| `harness/rules/project-specific/testing.md` | Projektspezifische Testwerkzeuge, Fixtures, Testdaten und Konventionen. |
+| `harness/rules/project-specific/quality-matrix.md` | Zuordnung von Projektbereichen zu Qualitätsnachweisen, wenn mehrere Risiken erklärt werden müssen. |
+| `harness/templates/project-init.md` | Leitfaden für die einmalige Initialisierung eines konkreten Projekts. |
+| `harness/templates/idea.md` | Vorlage für eine Idea: Problem, Nutzen, Umfang, Entscheidungen und offene Punkte. |
+| `harness/templates/story.md` | Vorlage für eine prüfbare Story mit Akzeptanzkriterien und Nachweisen. |
+| `ideas/I001-harness-v2.md` | Konkrete übergeordnete Idea zur Weiterentwicklung des Harness. |
+| `specs/S001-starter-kit-init-and-quality-gate.md` | Umgesetzte Spec für Starter-Kit-Initialisierung und neutrales Quality Gate. |
