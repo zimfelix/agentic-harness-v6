@@ -1,5 +1,7 @@
 # S001 – Starter-Kit-Initialisierung und Quality Gate
 
+> **Verantwortung:** Diese Spec hält das konkrete Verhalten fest, das beim Starter-Kit bereits umgesetzt und geprüft wurde. Sie zeigt, welche Akzeptanzkriterien das Project Init und das neutrale Quality Gate erfüllen müssen.
+
 ## Meta
 
 - **State:** Implemented
