@@ -1,5 +1,32 @@
-# Agentic Harness V3 – Entwicklungsanweisungen
+# Agentic Harness – Einstieg
 
-Der wiederverwendbare Harness liegt gebündelt unter `agentic-harness/`. Lies `agentic-harness/AGENTS.md` als Einstieg und `agentic-harness/harness/core.md` für den Arbeitsablauf. Bestätigte Fakten über dieses Repository stehen in `agentic-harness/harness/project.md`; seine Installation und Wartung beschreiben `README.md` und `scripts/`.
+> - **Typ:** Einstieg
+> - **Zuständigkeit:** Aufgaben den zuständigen Harness-Dateien zuordnen.
+> - **Gilt bei:** Arbeit in diesem Repository und später in Projekten mit diesem Harness.
+> - **Ladebeziehungen:** Root-`AGENTS.md` gilt zusätzlich. Immer `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md` lesen; weitere Dateien nur nach den Auslösern unten.
+> - **Nicht zuständig:** Den Arbeitsablauf, Produktfakten oder Qualitätsregeln hier erneut erklären.
 
-Installer-Änderungen müssen in `tests/test_install.py` geprüft werden. `agentic-harness/` ist die kopierbare Einheit; `scripts/` und die Tests des Installers gehören nur zum Starter-Kit. Bestehende Zielprojektanweisungen nie überschreiben: der Installer fügt einen markierten Verweis hinzu. Projekt-Code und Projekttests bleiben außerhalb des Harness-Bundles.
+## Wohin mit der Aufgabe?
+
+| Auslöser | Zusätzlich lesen | Zweck |
+|---|---|---|
+| Erste Produktumsetzung bei `Pending Project Init` | `agentic-harness/harness/init.md` | Projektziel und Grenzen klären; nicht allein wegen Harness-Engineering ausführen. |
+| Architektur, Zuständigkeiten oder Dateistruktur | `agentic-harness/docs/architecture.md` | Produktaufbau und Abhängigkeiten prüfen. |
+| Codeänderung oder Refactor | `agentic-harness/docs/code.md` | Projektbezogene Codekonventionen prüfen. |
+| Testplanung, Teständerung oder Testlauf | `agentic-harness/docs/testing.md` | Testkonventionen prüfen; Befehle stehen im Projektprofil. |
+| Größere offene Idee | `agentic-harness/ideas/README.md` | Idee klären; bei Neuanlage `agentic-harness/harness/templates/idea.md` verwenden. |
+| Neues oder geändertes Nutzerverhalten | `agentic-harness/specs/README.md` und betroffene Spec | Beauftragtes Soll prüfen; bei Neuanlage `agentic-harness/harness/templates/spec.md` verwenden. |
+| Abschluss einer Änderung | `agentic-harness/harness/verification/gate.md` | Auftrag und Nachweise prüfen; bei Fehlschlag `agentic-harness/harness/verification/fail.md`. |
+| Harness-Engineering: Rollen, Ladewege, Markdown-Format oder Dateipfade ändern | `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` | Zielbild und Verweise vor und nach Änderungen abgleichen. |
+
+Treffen mehrere Auslöser zu, lies die betreffenden Dateien. Lade nicht alle Docs auf Vorrat. Neue thematische Projekt-Docs brauchen einen klaren Auslöser im Einstieg; verweise auf Regeln statt sie hier zu kopieren.
+
+Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-weit nach Verweisen auf Pfad und Dateinamen. Aktualisiere betroffene Verweise und Ladewege im selben Schritt. Prüfe danach alle verbliebenen Pfade gegen den tatsächlichen Baum. Nach manuellen Änderungen zuerst den Ist-Stand prüfen; ein Markdown-Verweis aktualisiert sich nicht automatisch.
+
+## Aktiver Stand und Entwürfe
+
+`agentic-harness/harness/core.md` ist derzeit der aktive Ablauf. `agentic-harness/harness/corev2.md`, `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` sind Entwürfe. Die Landkarte zeigt geplante Pfade relativ zum Zielprojekt-Root; sie beschreibt noch nicht den aktuellen Dateibaum. Nutze Entwürfe nur für Harness-Engineering, nicht als geltende Projektregeln.
+
+Produktcode und Produkttests liegen außerhalb der Harness-Dokumente. Bei Widersprüchen zwischen Auftrag, bestehenden Projektanweisungen und Harness kläre die Zuständigkeit vor riskanten Änderungen. Ändere nicht stillschweigend weitere Dateien, nur weil sie verlinkt sind.
+
+Bei Commits beschreibt der Betreff in einem kurzen, konkreten Satz die tatsächliche Änderung. Vermeide ungenaue Betreffe wie „Update files“.
