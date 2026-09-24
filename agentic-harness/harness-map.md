@@ -38,8 +38,8 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `docs/README.md` | Index zusätzlicher Projekt-Docs | Nur bei neuem Doku-Thema; Leseauslöser zusätzlich in `AGENTS.md` oder `harness/project.md`. |
 | `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Dateien lesen; erst bei Bedarf anlegen. |
 
-Die Root-`AGENTS.md` behält universelles Routing. Projektbezogene Zusatzverweise stehen ausschließlich unter „Projektspezifische Ergänzungen“.
+Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md`, `docs/testing.md` und der Produkt-`README.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt den Bereich „Projektspezifische Befüllung“. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.
 
 ## Bei neuen oder verschobenen Dateien
 
-Vor dem Ändern eingehende Verweise auf Pfad und Dateinamen suchen. Rollen und direkte Beziehungen hier aktualisieren; betroffene Einstiege und Links im selben Schritt anpassen. Danach reale Ziele prüfen. Geplante Pfade nicht als vorhandene Dateien ausgeben.
+Vor dem Ändern eingehende Verweise auf Pfad und Dateinamen suchen. Rollen und direkte Beziehungen hier aktualisieren; betroffene Einstiege, Links und Dokumentköpfe im selben Schritt abgleichen. Das gilt auch für neue Ladeauslöser ohne Dateiumzug. Danach reale Ziele prüfen. Geplante Pfade nicht als vorhanden ausgeben.

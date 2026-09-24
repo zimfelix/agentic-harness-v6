@@ -1,20 +1,26 @@
 # Code – Stack und Konventionen
 
 > - **Typ:** Projektdoku
-> - **Status:** Pending Project Init; noch keine projektspezifischen Codekonventionen bestätigt.
-> - **Zuständigkeit:** Den gewählten Stack und die tatsächlich geltenden Regeln für Anwendungscode beschreiben.
+> - **Status:** Pending Project Init; noch keine projektspezifischen Konventionen bestätigt.
+> - **Zuständigkeit:** Den gewählten Stack und geltende Regeln für Anwendungscode beschreiben.
 > - **Gilt bei:** Project Init sowie Codeänderungen und Refactorings.
 > - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` lesen. Bei Modulgrenzen `agentic-harness/docs/architecture.md`; bei Testcode `agentic-harness/docs/testing.md` zusätzlich lesen.
 > - **Nicht zuständig:** Produktarchitektur oder ausführbare Gate-Befehle duplizieren.
 
-## Stack und Abhängigkeiten – im Init festzulegen
+## Universeller Rahmen
 
-Welche Sprache, Laufzeit, Frameworks und Werkzeuge wurden für den ersten Ablauf gewählt? Nenne relevante Versionen oder Versionsgrenzen, Installationsquelle und Entwicklungsumgebung nur nach Prüfung oder Entscheidung. Begründe wesentliche Abhängigkeiten knapp.
+Nur Regeln für den tatsächlich gewählten Stack festhalten. Kandidaten sind keine Konventionen; aktive Werkzeuge brauchen reale Einrichtung. Befehle und Ergebnisse gehören in das Projektprofil.
 
-## Codekonventionen – im Init festzulegen
+## Projektspezifische Befüllung
 
-Nur Regeln aufnehmen, die bei Änderungen handlungsrelevant sind: Struktur und Imports, Benennung, Typen, Fehlerbehandlung oder Formatierung – soweit sie zum gewählten Stack passen. Keine allgemeine Stil-Enzyklopädie.
+### Stack und Abhängigkeiten
 
-## Qualitätswerkzeuge
+Noch offen (Project Init): Sprache, Laufzeit, relevante Versionen, Frameworks, Abhängigkeiten, Installationsquelle und Entwicklungsumgebung – soweit für den ersten Ablauf entschieden.
 
-Trenne **aktiv eingerichtet** von **vorgeschlagen**. Konfiguration hier verorten; konkrete Start- und Prüfbefehle mit Ergebnis stehen ausschließlich in `agentic-harness/harness/project.md`.
+### Codekonventionen
+
+Noch offen (Project Init): handlungsrelevante Regeln zu Struktur, Imports, Benennung, Typen, Fehlerbehandlung und Formatierung.
+
+### Qualitätswerkzeuge
+
+Noch offen (Project Init): aktiv eingerichtete Werkzeuge von noch vorgeschlagenen unterscheiden; Konfiguration verorten. Befehle nur in `agentic-harness/harness/project.md` führen.

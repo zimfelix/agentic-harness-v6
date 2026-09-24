@@ -36,11 +36,19 @@
 - **Lesen** ist nicht **Ändern**: Ein Link überträgt keine Zuständigkeit.
 - Vor Übernahme Auslöser, Pfade, Erreichbarkeit und doppelte Zuständigkeiten prüfen.
 
+## Projektspezifische Gerüste
+
+In `agentic-harness/harness/project.md`, den Projekt-Docs und der Produkt-`README.md` bleiben Kopf und „Universeller Rahmen“ erhalten. `agentic-harness/harness/init.md` ersetzt die Platzhalter unter „Projektspezifische Befüllung“ durch bestätigte Inhalte.
+
+Beim Befüllen auch den Kopf gegen das Projekt prüfen: Stimmen **Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung** noch? Status nur ändern, wenn die Datei tatsächlich befüllt ist. Offene Entscheidungen ausdrücklich offen lassen. Neue Projekt-Docs brauchen einen erreichbaren Leseauslöser; eine geänderte Dateirolle ist Harness-Arbeit.
+
 ## Bei neuen, umbenannten oder entfernten Dateien
 
 1. **Vorher:** Suche repo-weit nach dem alten Pfad, Dateinamen und relativen Markdown-Links. Prüfe, welche Dateien darauf angewiesen sind.
 2. **Gemeinsam ändern:** Passe diese Verweise, den Einstieg und die Landkarte an. Entferne Verweise nur, wenn die Beziehung wirklich entfällt.
-3. **Nachher:** Prüfe alle verbliebenen Verweise gegen reale Dateien. Geplante Pfade bleiben ausdrücklich als geplant markiert.
+3. **Nachher:** Prüfe alle verbliebenen Verweise und die Ladebeziehungen in betroffenen Dokumentköpfen gegen reale Dateien. Geplante Pfade bleiben ausdrücklich als geplant markiert.
+
+Ändern sich Rollen oder Ladeauslöser ohne Umbenennung, gilt derselbe Abgleich für die betroffenen Köpfe, den Einstieg und die Landkarte. Prüfe sie bei solchen Änderungen, nicht pauschal bei jeder Produktaufgabe.
 
 Auch eine manuelle Löschung kann bestehende Verweise brechen. Beim nächsten Harness-Änderungsauftrag zuerst den aktuellen Baum prüfen; Markdown aktualisiert sich nicht selbst.
 

@@ -1,28 +1,30 @@
 # Projektprofil – Grenzen und Befehle
 
 > - **Typ:** Projektdoku
-> - **Status:** Pending Project Init; keine Produktentscheidung oder Prüfung bestätigt.
+> - **Status:** Pending Project Init; noch keine Produktentscheidung bestätigt.
 > - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen und ausführbare Befehle festhalten.
 > - **Gilt bei:** Jeder Projektaufgabe; beim ersten Befüllen nach `agentic-harness/harness/init.md`.
 > - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `agentic-harness/harness/core.md`. Architektur bei Bedarf: `agentic-harness/docs/architecture.md`; Testpraxis: `agentic-harness/docs/testing.md`.
 > - **Nicht zuständig:** Architekturdetails, Codekonventionen oder Akzeptanzkriterien wiederholen.
 
-## Ziel und Umfang – im Init festzulegen
+## Universeller Rahmen
 
-- **Nutzer, Problem, erster sichtbarer Ablauf:** noch nicht geklärt.
-- **Erster Meilenstein und Nicht-Ziele:** noch nicht geklärt.
-- **Nächster beauftragter Schritt und offene Entscheidungen:** noch nicht geklärt.
+Dieses Profil bleibt kurz und nennt nur bestätigte Grenzen und tatsächlich verfügbare Befehle. Details liegen in den zuständigen Projekt-Docs. Ein geklärtes Init ist kein bestandenes Produkt-Gate.
 
-## Betrieb und Grenzen – im Init festzulegen
+## Projektspezifische Befüllung
 
-- **Laufzeit und Entwicklungsumgebung:** nur bestätigte Entscheidungen eintragen.
-- **Daten, Zugriffsrechte, Integrationen und riskante Aktionen:** nur relevante Grenzen eintragen; vor externen Schreibaktionen Freigabe klären.
-- **Bausteine und Datenfluss:** bei Bedarf in `agentic-harness/docs/architecture.md`, nicht hier ausführen.
+### Ziel und erster Meilenstein
 
-## Start und Prüfungen – im Init festzulegen
+Noch offen (Project Init): Nutzer, Problem, erster sichtbarer Ablauf, Umfang und Nicht-Ziele.
 
-- **Einrichtung und Start:** noch kein ausführbarer Befehl bestätigt.
-- **Checks mit Befehl, Geltungsbereich und beobachtetem Ergebnis:** noch nicht eingerichtet.
-- **Geplant, aber nicht eingerichtet:** ausdrücklich offen lassen; nicht als bestanden melden.
+### Betrieb, Daten und Freigaben
 
-`Pending Project Init` erst entfernen, wenn Ziel, Grenzen und erster Schritt geklärt sind. Ein geklärtes Init ist kein bestandenes Produkt-Gate und kein Nachweis für `Implemented`.
+Noch offen (Project Init): gewählte Laufzeit und Entwicklungsumgebung; relevante Daten, Integrationen, Rechte und riskante Aktionen.
+
+### Start und Prüfstatus
+
+Noch offen (Project Init): Einrichtungs- und Startbefehle sowie aktive Checks mit Befehl, Geltungsbereich und beobachtetem Ergebnis. Geplante Checks ausdrücklich als nicht eingerichtet kennzeichnen.
+
+### Nächster Schritt und offene Entscheidungen
+
+Noch offen (Project Init): erster beauftragter Schritt und noch blockierende Entscheidungen.

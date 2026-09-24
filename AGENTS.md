@@ -18,11 +18,12 @@
 | Neues oder geändertes Nutzerverhalten | `agentic-harness/specs/README.md` und betroffene Spec | Beauftragtes Soll prüfen; bei Neuanlage `agentic-harness/harness/templates/spec.md` verwenden. |
 | Abschluss einer Änderung | `agentic-harness/harness/verification/gate.md` | Auftrag und Nachweise prüfen; bei Fehlschlag `agentic-harness/harness/verification/fail.md`. |
 | Harness erstmals einordnen oder Project Init durchführen | `agentic-harness/harness-map.md` | Dateirollen und geplante Ladewege verstehen; tatsächliche Pfade prüfen. |
-| Markdown-Datei neu anlegen, befüllen oder Pfade ändern | `agentic-harness/document-contract.md`; bei neuer Rolle/Pfad auch `agentic-harness/harness-map.md` | Dokumentkopf und Verweise vor und nach Änderungen prüfen. |
+| Markdown-Datei neu anlegen oder befüllen | `agentic-harness/document-contract.md`; bei neuer Rolle auch `agentic-harness/harness-map.md` | Inhalt und Kopf gegen tatsächliche Dateirollen und Pfade prüfen. |
+| Harness-Pfade, Dateirollen oder Ladeauslöser ändern | `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` | Betroffene Dokumentköpfe, Einstieg und Verweise gemeinsam abgleichen. |
 
 Treffen mehrere Auslöser zu, lies die betreffenden Dateien. Lade nicht alle Docs auf Vorrat. Neue thematische Projekt-Docs brauchen einen klaren Auslöser im Einstieg; verweise auf Regeln statt sie hier zu kopieren.
 
-Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-weit nach Verweisen auf Pfad und Dateinamen. Aktualisiere betroffene Verweise und Ladewege im selben Schritt. Prüfe danach alle verbliebenen Pfade gegen den tatsächlichen Baum. Nach manuellen Änderungen zuerst den Ist-Stand prüfen; ein Markdown-Verweis aktualisiert sich nicht automatisch.
+Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-weit nach Verweisen auf Pfad und Dateinamen. Aktualisiere betroffene Verweise und Ladewege im selben Schritt. Prüfe danach verbliebene Pfade **und die Köpfe der betroffenen Dateien** gegen den tatsächlichen Baum. Dasselbe gilt, wenn sich Zuständigkeit oder Ladeauslöser ohne Dateiumzug ändern. Nach manuellen Änderungen zuerst den Ist-Stand prüfen; Markdown aktualisiert sich nicht selbst.
 
 ## Aktiver Stand und Pfade
 
