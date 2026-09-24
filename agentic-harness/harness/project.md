@@ -1,27 +1,28 @@
-# Projektprofil – aktive Grenzen, Werkzeuge, Befehle
+# Projektprofil – Grenzen und Befehle
 
-> **Status:** Pending Project Init – noch kein bestätigtes Produktprofil. Vorgehen: `agentic-harness/harness/init.md`. Dieser Status ist keine aktive Projektregel.
+> - **Typ:** Projektdoku
+> - **Status:** Pending Project Init; keine Produktentscheidung oder Prüfung bestätigt.
+> - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen und ausführbare Befehle festhalten.
+> - **Gilt bei:** Jeder Projektaufgabe; beim ersten Befüllen nach `agentic-harness/harness/init.md`.
+> - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `agentic-harness/harness/core.md`. Architektur bei Bedarf: `agentic-harness/docs/architecture.md`; Testpraxis: `agentic-harness/docs/testing.md`.
+> - **Nicht zuständig:** Architekturdetails, Codekonventionen oder Akzeptanzkriterien wiederholen.
 
-**Zuständigkeit:** Kurzprofil und Einstieg in tatsächlich geltende Projektgrenzen, Werkzeuge, Start und Prüfungen. Keine zweite Architektur-, Code- oder Testdokumentation; Details in `agentic-harness/docs/` verlinken.
+## Ziel und Umfang – im Init festzulegen
 
-## Produkt und Grenzen
+- **Nutzer, Problem, erster sichtbarer Ablauf:** noch nicht geklärt.
+- **Erster Meilenstein und Nicht-Ziele:** noch nicht geklärt.
+- **Nächster beauftragter Schritt und offene Entscheidungen:** noch nicht geklärt.
 
-- **Nutzer, Problem und erster Ablauf:** offen.
-- **MVP und Nicht-Ziele:** offen.
+## Betrieb und Grenzen – im Init festzulegen
 
-## Technik und Betrieb
+- **Laufzeit und Entwicklungsumgebung:** nur bestätigte Entscheidungen eintragen.
+- **Daten, Zugriffsrechte, Integrationen und riskante Aktionen:** nur relevante Grenzen eintragen; vor externen Schreibaktionen Freigabe klären.
+- **Bausteine und Datenfluss:** bei Bedarf in `agentic-harness/docs/architecture.md`, nicht hier ausführen.
 
-- **Runtime, verwendete Werkzeuge, Startbefehl:** offen.
-- **Bausteine und Integrationen:** offen; Details und Ist-Stand unter `agentic-harness/docs/architecture.md`.
+## Start und Prüfungen – im Init festzulegen
 
-## Daten und Freigaben
+- **Einrichtung und Start:** noch kein ausführbarer Befehl bestätigt.
+- **Checks mit Befehl, Geltungsbereich und beobachtetem Ergebnis:** noch nicht eingerichtet.
+- **Geplant, aber nicht eingerichtet:** ausdrücklich offen lassen; nicht als bestanden melden.
 
-- **Echte Daten, Secrets und Zugriffsrechte:** offen.
-- **Externe Schreibaktionen und irreversible Schritte:** offen; vor Ausführung Freigaben klären.
-
-## Prüf-Einstieg
-
-- **Betroffene Testbereiche und Befehle:** offen; Konventionen unter `agentic-harness/docs/testing.md`, Codekonventionen unter `agentic-harness/docs/code.md`.
-- **Gate-Befehl, Geltungsbereich und Status:** nicht eingerichtet. Kein `Implemented` ohne tatsächliche Prüfungen.
-
-Bei Project Init bestätigte Fakten einsetzen, nicht zutreffende Felder kennzeichnen und entscheidungsrelevante Lücken offen lassen. `Pending Project Init` erst entfernen, wenn die Grenzen für die erste Umsetzung geklärt sind; ein noch nicht eingerichtetes Gate bleibt trotzdem ausdrücklich offen.
+`Pending Project Init` erst entfernen, wenn Ziel, Grenzen und erster Schritt geklärt sind. Ein geklärtes Init ist kein bestandenes Produkt-Gate und kein Nachweis für `Implemented`.

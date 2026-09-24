@@ -1,9 +1,9 @@
 # Dokumentenvertrag – Entwurf
 
 > - **Typ:** Designregel
-> - **Status:** Entwurf; noch keine aktive Projektanweisung.
+> - **Status:** V4-Arbeitsregel für neu angelegte oder befüllte Markdown-Dateien.
 > - **Zuständigkeit:** Einheitlicher, lesbarer Aufbau einzelner Markdown-Dateien.
-> - **Gilt bei:** Entwurf oder Neuordnung einer Harness- oder Projekt-MD-Datei.
+> - **Gilt bei:** Neue oder inhaltlich befüllte Harness- und Projekt-MD-Dateien. Bestehende Dateien werden schrittweise angepasst.
 > - **Ladebeziehungen:** Vor dem Schreiben die geplanten Zuständigkeiten und Ladewege in `agentic-harness/harness-map.md` prüfen.
 > - **Nicht zuständig:** Den gesamten Dateibaum oder den Arbeitsablauf des Agenten festlegen.
 
@@ -44,4 +44,4 @@
 
 Auch eine manuelle Löschung kann bestehende Verweise brechen. Beim nächsten Harness-Änderungsauftrag zuerst den aktuellen Baum prüfen; Markdown aktualisiert sich nicht selbst.
 
-Der Vertrag beschreibt ein Schreibformat. Er sorgt nicht selbst dafür, dass ein Agent Links lädt oder Schritte ausführt. Die späteren Einstiegs- und Prozessdateien müssen das ausdrücklich regeln.
+Der Vertrag bleibt im Harness für spätere Projekt-Docs verfügbar. Er beschreibt Schreibformat und Pfadpflege; `AGENTS.md` und `agentic-harness/harness/init.md` regeln, wann er zu laden ist.

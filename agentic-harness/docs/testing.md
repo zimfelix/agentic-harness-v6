@@ -1,5 +1,20 @@
-# Testing – Teststrategie und Testkonventionen
+# Testing – Risiken und Testpraxis
 
-> **Status:** Pending Project Init – noch keine Anwendungstests oder Prüfwerkzeuge festgelegt.
+> - **Typ:** Projektdoku
+> - **Status:** Pending Project Init; noch keine Testpraxis oder Anwendungstests bestätigt.
+> - **Zuständigkeit:** Geeignete Tests für den ersten Nutzerablauf auswählen und ihre Organisation beschreiben.
+> - **Gilt bei:** Project Init sowie Testplanung, Teständerung und Testausführung.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` für Ziel und Befehle lesen. Bei Testcode zusätzlich `agentic-harness/docs/code.md` beachten; Abschlussregel: `agentic-harness/harness/verification/gate.md`.
+> - **Nicht zuständig:** Akzeptanzkriterien oder Gate-Ergebnisse als erfüllt erklären.
 
-**Zuständigkeit:** Nach Project Init passende Testebenen, Werkzeuge, Testdaten, Isolation und Konventionen für das konkrete Produkt festhalten. Testarten nach Verhalten und Risiko auswählen, nicht pauschal alle verlangen. Ausführbare Anwendungstests liegen in `tests/`; konkrete Befehle und der Gate-Einstieg stehen in `agentic-harness/harness/project.md`. **Wann** der Agent eine Aufgabe ausreichend belegt abschließen darf, steht in `agentic-harness/harness/verification/gate.md`. Akzeptanzkriterien nicht hierher kopieren; sie stehen in `agentic-harness/specs/`.
+## Verhalten und Risiken – im Init festzulegen
+
+Welcher erste Ablauf und welche relevanten Fehlerfälle müssen nachweisbar sein? Testebenen nach Verhalten und Risiko wählen; nicht für jedes Projekt pauschal alle Ebenen verlangen.
+
+## Testorganisation – im Init festzulegen
+
+Wenn Tests entstehen: Ablage, Werkzeuge, Testdaten und Isolation beschreiben. Tests sollen unabhängig laufen und eine beobachtbare Erwartung prüfen. Eine leere Suite ist kein Nachweis.
+
+## Ausführung und Grenzen
+
+Die tatsächlich eingerichteten Befehle, ihren Geltungsbereich und den letzten beobachteten Status in `agentic-harness/harness/project.md` festhalten. Nicht eingerichtete Prüfungen als offen markieren; ein bestandener Build beweist kein Nutzerverhalten.

@@ -1,52 +1,45 @@
-# Harness-Landkarte – Zielbild
+# Harness-Landkarte – Dateirollen und Ladewege
 
-> - **Typ:** Designübersicht
-> - **Status:** Entwurf; beschreibt noch nicht den aktiven V3-Dateibaum.
-> - **Zuständigkeit:** Geplante Dateirollen und direkte Ladewege vor der Neuordnung festlegen.
-> - **Gilt bei:** Entwurf, Verschiebung oder Aufteilung von Harness-Dateien.
-> - **Ladebeziehungen:** Schreibformat: `agentic-harness/document-contract.md`. Vor der Umsetzung aktuellen Baum und bestehende Projektanweisungen prüfen.
-> - **Nicht zuständig:** Inhalte der Einzeldateien oder Laufzeitregeln für Produktcode.
+> - **Typ:** Index
+> - **Status:** V4-Referenz; die Pfade der Zielstruktur sind noch nicht vollständig umgesetzt.
+> - **Zuständigkeit:** Eigentümer der Themen und direkte Ladewege sichtbar machen.
+> - **Gilt bei:** Einstieg in einen unbekannten Harness, Project Init oder Änderung von Dateirollen und Pfaden.
+> - **Ladebeziehungen:** Markdown-Format: `agentic-harness/document-contract.md`. Im aktuellen V4-Repo zuerst `AGENTS.md` beachten.
+> - **Nicht zuständig:** Projektentscheidungen treffen oder Regeln der verlinkten Dateien wiederholen.
 
-## Grenze dieses Entwurfs
+## Pfadbasis
 
-`projekt/` im Bild bezeichnet den **Root eines Zielprojekts**. Alle Pfade unten sind relativ dazu und derzeit **geplant**, nicht automatisch schon vorhanden. Im aktuellen V3-Repo liegen Harness-Dateien noch unter `agentic-harness/`. Diese Landkarte und der Dokumentenvertrag sind Entwurfsdateien, keine geplanten Laufzeitdateien im Bild. Eine Migration ist nicht Teil dieses Schritts.
+Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `harness/` und `docs/` noch unter `agentic-harness/`; `AGENTS.md` liegt bereits im Root. Vertrag und Landkarte liegen derzeit unter `agentic-harness/` und bleiben auch in der Zielstruktur im Harness (`harness/document-contract.md`, `harness/harness-map.md`). Bis zu einer Migration sind die tatsächlichen Pfade im Root-`AGENTS.md` maßgeblich.
 
-`assets/`, `src/` und Produkttests enthalten keine Agentenregeln.
+## Universelle Dateien
 
-## Einstieg und universeller Ablauf
-
-| Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
+| Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `AGENTS.md` | Einstieg; ordnet Aufgabentypen Dateien zu | Immer → `harness/core.md` und `harness/project.md`. Bedingte Ziele stehen in den Zeilen unten. |
-| `harness/core.md` | Universelle Schritte von Auftrag bis Übergabe | Nach Einstieg → Projektgrenzen beachten; bei ausstehendem Init → `harness/init.md`; vor Abschluss → `harness/verification/gate.md`. |
-| `harness/project.md` | Bestätigte Projektgrenzen, Befehle und Gate-Status | Mit Core lesen. Bei Architekturdetails → `docs/architecture.md`; bei Testregeln → `docs/testing.md`. |
-| `harness/init.md` | Zielprojekt einmalig klären und Profil füllen | Nur bei offenem Project Init → `harness/project.md` und betroffene Projekt-Docs. |
-
-## Projektwissen und Artefakte
-
-| Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
-|---|---|---|
-| `docs/architecture.md` | Produktbausteine, Datenfluss und Abhängigkeitsrichtung | Bei Architektur/Struktur. Bei Codekonventionen → `docs/code.md`; bei Teststruktur → `docs/testing.md`. |
-| `docs/code.md` | Code- und Importkonventionen | Bei Codearbeit. Bei Modulgrenzen → `docs/architecture.md`. |
-| `docs/testing.md` | Teststrategie und Testkonventionen | Bei Testarbeit. Für ausführbare Befehle → `harness/project.md`. |
-| `harness/templates/idea.md` | Format einer offenen Idea | Beim Anlegen einer Idea → `ideas/`. Keine Implementierungsfreigabe. |
-| `harness/templates/spec.md` | Format beauftragten Soll-Verhaltens | Beim Anlegen einer Spec → `specs/`. Keine Produktarchitektur. |
-| `ideas/`, `specs/` | Konkrete offene Ideen bzw. beauftragte Anforderungen | Nur betroffene Artefakte lesen; kein pauschales Laden aller Dateien. |
-
-## Abschluss
-
-| Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
-|---|---|---|
+| `AGENTS.md` | Einstieg und Aufgaben-Routing | Immer → `harness/core.md` und `harness/project.md`; weitere Ziele nur nach Auslöser. |
+| `harness/core.md` | Ablauf vom Auftrag zur Übergabe | Bei `Pending Project Init` → `harness/init.md`; vor Abschluss → `harness/verification/gate.md`. |
+| `harness/init.md` | Leeres Projekt für ersten Schritt klären | Bei Init → `harness/harness-map.md` und `harness/document-contract.md`; danach Projektdateien befüllen. |
+| `harness/harness-map.md` | Dateirollen und Ladewege | Bei Orientierung oder Änderungen der Dokumentstruktur; keine Projektfakten. |
+| `harness/document-contract.md` | Format und Pflege neuer Markdown-Dateien | Beim Anlegen/Befüllen von Projekt-Docs und bei Pfadänderungen. |
+| `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
 | `harness/verification/gate.md` | Abschlussentscheidung | Nach Umsetzung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Fehlschlag → `harness/verification/fail.md`. |
-| `harness/verification/requirements.md` | Auftrag und Kriterien gegen Soll prüfen | Vom Gate geladen; betroffene Spec und `harness/project.md` nutzen. |
-| `harness/verification/implementation.md` | Umsetzung und Nachweise prüfen | Vom Gate geladen; Projektbefehle aus `harness/project.md` nutzen. |
-| `harness/verification/fail.md` | Fehlschlag oder fehlenden Nachweis behandeln | Nur bei fehlgeschlagener oder unvollständiger Prüfung. |
+| `harness/verification/requirements.md` | Auftrag und Kriterien abgleichen | Vom Gate geladen; betroffene Spec und `harness/project.md` prüfen. |
+| `harness/verification/implementation.md` | Änderung und Nachweise prüfen | Vom Gate geladen; aktive Projektbefehle aus `harness/project.md`. |
+| `harness/verification/fail.md` | Fehlende oder gescheiterte Prüfung behandeln | Nur bei Fehlschlag vom Gate laden. |
 
-## Wenn Dateien entstehen oder Pfade sich ändern
+## Projektspezifisch durch Init zu befüllen
 
-1. Gib neuen Dateien eine eigene Verantwortung und einen Aufgabenauslöser.
-2. Trage nur direkte Ladebeziehungen ein: **vorher**, **wenn …**, **danach**.
-3. Bei Umbenennung, Verschieben oder Löschen: Suche zuerst alle eingehenden Verweise im Repo. Passe Landkarte und betroffene Dateien im selben Schritt an.
-4. Prüfe danach reale Ziele und die Erreichbarkeit vom Einstieg aus. Geplante Pfade sind kein Nachweis für vorhandene Dateien.
+| Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
+|---|---|---|
+| `harness/project.md` | Bestätigtes Ziel, Grenzen, Befehle, Gate-Status | Immer mit Core; Architekturdetails → `docs/architecture.md`, Testpraxis → `docs/testing.md`. |
+| `docs/architecture.md` | Bausteine, Schnittstellen und Datenfluss | Bei Architektur/Struktur; Codekonventionen → `docs/code.md`. |
+| `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
+| `docs/testing.md` | Risiken, Testebenen, Isolation und Teststruktur | Bei Testarbeit; konkrete Befehle → `harness/project.md`. |
+| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Beim Init anlegen; technische Einzelregeln bleiben in den zuständigen Docs. |
+| `docs/README.md` | Index zusätzlicher Projekt-Docs | Nur bei neuem Doku-Thema; Leseauslöser zusätzlich in `AGENTS.md` oder `harness/project.md`. |
+| `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Dateien lesen; erst bei Bedarf anlegen. |
 
-Offen vor der Neuordnung: Welche der heutigen `README.md`-Indizes bleiben reine Orientierung, und welche Ladebedingungen wandern in den Projekt-Einstieg? Diese Entscheidung nicht durch doppelte Trigger vorwegnehmen.
+Die Root-`AGENTS.md` behält universelles Routing. Projektbezogene Zusatzverweise stehen ausschließlich unter „Projektspezifische Ergänzungen“.
+
+## Bei neuen oder verschobenen Dateien
+
+Vor dem Ändern eingehende Verweise auf Pfad und Dateinamen suchen. Rollen und direkte Beziehungen hier aktualisieren; betroffene Einstiege und Links im selben Schritt anpassen. Danach reale Ziele prüfen. Geplante Pfade nicht als vorhandene Dateien ausgeben.

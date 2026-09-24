@@ -1,5 +1,20 @@
-# Code – projektbezogene Codekonventionen
+# Code – Stack und Konventionen
 
-> **Status:** Pending Project Init – noch keine projektspezifischen Codekonventionen festgelegt.
+> - **Typ:** Projektdoku
+> - **Status:** Pending Project Init; noch keine projektspezifischen Codekonventionen bestätigt.
+> - **Zuständigkeit:** Den gewählten Stack und die tatsächlich geltenden Regeln für Anwendungscode beschreiben.
+> - **Gilt bei:** Project Init sowie Codeänderungen und Refactorings.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` lesen. Bei Modulgrenzen `agentic-harness/docs/architecture.md`; bei Testcode `agentic-harness/docs/testing.md` zusätzlich lesen.
+> - **Nicht zuständig:** Produktarchitektur oder ausführbare Gate-Befehle duplizieren.
 
-**Zuständigkeit:** Nach Project Init die für den tatsächlichen Stack verbindlichen, länger gültigen Konventionen festhalten: Struktur, Benennung, Fehlerbehandlung und gegebenenfalls Format- oder Lintwerkzeuge. Keine allgemeine Clean-Code-Sammlung und keine Regeln für ungenutzte Technologien. Der Agentenablauf steht in `agentic-harness/harness/core.md`, Architekturentscheidungen in `agentic-harness/docs/architecture.md`, der Einstieg zu ausführbaren Checks in `agentic-harness/harness/project.md`. Weitere thematisch abgegrenzte Dokumente bei Bedarf nach `agentic-harness/docs/README.md` ergänzen.
+## Stack und Abhängigkeiten – im Init festzulegen
+
+Welche Sprache, Laufzeit, Frameworks und Werkzeuge wurden für den ersten Ablauf gewählt? Nenne relevante Versionen oder Versionsgrenzen, Installationsquelle und Entwicklungsumgebung nur nach Prüfung oder Entscheidung. Begründe wesentliche Abhängigkeiten knapp.
+
+## Codekonventionen – im Init festzulegen
+
+Nur Regeln aufnehmen, die bei Änderungen handlungsrelevant sind: Struktur und Imports, Benennung, Typen, Fehlerbehandlung oder Formatierung – soweit sie zum gewählten Stack passen. Keine allgemeine Stil-Enzyklopädie.
+
+## Qualitätswerkzeuge
+
+Trenne **aktiv eingerichtet** von **vorgeschlagen**. Konfiguration hier verorten; konkrete Start- und Prüfbefehle mit Ergebnis stehen ausschließlich in `agentic-harness/harness/project.md`.

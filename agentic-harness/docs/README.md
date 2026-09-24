@@ -1,13 +1,17 @@
-# Docs – Projektwissen nach Themen
+# Docs – Index des Projektwissens
 
-**Zuständigkeit:** Länger gültiges Wissen über das konkrete Produkt und seine technische Arbeit: Architektur, Code- und Testkonventionen sowie bei Bedarf weitere Referenzen. `agentic-harness/specs/` enthält beauftragtes Soll-Verhalten; `agentic-harness/harness/` enthält den Ablauf des Entwicklungsagenten. Diese Inhalte hier nicht duplizieren.
+> - **Typ:** Index
+> - **Zuständigkeit:** Projekt-Docs nach Themen auffindbar machen.
+> - **Gilt bei:** Project Init und beim Ergänzen weiterer Projekt-Docs.
+> - **Ladebeziehungen:** Neue oder befüllte Dateien folgen `agentic-harness/document-contract.md`. Aufgabenbezogenes Laden regelt `AGENTS.md`.
+> - **Nicht zuständig:** Architektur-, Code- oder Testregeln hier wiederholen.
 
-`architecture.md`, `code.md` und `testing.md` sind Ausgangspunkte, keine abschließende Liste. Lege **bei konkretem Bedarf** weitere thematisch abgegrenzte Dokumente an, z. B. für eine Integration, Datenmigration oder Weboberfläche. Eine neue Datei braucht einen klaren Gegenstand und wiederkehrenden Nutzen; kleine Ergänzungen bleiben in der zuständigen vorhandenen Datei. Verlinke neue Dokumente unter „Weitere Projektdokumente“ mit einem Satz zum Zweck und ergänze einen gezielten Lesehinweis im Projektprofil oder Einstieg, wenn der Agent sie bei passenden Aufgaben berücksichtigen muss. Dokumentiere bestätigte Fakten; kennzeichne Entwürfe und offene Entscheidungen ausdrücklich. Das kurze Markdown-Format für neue und befüllte Dateien steht in `agentic-harness/harness/core.md` unter „Markdown-Dateien pflegen“.
+| Dokument | Eigene Aufgabe |
+|---|---|
+| `agentic-harness/docs/architecture.md` | Bausteine und Datenfluss des Produkts. |
+| `agentic-harness/docs/code.md` | Gewählter Stack und geltende Codekonventionen. |
+| `agentic-harness/docs/testing.md` | Risiken, Testebenen und Testpraxis. |
 
-| Dokument | Gegenstand |
-| --- | --- |
-| `architecture.md` | Produktbausteine und Datenflüsse. |
-| `code.md` | Projektweite Codekonventionen. |
-| `testing.md` | Teststrategie und Testkonventionen. |
+Neue Dokumente nur für wiederkehrende Themen anlegen. Pfad und Zweck unter der nächsten Überschrift ergänzen. Den Leseauslöser unter „Projektspezifische Ergänzungen“ in `AGENTS.md` oder in `agentic-harness/harness/project.md` eintragen.
 
 ## Weitere Projektdokumente
