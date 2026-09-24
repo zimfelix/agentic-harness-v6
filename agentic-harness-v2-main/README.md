@@ -44,7 +44,7 @@ flowchart TD
     class A,M,X stop;
 ```
 
-**Legende:** Blau = normalerweise Pflicht im passenden Fall, Gelb = optional/bedarfsgeladen. Der Core ist die Weiche: Er entscheidet, ob Project Init, Idea, Spec oder direkt eine kleine Änderung genügt.
+**Legende:** Blau = normalerweise Pflicht im passenden Fall, Gelb = optional/bedarfsgeladen, Grau = Start oder Ende. Der Core ist die Weiche: Er entscheidet, ob Project Init, Idea, Spec oder direkt eine kleine Änderung genügt.
 
 ## Mini-Kommentar je Markdown-Datei
 
