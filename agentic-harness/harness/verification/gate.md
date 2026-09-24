@@ -11,9 +11,9 @@
 Schematische Übersicht mit verkürzten Dateinamen. Bei Änderungen an Harness-Rollen oder Ladewegen auch dieses Diagramm gegen `AGENTS.md` und `agentic-harness/harness-map.md` prüfen.
 
 ```text
-AGENTS.md → core.md → project.md (Grenzen und eingerichtete Prüfungen)
-                         ↓
-                       gate.md
+AGENTS.md → core.md + project.md (Grenzen und eingerichtete Prüfungen)
+                          ↓
+                        gate.md
            ├─ requirements.md → Soll aus Auftrag, ggf. Spec und Projektgrenzen
            └─ implementation.md → Ist und Nachweise gegen dieses Soll prüfen
                          ↓

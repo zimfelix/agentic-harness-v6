@@ -8,6 +8,8 @@
 
 ## Rückweg zum Gate
 
+Beim Rücksprung gelten `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md` weiter. Berührt die Korrektur Architektur, Code oder Tests, lade die jeweils zuständige Projekt-Doc nach dem Auslöser in `AGENTS.md` – nicht pauschal alle Docs.
+
 1. Benenne die konkrete Lücke mit beobachtetem Ergebnis: ungeklärter Auftrag, fehlende Spec oder Freigabe, Abweichung der Umsetzung, defekter Test, fehlender Nachweis oder nicht verfügbare Umgebung. Eine vermutete Ursache bleibt als Hypothese markiert.
 2. Ist das Soll unklar, kläre es mit dem Auftraggeber und aktualisiere erst danach die zuständigen Projektdateien oder Specs. Liegt die Lücke in Umsetzung oder Test, korrigiere nur die begründete Ursache. Erscheint derselbe Fehler erneut, überprüfe die Annahme statt dieselbe Aktion blind zu wiederholen.
 3. Wiederhole nach der Korrektur die betroffenen Prüfungen und das Gate mit Soll-Abgleich aus `agentic-harness/harness/verification/requirements.md` und Ist-/Nachweisprüfung aus `agentic-harness/harness/verification/implementation.md`. Bei geändertem Soll aktualisiere zuerst die zuständigen Projektdateien oder Specs. Ändere Akzeptanzkriterien nicht bloß, damit ein Test grün wird.

@@ -27,7 +27,7 @@ Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-wei
 
 ## Aktiver Stand und Pfade
 
-`agentic-harness/harness/core.md` ist derzeit der aktive Ablauf; `agentic-harness/harness/corev2.md` bleibt ein Entwurf. Landkarte und Dokumentenvertrag sind Referenzen für Orientierung und Markdown-Pflege. Die Landkarte zeigt geplante Root-Pfade; bis zur Migration sind die tatsächlichen `agentic-harness/`-Pfade in dieser Datei maßgeblich.
+`agentic-harness/harness/core.md` regelt den Arbeits- und Entscheidungsfluss. Landkarte und Dokumentenvertrag sind Referenzen für Orientierung und Markdown-Pflege. Die Landkarte zeigt geplante Root-Pfade; bis zur Migration sind die tatsächlichen `agentic-harness/`-Pfade in dieser Datei maßgeblich.
 
 Produktcode und Produkttests liegen außerhalb der Harness-Dokumente. Bei Widersprüchen zwischen Auftrag, bestehenden Projektanweisungen und Harness kläre die Zuständigkeit vor riskanten Änderungen. Ändere nicht stillschweigend weitere Dateien, nur weil sie verlinkt sind.
 

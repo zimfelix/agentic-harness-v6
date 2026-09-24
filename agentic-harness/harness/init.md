@@ -4,7 +4,7 @@
 > - **Zuständigkeit:** Ein neues, leeres Produktprojekt für den ersten beauftragten Arbeitsschritt vorbereiten.
 > - **Gilt bei:** Vor der ersten Produktumsetzung, wenn `agentic-harness/harness/project.md` noch `Pending Project Init` enthält. Nicht bei Harness-Engineering.
 > - **Ladebeziehungen:**
->   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` → `agentic-harness/harness/project.md`.
+>   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`.
 >   - Für Dateirollen und Format: `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md`.
 >   - Danach: betroffene Projektdateien befüllen; Abschluss nach Abschnitt 4.
 > - **Nicht zuständig:** Bestehende Anwendungen analysieren, spätere Features planen oder eine Produktspec als umgesetzt erklären.
