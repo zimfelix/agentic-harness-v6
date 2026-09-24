@@ -47,8 +47,8 @@ Bei Änderungen an Bausteinen, Abhängigkeiten, Paketgrenzen oder Dateilayout:
 
 ### Ideas und Specs
 
-- **Offenes Vorhaben:** Lies `agentic-harness/ideas/README.md`. Wenn du eine Idea anlegst, nutze danach `agentic-harness/harness/templates/idea.md`.
-- **Beauftragtes Verhalten:** Lies `agentic-harness/specs/README.md` und die betroffene Spec. Wenn du eine neue Spec anlegst, nutze `agentic-harness/harness/templates/spec.md`.
+- **Offenes Vorhaben:** Lies `agentic-harness/ideas/S000-readme.md`. Wenn du eine Idea anlegst, nutze danach `agentic-harness/harness/templates/idea.md`.
+- **Beauftragtes Verhalten:** Lies `agentic-harness/specs/S000-readme.md` und die betroffene Spec. Wenn du eine neue Spec anlegst, nutze `agentic-harness/harness/templates/spec.md`.
 - Lies weitere bestehende Specs, wenn die Änderung ihr Verhalten oder ihre Kriterien betreffen könnte.
 
 Eine Idea dient der Klärung. Eine Spec hält beauftragtes Soll-Verhalten fest. Verhaltensgleiche Refactors und reine Dokuänderungen brauchen nicht automatisch eine Produktspec.
@@ -83,7 +83,7 @@ Beginne erst, wenn Ziel und Umfang eindeutig sind. Verkleinere einen ausdrückli
 
 Bei beauftragtem neuem oder geändertem Nutzerverhalten:
 
-1. Lies `agentic-harness/specs/README.md`.
+1. Lies `agentic-harness/specs/S000-readme.md`.
 2. Lies betroffene bestehende Specs, falls vorhanden.
 3. Prüfe, ob weitere bestehende Specs angepasst werden müssen.
 4. Lege bei Bedarf eine Spec mit überprüfbaren Akzeptanzkriterien an.

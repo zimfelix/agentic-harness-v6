@@ -47,6 +47,6 @@ Prüfe auch die Ladebeziehungen in den befüllten Dokumentköpfen. Ergänzte Ver
 
 Entferne `Pending Project Init` erst, wenn Ziel, Grenzen und erster Schritt ausreichend geklärt sind. Das bedeutet **nicht**: Produkt-Gate bestanden oder Spec `Implemented`.
 
-Für beauftragtes Nutzerverhalten nutze `agentic-harness/specs/README.md` und `agentic-harness/harness/templates/spec.md`.
+Für beauftragtes Nutzerverhalten nutze `agentic-harness/specs/S000-readme.md` und `agentic-harness/harness/templates/spec.md`.
 
-Eine Idea nach `agentic-harness/ideas/README.md` ist nur bei offenem Klärungsbedarf nötig. Danach gilt wieder `agentic-harness/harness/core.md`.
+Eine Idea nach `agentic-harness/ideas/S000-readme.md` ist nur bei offenem Klärungsbedarf nötig. Danach gilt wieder `agentic-harness/harness/core.md`.

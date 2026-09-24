@@ -14,8 +14,8 @@
 | Architektur, Zuständigkeiten oder Dateistruktur | `agentic-harness/docs/architecture.md` | Produktaufbau und Abhängigkeiten prüfen. |
 | Codeänderung oder Refactor | `agentic-harness/docs/code.md` | Projektbezogene Codekonventionen prüfen. |
 | Testplanung, Teständerung oder Testlauf | `agentic-harness/docs/testing.md` | Testkonventionen prüfen; Befehle stehen im Projektprofil. |
-| Größere offene Idee | `agentic-harness/ideas/README.md` | Idee klären; bei Neuanlage `agentic-harness/harness/templates/idea.md` verwenden. |
-| Neues oder geändertes Nutzerverhalten | `agentic-harness/specs/README.md` und betroffene Spec | Beauftragtes Soll prüfen; bei Neuanlage `agentic-harness/harness/templates/spec.md` verwenden. |
+| Größere offene Idee | `agentic-harness/ideas/S000-readme.md` | Idee klären; bei Neuanlage `agentic-harness/harness/templates/idea.md` verwenden. |
+| Neues oder geändertes Nutzerverhalten | `agentic-harness/specs/S000-readme.md` und betroffene Spec | Beauftragtes Soll prüfen; bei Neuanlage `agentic-harness/harness/templates/spec.md` verwenden. |
 | Abschluss einer Änderung | `agentic-harness/harness/verification/gate.md` | Auftrag und Nachweise prüfen; bei Fehlschlag `agentic-harness/harness/verification/fail.md`. |
 | Harness erstmals einordnen oder Project Init durchführen | `agentic-harness/harness-map.md` | Dateirollen und geplante Ladewege verstehen; tatsächliche Pfade prüfen. |
 | Markdown-Datei neu anlegen oder befüllen | `agentic-harness/document-contract.md`; bei neuer Rolle auch `agentic-harness/harness-map.md` | Inhalt und Kopf gegen tatsächliche Dateirollen und Pfade prüfen. |
