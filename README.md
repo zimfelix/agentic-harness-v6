@@ -2,6 +2,16 @@
 
 ![Harness overview](assets/images/img.png)
 
+Strukturübersicht als Text, falls GitHub das Bild nicht ausliefert:
+
+```text
+AGENTS.md            Einstieg für den Agenten
+harness/             Core, Project Init, Projektprofil, Verifikation, Vorlagen
+ideas/ und specs/    Klärung und beauftragte Anforderungen
+docs/                Produktwissen und Konventionen
+src/ und tests/      Anwendungscode und ausführbare Produkttests
+```
+
 **Ohne ZIP übernehmen:** Quelle einmal klonen, Kopierplan ansehen und den Harness ins Zielprojekt installieren (Python 3):
 
 ```bash
