@@ -1,6 +1,6 @@
 # Agentic Harness V3
 
-![Harness overview](assets/images/img.png)
+![img.png](assets/images/img.png)
 
 Strukturübersicht als Text, falls GitHub das Bild nicht ausliefert:
 
