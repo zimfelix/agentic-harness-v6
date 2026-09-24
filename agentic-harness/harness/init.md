@@ -1,6 +1,6 @@
 # Project Init – neues Projekt gezielt initialisieren
 
-> **Zuständigkeit:** Geführter Klär- und Einrichtungsablauf nach dem Kopieren der Schablone, vor der ersten Produktimplementierung. Der Installer führt ihn nicht aus und kann Produktentscheidungen nicht treffen.
+> **Zuständigkeit:** Geführter Klär- und Einrichtungsablauf nach dem Kopieren der Schablone, vor der ersten Produktimplementierung.
 
 1. **Klären:** Für den ersten Nutzerablauf Problem, Nutzer, MVP und Nicht-Ziele ermitteln. Nach Daten, Integrationen, Berechtigungen, externen Schreibaktionen, Stack und Betrieb fragen, soweit sie die erste Umsetzung oder Risiken betreffen. Bei vorhandenem Code Einstieg, Datenfluss und Tests prüfen. Wenige gezielte Rückfragen stellen; übrige Punkte als **bekannt**, **offen**, **nicht zutreffend** oder **später relevant** markieren. Nichts erfinden.
 2. **Profil:** `agentic-harness/harness/project.md` mit bestätigten Grenzen, Werkzeugen, Start-/Prüfbefehlen und Gate-Status befüllen. `Pending Project Init` erst entfernen, wenn die erste Umsetzung verantwortbar ist – nicht schon deshalb das Gate als grün melden.

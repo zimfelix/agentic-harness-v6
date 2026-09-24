@@ -11,7 +11,7 @@
 
 `projekt/` im Bild bezeichnet den **Root eines Zielprojekts**. Alle Pfade unten sind relativ dazu und derzeit **geplant**, nicht automatisch schon vorhanden. Im aktuellen V3-Repo liegen Harness-Dateien noch unter `agentic-harness/`. Diese Landkarte und der Dokumentenvertrag sind Entwurfsdateien, keine geplanten Laufzeitdateien im Bild. Eine Migration ist nicht Teil dieses Schritts.
 
-Für diesen Entwurf gibt es **keinen Installer-Schritt**. `scripts/install.py` und `tests/test_install.py` aus dem Bild sind nicht Teil des folgenden Ladeflusses. `assets/`, `src/` und Produkttests enthalten keine Agentenregeln.
+`assets/`, `src/` und Produkttests enthalten keine Agentenregeln.
 
 ## Einstieg und universeller Ablauf
 
@@ -27,7 +27,7 @@ Für diesen Entwurf gibt es **keinen Installer-Schritt**. `scripts/install.py` u
 | Geplanter Pfad | Eigene Verantwortung | Direkter Ladeweg |
 |---|---|---|
 | `docs/architecture.md` | Produktbausteine, Datenfluss und Abhängigkeitsrichtung | Bei Architektur/Struktur. Bei Codekonventionen → `docs/code.md`; bei Teststruktur → `docs/testing.md`. |
-| `docs/code.md` | Code-, Import- und Packaging-Konventionen | Bei Codearbeit. Bei Modulgrenzen → `docs/architecture.md`. |
+| `docs/code.md` | Code- und Importkonventionen | Bei Codearbeit. Bei Modulgrenzen → `docs/architecture.md`. |
 | `docs/testing.md` | Teststrategie und Testkonventionen | Bei Testarbeit. Für ausführbare Befehle → `harness/project.md`. |
 | `harness/templates/idea.md` | Format einer offenen Idea | Beim Anlegen einer Idea → `ideas/`. Keine Implementierungsfreigabe. |
 | `harness/templates/spec.md` | Format beauftragten Soll-Verhaltens | Beim Anlegen einer Spec → `specs/`. Keine Produktarchitektur. |

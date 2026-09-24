@@ -36,7 +36,7 @@ Lade nur die Dateien, deren Auslöser zutrifft. Bei überlappenden Aufgaben lade
 Bei Änderungen an Bausteinen, Abhängigkeiten, Paketgrenzen oder Dateilayout:
 
 - Lies `agentic-harness/docs/architecture.md`.
-- Lies zusätzlich `agentic-harness/docs/code.md`, wenn sich Code-, Import- oder Packaging-Konventionen ändern.
+- Lies zusätzlich `agentic-harness/docs/code.md`, wenn sich Code- oder Importkonventionen ändern.
 - Lies zusätzlich `agentic-harness/docs/testing.md`, wenn sich Testlayout, Testentdeckung oder Testkonventionen ändern.
 
 ### Code und Tests
@@ -74,7 +74,7 @@ Vor Änderungen an Architektur, Abhängigkeiten, Paketgrenzen oder Dateilayout:
 2. Lies das bestätigte Ziel in `agentic-harness/docs/architecture.md`.
 3. Stelle Ist und Soll gegenüber.
 4. Ordne jeden betroffenen Pfad zu: **verschieben, behalten, zusammenführen oder entfernen**.
-5. Zeige Abhängigkeitsrichtung, Importfolgen, Packaging-Auswirkungen und betroffene Tests.
+5. Zeige Abhängigkeitsrichtung, Importfolgen und betroffene Tests.
 6. Gleiche diesen Umfang mit dem Auftrag ab. Nutze bestätigte Entscheidungen erneut. Frage nur bei einer echten offenen Entscheidung nach.
 
 Beginne erst, wenn Ziel und Umfang eindeutig sind. Verkleinere einen ausdrücklich beauftragten Umbau nicht stillschweigend auf einen leichteren Teil. `src/` ist keine allgemeine Pflicht.
@@ -105,7 +105,7 @@ Führe die für das Zielprojekt eingerichteten Checks aus. Befehle und Geltungsb
 
 Prüfe den Diff gegen Auftrag und bestätigten Zielzustand.
 
-Bei Strukturänderungen gleiche den tatsächlichen Dateibaum mit dem Plan ab. Prüfe außerdem Paketinstallation, Imports und Testentdeckung.
+Bei Strukturänderungen gleiche den tatsächlichen Dateibaum mit dem Plan ab. Prüfe außerdem Imports und Testentdeckung.
 
 Ein grüner Testlauf belegt keinen ausgelassenen Move.
 
