@@ -1,5 +1,7 @@
 # Agentic Harness V2 – Workflow
 
+Diese README ist bewusst kurz: Erst die Grafik lesen, danach bei Bedarf die genannte Datei öffnen.
+
 ```mermaid
 flowchart TD
     A([Start: Agent bekommt Aufgabe]) --> B[AGENTS.md lesen<br/>Einstiegskarte und Verweise]
