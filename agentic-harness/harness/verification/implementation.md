@@ -1,10 +1,15 @@
-# Implementierung – Änderung und Verhalten nachweisen
+# Implementation – Änderung und Nachweise prüfen
 
-> **Zuständigkeit:** Für jedes betroffene AK beobachtbare Evidenz einholen; kein zweites `agentic-harness/docs/testing.md`.
+> - **Typ:** Prozess
+> - **Zuständigkeit:** Das tatsächlich geänderte Verhalten und ausgeführte Prüfungen gegen das ermittelte Soll belegen.
+> - **Gilt bei:** Abschlussprüfung durch `agentic-harness/harness/verification/gate.md` nach einer Änderung.
+> - **Ladebeziehungen:** Vom Gate geladen; Soll aus `agentic-harness/harness/verification/requirements.md`, aktive Befehle und Grenzen aus `agentic-harness/harness/project.md`. Bei Codearbeit `agentic-harness/docs/code.md`, bei Tests `agentic-harness/docs/testing.md`, bei Strukturänderungen `agentic-harness/docs/architecture.md` beachten. Ergebnis ans Gate.
+> - **Nicht zuständig:** Teststrategie oder Projektbefehle festlegen; Abschluss und Spec-Status entscheidet das Gate.
 
-- Prüfe den Diff (Code, Tests, Konfiguration, Dokumentation) gegen Auftrag und Spec auf fehlende Schritte und unerwartete Nebenwirkungen. Existiert ein Aufgabenplan, gleiche ihn zusätzlich mit der tatsächlichen Umsetzung ab; kläre Abweichungen, statt den Plan über Auftrag oder Spec zu stellen. Ohne Plan ist kein eigenes Plandokument nötig.
-- Beachte geltende Konventionen in `agentic-harness/docs/code.md` und `agentic-harness/docs/testing.md`. Führe relevante Tests aus `tests/` und die eingerichteten Befehle aus `agentic-harness/harness/project.md` tatsächlich aus; prüfe passende Fehlerfälle.
-- Ein grüner Build belegt nicht automatisch funktionierendes Nutzerverhalten. Verifiziere den wichtigsten Ablauf über die passende Grenze (z. B. API, Datenbank oder UI), wenn die Spec das verlangt; schütze echte Daten.
-- Halte für jedes AK Test oder begründete manuelle Prüfung, beobachtetes Ergebnis und Grenzen des Nachweises fest. Fehlende, leere oder nicht ausführbare Checks sind **nicht verifiziert**, nicht `PASS`.
+## Ist und Belege ermitteln
 
-Hier wird Evidenz für die Änderung beurteilt. Teststrategie steht in `agentic-harness/docs/testing.md`, ausführbare Tests in `tests/`, Abschlussentscheidung in `gate.md`.
+1. Prüfe die tatsächliche Änderung (Code, Tests, Konfiguration, Doku) gegen Auftrag und Soll aus `agentic-harness/harness/verification/requirements.md`: Was wurde umgesetzt, ausgelassen oder zusätzlich geändert? Bei Strukturänderungen auch den tatsächlichen Baum und betroffene Abhängigkeiten prüfen.
+2. Nutze die Testpraxis und Testorte aus `agentic-harness/docs/testing.md`, sofern Tests betroffen sind. Führe passende **tatsächlich eingerichtete** Befehle aus `agentic-harness/harness/project.md` aus. Prüfe das beobachtbare Verhalten und relevante Fehlerfälle über die geeignete Grenze; schütze echte Daten.
+3. Ordne jedem betroffenen AK oder sonstigen Prüfpunkt einen ausgeführten Test oder eine begründete manuelle Prüfung, ihr beobachtetes Ergebnis und ihre Nachweisgrenzen zu. Bei reiner Doku- oder Prozesspflege prüfe insbesondere geänderte Verweise und Widersprüche. Ein Build, eine leere Suite oder ein geplanter, aber nicht eingerichteter Befehl belegt Nutzerverhalten nicht.
+
+**Ergebnis an das Gate:** Beobachtetes Ist, ausgeführte Prüfungen mit Ergebnis sowie nicht ausgeführte oder fehlende Nachweise. Kennzeichne fehlende, leere oder nicht ausführbare Checks als **nicht verifiziert**, nicht als `PASS`. Eine positive Abschlussentscheidung trifft nur `agentic-harness/harness/verification/gate.md`.

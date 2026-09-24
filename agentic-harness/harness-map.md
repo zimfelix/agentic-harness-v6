@@ -21,10 +21,10 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `harness/harness-map.md` | Dateirollen und Ladewege | Bei Orientierung oder Änderungen der Dokumentstruktur; keine Projektfakten. |
 | `harness/document-contract.md` | Format und Pflege neuer Markdown-Dateien | Beim Anlegen/Befüllen von Projekt-Docs und bei Pfadänderungen. |
 | `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
-| `harness/verification/gate.md` | Abschlussentscheidung | Nach Umsetzung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Fehlschlag → `harness/verification/fail.md`. |
-| `harness/verification/requirements.md` | Auftrag und Kriterien abgleichen | Vom Gate geladen; betroffene Spec und `harness/project.md` prüfen. |
-| `harness/verification/implementation.md` | Änderung und Nachweise prüfen | Vom Gate geladen; aktive Projektbefehle aus `harness/project.md`. |
-| `harness/verification/fail.md` | Fehlende oder gescheiterte Prüfung behandeln | Nur bei Fehlschlag vom Gate laden. |
+| `harness/verification/gate.md` | Soll und belegtes Ist zur Abschlussentscheidung verbinden | Nach Änderung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Lücke → `harness/verification/fail.md`. |
+| `harness/verification/requirements.md` | Verbindliches Soll aus Auftrag, Spec und Projektgrenzen bestimmen | Vom Gate geladen; `harness/project.md`, betroffene Specs und bei Strukturänderungen `docs/architecture.md` prüfen; Soll an Implementation und Gate. |
+| `harness/verification/implementation.md` | Tatsächliche Änderung und Nachweise zum Soll prüfen | Vom Gate geladen; Prüfungen aus `harness/project.md`, Testpraxis bei Bedarf aus `docs/testing.md`; Ist und Belege ans Gate. |
+| `harness/verification/fail.md` | Lücke eingrenzen, korrigieren oder blockiert melden | Nur bei Gate-Lücke; nach Korrektur betroffene Nachweise und Gate wiederholen. |
 
 ## Projektspezifisch durch Init zu befüllen
 
