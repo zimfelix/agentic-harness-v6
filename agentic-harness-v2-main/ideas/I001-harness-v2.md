@@ -1,1 +1,3 @@
+> **Verantwortung:** Diese konkrete Idea hält das übergeordnete Vorhaben fest, den Harness auf Level 2 weiterzuentwickeln. Sie dient als Sammelpunkt für Ziel, Abgrenzung, Entscheidungen und offene Fragen, bevor einzelne Umsetzungs-Specs entstehen.
+
 Diese Datei ist der Platzhalter für die übergeordnete Idea zur Weiterentwicklung des Agentic Harness auf Level 2. Sie soll Problem, Ziel, Abgrenzung und gewünschte Lernergebnisse des Vorhabens zusammenfassen. Sie erfasst wesentliche Entscheidungen und offene Punkte, bevor daraus Umsetzungs-Stories entstehen. Sie beschreibt nicht die vollständigen Harness-Regeln oder die Implementierung der Dateien. Ihr Inhalt wird erst ausgearbeitet, wenn die Struktur und Ziele ausreichend geklärt sind.
