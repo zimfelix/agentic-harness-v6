@@ -1,16 +1,54 @@
 # Core – Arbeitsablauf von Auftrag bis Übergabe
 
-> **Zuständigkeit:** Ein gemeinsamer Arbeitsablauf; keine Produktfakten, Testbefehle oder zweite Kopie des Gates.
+> - **Typ:** Prozess
+> - **Zuständigkeit:** Entscheidungen und Rücksprünge zwischen Klärung, Umsetzung, Verifikation und Übergabe steuern.
+> - **Gilt bei:** Jeder Aufgabe nach dem Einstieg über `AGENTS.md`, auch bei Harness-Arbeit.
+> - **Ladebeziehungen:** Vorher `AGENTS.md` und `agentic-harness/harness/project.md`; bei beauftragtem Project Init für ein leeres Produktprojekt oder vor erster Produktumsetzung mit `Pending Project Init` → `agentic-harness/harness/init.md`. Bei offener Idee → `agentic-harness/ideas/S000-readme.md`, bei beauftragtem Nutzerverhalten → `agentic-harness/specs/S000-readme.md` und betroffene Specs. Weitere Docs nach dem Auslöser in `AGENTS.md`; vor Abschluss → `agentic-harness/harness/verification/gate.md`.
+> - **Nicht zuständig:** Aufgabenrouting, Dokumentformat, Produktfakten, Testbefehle oder die Entscheidung des Verification-Gates duplizieren.
 
-1. Ordne die Aufgabe und das betroffene Projekt ein. Lies `agentic-harness/harness/project.md`; solange dort `Pending Project Init` steht, nutze vor der ersten Produktimplementierung `agentic-harness/harness/init.md`. Erfinde keine Projektfakten.
-2. Kläre Ziel und Umfang. Ein größeres, offenes Vorhaben kann zuerst als Idea unter `agentic-harness/ideas/` geklärt werden; erst Bestätigung **und** Umsetzungsauftrag führen zu Specs. Für beauftragtes neues oder geändertes Nutzerverhalten erstelle beziehungsweise aktualisiere eine Spec unter `agentic-harness/specs/`. Ein verhaltensgleicher Refactor oder eine reine Dokuänderung braucht nicht automatisch eine neue Produktspec.
-3. Lies nur die relevanten, bereits geltenden Dateien aus `agentic-harness/docs/`. Kläre Berechtigungen, echte Daten und irreversible Aktionen vor ihrer Ausführung. Setze die kleinste passende Änderung um; bei neuem Umfang prüfe betroffene Specs und Projektgrenzen erneut.
-4. Prüfe Änderungen nach `agentic-harness/harness/verification/gate.md` gegen Auftrag und tatsächliches Verhalten. Bei Fehlern gilt `agentic-harness/harness/verification/fail.md`. Für reine Prozess-/Dokumentationsänderungen ohne Produktspec prüfe insbesondere betroffene Verweise und Widersprüche; behaupte dabei kein erfolgreiches Produkt-Gate.
-5. Melde Ergebnis, tatsächlich ausgeführte Prüfungen und offene Punkte. Setze eine Produktspec nur dann auf `Implemented`, wenn **alle** betroffenen Akzeptanzkriterien belegt sind und das erforderliche Gate tatsächlich bestanden wurde; andernfalls bleibt sie `Modified` und die Arbeit wird gegebenenfalls als blockiert berichtet.
+## Entscheidungsfluss
 
-## Markdown-Dateien pflegen
+```text
+AGENTS.md → core.md + project.md
+                 │
+                 ├─ Init beauftragt / erste Produktumsetzung bei Pending?
+                 │     └─ init.md → Projektdateien → zurück zum Auftrag
+                 └─ Ziel, Umfang und Freigaben klären
+                       ├─ größeres Vorhaben noch offen? → Idea → Klärung → zurück
+                       ├─ neues/geändertes Nutzerverhalten beauftragt? → Spec
+                       └─ sonst → beauftragten Umfang ohne künstliche Spec festhalten
+                                  ↓
+                      passende Docs laden → Änderung umsetzen
+                                  ↓
+                           verification/gate.md
+                       ├─ ausreichend → Ergebnis übergeben
+                       └─ Lücke → fail.md → klären/korrigieren → Gate erneut
+```
 
-- Ein sprechender Titel und ein kurzer Satz zur **Zuständigkeit** genügen als Einstieg. Status nur für offene Platzhalter oder dort, wo ihn das Artefaktformat verlangt (Ideas, Specs); Vorlagen behalten ihr eigenes Format.
-- Schreibe konkrete, handlungsrelevante Regeln oder bestätigte Fakten in kurzen Absätzen und Listen: **wann** gilt etwas, **was** ist zu tun und, falls nötig, **woran** wird es geprüft? Unbekanntes ausdrücklich offen lassen.
-- Eine Aussage hat einen zuständigen Ort: Arbeitsablauf im Harness, Projektgrenzen in `agentic-harness/harness/project.md`, thematische Konventionen in `agentic-harness/docs/`, beauftragtes Verhalten in `agentic-harness/specs/`. Anderswo verlinken statt wiederholen.
-- Keine starre Zeilen- oder Wortgrenze: Kürze Inhalte ohne Entscheidungswert. Trenne erst bei einem eigenständigen, wiederkehrenden Thema in eine neue Datei und verlinke sie am passenden Einstieg. Entferne Platzhalter-Status beim Befüllen.
+Die Dateinamen im Bild sind verkürzt; maßgeblich sind die Pfade im Kopf und das Routing in `AGENTS.md`. Bei geänderten Ladewegen dieses Bild mitprüfen.
+
+## 1. Auftrag einordnen
+
+Lies das Projektprofil für bestätigte Grenzen und tatsächlich eingerichtete Prüfungen. Ist Project Init für ein neues, leeres Produktprojekt beauftragt oder steht vor der ersten Produktimplementierung noch `Pending Project Init` im Profil, nutze `agentic-harness/harness/init.md`. Allein Harness- oder Dokumentationsarbeit löst kein Init aus. Erfinde keine fehlenden Projektfakten.
+
+Kläre das gewünschte Ergebnis, den Umfang und Nicht-Ziele. Bei fehlender Entscheidung oder Freigabe nicht stillschweigend eine Annahme zur Projektregel machen.
+
+## 2. Klärung in beauftragtes Soll überführen
+
+Ist ein größeres Vorhaben noch offen, kläre es als Idea nach `agentic-harness/ideas/S000-readme.md`. Auch eine `Ready`-Idea ist ohne gesonderten Umsetzungsauftrag keine Freigabe. Nach Klärung kehre zur Einordnung des Auftrags zurück.
+
+Bei beauftragtem neuem oder geändertem Nutzerverhalten prüfe betroffene Specs nach `agentic-harness/specs/S000-readme.md`; erstelle oder ändere die nötige Spec mit prüfbaren Kriterien. Für verhaltensgleiche Refactors, Struktur- und Dokumentationsaufträge hält der Auftrag den Umfang fest; sie brauchen nicht pauschal eine neue Produktspec.
+
+Lade die durch den Aufgabeninhalt ausgelösten Docs über `AGENTS.md`. Bei überlappenden Auslösern gelten die betroffenen Dateien gemeinsam, nicht die gesamte Dokumentation auf Vorrat.
+
+## 3. Änderung ausführen und Umfang nachführen
+
+Setze die kleinste Änderung um, die den **ganzen beauftragten Umfang** erfüllt. Wenn sich dabei neue Architektur-, Code- oder Testfragen ergeben, prüfe die Auslöser in `AGENTS.md` erneut und lies die jetzt betroffenen Docs vor dem Eingriff. Beachte bestätigte Projektgrenzen; kläre Rechte, echte Daten und irreversible Aktionen vor dem Eingriff.
+
+Erfordert die Arbeit eine neue Produktentscheidung oder ändert sich das Soll, gehe zur Klärung zurück und aktualisiere betroffene Projektdateien oder Specs, bevor du auf der neuen Annahme weiterarbeitest. Bei Strukturänderungen prüfe Ziel, tatsächlichen Baum und Folgen für Abhängigkeiten und Tests; übernimm keine projektspezifische Ordnerstruktur als allgemeine Pflicht.
+
+## 4. Verifizieren und übergeben
+
+Folge vor dem Abschluss `agentic-harness/harness/verification/gate.md`. Es verbindet Auftrag und Projektgrenzen mit Änderung und tatsächlichen Nachweisen. Bei einer Lücke folge dem dort geladenen `agentic-harness/harness/verification/fail.md`: kläre oder korrigiere die Ursache und durchlaufe das Gate erneut. Fehlt eine erforderliche Entscheidung oder ein Nachweis, berichte die Blockade statt Erfolg zu behaupten.
+
+Berichte den erreichten Umfang, beobachtete Prüfergebnisse und offene Punkte. Ändere den Status einer Produktspec nur gemäß der Gate-Entscheidung; ohne Produktspec kein künstlicher Statuswechsel und bei reiner Prozess-/Dokuänderung kein behauptetes Produkt-Gate.

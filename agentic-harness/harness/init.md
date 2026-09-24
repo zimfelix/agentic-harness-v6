@@ -1,9 +1,52 @@
-# Project Init – neues Projekt gezielt initialisieren
+# Project Init – leeres Projekt beginnen
 
-> **Zuständigkeit:** Geführter Klär- und Einrichtungsablauf nach dem Kopieren der Schablone, vor der ersten Produktimplementierung. Der Installer führt ihn nicht aus und kann Produktentscheidungen nicht treffen.
+> - **Typ:** Prozess
+> - **Zuständigkeit:** Ein neues, leeres Produktprojekt für den ersten beauftragten Arbeitsschritt vorbereiten.
+> - **Gilt bei:** Beauftragtem Project Init für ein neues, leeres Produktprojekt oder vor der ersten Produktumsetzung, wenn `agentic-harness/harness/project.md` noch `Pending Project Init` enthält. Nicht bei Harness-Engineering.
+> - **Ladebeziehungen:**
+>   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`.
+>   - Für Dateirollen und Format: `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md`.
+>   - Danach: betroffene Projektdateien befüllen; Abschluss nach Abschnitt 4.
+> - **Nicht zuständig:** Bestehende Anwendungen analysieren, spätere Features planen oder eine Produktspec als umgesetzt erklären.
 
-1. **Klären:** Für den ersten Nutzerablauf Problem, Nutzer, MVP und Nicht-Ziele ermitteln. Nach Daten, Integrationen, Berechtigungen, externen Schreibaktionen, Stack und Betrieb fragen, soweit sie die erste Umsetzung oder Risiken betreffen. Bei vorhandenem Code Einstieg, Datenfluss und Tests prüfen. Wenige gezielte Rückfragen stellen; übrige Punkte als **bekannt**, **offen**, **nicht zutreffend** oder **später relevant** markieren. Nichts erfinden.
-2. **Profil:** `agentic-harness/harness/project.md` mit bestätigten Grenzen, Werkzeugen, Start-/Prüfbefehlen und Gate-Status befüllen. `Pending Project Init` erst entfernen, wenn die erste Umsetzung verantwortbar ist – nicht schon deshalb das Gate als grün melden.
-3. **Produktdoku:** Eine Produkt-`README.md` erstellen oder die vorhandene ergänzen, nicht überschreiben. Bestätigte Architektur in `agentic-harness/docs/architecture.md`, Codekonventionen in `agentic-harness/docs/code.md` und Testpraxis in `agentic-harness/docs/testing.md` festhalten. Weitere Themen nach `agentic-harness/docs/README.md` abgrenzen; ungenutzte Platzhalter können im Zielprojekt entfallen. Beim Befüllen Platzhalter-Status entfernen. Specs enthalten das beauftragte Soll, nicht die Ist-Dokumentation.
-4. **Prüf-Einstieg:** Zum Stack passende ausführbare Checks einrichten und in `agentic-harness/harness/project.md` benennen. Erfolg **und** einen absichtlich fehlschlagenden Check prüfen. Eine leere Suite ist kein Nachweis; vor echtem Gate und Nachweisen darf keine Produktspec `Implemented` werden. Produkttests entstehen mit den ersten Specs.
-5. **Übergabe:** Neues beauftragtes Verhalten nach `agentic-harness/harness/templates/spec.md` beschreiben; `agentic-harness/ideas/` nur bei Klärungsbedarf nutzen. In der projektbezogenen `AGENTS.md` nötige Verweise ergänzen, nicht Detailregeln kopieren. Keine riskante externe Schreibaktion ohne geklärte Freigabe.
+## 1. Ersten Schritt klären
+
+Kläre Nutzer, Problem und den ersten sichtbaren Ablauf. Halte Umfang und Nicht-Ziele des ersten Meilensteins fest.
+
+Frage nur nach Daten, Betrieb, Integrationen und Freigaben, die diesen Schritt beeinflussen. Erfinde keine Antworten.
+
+Leite für den ersten Ablauf passende Bausteine, Stack- und Testkandidaten ab. Prüfe entscheidungsrelevante Versionen und Voraussetzungen anhand verfügbarer Quellen oder Werkzeuge. Vergleiche echte Alternativen kurz mit Nutzen und Kosten.
+
+Technische Möglichkeiten bleiben **Vorschläge**, bis sie entschieden sind. Vertage nicht benötigte Technik.
+
+Fasse den ersten Schritt und offene Entscheidungen zusammen. Hole die nötige fachliche Bestätigung ein, bevor du Vorschläge als Projektfakten festhältst.
+
+## 2. Bestätigtes an die richtige Stelle schreiben
+
+Lies die Inhaltsvorgaben von `agentic-harness/harness/project.md` und den Projekt-Docs. Behalte dort Dokumentkopf und „Universeller Rahmen“, aber prüfe den Kopf beim Befüllen: Stimmen Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung zum bestätigten Projekt und zu den tatsächlichen Pfaden?
+
+Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Ist ein Bereich nicht entscheidbar oder nicht relevant, kennzeichne ihn ausdrücklich. Entferne den Platzhalterstatus erst nach tatsächlicher Befüllung.
+
+- `agentic-harness/harness/project.md`: bestätigtes Nutzerziel, Umfang, Grenzen und Freigaben; Start- und Prüfbefehle mit tatsächlichem Status.
+- `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten und Datenfluss; Geplantes und Offenes gesondert kennzeichnen.
+- `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack.
+- `agentic-harness/docs/testing.md`: passende Testebenen und Testpraxis für den ersten Ablauf.
+- Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser unter „Projektspezifische Ergänzungen“ verlinken; keine Detailregeln kopieren.
+
+Erstelle im Zielprojekt eine kurze Produkt-`README.md` ohne Metakopf oder ergänze eine vorhandene um bestätigten Zweck und geprüfte Startschritte. Liegt dort stattdessen noch die Harness-Anleitung aus dem Quell-Repository, ersetze sie durch die Produkt-README. Bewahre vorhandene Produktinformationen; erfinde keine Fakten.
+
+## 3. Prüf-Einstieg und Verweise prüfen
+
+Richte passende Checks ein, sobald sie ausführbar sind. Führe sie tatsächlich aus. Prüfe bei Bedarf, ob sie einen absichtlichen Fehler erkennen.
+
+Eine leere Testsuite oder ein geplanter Befehl gilt nicht als bestanden. Halte nicht eingerichtete Checks im Projektprofil offen.
+
+Prüfe auch die Ladebeziehungen in den befüllten Dokumentköpfen. Ergänzte Verweise müssen vom Repo-Root aus auf vorhandene Dateien zeigen. Wenn sich Rollen oder Ladeauslöser geändert haben, passe `AGENTS.md` und `agentic-harness/harness-map.md` gezielt an.
+
+## 4. Übergabe
+
+Entferne `Pending Project Init` erst, wenn Ziel, Grenzen und erster Schritt ausreichend geklärt sind. Das bedeutet **nicht**: Produkt-Gate bestanden oder Spec `Implemented`.
+
+Für beauftragtes Nutzerverhalten nutze `agentic-harness/specs/S000-readme.md` und `agentic-harness/harness/templates/spec.md`.
+
+Eine Idea nach `agentic-harness/ideas/S000-readme.md` ist nur bei offenem Klärungsbedarf nötig. Nach dem Init lies das aktualisierte `agentic-harness/harness/project.md` und kehre für den aktuellen Auftrag zu `agentic-harness/harness/core.md` zurück. Init allein ist keine Implementierungsfreigabe. Bleibt eine dafür nötige Entscheidung offen, berichte den Blocker statt auf einer Annahme umzusetzen. Übertragbare Beobachtungen zum Harness, die beim Init auffallen, gehören als offene Kandidaten nach `agentic-harness/harness-learnings.md`, nicht in die Produktdateien.

@@ -1,4 +1,4 @@
-# Ideas – offene Vorhaben vor dem Auftrag
+# Idee 000 – offene Vorhaben vor einem Auftrag
 
 > **Zuständigkeit:** Größere, noch offene Vorhaben vor einem Auftrag klären; keine Produktdokumentation oder Implementierungsfreigabe.
 

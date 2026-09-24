@@ -1,5 +1,26 @@
-# Code – projektbezogene Codekonventionen
+# Code – Stack und Konventionen
 
-> **Status:** Pending Project Init – noch keine projektspezifischen Codekonventionen festgelegt.
+> - **Typ:** Projektdoku
+> - **Status:** Pending Project Init; noch keine projektspezifischen Konventionen bestätigt.
+> - **Zuständigkeit:** Den gewählten Stack und geltende Regeln für Anwendungscode beschreiben.
+> - **Gilt bei:** Project Init sowie Codeänderungen und Refactorings.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` lesen. Bei Modulgrenzen `agentic-harness/docs/architecture.md`; bei Testcode `agentic-harness/docs/testing.md` zusätzlich lesen.
+> - **Nicht zuständig:** Produktarchitektur oder ausführbare Gate-Befehle duplizieren.
 
-**Zuständigkeit:** Nach Project Init die für den tatsächlichen Stack verbindlichen, länger gültigen Konventionen festhalten: Struktur, Benennung, Fehlerbehandlung und gegebenenfalls Format- oder Lintwerkzeuge. Keine allgemeine Clean-Code-Sammlung und keine Regeln für ungenutzte Technologien. Der Agentenablauf steht in `agentic-harness/harness/core.md`, Architekturentscheidungen in `agentic-harness/docs/architecture.md`, der Einstieg zu ausführbaren Checks in `agentic-harness/harness/project.md`. Weitere thematisch abgegrenzte Dokumente bei Bedarf nach `agentic-harness/docs/README.md` ergänzen.
+## Universeller Rahmen
+
+Nur Regeln für den tatsächlich gewählten Stack festhalten. Kandidaten sind keine Konventionen; aktive Werkzeuge brauchen reale Einrichtung. Befehle und Ergebnisse gehören in das Projektprofil.
+
+## Projektspezifische Befüllung
+
+### Stack und Abhängigkeiten
+
+Noch offen (Project Init): Sprache, Laufzeit, relevante Versionen, Frameworks, Abhängigkeiten, Installationsquelle und Entwicklungsumgebung – soweit für den ersten Ablauf entschieden.
+
+### Codekonventionen
+
+Noch offen (Project Init): handlungsrelevante Regeln zu Struktur, Imports, Benennung, Typen, Fehlerbehandlung und Formatierung.
+
+### Qualitätswerkzeuge
+
+Noch offen (Project Init): aktiv eingerichtete Werkzeuge von noch vorgeschlagenen unterscheiden; Konfiguration verorten. Befehle nur in `agentic-harness/harness/project.md` führen.

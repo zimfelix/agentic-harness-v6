@@ -1,33 +1,25 @@
-# Agentic Harness V3
+# Agentic Harness für neue Produktprojekte
 
-## Einmal klonen, dann pro Projekt mit einem Befehl installieren
+Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht – vom kleinen CLI- oder Web-Produkt bis zu größeren Vorhaben mit klar begrenztem erstem Meilenstein. Kopiere `AGENTS.md` und `agentic-harness/` in das neue Projekt; dort führt der Harness von Project Init über beauftragte Änderungen bis zur Verifikation.
 
-```bash
-git clone https://github.com/FelixZimmermannDev/agentic-harness-v3.git ~/agentic-harness-starter
-python3 ~/agentic-harness-starter/scripts/install.py /pfad/zum/projekt
+![001-img.png](assets/images/001-img.png)
+
+## Empfohlen: in ein leeres Projekt kopieren
+
+Kopiere **`AGENTS.md` und den gesamten Ordner `agentic-harness/`** aus diesem Repository unverändert ins Root des neuen Projekts. Nur zusammen stimmen die aktuellen Ladepfade.
+
+```sh
+HARNESS=/pfad/zum/agentic-harness-repo
+PROJEKT=/pfad/zum/neuen-leeren-projekt
+mkdir -p "$PROJEKT"
+cp "$HARNESS/AGENTS.md" "$PROJEKT/"
+cp -R "$HARNESS/agentic-harness" "$PROJEKT/"
 ```
 
-Optional vorher nur die Vorschau: `python3 ~/agentic-harness-starter/scripts/install.py --dry-run /pfad/zum/projekt`. Der Installer kopiert **einen Ordner**, `agentic-harness/`, und ergänzt einen markierten Verweis in der Projekt-Root-`AGENTS.md`. Bestehende Anweisungen und README bleiben erhalten. Bei einem abweichenden vorhandenen `agentic-harness/` bricht er ab. Danach Project Init mit `agentic-harness/harness/init.md` ausführen.
+Öffne danach das Zielprojekt mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent befüllt `agentic-harness/harness/project.md` und die betroffenen Projekt-Docs. Eine **Produkt-`README.md`** wird im Zielprojekt neu erstellt oder, falls vorhanden, mit bestätigten Produktinformationen ergänzt. Beobachtungen über mögliche **universelle** Harness-Verbesserungen können dort in `agentic-harness/harness-learnings.md` gesammelt werden; sie werden nicht automatisch in dieses Quell-Repository übernommen.
 
-Das Zielprojekt braucht weder das Starter-Repository noch `scripts/` oder `tests/test_install.py`. Diese beiden gehören zur **Quelle**: Das Skript kopiert das Harness-Paket, seine eigenen Tests prüfen den Installer. Anwendungscode und Produkttests bleiben im Zielprojekt außerhalb des Pakets.
+**Nicht mitkopieren:** Diese README ist nur die Anleitung zum Harness. `main.py` ist hier leer; `.venv/` ist eine lokale virtuelle Python-Umgebung (virtual environment). Auch `.idea/`, `assets/` und `.git/` sind kein benötigter Teil des Harnesses. Richte Umgebung und Produktcode für das Zielprojekt nach dessen Entscheidungen ein.
 
-## Was wird übernommen und was danach angepasst?
+## Ganzes Repository als Ausgangspunkt
 
-| Im einzelnen Bundle `agentic-harness/` | Behandlung im Zielprojekt |
-| --- | --- |
-| `AGENTS.md`, `README.md`, `harness/core.md`, `harness/init.md`, `harness/verification/`, `harness/templates/`, `ideas/README.md`, `specs/README.md` | Allgemeine Einstieg-, Ablauf-, Prüf- und Vorlagenregeln: grundsätzlich unverändert. |
-| `harness/project.md` | Project Init: bestätigte Grenzen, Werkzeuge, Befehle und Gate-Status eintragen. |
-| `docs/architecture.md`, `docs/code.md`, `docs/testing.md` | Mit relevanten Fakten/Konventionen aus dem tatsächlichen Projekt befüllen; irrelevante Dateien können entfallen. |
-| `docs/README.md` | Ergänzen, wenn neue thematisch getrennte Docs entstehen. |
-| `ideas/`, `specs/` | Konkrete Ideas und beauftragte Specs erst bei Bedarf anlegen. |
-
-Die produktbezogene Root-`README.md` wird **nicht** vom Installer angelegt oder überschrieben. Ein vorhandenes Root-`AGENTS.md` behält seinen Inhalt; der Installer fügt einen eindeutig markierten Harness-Einstieg hinzu. Widersprüche zu bestehenden Regeln müssen beim Project Init fachlich geklärt werden.
-
-## Abhängigkeiten
-
-- Jede Aufgabe: Root-`AGENTS.md` → `agentic-harness/AGENTS.md` → Core und Projektprofil.
-- Neues Projektprofil (`Pending Project Init`): Project Init → bestätigtes Profil → relevante Projektdokumentation und ausführbarer Prüf-Einstieg.
-- Idea/Feature: jeweilige Ablageregel → passende Vorlage → konkrete Datei.
-- Abschluss: Gate → Anforderungs- und Implementierungsprüfung → echte Projektchecks; bei Fehlschlag `fail.md`.
-
-Der Installer richtet **keine** Produktchecks ein und macht eine Spec nicht automatisch `Implemented`. Er selbst lässt sich mit `python3 -m unittest discover -s tests -p 'test_install.py'` testen.
+Du kannst das Repository auch klonen oder als Vorlage kopieren, musst dann aber die Harness-README durch eine Produkt-README ersetzen und nicht benötigte Dateien wie `main.py` und `assets/` entfernen. Das ist derzeit **kein automatischer Installer**; für ein neues Produkt ist das gezielte Kopieren der beiden oben genannten Bestandteile der einfachere Weg.
