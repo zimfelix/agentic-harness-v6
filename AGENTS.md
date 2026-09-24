@@ -1,5 +1,7 @@
 # Projekteinstieg für den Entwicklungsagenten
 
-> **Kurzwegweiser:** Diese projektbezogene Datei gilt im Root von `agentic-harness-v3/`. Die Regeln des unveränderten V2-Vergleichsordners `agentic-harness-v2-main/` gelten nur dort.
+> **Geltungsbereich:** projektbezogenes `AGENTS.md` im Root dieses Repositories beziehungsweise einer Kopie der Schablone. Einstieg und Verweise; ausführliche Regeln stehen an den zuständigen Orten.
 
-Lies `harness/core.md` für den Arbeitsablauf und `harness/project.md` für aktive Projektgrenzen. Steht dort `Pending Project Init`, kläre vor der ersten Produktimplementierung die nötigen Fakten mit `harness/init.md`. Lade nur relevante Referenzen: `docs/code.md` bei Codeänderungen, `docs/testing.md` bei Tests, `docs/architecture.md` bei Architekturfragen. `harness/verification/gate.md` regelt den Abschluss; Specs liegen unter `specs/`, ungeklärte Ideen unter `ideas/`. Fehlende Projektangaben oder Prüfungen sind kein bestandener Nachweis.
+Lies `harness/core.md`. Für ein **neues Produktprojekt**: Solange `harness/project.md` auf `Pending Project Init` steht, nutze vor der ersten Produktimplementierung `harness/init.md`. Eine Änderung an dieser Schablone selbst ist keine Project Init einer erfundenen Anwendung.
+
+Lade nur passende Dateien: `docs/code.md` für geltende Codekonventionen, `docs/testing.md` für Testpraxis, `docs/architecture.md` für Architekturfragen. Wenn du Projektdokumentation ergänzen oder aufteilen musst, beachte `docs/README.md`. `harness/verification/gate.md` regelt den Abschluss; beauftragtes Verhalten steht unter `specs/`, ungeklärte Vorhaben unter `ideas/`. Wenn eine Datei noch eine offene Vorlage ist, behandle sie nicht als aktive Projektregel. Fehlende Prüfungen sind kein bestandener Nachweis.

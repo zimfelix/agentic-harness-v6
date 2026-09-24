@@ -2,7 +2,7 @@
 
 > **Vorlage:** Offenes Vorhaben vor einem Umsetzungsauftrag; fertige Ideas liegen unter `ideas/`.
 
-- **Status:** Draft
+- **Status:** Draft | Ready
 - **Problem und Nutzer:** [Für wen besteht welches Problem?]
 - **Nutzen:** [Was soll sich verbessern?]
 - **Lösungsansatz und Alternativen:** [Noch keine festgelegte Implementierung.]
@@ -10,4 +10,4 @@
 - **Auswirkungen und Risiken:** [Bestehendes Produkt, Daten, Schnittstellen.]
 - **Offene Fragen und Entscheidungen:** [Wer muss was bestätigen?]
 
-Eine geklärte Idea ist noch keine Freigabe zur Implementierung. Erst nach Bestätigung und Auftrag daraus eine oder mehrere Specs ableiten.
+`Ready` erst nach Bestätigung des geklärten Umfangs; offene Punkte vorher als `Draft` lassen. Auch eine `Ready`-Idea ist keine Freigabe zur Implementierung. Erst nach gesondertem Auftrag Specs ableiten und auf diese verweisen.

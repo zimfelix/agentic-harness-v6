@@ -2,7 +2,7 @@
 
 > **Zuständigkeit:** Abschlussregel für eine konkrete Änderung; kein Ersatz für ausgeführte Tests.
 
-1. Gleiche Auftrag, betroffene Spec und Grenzen mit `requirements.md` ab.
-2. Prüfe Änderung und beobachtbares Verhalten mit `implementation.md`; beachte dabei `docs/testing.md` und den projektspezifischen Prüf-Einstieg aus `harness/project.md`.
-3. Halte pro betroffenem Akzeptanzkriterium den tatsächlich ausgeführten Nachweis und sein Ergebnis fest. Eine Prüfung ohne wirksame Checks, eine bloße Build-Meldung bei Verhaltensanforderungen oder ein nicht eingerichtetes Gate gelten nicht als Erfolg.
-4. Nur wenn die Anforderungen erfüllt, die erforderlichen Nachweise erbracht und alle geltenden Checks bestanden sind, darf die betroffene Spec `Implemented` werden. Ansonsten `fail.md` folgen und die Grenze der Prüfung berichten. Das Gate setzt keine Statuswerte automatisch.
+1. Gleiche Auftrag, betroffene Spec und Projektgrenzen nach `requirements.md` ab. Neue Nutzerfunktion ohne Spec ist nicht abschließbar; bei Aufgaben ohne Produktspec den beauftragten Umfang direkt prüfen.
+2. Prüfe Diff und beobachtbares Verhalten nach `implementation.md`. `docs/testing.md` beschreibt die geltende Testpraxis, `tests/` enthält ausführbare Tests; die konkreten Befehle kommen ausschließlich aus dem initialisierten `harness/project.md`.
+3. Erfasse für jedes betroffene Akzeptanzkriterium den **tatsächlich ausgeführten** Nachweis und sein Ergebnis. Ein Build allein, eine leere Testsuite oder ein nicht eingerichteter Prüf-Einstieg belegen Nutzerverhalten nicht.
+4. `Implemented` ist nur bei erfüllten Anforderungen, belegten AK und bestandenen erforderlichen Checks zulässig. Fehlt etwas, gilt `fail.md`; melde die Lücke. Bei reiner Pflege dieser Schablone ohne Produktspec prüfe betroffene Texte, Pfade und Widersprüche, ohne ein Produkt-Gate zu behaupten. Dieses Markdown führt keine Checks aus und setzt keinen Status automatisch.

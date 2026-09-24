@@ -1,5 +1,5 @@
 # Architektur – tatsächlichen Produktaufbau erklären
 
-> **Status:** Noch keine V3-Anwendungsarchitektur festgelegt.
+> **Status:** Schablone – keine Produktarchitektur festgelegt.
 
-Hier werden nach Project Init die realen Bausteine, Datenflüsse, Schnittstellen und wichtigen Entscheidungen des Produkts beschrieben; technische Details dürfen auf passende Referenzen verlinken. Gewünschtes Funktionsverhalten und Akzeptanzkriterien stehen in `specs/`, Agentenabläufe in `harness/`. `main.py` ist derzeit leer; der V2-Vergleich unter `agentic-harness-v2-main/` ist keine bestätigte V3-Anwendungsarchitektur.
+**Zuständigkeit:** Nach Project Init den tatsächlichen Aufbau des Produkts erklären: Bausteine, Verantwortlichkeiten, Datenflüsse, Schnittstellen und begründete Architekturentscheidungen. Geplante, aber noch nicht umgesetzte Bausteine ausdrücklich als „geplant“ kennzeichnen; nicht als Ist-Zustand ausgeben. `specs/` beschreibt gewünschtes Funktionsverhalten, `harness/` den Agentenablauf; Architektur-Details nicht dorthin kopieren. Weitere Integrationsdokumente nur bei Bedarf ergänzen.

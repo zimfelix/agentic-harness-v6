@@ -1,3 +1,3 @@
 # Tests – ausführbare Anwendungstests
 
-Hier entstehen Tests für das V3-Produkt und seine Specs. Teststrategie und Konventionen stehen in `docs/testing.md`, die Abschlussregeln unter `harness/verification/`. Noch sind keine Anwendungstests vorhanden; die Tests in `agentic-harness-v2-main/tests/` gehören zum unveränderten V2-Vergleich.
+**Zuständigkeit:** Ausführbare Tests des konkreten Produkts nach Project Init; hier gibt es noch keine Anwendungstests. Testpraxis und Testdaten stehen in `docs/testing.md`, der Einstieg zum Ausführen in `harness/project.md` und die Abschlussbedingung in `harness/verification/gate.md`. Tests der Schablone selbst können später getrennt ergänzt werden; sie ersetzen keine Produkttests.

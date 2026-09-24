@@ -1,3 +1,3 @@
 # Source – Anwendungscode nach Project Init
 
-Hier liegt künftig der Code des konkreten Produkts. Struktur und Sprache werden erst bei Project Init anhand der tatsächlichen Anforderungen bestimmt; `main.py` im Repository-Root ist derzeit ein leerer Alt-Platzhalter. Dieser Ordner enthält noch keine Anwendung.
+**Zuständigkeit:** Code des konkreten Produkts nach Project Init. Sprache und Struktur richten sich nach dem gewählten Stack; dieses Verzeichnis der Schablone enthält noch keine Anwendung. Der vorhandene leere `main.py` im Root ist kein Projektstart oder Beispielprodukt.

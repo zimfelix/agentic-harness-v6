@@ -1,5 +1,5 @@
 # Testing – Teststrategie und Testkonventionen
 
-> **Status:** Noch keine V3-Anwendungstests oder Projektprüfbefehle eingerichtet.
+> **Status:** Schablone – keine Anwendungstests oder Prüfwerkzeuge festgelegt.
 
-Hier werden nach Project Init passende Testebenen, Werkzeuge, Testdaten, Isolation und Konventionen für das konkrete Produkt beschrieben. Die ausführbaren Tests stehen in `tests/`; der tatsächlich benutzte Prüf-Einstieg steht in `harness/project.md`. **Wann** der Agent eine Änderung als ausreichend geprüft abschließen darf, regelt `harness/verification/gate.md`. Die Tests des V2-Vergleichs sind keine Tests für V3-Produktverhalten.
+**Zuständigkeit:** Nach Project Init passende Testebenen, Werkzeuge, Testdaten, Isolation und Konventionen für das konkrete Produkt festhalten. Testarten nach Verhalten und Risiko auswählen, nicht pauschal alle verlangen. Ausführbare Anwendungstests liegen in `tests/`; konkrete Befehle und der Gate-Einstieg stehen in `harness/project.md`. **Wann** der Agent eine Aufgabe ausreichend belegt abschließen darf, steht in `harness/verification/gate.md`. Akzeptanzkriterien nicht hierher kopieren; sie stehen in `specs/`.

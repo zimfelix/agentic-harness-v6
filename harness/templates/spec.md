@@ -18,4 +18,4 @@
 - **AK2:** [Nachweis, falls vorhanden.]
 - **Gate:** [Tatsächlich ausgeführter Projektbefehl und Ergebnis.]
 
-`Implemented` nur nach erfüllten AK und bestandenem `harness/verification/gate.md`; sonst `Modified` und offene Punkte berichten. Vorlagen-Platzhalter nicht als bestandene Nachweise übernehmen.
+Bei inhaltlicher Änderung an einer bereits implementierten Spec zunächst `Modified`. `Implemented` erst nach belegten **allen** betroffenen AK und bestandenem `harness/verification/gate.md`; sonst `Modified` und Blocker offen berichten. Bei verhaltensgleichem Refactor ohne Spec-Änderung keinen künstlichen Statuswechsel auslösen. Vorlagen-Platzhalter nicht als bestandene Nachweise übernehmen.

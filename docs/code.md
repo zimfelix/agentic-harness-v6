@@ -1,5 +1,5 @@
 # Code – projektbezogene Codekonventionen
 
-> **Status:** Noch kein V3-Anwendungsstack und keine projektspezifischen Codekonventionen festgelegt.
+> **Status:** Schablone – keine projektspezifischen Codekonventionen festgelegt.
 
-Hier stehen nach Project Init verbindliche, dauerhaft gültige Konventionen für Anwendungscode, etwa Struktur, Benennung und Umgang mit Fehlern – nur wenn sie für das tatsächliche Projekt gebraucht werden. Die Arbeitsreihenfolge des Agenten steht in `harness/core.md`; architektonische Fakten stehen in `docs/architecture.md`. Aus dem V2-Vergleich werden keine Python-, Web- oder C#-Regeln automatisch übernommen.
+**Zuständigkeit:** Nach Project Init die für den tatsächlichen Stack verbindlichen, länger gültigen Konventionen festhalten: Struktur, Benennung, Fehlerbehandlung und gegebenenfalls Format- oder Lintwerkzeuge. Keine allgemeine Clean-Code-Sammlung und keine Regeln für ungenutzte Technologien. Der Agentenablauf steht in `harness/core.md`, Architekturentscheidungen in `docs/architecture.md`, der Einstieg zu ausführbaren Checks in `harness/project.md`. Weitere thematisch abgegrenzte Dokumente bei Bedarf nach `docs/README.md` ergänzen.
