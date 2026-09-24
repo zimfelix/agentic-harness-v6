@@ -20,6 +20,7 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `harness/init.md` | Leeres Projekt für ersten Schritt klären | Bei Init → `harness/harness-map.md` und `harness/document-contract.md`; danach Projektdateien befüllen. |
 | `harness/harness-map.md` | Dateirollen und Ladewege | Bei Orientierung oder Änderungen der Dokumentstruktur; keine Projektfakten. |
 | `harness/document-contract.md` | Format und Pflege neuer Markdown-Dateien | Beim Anlegen/Befüllen von Projekt-Docs und bei Pfadänderungen. |
+| `ideas/S000-readme.md`, `specs/S000-readme.md` | Einstiege und Statusregeln für Ideas bzw. Specs | Bedingt über `AGENTS.md`; betroffene Artefakte lesen, Templates nur bei Neuanlage. |
 | `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
 | `harness/verification/gate.md` | Soll und belegtes Ist zur Abschlussentscheidung verbinden | Nach Änderung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Lücke → `harness/verification/fail.md`. |
 | `harness/verification/requirements.md` | Verbindliches Soll aus Auftrag, Spec und Projektgrenzen bestimmen | Vom Gate geladen; `harness/project.md`, betroffene Specs und bei Strukturänderungen `docs/architecture.md` prüfen; Soll an Implementation und Gate. |
@@ -30,12 +31,12 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `harness/project.md` | Bestätigtes Ziel, Grenzen, Befehle, Gate-Status | Immer mit Core; Architekturdetails → `docs/architecture.md`, Testpraxis → `docs/testing.md`. |
+| `harness/project.md` | Bestätigtes Ziel, Grenzen, Befehle, Prüfstatus | Immer mit Core; Architekturdetails → `docs/architecture.md`, Testpraxis → `docs/testing.md`. |
 | `docs/architecture.md` | Bausteine, Schnittstellen und Datenfluss | Bei Architektur/Struktur; Codekonventionen → `docs/code.md`. |
 | `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
 | `docs/testing.md` | Risiken, Testebenen, Isolation und Teststruktur | Bei Testarbeit; konkrete Befehle → `harness/project.md`. |
-| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Beim Init anlegen; technische Einzelregeln bleiben in den zuständigen Docs. |
-| `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Dateien lesen; erst bei Bedarf anlegen. |
+| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Beim Init befüllen oder ergänzen; technische Einzelregeln bleiben in den zuständigen Docs. |
+| `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte lesen; neue erst bei Bedarf anlegen. |
 
 Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md`, `docs/testing.md` und der Produkt-`README.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt den Bereich „Projektspezifische Befüllung“. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.
 

@@ -1,10 +1,9 @@
-# Dokumentenvertrag – Entwurf
+# Dokumentenvertrag – Markdown-Aufbau und Pflege
 
 > - **Typ:** Designregel
-> - **Status:** V4-Arbeitsregel für neu angelegte oder befüllte Markdown-Dateien.
 > - **Zuständigkeit:** Einheitlicher, lesbarer Aufbau einzelner Markdown-Dateien.
-> - **Gilt bei:** Neue oder inhaltlich befüllte Harness- und Projekt-MD-Dateien. Bestehende Dateien werden schrittweise angepasst.
-> - **Ladebeziehungen:** Vor dem Schreiben die geplanten Zuständigkeiten und Ladewege in `agentic-harness/harness-map.md` prüfen.
+> - **Gilt bei:** Neue oder inhaltlich befüllte Steuerungs- und Projekt-MD-Dateien; bestehende Dateien werden schrittweise angepasst.
+> - **Ladebeziehungen:** Vor dem Schreiben Rollen und Ladewege in `agentic-harness/harness-map.md` prüfen; aktuelle Pfade über `AGENTS.md`.
 > - **Nicht zuständig:** Den gesamten Dateibaum oder den Arbeitsablauf des Agenten festlegen.
 
 ## Vor dem Schreiben
@@ -15,12 +14,14 @@
 4. Trage neue Dateien und geänderte Beziehungen zuerst in `agentic-harness/harness-map.md` ein. Kennzeichne geplante Pfade als geplant.
 5. Nutze konkrete Pfade ab Repo-Root; kürze sie nur bei echten relativen Markdown-Links, deren Ziel geprüft wurde.
 
-## Kopf jeder Datei
+## Standard-Kopf für Steuerungs- und Projektdokumente
+
+Vorlagen und Idea-/Spec-Artefakte einschließlich ihrer `S000-readme.md`-Einstiege behalten ihr eigenes Format; sie brauchen keinen zusätzlichen Metakopf.
 
 ```markdown
 # {Titel}
 
-> - **Typ:** {Einstieg | Prozess | Projektdoku | Vorlage | Index | Lernnotiz}
+> - **Typ:** {Einstieg | Prozess | Projektdoku | Designregel | Index | Lernnotiz}
 > - **Status:** {nur wenn Entwurf, Platzhalter oder Artefaktstatus wichtig ist}
 > - **Zuständigkeit:** {eine Aufgabe und ihr Ergebnis}
 > - **Gilt bei:** {konkreter Auslöser}
