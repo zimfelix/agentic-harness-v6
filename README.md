@@ -1,6 +1,6 @@
 # Agentic Harness V3
 
-![Harness overview](img.png)
+![Harness overview](assets/images/img.png)
 
 Ein schlanker Ablauf und Vorlagen für Entwicklungsagenten.
 
