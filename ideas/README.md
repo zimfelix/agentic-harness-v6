@@ -1,3 +1,7 @@
 # Ideas – offene Vorhaben vor dem Auftrag
 
-**Zuständigkeit:** Größere oder noch offene Vorhaben klären, bevor sie beauftragt werden. Verwende `harness/templates/idea.md` für Problem, Nutzen, Umfang, Auswirkungen und offene Entscheidungen. Eine Idea ist weder Produktdokumentation noch Implementierungsauftrag. `Draft` bedeutet offen; `Ready` erfordert bestätigten Umfang und entscheidungsreife Antworten. Erst Bestätigung **und** gesonderter Umsetzungsauftrag führen zu einer oder mehreren Specs unter `specs/`; danach kann die Idea auf diese verweisen. Neue Ideas entstehen nur bei Bedarf aus konkreten, noch ungeklärten Vorhaben.
+> **Zuständigkeit:** Größere, noch offene Vorhaben vor einem Auftrag klären; keine Produktdokumentation oder Implementierungsfreigabe.
+
+- Neue Ideas nur bei Bedarf nach `harness/templates/idea.md` anlegen: Problem, Nutzen, Umfang, Auswirkungen und offene Entscheidungen.
+- `Draft` bedeutet offen; `Ready` setzt bestätigten Umfang und geklärte entscheidungsrelevante Fragen voraus.
+- Erst **Bestätigung und gesonderter Umsetzungsauftrag** führen zu Specs unter `specs/`. Die Idea kann auf diese verweisen.

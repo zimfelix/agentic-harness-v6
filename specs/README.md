@@ -1,3 +1,7 @@
 # Specs – beauftragtes Soll-Verhalten
 
-**Zuständigkeit:** Beauftragtes Soll-Verhalten des Produkts nach `harness/templates/spec.md` festhalten. Jede Spec enthält Ziel, Nicht-Ziele, atomare Akzeptanzkriterien (AK) und zuordenbare Nachweise; weder Gesprächsnotiz noch Ist-Architekturdokumentation. Eine Idea wird nur mit bestätigtem Umfang und Umsetzungsauftrag in Specs überführt. `Modified` bedeutet neu, inhaltlich geändert oder noch nicht nachweislich erfüllt. `Implemented` erfordert Nachweis **aller** betroffenen AK und ein tatsächlich bestandenes `harness/verification/gate.md`; ein Blocker wird berichtet, nicht durch einen erfundenen Erfolg ersetzt. Bei Verhaltensänderungen betroffene vorhandene Specs prüfen. Neue Specs entstehen aus einem konkreten Auftrag, nicht vorsorglich bei Installation.
+> **Zuständigkeit:** Beauftragtes Soll-Verhalten dokumentieren; keine Gesprächsnotizen oder Ist-Architektur.
+
+- Specs nur bei konkretem Auftrag nach `harness/templates/spec.md` anlegen: Ziel, Nicht-Ziele, atomare Akzeptanzkriterien (AK) und zuordenbare Nachweise. Eine Idea allein ist kein Auftrag.
+- `Modified` bedeutet neu, inhaltlich geändert oder noch nicht nachweislich erfüllt. `Implemented` erfordert alle AK und ein tatsächlich bestandenes `harness/verification/gate.md`; Blocker offen berichten.
+- Bei Verhaltensänderungen auch betroffene vorhandene Specs prüfen.
