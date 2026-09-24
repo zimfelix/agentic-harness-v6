@@ -31,7 +31,7 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `harness/harness-learnings.md` | Übertragbare Stärken, Schwächen und offene Verbesserungsfragen aus einem Zielprojekt sammeln | Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`; keine automatisch geltende Regel oder Übernahme ins Quell-Repository. |
+| `harness/harness-learnings.md` | Übertragbare Stärken, Schwächen und offene Verbesserungsfragen aus einem Zielprojekt sammeln | Im aktuellen Repo: `agentic-harness/harness-learnings.md`; im geplanten Harness: `harness/harness-learnings.md`. Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`; keine automatisch geltende Regel oder Übernahme ins Quell-Repository. |
 
 ## Projektspezifisch durch Init zu befüllen
 
