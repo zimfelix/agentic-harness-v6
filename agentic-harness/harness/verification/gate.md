@@ -11,24 +11,30 @@
 Schematische Übersicht mit verkürzten Dateinamen. Bei Änderungen an Harness-Rollen oder Ladewegen auch dieses Diagramm gegen `AGENTS.md` und `agentic-harness/harness-map.md` prüfen.
 
 ```text
-AGENTS.md → core.md + project.md (Grenzen und eingerichtete Prüfungen)
-                          ↓
-                        gate.md
-           ├─ requirements.md → Soll aus Auftrag + project.md; ggf. Spec/Architektur
-           └─ implementation.md → Ist gegen Soll; Befehle aus project.md,
-                                   passende Docs und beobachtete Nachweise
+AGENTS.md → core.md + project.md (Ziel, Grenzen, aktive Befehle)
+                         │
+                         ├→ testing.md (bei Produkt-/Testaufgaben)
+                         │    ← architecture.md + code.md (+ ggf. Spec)
+                         │    → gewählte Ebenen/Arten, Anlässe, Testorte
+                         ↓
+                       gate.md
+           ├─ requirements.md ← Auftrag + project.md; ggf. Spec/Architektur
+           │                     → Soll (AK/Prüfpunkte)
+           └─ implementation.md ← Soll + Änderung + project.md (Befehle)
+                                   ← testing.md (bei Produkt-/Teständerung)
+                                   → Ist, ausgeführte Checks, Nachweisgrenzen
                          ↓
              Soll durch Ist und Nachweise belegt?
              ├─ ja   → Ergebnis berichten; ggf. Spec „Implemented“
-             └─ nein → fail.md → Ursache/Lücke klären → korrigieren
-                                  → betroffene Nachweise und Gate erneut prüfen
+             └─ nein → fail.md → Lücke klären/korrigieren
+                                  → betroffene Checks + Gate erneut prüfen
 ```
 
 ## Entscheidung
 
 Requirements und Implementation lesen `agentic-harness/harness/project.md` und öffnen die für ihre Prüfung nötigen Specs oder Projekt-Docs nach den jeweiligen Auslösern – auch wenn diese bei der Umsetzung noch nicht geladen waren.
 
-- Gleiche das Soll aus `agentic-harness/harness/verification/requirements.md` mit der beobachteten Änderung und den tatsächlich ausgeführten Nachweisen aus `agentic-harness/harness/verification/implementation.md` ab. Ein grüner Build oder Testlauf allein belegt nicht, dass der beauftragte Ablauf und die Projektgrenzen erfüllt sind.
+- Gleiche das Soll aus `agentic-harness/harness/verification/requirements.md` mit der beobachteten Änderung und den tatsächlich ausgeführten Nachweisen aus `agentic-harness/harness/verification/implementation.md` ab. Ein grüner Build oder Testlauf allein belegt nicht, dass der beauftragte Ablauf und die Projektgrenzen erfüllt sind. Nach `agentic-harness/docs/testing.md` für betroffene Risiken vorgesehene, aber nicht nachgewiesene Checks bleiben Lücken.
 - Bei beauftragtem Nutzerverhalten: Jedes betroffene Akzeptanzkriterium muss belegt sein; erforderliche Prüfungen müssen bestanden sein. Nur dann darf die betroffene Spec `Implemented` werden.
 - Ist keine Produktspec erforderlich (z. B. bei verhaltensgleichem Refactor oder Dokuänderung), prüfe den beauftragten Umfang und passende Nachweise ohne künstliche Spec. Für reine Doku- oder Prozesspflege kein bestandenes Produkt-Gate behaupten.
 - Bei fehlendem Soll, fehlenden Nachweisen, gescheiterten Checks oder Abweichungen: kein vollständiger Abschluss. Folge `agentic-harness/harness/verification/fail.md` und berichte, was offen oder blockiert ist. Diese Datei führt keine Checks aus und setzt keinen Status automatisch.

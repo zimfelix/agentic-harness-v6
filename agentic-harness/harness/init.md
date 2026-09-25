@@ -30,7 +30,7 @@ Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung�
 - `agentic-harness/harness/project.md`: bestätigtes Nutzerziel, Umfang, Grenzen und Freigaben; Start- und Prüfbefehle mit tatsächlichem Status.
 - `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten und Datenfluss; Geplantes und Offenes gesondert kennzeichnen.
 - `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack.
-- `agentic-harness/docs/testing.md`: passende Testebenen und Testpraxis für den ersten Ablauf.
+- `agentic-harness/docs/testing.md`: aus Ablauf, Risiken, Architektur und Stack passende Testebenen und -arten wählen; Werkzeuge, Teststruktur und Grenzen für den ersten Meilenstein begründen.
 - Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser unter „Projektspezifische Ergänzungen“ verlinken; keine Detailregeln kopieren.
 
 Erstelle im Zielprojekt eine kurze Produkt-`README.md` ohne Metakopf oder ergänze eine vorhandene um bestätigten Zweck und geprüfte Startschritte. Liegt dort stattdessen noch die Harness-Anleitung aus dem Quell-Repository, ersetze sie durch die Produkt-README. Bewahre vorhandene Produktinformationen; erfinde keine Fakten.

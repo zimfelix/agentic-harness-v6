@@ -40,7 +40,7 @@ Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `
 | `harness/project.md` | Bestätigtes Ziel, Grenzen, Befehle, Prüfstatus | Immer mit Core; Architekturdetails → `docs/architecture.md`, Testpraxis → `docs/testing.md`. |
 | `docs/architecture.md` | Bausteine, Schnittstellen und Datenfluss | Bei Architektur/Struktur; Codekonventionen → `docs/code.md`. |
 | `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
-| `docs/testing.md` | Risiken, Testebenen, Isolation und Teststruktur | Bei Testarbeit; konkrete Befehle → `harness/project.md`. |
+| `docs/testing.md` | Auswahl von Testebenen/-arten, Ausführungsanlässen, Werkzeugen und Teststruktur | Bei Init und Testarbeit aus Ziel, Architektur und Stack; konkrete Befehle → `harness/project.md`. |
 | `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Im Zielprojekt beim Init ohne Metakopf anlegen oder bestehende Produktinformationen ergänzen. |
 | `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte lesen; neue erst bei Bedarf anlegen. |
 
