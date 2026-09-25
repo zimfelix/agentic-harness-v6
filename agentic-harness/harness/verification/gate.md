@@ -12,22 +12,26 @@ Schematische Übersicht mit verkürzten Dateinamen. Bei Änderungen an Harness-R
 
 ```text
 AGENTS.md → core.md + project.md (Ziel, Grenzen, aktive Befehle)
-                         │
-                         ├→ testing.md (bei Produkt-/Testaufgaben)
-                         │    ← architecture.md + code.md (+ ggf. Spec)
-                         │    → gewählte Ebenen/Arten, Anlässe, Testorte
-                         ↓
-                       gate.md
-           ├─ requirements.md ← Auftrag + project.md; ggf. Spec/Architektur
-           │                     → Soll (AK/Prüfpunkte)
-           └─ implementation.md ← Soll + Änderung + project.md (Befehle)
-                                   ← testing.md (bei Produkt-/Teständerung)
-                                   → Ist, ausgeführte Checks, Nachweisgrenzen
-                         ↓
-             Soll durch Ist und Nachweise belegt?
-             ├─ ja   → Ergebnis berichten; ggf. Spec „Implemented“
-             └─ nein → fail.md → Lücke klären/korrigieren
-                                  → betroffene Checks + Gate erneut prüfen
+                 │
+                 ├→ bei Produkt-/Testarbeit: testing.md
+                 │    ← Risiken/AK; bei Bedarf architecture.md + code.md
+                 │    → gewählte Tests, Testorte und Anlässe
+                 ↓
+core.md: Änderung umsetzen; ggf. Tests entwickeln und Checks ausführen
+                 ↓
+gate.md: ein Abschlussdurchlauf
+       ├─ requirements.md ← Auftrag + project.md; ggf. Spec/Architektur
+       │                     → Soll (AK/Prüfpunkte)
+       └─ implementation.md ← Soll + Änderung + project.md (Befehle)
+                               ← testing.md (bei Produkt-/Teständerung)
+                               → Ist, Checks auf aktuellem Stand, Nachweisgrenzen
+                 ↓
+      Soll durch Ist und Nachweise belegt?
+       ├─ ja   → Ergebnis berichten; ggf. Spec „Implemented“
+       └─ nein → fail.md → Ursache: Soll/Spec, Teststrategie, Setup/Befehl,
+                          Umsetzung/Test oder fehlender Nachweis
+                          → an betroffener Stelle korrigieren; Checks + Gate
+                            erneut prüfen oder Blocker berichten
 ```
 
 ## Entscheidung
@@ -38,3 +42,4 @@ Requirements und Implementation lesen `agentic-harness/harness/project.md` und �
 - Bei beauftragtem Nutzerverhalten: Jedes betroffene Akzeptanzkriterium muss belegt sein; erforderliche Prüfungen müssen bestanden sein. Nur dann darf die betroffene Spec `Implemented` werden.
 - Ist keine Produktspec erforderlich (z. B. bei verhaltensgleichem Refactor oder Dokuänderung), prüfe den beauftragten Umfang und passende Nachweise ohne künstliche Spec. Für reine Doku- oder Prozesspflege kein bestandenes Produkt-Gate behaupten.
 - Bei fehlendem Soll, fehlenden Nachweisen, gescheiterten Checks oder Abweichungen: kein vollständiger Abschluss. Folge `agentic-harness/harness/verification/fail.md` und berichte, was offen oder blockiert ist. Diese Datei führt keine Checks aus und setzt keinen Status automatisch.
+- Übergib das Ergebnis mit einer knappen Übersicht der geänderten Dateien; bei Dokumentationsarbeit nenne insbesondere die bearbeiteten Markdown-Dateien. Berichte außerdem passende Prüfergebnisse und offene Punkte.

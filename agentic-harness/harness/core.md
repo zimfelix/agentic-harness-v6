@@ -18,11 +18,19 @@ AGENTS.md → core.md + project.md
                        ├─ neues/geändertes Nutzerverhalten beauftragt? → Spec
                        └─ sonst → beauftragten Umfang ohne künstliche Spec festhalten
                                   ↓
-                      passende Docs laden → Änderung umsetzen
+                      Docs nach Auslöser in AGENTS.md lesen:
+                      architecture.md / code.md / testing.md
+                      (testing.md: Auswahl, Testorte und Anlässe)
                                   ↓
-                           verification/gate.md
-                       ├─ ausreichend → Ergebnis übergeben
-                       └─ Lücke → fail.md → klären/korrigieren → Gate erneut
+                      Schritt 3: beauftragte Änderung umsetzen;
+                      bei Bedarf Produktcode/Tests ändern und
+                      passende Checks schon während der Arbeit ausführen
+                                  ↓
+                      verification/gate.md: Soll ↔ Ist/Nachweise
+                       ├─ ausreichend → Ergebnis übergeben; ggf. Spec „Implemented“
+                       └─ Lücke → fail.md → je nach Ursache zurück zu
+                            Klärung / Docs / Setup / Umsetzung / Checks
+                            → betroffene Nachweise + Gate erneut
 ```
 
 Die Dateinamen im Bild sind verkürzt; maßgeblich sind die Pfade im Kopf und das Routing in `AGENTS.md`. Bei geänderten Ladewegen dieses Bild mitprüfen.
