@@ -4,6 +4,10 @@ Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht �
 
 ![001-img.png](assets/images/001-img.png)
 
+Teststruktur:
+
+![002-img.png](assets/images/002-img.png)
+
 ## Empfohlen: in ein leeres Projekt kopieren
 
 Kopiere **`AGENTS.md` und den gesamten Ordner `agentic-harness/`** aus diesem Repository unverändert ins Root des neuen Projekts. Nur zusammen stimmen die aktuellen Ladepfade.
