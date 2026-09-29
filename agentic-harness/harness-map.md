@@ -2,50 +2,66 @@
 
 > - **Typ:** Index
 > - **Status:** V4-Referenz; die Pfade der Zielstruktur sind noch nicht vollständig umgesetzt.
-> - **Zuständigkeit:** Eigentümer der Themen und direkte Ladewege sichtbar machen.
-> - **Gilt bei:** Einstieg in einen unbekannten Harness, Project Init oder Änderung von Dateirollen und Pfaden.
+> - **Zuständigkeit:** Eigentümer der Themen, direkte Ladewege und die Export-Zuordnung (universell oder projektspezifisch) sichtbar machen.
+> - **Gilt bei:** Einstieg in einen unbekannten Harness, Project Init, Export als Vorlage oder Änderung von Dateirollen und Pfaden.
 > - **Ladebeziehungen:** Markdown-Format: `agentic-harness/document-contract.md`. Im aktuellen V4-Repo zuerst `AGENTS.md` beachten.
 > - **Nicht zuständig:** Projektentscheidungen treffen oder Regeln der verlinkten Dateien wiederholen.
 
 ## Pfadbasis
 
-Die Tabelle zeigt Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `harness/` und `docs/` noch unter `agentic-harness/`; `AGENTS.md` liegt bereits im Root. Vertrag und Landkarte liegen derzeit unter `agentic-harness/` und bleiben auch in der Zielstruktur im Harness (`harness/document-contract.md`, `harness/harness-map.md`). Beim Exportieren des versionierten Projektinhalts bleiben diese aktuellen Pfade gültig; die Tabelle ist keine Installationsanweisung. Die Root-`README.md` ist ein zunächst leeres Produktgerüst; `agentic-harness/README.md` bleibt die menschliche Harness-Anleitung im Zielprojekt. Bis zu einer Migration sind die tatsächlichen Pfade im Root-`AGENTS.md` maßgeblich.
+Die Tabellen zeigen Pfade **relativ zum geplanten Projekt-Root**. Derzeit liegen `harness/` und `docs/` noch unter `agentic-harness/`; `AGENTS.md` liegt bereits im Root. Vertrag und Landkarte liegen derzeit unter `agentic-harness/` und bleiben auch in der Zielstruktur im Harness (`harness/document-contract.md`, `harness/harness-map.md`). Die Tabellen sind keine Installationsanweisung. Bis zu einer Migration sind die tatsächlichen Pfade im Root-`AGENTS.md` maßgeblich.
 
 ## Universelle Dateien
 
+Diese Dateien wandern unverändert in eine neue Vorlage.
+
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `AGENTS.md` | Einstieg und Aufgaben-Routing | Immer → `harness/core.md` und `harness/project.md`; weitere Ziele nur nach Auslöser. |
-| `harness/core.md` | Entscheidungen und Rücksprünge von Auftrag bis Übergabe | Mit `harness/project.md` über `AGENTS.md`; bei beauftragtem Init für ein leeres Produktprojekt oder erster Produktumsetzung mit `Pending Project Init` → `harness/init.md`; je nach Auftrag Ideas/Specs und Docs; vor Abschluss → `harness/verification/gate.md`. |
-| `harness/init.md` | Leeres Projekt für ersten Schritt klären | Bei Init → `harness/harness-map.md` und `harness/document-contract.md`; danach Projektdateien befüllen. |
-| `harness/harness-map.md` | Dateirollen und Ladewege | Bei Orientierung oder Änderungen der Dokumentstruktur; keine Projektfakten. |
-| `harness/document-contract.md` | Format und Pflege neuer Markdown-Dateien | Beim Anlegen/Befüllen von Projekt-Docs und bei Pfadänderungen. |
-| `harness/README.md` | Anleitung zum Harness für Menschen (aktuell `agentic-harness/README.md`) | Im neuen Projekt mitübernehmen; kein Agenten-Ladeweg. |
-| `ideas/S000-readme.md`, `specs/S000-readme.md` | Einstiege und Statusregeln für Ideas bzw. Specs | Bedingt über `AGENTS.md`; betroffene Artefakte lesen, Templates nur bei Neuanlage. |
+| `AGENTS.md` (oberer Teil) | Einstieg und Aufgaben-Routing | Immer → `harness/core.md` und `harness/project.md`; weitere Ziele nur nach Auslöser. Der Abschnitt „Projektspezifische Ergänzungen“ gehört dem Projekt. |
+| `harness/core.md` | Entscheidungen und Rücksprünge von Auftrag bis Übergabe, Arbeitsbaum und Parallelarbeit | Mit `harness/project.md` über `AGENTS.md`; bei Init → `harness/init.md`; je nach Auftrag Ideas/Specs und Docs; vor Abschluss → `harness/verification/gate.md`. |
+| `harness/init.md` | Leeres Projekt für ersten Schritt klären: Projektart, Stack, Architektur, Tests und Profil (oder keines) mit dem Auftraggeber entscheiden; Zusatzblock bei sichtbarer Oberfläche | Bei Init → `harness/harness-map.md` und `harness/document-contract.md`; danach Projektdateien befüllen. |
+| `harness/harness-map.md` | Dateirollen, Ladewege, Export-Zuordnung | Bei Orientierung, Export oder Änderungen der Dokumentstruktur; keine Projektfakten. |
+| `harness/document-contract.md` | Format, aktueller Stand statt Verlauf, Richtgrößen, Trennung für den Export | Beim Anlegen, Befüllen oder Verdichten von Projekt-Docs und bei Pfadänderungen. |
+| `harness/README.md` | Anleitung zum Harness für Menschen und Agentenreferenz für den Export (aktuell `agentic-harness/README.md`) | Bei Exportaufträgen über `AGENTS.md`; sonst kein Agenten-Ladeweg. |
+| `ideas/I000-readme.md`, `specs/S000-readme.md` | Einstiege und Statusregeln für Ideas bzw. Specs | Bedingt über `AGENTS.md`; betroffene Artefakte lesen, Templates nur bei Neuanlage. |
 | `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
-| `harness/verification/gate.md` | Soll und belegtes Ist zur Abschlussentscheidung verbinden | Nach Änderung → `harness/verification/requirements.md` und `harness/verification/implementation.md`; bei Lücke → `harness/verification/fail.md`. |
-| `harness/verification/requirements.md` | Verbindliches Soll aus Auftrag, Spec und Projektgrenzen bestimmen | Vom Gate geladen; `harness/project.md`, betroffene Specs und bei Strukturänderungen `docs/architecture.md` prüfen; Soll an Implementation und Gate. |
-| `harness/verification/implementation.md` | Tatsächliche Änderung und Nachweise zum Soll prüfen | Vom Gate geladen; Prüfungen aus `harness/project.md`, Testpraxis bei Bedarf aus `docs/testing.md`; Ist und Belege ans Gate. |
+| `harness/verification/gate.md` | Soll und belegtes Ist zur Abschlussentscheidung verbinden; kurzer Weg für Oberflächen-Iterationen | Nach Änderung → `harness/verification/requirements.md` und `harness/verification/implementation.md` (beim kurzen Weg `docs/design.md`); bei Lücke → `harness/verification/fail.md`. |
+| `harness/verification/requirements.md` | Verbindliches Soll aus Auftrag, Spec, Gestaltungsregeln und Projektgrenzen bestimmen | Vom Gate geladen; `harness/project.md`, betroffene Specs, bei Strukturänderungen `docs/architecture.md`, bei Oberflächen `docs/design.md`. |
+| `harness/verification/implementation.md` | Tatsächliche Änderung und Nachweise zum Soll prüfen, bei Oberflächen im Zielmedium | Vom Gate geladen; Prüfungen aus `harness/project.md`, Testpraxis aus `docs/testing.md`, bei Oberflächen `docs/design.md`. |
 | `harness/verification/fail.md` | Lücke eingrenzen, korrigieren oder blockiert melden | Nur bei Gate-Lücke; nach Korrektur betroffene Nachweise und Gate wiederholen. |
 
-## Lokale Rückmeldungen zum universellen Harness
+## Profile (optional je Projektart)
+
+Werden mitexportiert; ein Projekt nutzt höchstens die zu ihm passenden.
 
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `harness/harness-learnings.md` | Übertragbare Stärken, Schwächen und offene Verbesserungsfragen aus einem Zielprojekt sammeln | Im aktuellen Repo: `agentic-harness/harness-learnings.md`; im geplanten Harness: `harness/harness-learnings.md`. Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`; keine automatisch geltende Regel oder Übernahme ins Quell-Repository. |
+| `profiles/website.md` (aktuell `agentic-harness/profiles/website.md`) | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
 
-## Projektspezifisch durch Init zu befüllen
+## Geteilte Dateien: universeller Rahmen + Projektbefüllung
+
+Kopf (außer der Status-Zeile) und „Universeller Rahmen“ sind universell. Status-Zeile und Abschnitt „Projektspezifische Befüllung“ gehören dem Projekt: Beim Export wird die Befüllung zu „Noch offen (Project Init).“, der Status von `project.md` zu `Pending Project Init`, der Status der Docs zu „Noch offen (Project Init).“.
 
 | Geplanter Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `harness/project.md` | Bestätigtes Ziel, Grenzen, Befehle, Prüfstatus | Immer mit Core; Architekturdetails → `docs/architecture.md`, Testpraxis → `docs/testing.md`. |
-| `docs/architecture.md` | Bausteine, Schnittstellen und Datenfluss | Bei Architektur/Struktur; Codekonventionen → `docs/code.md`. |
-| `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`. |
-| `docs/testing.md` | Auswahl von Testebenen/-arten, Ausführungsanlässen, Werkzeugen und Teststruktur | Bei Init und Testarbeit aus Ziel, Architektur und Stack; konkrete Befehle → `harness/project.md`. |
-| `README.md` | Produktüberblick, Einrichtung und Start für Menschen | Root-Gerüst beim Init ohne Metakopf mit bestätigten Produktinformationen befüllen. |
-| `ideas/`, `specs/` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte lesen; neue erst bei Bedarf anlegen. |
+| `harness/project.md` | Bestätigtes Ziel, Grenzen, Freigaben, Befehle, Prüfstatus, offene Entscheidungen | Immer mit Core; Architekturdetails → `docs/architecture.md`, Gestaltung → `docs/design.md`, Testpraxis → `docs/testing.md`. |
+| `docs/architecture.md` | Bausteine, Schnittstellen, Datenfluss, Betrieb; Varianten und Archiv | Bei Architektur/Struktur, Betrieb, neuen Seiten/Routen/Einstiegen, Konzeptvergleichen und Archivieren; Codekonventionen → `docs/code.md`. |
+| `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`; Gestaltungswerte → `docs/design.md`. |
+| `docs/design.md` | Gestaltungsregeln: Farbrollen, Schrift, Größenskala, Bausteine, Zustände, was im Zielmedium nachzuweisen ist (nur bei sichtbarer Oberfläche) | Bei sichtbaren Änderungen, neuen Seiten oder Abschnitten und beim kurzen Gate-Weg. |
+| `docs/testing.md` | Auswahl von Testebenen/-arten, Ausführungsanlässen, Werkzeugen und Teststruktur; bei Oberflächen Prüfgrößen und Methoden | Bei Init und Testarbeit aus Ziel, Architektur und Stack; konkrete Befehle → `harness/project.md`. |
+| `harness/harness-learnings.md` | Übertragbare Stärken, Schwächen und Verbesserungsfragen aus einem Zielprojekt (aktuell `agentic-harness/harness-learnings.md`) | Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`. Beim Export Beobachtungen leeren; übernommene Verbesserungen stehen dann bereits in den universellen Dateien. |
 
-Bei `harness/project.md`, `docs/architecture.md`, `docs/code.md` und `docs/testing.md` bleiben Dokumentkopf und „Universeller Rahmen“ erhalten. Init füllt dort den Bereich „Projektspezifische Befüllung“; die Produkt-`README.md` ist ein menschlicher Einstieg ohne Metakopf. Die Root-`AGENTS.md` behält universelles Routing; zusätzliche Projektverweise stehen nur unter „Projektspezifische Ergänzungen“.
+## Nur projektspezifisch
+
+Diese Dateien und Ordner werden **nicht** in eine neue Vorlage übernommen.
+
+| Pfad | Eine Verantwortung | Direkter Ladeweg |
+|---|---|---|
+| `README.md` (Root) | Produktüberblick, Einrichtung und Start für Menschen | Beim Init ohne Metakopf mit bestätigten Produktinformationen befüllen; beim Export nur mit Vorlagenhinweis anlegen. |
+| `agentic-harness/project-brief.md` (aktueller Pfad, optional) | Ausgangsbeschreibung eines Produkts für Project Init | Bei Project Init über `AGENTS.md`, falls vorhanden; bestätigte Fakten, Annahmen und offene Entscheidungen getrennt halten. |
+| `ideas/Innn-*.md`, `specs/Snnn-*.md` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte über `ideas/I000-readme.md` bzw. `specs/S000-readme.md` lesen. |
+| Archivordner (z. B. `archiv/`) | Verworfene oder nicht mehr verlinkte Teile außerhalb von Build, Tests und Ladewegen | Wird nicht geladen; nur auf ausdrücklichen Auftrag öffnen oder ändern. Name steht im Projektprofil. |
+| Produktcode, Tests, Assets | Das Produkt selbst | Über die Projekt-Docs. |
 
 ## Bei neuen oder verschobenen Dateien
 

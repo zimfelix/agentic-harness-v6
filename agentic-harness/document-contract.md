@@ -2,7 +2,7 @@
 
 > - **Typ:** Designregel
 > - **Zuständigkeit:** Einheitlicher, lesbarer Aufbau einzelner Markdown-Dateien.
-> - **Gilt bei:** Neue oder inhaltlich befüllte Steuerungs- und Projekt-MD-Dateien; bestehende Dateien werden schrittweise angepasst.
+> - **Gilt bei:** Neue oder inhaltlich befüllte Steuerungs- und Projekt-MD-Dateien, Verdichten gewachsener Projektdateien sowie Export als Vorlage; bestehende Dateien werden schrittweise angepasst.
 > - **Ladebeziehungen:** Vor dem Schreiben Rollen und Ladewege in `agentic-harness/harness-map.md` prüfen; aktuelle Pfade über `AGENTS.md`.
 > - **Nicht zuständig:** Den gesamten Dateibaum oder den Arbeitsablauf des Agenten festlegen.
 
@@ -16,7 +16,7 @@
 
 ## Standard-Kopf für Steuerungs- und Projektdokumente
 
-Vorlagen und Idea-/Spec-Artefakte einschließlich ihrer `S000-readme.md`-Einstiege behalten ihr eigenes Format. Auch die für Menschen geschriebene `README.md` braucht keinen Metakopf.
+Vorlagen und Idea-/Spec-Artefakte einschließlich `ideas/I000-readme.md` und `specs/S000-readme.md` behalten ihr eigenes Format. Auch die für Menschen geschriebene `README.md` braucht keinen Metakopf.
 
 ```markdown
 # {Titel}
@@ -39,9 +39,40 @@ Vorlagen und Idea-/Spec-Artefakte einschließlich ihrer `S000-readme.md`-Einstie
 
 ## Projektspezifische Gerüste
 
-In `agentic-harness/harness/project.md` und den Projekt-Docs bleiben Kopf und „Universeller Rahmen“ erhalten. `agentic-harness/harness/init.md` ersetzt die Platzhalter unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Die zunächst leere Root-`README.md` wird für Menschen ohne Metakopf mit bestätigten Produktinformationen befüllt; vorhandene Produktinhalte werden ergänzt.
+In `agentic-harness/harness/project.md` und den Projekt-Docs (`agentic-harness/docs/*.md`) bleiben Kopf und „Universeller Rahmen“ erhalten. `agentic-harness/harness/init.md` ersetzt den Platzhalter **„Noch offen (Project Init).“** unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Die Root-`README.md` enthält nach dem Export nur einen Vorlagenhinweis; sie wird für Menschen ohne Metakopf mit bestätigten Produktinformationen befüllt; vorhandene Produktinhalte werden ergänzt.
 
 Beim Befüllen dieser Gerüste auch den Kopf gegen das Projekt prüfen: Stimmen **Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung** noch? Status nur ändern, wenn die Datei tatsächlich befüllt ist. Offene Entscheidungen ausdrücklich offen lassen. Neue Projekt-Docs brauchen einen erreichbaren Leseauslöser; eine geänderte Dateirolle ist Harness-Arbeit.
+
+**Trennung für den Export:** Alles über der Überschrift „Projektspezifische Befüllung“ ist universell, mit Ausnahme der Status-Zeile im Kopf und wandert in eine neue Vorlage. Alles darunter gehört dem Projekt. Universelle Regeln deshalb nie im projektspezifischen Teil einführen, Projektfakten nie im universellen Teil. Die Exportschritte stehen in `agentic-harness/README.md`.
+
+## Wohin gehört was?
+
+Jede Information hat genau einen Ort. Fehlt der passende Ort, entsteht Wildwuchs in immer geladenen Dateien.
+
+| Information | Ort |
+|---|---|
+| Bestätigtes Ziel, Grenzen, Freigaben, Livegang-Blocker, offene Entscheidungen | `agentic-harness/harness/project.md` |
+| Eingerichtete Befehle und **letztes** Prüfergebnis | `agentic-harness/harness/project.md` (Tabelle, ersetzen) |
+| Beauftragtes Verhalten und Inhalte (AK) samt letztem Nachweis | Spec unter `agentic-harness/specs/` |
+| Gewähltes Profil | Name oben im Projektprofil; übernommene, angepasste oder abgewählte Profilteile in der thematisch zuständigen Datei dieser Tabelle |
+| Gestaltungsregeln: Farbrollen, Schrift, Größenskala, Bausteine, Zustände (keine Einzelwerte je Stelle) | `agentic-harness/docs/design.md` |
+| Bausteine, Dateien, Datenfluss, Archiv | `agentic-harness/docs/architecture.md` |
+| Betrieb: Ausführung, Auslöser/Zeitplan, Umgebungen, Konfiguration, Ort der Zugangsdaten (nie Werte), Protokolle | `agentic-harness/docs/architecture.md` |
+| Stack, Konventionen, technische Schulden | `agentic-harness/docs/code.md` |
+| Teststrategie, Suiten, Werkzeuge, Prüfgrößen und Methoden | `agentic-harness/docs/testing.md` |
+| Offene größere Vorhaben | Idea unter `agentic-harness/ideas/` |
+| Verlauf, was wann geändert wurde, einzelne Prüfläufe | Git (Commit-Nachricht) und Übergabe im Chat, **nicht** in Projektdateien |
+| Beobachtungen über den Harness selbst | `agentic-harness/harness-learnings.md` |
+
+## Aktueller Stand statt Verlauf
+
+Projektprofil, Projekt-Docs und Specs beschreiben den **geltenden** Stand. Der Verlauf steht in Git.
+
+- Ändert sich eine bestätigte Aussage, ersetze sie an ihrer Stelle. Hänge keinen weiteren Absatz („früherer Stand“, „aktueller Stand“, „Stand vom …“) an und lass keine überholten Varianten stehen.
+- Specs führen pro Akzeptanzkriterium nur den letzten gültigen Nachweis. Nachweise ersetzter Stände entfallen.
+- Datumsangaben nur, wo sie entscheidungsrelevant sind (z. B. Stand eines Prüflaufs oder einer Freigabe).
+- **Richtgrößen** (bei geteilten Dateien nur der Abschnitt „Projektspezifische Befüllung“, weil der universelle Rahmen unterschiedlich lang ist): `agentic-harness/harness/project.md` etwa 6 KB, eine Projekt-Doc etwa 6 KB, eine Spec etwa 15 KB. Wird eine Grenze überschritten, verdichte zuerst; trenne erst dann ein eigenständiges Thema in eine eigene Datei oder Spec.
+- Bestätigte Entscheidungen beim Verdichten nicht stillschweigend löschen: Sie wandern an die zuständige Stelle (z. B. Gestaltung nach `agentic-harness/docs/design.md`, Verhalten in die Spec).
 
 ## Bei neuen, umbenannten oder entfernten Dateien
 

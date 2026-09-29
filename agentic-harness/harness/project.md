@@ -1,30 +1,16 @@
 # Projektprofil – Grenzen und Befehle
 
 > - **Typ:** Projektdoku
-> - **Status:** Pending Project Init; noch keine Produktentscheidung bestätigt.
-> - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen und ausführbare Befehle festhalten.
+> - **Status:** Pending Project Init
+> - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen, Freigaben, eingerichtete Befehle und offene Entscheidungen festhalten.
 > - **Gilt bei:** Einordnung jeder Aufgabe über `AGENTS.md`; projektspezifisches Befüllen bei `agentic-harness/harness/init.md`.
-> - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `agentic-harness/harness/core.md`. Architektur bei Bedarf: `agentic-harness/docs/architecture.md`; Testpraxis: `agentic-harness/docs/testing.md`.
-> - **Nicht zuständig:** Architekturdetails, Codekonventionen oder Akzeptanzkriterien wiederholen.
+> - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `agentic-harness/harness/core.md`. Gewähltes Profil (falls eines genannt ist) unter `agentic-harness/profiles/`; Bausteine: `agentic-harness/docs/architecture.md`; Gestaltung: `agentic-harness/docs/design.md`; Testpraxis: `agentic-harness/docs/testing.md`; Verhalten und AK: betroffene Specs unter `agentic-harness/specs/`.
+> - **Nicht zuständig:** Architekturdetails, Gestaltungsregeln, Codekonventionen oder Akzeptanzkriterien wiederholen.
 
 ## Universeller Rahmen
 
-Dieses Profil bleibt kurz und nennt nur bestätigte Grenzen und tatsächlich verfügbare Befehle. Details liegen in den zuständigen Projekt-Docs. Ein geklärtes Init ist kein bestandenes Produkt-Gate.
+Dieses Profil wird bei jeder Aufgabe gelesen und bleibt deshalb kurz (Projektteil etwa 6 KB). Es nennt oben das gewählte Profil (z. B. „Profil: Website“ → `agentic-harness/profiles/`) und sonst nur den **aktuellen** bestätigten Stand: Ziel, Grenzen, Freigaben, eingerichtete Befehle mit letztem Ergebnis und offene Entscheidungen. Überholte Aussagen werden ersetzt, nicht als Verlauf ergänzt; der Verlauf steht in Git (`agentic-harness/document-contract.md`). Betrieb und Bausteine gehören nach `agentic-harness/docs/architecture.md`, Gestaltung nach `agentic-harness/docs/design.md`, Verhalten und Inhalte in Specs. Ein geklärtes Init ist kein bestandenes Produkt-Gate.
 
 ## Projektspezifische Befüllung
 
-### Ziel und erster Meilenstein
-
-Noch offen (Project Init): Nutzer, Problem, erster sichtbarer Ablauf, Umfang und Nicht-Ziele.
-
-### Betrieb, Daten und Freigaben
-
-Noch offen (Project Init): gewählte Laufzeit und Entwicklungsumgebung; relevante Daten, Integrationen, Rechte und riskante Aktionen.
-
-### Start und Prüfstatus
-
-Noch offen (Project Init): Einrichtungs- und Startbefehle sowie aktive Checks mit Befehl, Geltungsbereich und beobachtetem Ergebnis. Geplante Checks ausdrücklich als nicht eingerichtet kennzeichnen.
-
-### Nächster Schritt und offene Entscheidungen
-
-Noch offen (Project Init): erster beauftragter Schritt und noch blockierende Entscheidungen.
+Noch offen (Project Init).

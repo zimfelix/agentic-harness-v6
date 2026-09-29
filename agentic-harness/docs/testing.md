@@ -1,10 +1,10 @@
 # Testing – Auswahl und Praxis der Produktprüfungen
 
 > - **Typ:** Projektdoku
-> - **Status:** Pending Project Init; noch keine Testpraxis oder Anwendungstests bestätigt.
+> - **Status:** Noch offen (Project Init).
 > - **Zuständigkeit:** Universelle Auswahlhilfe für Tests bieten und die begründete Teststrategie des Projekts festhalten.
 > - **Gilt bei:** Project Init sowie Testplanung, Teständerung und Testausführung.
-> - **Ladebeziehungen:** Zuerst `agentic-harness/harness/project.md` für Ziel, Risiken und eingerichtete Befehle lesen. Für Bausteine und Grenzen bei Bedarf `agentic-harness/docs/architecture.md`, für Stack und Werkzeugwahl `agentic-harness/docs/code.md`, bei beauftragtem Verhalten die betroffene Spec unter `agentic-harness/specs/`. Zum Abschluss `agentic-harness/harness/verification/gate.md`.
+> - **Ladebeziehungen:** Zuerst `agentic-harness/harness/project.md` für Ziel, Risiken und eingerichtete Befehle lesen. Für Bausteine und Grenzen bei Bedarf `agentic-harness/docs/architecture.md`, für Stack und Werkzeugwahl `agentic-harness/docs/code.md`, für Gestaltungsregeln `agentic-harness/docs/design.md` (Prüfgrößen, Methoden und Werkzeuge stehen hier), bei beauftragtem Verhalten die betroffene Spec unter `agentic-harness/specs/`. Zum Abschluss `agentic-harness/harness/verification/gate.md`.
 > - **Nicht zuständig:** Produkt-Stack oder Akzeptanzkriterien festlegen, Befehle und Ergebnisse duplizieren oder über ein bestandenes Gate entscheiden.
 
 ## Universeller Rahmen
@@ -42,6 +42,8 @@ Ebenen sind Auswahlmöglichkeiten, keine Ordnerpflicht. Ein kleines Projekt kann
 | **Barrierefreiheit und Nutzbarkeit** | Ist eine relevante Oberfläche für die vorgesehenen Nutzer bedienbar? Automatische Checks ggf. durch menschliche Prüfung ergänzen. |
 | **Kompatibilität** | Müssen ausdrücklich mehrere Umgebungen, Plattformen oder Versionen unterstützt werden? |
 | **Eigenschaftsbasiert/Fuzzing** | Gibt es komplexe Invarianten oder breite Eingaberäume, die Beispieltests schlecht abdecken? |
+| **Gerendertes Verhalten (Navigation, Scrollen, Layout)** | Hängt die Korrektheit von gerendertem Verhalten ab, z. B. Ankersprünge unter angehefteten Headern, Menüs, Umbrüche oder Bildschirmgrößen? Solches Verhalten ist aus Quelltext nicht ableitbar: im Zielmedium (Browser, Emulator, Terminal) messen (Position, Sichtbarkeit), nicht nur Markup prüfen, und die Nutzer nicht damit testen lassen. |
+| **Aussehen und Gestaltungskonsistenz** | Gibt es verbindliche Gestaltungsregeln (`agentic-harness/docs/design.md`), die über Seiten hinweg gelten müssen, z. B. geladene Schrift, Größenskala, identische wiederkehrende Rahmen, kein Überlauf? Im Zielmedium messen oder per Screenshot vergleichen, nicht über Quelltext. |
 | **Fachliche Akzeptanz/Exploration** | Muss ein Mensch den Nutzerablauf beurteilen oder einen noch unklaren Fehler erkunden? Schritte und beobachtetes Ergebnis festhalten; manuell ist eine Methode, keine eigene Testebene. |
 
 Lint, Typprüfung und Build sind ergänzende Qualitätschecks, aber allein kein Nachweis für Nutzerverhalten. Coverage-Zahlen zeigen geprüften Code, nicht automatisch erfüllte Akzeptanzkriterien.
@@ -50,16 +52,10 @@ Lint, Typprüfung und Build sind ergänzende Qualitätschecks, aber allein kein 
 
 Werkzeuge anhand des **gewählten** Stacks, der zu prüfenden Grenze und verfügbarer Versionen auswählen; es gibt keine allgemeine Testsprache oder ein verpflichtendes Framework. Erst nach Prüfung und Einrichtung als aktiv bezeichnen. Tests können nach Verhalten, Baustein oder Ebene organisiert werden; keine feste `tests/`- oder `src/`-Struktur voraussetzen. Testdaten, Fixtures und Ersatzobjekte so wählen, dass Tests unabhängig und reproduzierbar bleiben; reale Integrationen dort nutzen, wo nur sie das Risiko belegen. Keine Produktdaten oder Secrets in Testfixtures übernehmen.
 
+**Quelltextvergleiche sparsam einsetzen:** Exakte Quelltext-Strings (z. B. HTML, CSS, generierte Ausgaben) in Tests sind zerbrechlich (jede Stiländerung bricht sie) und blind für echte Fehler (eine nicht geladene Schrift fällt nicht auf). Nutze sie nur für harte Inhaltsgrenzen, etwa verbotene Versprechen, Pflichtkennzeichnungen oder das Fehlen von Formularversand. Aussehen und Layout prüfen gemessene Eigenschaften im Zielmedium.
+
+**Werkzeuge einmal einrichten:** Mess-, Screenshot- oder Audit-Skripte, die mehr als einmal gebraucht werden, gehören ins Projekt (mit Befehl in `agentic-harness/harness/project.md`), nicht in eine temporäre Sitzung. Eine Gegenprobe gegen einen absichtlich kaputten Stand zeigt, dass ein neuer Test im Zielmedium wirklich prüft. Bei sichtbarer Oberfläche legt der Projektteil dieser Datei Prüfgrößen (z. B. Bildschirmbreiten), Methoden und Werkzeug fest; `agentic-harness/docs/design.md` hält nur die zu prüfenden Regeln.
+
 ## Projektspezifische Befüllung
 
-### Verhalten, Risiken und gewählte Tests
-
-Noch offen (Project Init): Für den ersten beauftragten Ablauf und wichtige Fehlerfälle jeweils Risiko oder Akzeptanzkriterium, gewählte Ebene **und** Testart, beobachtbare Erwartung, Begründung und Nachweisgrenze festhalten. Nicht gewählte relevante Ebenen nur bei einer echten Abwägung als vertagt begründen.
-
-### Werkzeuge, Teststruktur und Isolation
-
-Noch offen (Project Init): Nach Stack- und Architekturentscheidung passende Werkzeuge und Versionen prüfen; tatsächlich gewählte Werkzeuge, Ablage, Testdaten, Fixtures, Isolation und benötigte reale Grenzen beschreiben. Vorgeschlagenes von Eingerichtetem unterscheiden.
-
-### Ausführungsanlässe und offene Nachweise
-
-Noch offen (Project Init): Welche ausgewählten Prüfungen sollen bei welchen Änderungen oder während der Umsetzung laufen, welche vor dem Abschluss-Gate? Ausführungsanlässe nach Risiko und Aufwand festlegen; keine pauschale Regel „alle Tests nach jedem Edit“. Welche Prüfungen sind eingerichtet, welche noch nicht und was belegen sie nicht? **Befehle, Geltungsbereich und beobachteten Status** ausschließlich in `agentic-harness/harness/project.md` führen. `agentic-harness/harness/verification/implementation.md` hält Nachweise der konkreten Änderung fest; das Gate entscheidet über deren Suffizienz.
+Noch offen (Project Init).

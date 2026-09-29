@@ -34,8 +34,10 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  ↓
    [R2] ───→ PASSENDE DOCS LESEN – direkt nach Auslöser in AGENTS.md
                  │
-                 ├→ architecture.md: Bausteine, Grenzen, Schnittstellen
+                 ├→ profiles/<name>: nur bei gewähltem Profil, nach dessen „Gilt bei“
+                 ├→ architecture.md: Bausteine, Schnittstellen, Betrieb, Archiv
                  ├→ code.md:         gewählter Stack, Codekonventionen
+                 ├→ design.md:       Gestaltungsregeln (nur bei Oberfläche)
                  └→ testing.md:      Risiken und Kriterien → geeignete
                                      Testebenen/-arten, Testorte und
                                      Ausführungsanlässe auswählen
@@ -109,11 +111,13 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
      ├─ IMMER → harness/project.md    bestätigte Ziele, Grenzen, aktive Befehle
      │
      ├─ BEI Project Init ───────────→ harness/init.md
-     ├─ BEI Architektur/Struktur ──→ docs/architecture.md
+     ├─ BEI gewähltem Profil ───────→ profiles/<name>.md (laut „Gilt bei“)
+     ├─ BEI Architektur/Betrieb ───→ docs/architecture.md
      ├─ BEI Code/Refactor ──────────→ docs/code.md
+     ├─ BEI sichtbarer Änderung ───→ docs/design.md
      ├─ BEI Testplanung/-arbeit ───→ docs/testing.md
      │
-     ├─ BEI offener größerer Idee ──→ ideas/S000-readme.md
+     ├─ BEI offener größerer Idee ──→ ideas/I000-readme.md
      │                                └→ konkrete Idea;
      │                                   Vorlage nur bei Neuanlage
      ├─ BEI neuem/geändertem
@@ -155,17 +159,49 @@ Teststruktur:
                                          → betroffene Checks wiederholen
                                          → gate.md erneut durchlaufen
  ```
-## Projektinhalt als neue Vorlage übernehmen
+## Drei Ebenen
 
-Die Root-`README.md` ist hier absichtlich leer. Im neuen Projekt füllt Project Init sie mit **bestätigten Produktinformationen**; `agentic-harness/README.md` bleibt als menschliche Harness-Anleitung erhalten. Für einen neuen, leeren Zielordner den versionierten Projektinhalt ohne fremde Git-Historie und lokale IDE-Dateien exportieren:
+| Ebene | Dateien | Wandert in eine neue Vorlage? |
+|---|---|---|
+| **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
+| **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
+| **Projekt** | Abschnitt „Projektspezifische Befüllung“ in `project.md` und `docs/*.md`, „Projektspezifische Ergänzungen“ in `AGENTS.md`, Ideas, Specs, `project-brief.md`, Learnings-Einträge, Root-`README.md`, Produktcode, Tests, Archiv | nein; wird zurückgesetzt oder weggelassen |
+
+Neue Erkenntnisse wandern je nach Reichweite: für jedes Projekt → universelle Datei; für eine Projektart → Profil; nur für dieses Produkt → Projektdatei.
+
+**Universell heißt: offen bis zum Init.** Der Harness legt weder Projektart noch Stack, Architektur, Tests oder Profil fest. Bei jedem neuen Projekt werden Ziel, erster Ablauf und das dafür Nötige im Project Init neu besprochen. `AGENTS.md` führt dorthin, `harness/init.md` treibt die Klärung und schreibt das Bestätigte in die Projektabschnitte. Fehlende Festlegungen in der Vorlage sind deshalb gewollt.
+
+**Ein weiteres Profil** (z. B. Automation, API) folgt dem Muster von `profiles/website.md`: Kopf mit „Gilt bei“ als Ladeauslöser, zusätzliche Init-Fragen, Teil A Pflichtregeln, Teil B abwählbare Defaults, Teil C optionaler Baukasten. `AGENTS.md` lädt jedes gewählte Profil über eine allgemeine Zeile; im universellen Teil ist dafür nichts zu ergänzen außer dem Eintrag in `harness-map.md`.
+
+## Harness als Vorlage für ein neues Projekt exportieren
+
+Nur in ein **neues, leeres** Verzeichnis außerhalb der Quelle exportieren. Es gibt noch kein Export-Skript; der Block bricht bei falschen Pfaden oder nicht leerem Ziel ab:
 
 ```sh
-VORLAGE=/pfad/zum/agentic-harness-repository
-PROJEKT=/pfad/zum/neuen-leeren-projekt
-mkdir -p "$PROJEKT"
-git -C "$VORLAGE" archive HEAD | tar -xf - -C "$PROJEKT"
+set -eu
+QUELLE=/pfad/zu/diesem/projekt
+ZIEL=/pfad/zum/neuen-leeren-projekt
+test -f "$QUELLE/AGENTS.md" || { echo "Quelle falsch"; exit 1; }
+case "$ZIEL" in "$QUELLE"*) echo "Ziel liegt in der Quelle"; exit 1;; esac
+if [ -e "$ZIEL" ] && [ -n "$(ls -A "$ZIEL")" ]; then echo "Ziel nicht leer"; exit 1; fi
+mkdir -p "$ZIEL/agentic-harness/ideas" "$ZIEL/agentic-harness/specs"
+cd "$QUELLE"
+cp AGENTS.md "$ZIEL/"
+printf '.DS_Store\n.idea/\n' > "$ZIEL/.gitignore"
+cp -R agentic-harness/harness agentic-harness/docs agentic-harness/profiles "$ZIEL/agentic-harness/"
+cp agentic-harness/README.md agentic-harness/document-contract.md agentic-harness/harness-map.md agentic-harness/harness-learnings.md "$ZIEL/agentic-harness/"
+cp agentic-harness/ideas/I000-readme.md "$ZIEL/agentic-harness/ideas/"
+cp agentic-harness/specs/S000-readme.md "$ZIEL/agentic-harness/specs/"
+printf '# Neues Produktprojekt\n\nVorlage: Die Anleitung zum Harness steht in [agentic-harness/README.md](agentic-harness/README.md). Diese Datei wird beim Project Init durch die Produkt-README ersetzt.\n' > "$ZIEL/README.md"
 ```
 
-Damit kommen Root-`AGENTS.md`, die leere Root-`README.md`, `.gitignore` und der gesamte Ordner `agentic-harness/` ins neue Projekt – aber nicht `.git/`, `.idea/` oder eine lokale `.venv/`. Das Archiv verwendet den **committeten** Stand (`HEAD`); uncommittete Änderungen werden nicht übernommen. Ob das Produkt Python, eine eigene virtuelle Umgebung oder eine `main.py` braucht, entscheidet erst der Project Init.
+Danach im Zielordner zurücksetzen:
 
-Öffne den Zielordner mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent befüllt `agentic-harness/harness/project.md`, die betroffenen Projekt-Docs und die Produkt-`README.md`. Erkenntnisse über den universellen Harness können im Zielprojekt als Kandidaten in `agentic-harness/harness-learnings.md` stehen; sie werden nicht automatisch zurück ins Quell-Repository übernommen.
+1. In `agentic-harness/harness/project.md` und jeder Datei unter `agentic-harness/docs/` alles unter „## Projektspezifische Befüllung“ durch **„Noch offen (Project Init).“** ersetzen. Status-Zeile: in `project.md` `Pending Project Init`, in den Docs „Noch offen (Project Init).“. Kopf und „Universeller Rahmen“ bleiben.
+2. In `AGENTS.md` unter „## Projektspezifische Ergänzungen“ alle Punkte löschen.
+3. In `agentic-harness/harness-learnings.md` die Status-Zeile auf „Noch keine Beobachtungen.“ setzen und alle Abschnitte ab „Ursachenanalyse“ leeren.
+4. Prüfen: `grep -rniE 'ALTER_PRODUKTNAME|alte-domain|@' "$ZIEL"` darf keine Produktangaben mehr finden (erwartet sind nur allgemeine Beispiele und optionale Verweise auf `project-brief.md`); jeder in Dokumentköpfen genannte `agentic-harness/…`-Pfad existiert, außer ausdrücklich optionalen.
+
+Nicht übernommen werden: Produktcode (`src/`, `scripts/`, `tests/`), `archiv/`, `dist/`, konkrete Ideas und Specs, `project-brief.md`, `.git/` und IDE-Dateien.
+
+Öffne den Zielordner dann mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent wählt ein passendes Profil, befüllt `project.md`, die betroffenen Projekt-Docs und die Produkt-`README.md`. Erkenntnisse über den Harness sammelt das neue Projekt wieder in `agentic-harness/harness-learnings.md`.
