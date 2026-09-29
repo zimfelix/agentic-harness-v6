@@ -24,9 +24,9 @@ Dieser Harness ist **universell** für Softwareprojekte jeder Art. **Profile** u
 | Größere offene Idee | `agentic-harness/ideas/I000-readme.md` | Idee klären; bei Neuanlage `agentic-harness/harness/templates/idea.md` verwenden. |
 | Neues oder geändertes Nutzerverhalten | `agentic-harness/specs/S000-readme.md` und betroffene Spec | Beauftragtes Soll prüfen; bei Neuanlage `agentic-harness/harness/templates/spec.md` verwenden. |
 | Abschluss einer Änderung | `agentic-harness/harness/verification/gate.md` | Auftrag und Nachweise prüfen (bei reiner Oberflächen-Iteration kurzer Weg); bei Fehlschlag `agentic-harness/harness/verification/fail.md`. |
-| Harness erstmals einordnen oder Project Init durchführen | `agentic-harness/harness-map.md` | Dateirollen und geplante Ladewege verstehen; tatsächliche Pfade prüfen. |
+| Harness erstmals einordnen oder Project Init durchführen | `agentic-harness/harness-map.md` | Dateirollen und Ladewege verstehen; tatsächliche Pfade prüfen. |
 | Markdown-Datei neu anlegen, befüllen oder eine gewachsene Projektdatei verdichten | `agentic-harness/document-contract.md`; bei neuer Datei oder Rolle auch `agentic-harness/harness-map.md` | Passende Form, aktueller Stand statt Verlauf, Verweise und Kopf gegen tatsächliche Rollen und Pfade prüfen. |
-| Harness als Vorlage für ein neues Projekt exportieren | `agentic-harness/README.md` (Abschnitt Export) und `agentic-harness/harness-map.md` | Nur in ein neues, leeres Ziel; Projektteile zurücksetzen; Ergebnis prüfen. |
+| Harness als Vorlage für ein neues Projekt exportieren | `agentic-harness/README.md` (Abschnitt „Harness als Vorlage exportieren“) und `agentic-harness/harness-map.md` | Nur in ein neues, leeres Ziel; Projektteile zurücksetzen; Ergebnis prüfen. |
 | Harness-Pfade, Dateirollen oder Ladeauslöser ändern | `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` | Betroffene Dokumentköpfe, Einstieg und Verweise gemeinsam abgleichen. |
 | Beim Einsatz im Zielprojekt fällt eine möglicherweise universelle Stärke, Schwäche oder Unklarheit des Harnesses auf | `agentic-harness/harness-learnings.md` | Beobachtung lokal als Kandidat festhalten; Projektfakten bleiben in den zuständigen Projektdateien. |
 
@@ -36,11 +36,11 @@ Vor dem Umbenennen, Verschieben oder Löschen einer Harness-Datei suche repo-wei
 
 ## Aktiver Stand und Pfade
 
-`agentic-harness/harness/core.md` regelt den Arbeits- und Entscheidungsfluss. Landkarte und Dokumentenvertrag sind Referenzen für Orientierung und Markdown-Pflege. Die Landkarte zeigt geplante Root-Pfade; bis zur Migration sind die tatsächlichen `agentic-harness/`-Pfade in dieser Datei maßgeblich.
+`agentic-harness/harness/core.md` regelt den Arbeits- und Entscheidungsfluss. Landkarte und Dokumentenvertrag sind Referenzen für Orientierung und Markdown-Pflege. Bei Widersprüchen zwischen Pfaden gelten die in dieser Datei genannten.
 
 Produktcode und Produkttests liegen außerhalb der Harness-Dokumente. Bei Widersprüchen zwischen Auftrag, bestehenden Projektanweisungen und Harness kläre die Zuständigkeit vor riskanten Änderungen. Ändere nicht stillschweigend weitere Dateien, nur weil sie verlinkt sind.
 
-Vor dem ersten Schreibzugriff `git status` prüfen; fremde, nicht committete Änderungen weder überschreiben noch mitcommitten. Parallele Agentensitzungen und Commits regelt `agentic-harness/harness/core.md` (Abschnitt „Arbeitsbaum und Parallelarbeit“). Bei Commits beschreibt der Betreff in einem kurzen, konkreten Satz die tatsächliche Änderung. Vermeide ungenaue Betreffe wie „Update files“.
+Vor dem ersten Schreibzugriff `git status` prüfen (ist das Verzeichnis noch kein Git-Repository, nach `agentic-harness/harness/init.md` klären); fremde, nicht committete Änderungen weder überschreiben noch mitcommitten. Parallele Agentensitzungen und Commits regelt `agentic-harness/harness/core.md` (Abschnitt „Arbeitsbaum und Parallelarbeit“). Bei Commits beschreibt der Betreff in einem kurzen, konkreten Satz die tatsächliche Änderung. Vermeide ungenaue Betreffe wie „Update files“.
 
 Ein im Projektprofil benannter Archivordner wird nicht geladen, gebaut oder getestet und nur auf ausdrücklichen Auftrag geändert.
 

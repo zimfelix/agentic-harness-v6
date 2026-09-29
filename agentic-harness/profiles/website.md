@@ -106,26 +106,26 @@ Bewährt im ersten Website-Projekt; gelten, solange `design.md` nichts anderes f
 
 ## 8. Bausteine und Seitenaufbauten (übernehmen, anpassen oder weglassen)
 
-Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen Seiten mit dem Auftraggeber auswählen. Teil A gilt für jeden gewählten Baustein, Teil B als Voreinstellung.
+Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen Seiten mit dem Auftraggeber auswählen. Teil A gilt für jeden gewählten Baustein, Teil B als Voreinstellung. Die Bausteine beschreiben Aufbau und Zweck; Überschriften, Texte und Ansprache (du/Sie) entstehen je Projekt neu.
 
 ### 8.1 Rahmen
 
 - **Header mit Leistungsmenü:** Marke (Zeichen + Name + Unterzeile) links, Navigation mittig, Kontakt-Button rechts; ein Navigationspunkt „Leistungen“ führt zur Angebotssektion und hat einen separaten Pfeil, der die einzelnen Leistungen aufklappt (Desktop auch beim Darüberfahren, per Tastatur und mobil per Antippen). Sinnvoll ab zwei Leistungsbereichen; bei nur einer Leistung ein einfacher Link.
 - **Footer mit vier Gruppen:** Marke und Kontaktadressen oben; darunter Leistungen, Branchen oder Zielgruppen, Unternehmen & Kontakt, Rechtliches; unten eine Statuszeile (Standort, Zertifikate nur wenn belegt, Copyright).
-- **Kontaktblock am Seitenende:** eine Überschrift, ein Satz, Hauptbutton „Kontakt aufnehmen“ und Zweitbutton zur Leistungsübersicht.
+- **Kontaktblock am Seitenende:** eine Überschrift, ein Satz, Hauptbutton zur Kontaktaufnahme und Zweitbutton zur Leistungsübersicht.
 
 ### 8.2 Seitenaufbau
 
-- **Startseite als Erzählung:** Hero mit Nutzenversprechen → „Kommt dir bekannt vor?“ mit drei Problemen und Icons → Angebot (Hauptleistung zuerst, Zusatzleistung abgesetzt, je vier Themen mit Links) → Prozess in vier Schritten → Fallstudie → Stimmen aus der Praxis → Werte → FAQ → Kontaktblock. Abschnitte ohne echte Inhalte (Fallstudie, Stimmen) weglassen oder als Platzhalter nur im Prototyp.
-- **Leistungsseite je Leistungsbereich:** Hero mit Seitenleiste → Probleme → „Was du bekommst“ (Zeilen mit Kennzeichnung wie Einmalig/Betreuung) plus Ablaufgrafik → Prozess → „Was sich ändert“ mit Themen als Sprungziele → Kontaktblock.
+- **Startseite als Erzählung:** Hero mit Nutzenversprechen → Problemabschnitt mit drei typischen Problemen der Zielgruppe und Icons → Angebot (Hauptleistung zuerst, Zusatzleistung abgesetzt, je vier Themen mit Links) → Prozess in vier Schritten → Fallstudie → Stimmen aus der Praxis → Werte → FAQ → Kontaktblock. Abschnitte ohne echte Inhalte (Fallstudie, Stimmen) weglassen oder als Platzhalter nur im Prototyp.
+- **Leistungsseite je Leistungsbereich:** Hero mit Seitenleiste → Probleme → Leistungsübersicht (Zeilen mit Kennzeichnung wie einmalig/laufend) plus Ablaufgrafik → Prozess → Wirkung je Thema, mit Themen als Sprungziele → Kontaktblock.
 - **Ablauf-Seite:** Hero mit senkrechter Timeline rechts → Schrittkarten mit „Ergebnis“ → kurze FAQ.
-- **Über uns:** Hero mit Herkunft der Gründer und Bildplätzen → Idee mit Zusagen als Timeline → Team mit Porträts → „Woran du uns messen kannst“.
+- **Über uns:** Hero mit Herkunft der Gründer und Bildplätzen → Idee mit Zusagen als Timeline → Team mit Porträts → überprüfbare Zusagen mit Links zu Ablauf, Leistungen und Kontakt.
 - **Kontakt:** geteilte Karte, links Kontaktwege auf dunkler Fläche, rechts Formular.
 - **Portfolio:** Filter nach Leistungsbereich, Karten für Kundenstimmen und gebaute Websites; erst veröffentlichen, wenn echte Beispiele freigegeben sind.
 
 ### 8.3 Hero-Varianten
 
-- **Text + Seitenleiste:** rechts zwei kurze Angebotsbereiche mit Kennzeichnung („01 / Hauptleistung“, „02 / Zusatzleistung“) und hinterlegtem Link.
+- **Text + Seitenleiste:** rechts zwei kurze, nummerierte Angebotsbereiche (Haupt- und Zusatzleistung) mit Kennzeichnung und hinterlegtem Link.
 - **Text + Timeline:** rechts die Schritte eines Ablaufs, auf die Höhe der Textspalte gezogen.
 - **Text + Bilder:** rechts zwei oder drei Bilder (Team, Betrieb, Arbeit).
 - **Vollbild mit Foto:** großes Foto mit dunklem Verlauf und Text darüber; nur mit hochwertigen, freigegebenen Fotos.

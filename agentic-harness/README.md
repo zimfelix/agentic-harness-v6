@@ -2,6 +2,15 @@
 
 Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht – vom kleinen CLI- oder Web-Produkt bis zu größeren Vorhaben mit klar begrenztem erstem Meilenstein. Diese Datei ist die Anleitung für Menschen im Ordner `agentic-harness/`; die Root-`README.md` gehört dem jeweiligen Produkt. Der Agent wird über Root-`AGENTS.md` geführt, nicht über diese Anleitung.
 
+## Schnellstart: neues Projekt aus der Vorlage
+
+1. **Anlegen:** auf GitHub „Use this template“ oder den Inhalt der Vorlage ohne `.git` in einen leeren Ordner kopieren. Ohne Git-Repository schlägt der Agent beim Init `git init` vor.
+2. **Optional beschreiben:** `agentic-harness/project-brief.md` mit Ziel, Nutzern, Wünschen und bekannten Grenzen anlegen. Der Agent nutzt sie als Ausgangsbeschreibung, nicht als bestätigte Vorgabe.
+3. **Auftrag geben:** den Ordner mit dem Coding-Agenten öffnen und in eigenen Worten sagen, was entstehen soll, z. B. „Eine Automatisierung, die meine E-Mails sortiert“ oder „Eine Website für einen Tischlereibetrieb“. Weil `harness/project.md` noch `Pending Project Init` enthält, startet der Agent das Init: gebündelte Rückfragen, danach Profil (z. B. Website) oder keines, Stack, Architektur und Tests.
+4. **Freigeben:** Nach dem Init den ersten Schritt ausdrücklich beauftragen. Init allein ist keine Implementierungsfreigabe.
+
+Erkenntnisse über den Harness sammelt jedes Projekt in `agentic-harness/harness-learnings.md`; der Weg zurück in die Vorlage steht unter „Harness als Vorlage exportieren“.
+
 Tatsächlicher Arbeits- und Entscheidungsfluss
 
  ```text
@@ -173,9 +182,9 @@ Neue Erkenntnisse wandern je nach Reichweite: für jedes Projekt → universelle
 
 **Ein weiteres Profil** (z. B. Automation, API) folgt dem Muster von `profiles/website.md`: Kopf mit „Gilt bei“ als Ladeauslöser, zusätzliche Init-Fragen, Teil A Pflichtregeln, Teil B abwählbare Defaults, Teil C optionaler Baukasten. `AGENTS.md` lädt jedes gewählte Profil über eine allgemeine Zeile; im universellen Teil ist dafür nichts zu ergänzen außer dem Eintrag in `harness-map.md`.
 
-## Harness als Vorlage für ein neues Projekt exportieren
+## Harness als Vorlage exportieren
 
-Nur in ein **neues, leeres** Verzeichnis außerhalb der Quelle exportieren. Es gibt noch kein Export-Skript; der Block bricht bei falschen Pfaden oder nicht leerem Ziel ab:
+Aus einem laufenden Projekt heraus, z. B. um die Vorlage mit neuen Erkenntnissen zu aktualisieren. Nur in ein **neues, leeres** Verzeichnis außerhalb der Quelle exportieren. Es gibt noch kein Export-Skript; der Block bricht bei falschen Pfaden oder nicht leerem Ziel ab:
 
 ```sh
 set -eu
@@ -199,7 +208,7 @@ Danach im Zielordner zurücksetzen:
 
 1. In `agentic-harness/harness/project.md` und jeder Datei unter `agentic-harness/docs/` alles unter „## Projektspezifische Befüllung“ durch **„Noch offen (Project Init).“** ersetzen. Status-Zeile: in `project.md` `Pending Project Init`, in den Docs „Noch offen (Project Init).“. Kopf und „Universeller Rahmen“ bleiben.
 2. In `AGENTS.md` unter „## Projektspezifische Ergänzungen“ alle Punkte löschen.
-3. In `agentic-harness/harness-learnings.md` die Status-Zeile auf „Noch keine Beobachtungen.“ setzen und alle Abschnitte ab „Ursachenanalyse“ leeren.
+3. In `agentic-harness/harness-learnings.md` die Status-Zeile auf „Noch keine Beobachtungen.“ setzen und alles nach dem Abschnitt „Abgrenzung“ durch „## Beobachtungen“ mit dem Satz „Noch keine Beobachtungen.“ ersetzen.
 4. Prüfen: `grep -rniE 'ALTER_PRODUKTNAME|alte-domain|@' "$ZIEL"` darf keine Produktangaben mehr finden (erwartet sind nur allgemeine Beispiele und optionale Verweise auf `project-brief.md`); jeder in Dokumentköpfen genannte `agentic-harness/…`-Pfad existiert, außer ausdrücklich optionalen.
 
 Nicht übernommen werden: Produktcode (`src/`, `scripts/`, `tests/`), `archiv/`, `dist/`, konkrete Ideas und Specs, `project-brief.md`, `.git/` und IDE-Dateien.

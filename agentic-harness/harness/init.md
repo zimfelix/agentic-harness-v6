@@ -34,6 +34,8 @@ Fasse den ersten Schritt und offene Entscheidungen zusammen. Bündle zusammengeh
 
 **Arbeitsabsprachen** gehören ebenfalls in den Fragenblock, wenn sie noch unklar sind: Wie wird eine lokale Vorschau oder ein lokaler Start erwartet (z. B. laufender Dev-Server)? Wer committet wann? Arbeiten mehrere Agentensitzungen parallel? Werden Aufträge diktiert?
 
+**Git:** Ist das Verzeichnis noch kein Git-Repository, schlage `git init` mit einem ersten Commit des unveränderten Harness vor. Ohne Git fehlt der Ort für den Verlauf (`agentic-harness/document-contract.md`), und die Regeln zu Arbeitsbaum und Parallelarbeit in `agentic-harness/harness/core.md` greifen nicht. Lehnt der Auftraggeber ab, halte das im Projektprofil fest.
+
 ## 2. Bestätigtes an die richtige Stelle schreiben
 
 Lies die Inhaltsvorgaben von `agentic-harness/harness/project.md` und den Projekt-Docs. Behalte dort Dokumentkopf und „Universeller Rahmen“, aber prüfe den Kopf beim Befüllen: Stimmen Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung zum bestätigten Projekt und zu den tatsächlichen Pfaden?
