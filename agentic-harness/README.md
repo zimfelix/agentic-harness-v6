@@ -9,7 +9,7 @@ Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht �
 3. **Auftrag geben:** den Ordner mit dem Coding-Agenten öffnen und in eigenen Worten sagen, was entstehen soll, z. B. „Eine Automatisierung, die meine E-Mails sortiert“ oder „Eine Website für einen Tischlereibetrieb“. Weil `harness/project.md` noch `Pending Project Init` enthält, startet der Agent das Init: gebündelte Rückfragen, danach Profil (z. B. Website) oder keines, Stack, Architektur und Tests.
 4. **Freigeben:** Nach dem Init den ersten Schritt ausdrücklich beauftragen. Init allein ist keine Implementierungsfreigabe.
 
-Erkenntnisse über den Harness sammelt jedes Projekt in `agentic-harness/harness-learnings.md`; der Weg zurück in die Vorlage steht unter „Harness als Vorlage exportieren“.
+Erkenntnisse über den Harness sammelt jedes Projekt in `agentic-harness/harness-learnings.md`; wie erprobte Erkenntnisse zurück in die Vorlage kommen, steht unter „Harness weiterentwickeln“.
 
 Tatsächlicher Arbeits- und Entscheidungsfluss
 
@@ -172,7 +172,7 @@ Teststruktur:
 
 | Ebene | Dateien | Wandert in eine neue Vorlage? |
 |---|---|---|
-| **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
+| **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `agentic-harness/tools/` (Export-Skript), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
 | **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
 | **Projekt** | Abschnitt „Projektspezifische Befüllung“ in `project.md` und `docs/*.md`, „Projektspezifische Ergänzungen“ in `AGENTS.md`, Ideas, Specs, `project-brief.md`, Learnings-Einträge, Root-`README.md`, Produktcode, Tests, Archiv | nein; wird zurückgesetzt oder weggelassen |
 
@@ -182,35 +182,41 @@ Neue Erkenntnisse wandern je nach Reichweite: für jedes Projekt → universelle
 
 **Ein weiteres Profil** (z. B. Automation, API) folgt dem Muster von `profiles/website.md`: Kopf mit „Gilt bei“ als Ladeauslöser, zusätzliche Init-Fragen, Teil A Pflichtregeln, Teil B abwählbare Defaults, Teil C optionaler Baukasten. `AGENTS.md` lädt jedes gewählte Profil über eine allgemeine Zeile; im universellen Teil ist dafür nichts zu ergänzen außer dem Eintrag in `harness-map.md`.
 
+## Harness weiterentwickeln
+
+Die Vorlage enthält nur erprobte Änderungen. Neue Erkenntnisse durchlaufen im Projekt drei Stufen:
+
+1. **Projektwissen** steht im Projektteil der zuständigen Datei, z. B. eine neue Codestruktur in `docs/architecture.md`.
+2. **Kandidat:** Wirkt etwas über das Projekt hinaus, hält der Agent es in `harness-learnings.md` fest: Anlass, Ziel-Datei, Stand der Erprobung.
+3. **Universell:** Erst auf ausdrücklichen Auftrag, möglichst nach Erprobung, wandert es in eine universelle Datei oder ein Profil.
+
+So bleiben die universellen Dateien jederzeit freigabefähig. Unerprobtes steht nur als Kandidat und wird beim Export geleert. Parallele Sitzungen ändern universelle Dateien nicht nebenbei; sie notieren Kandidaten.
+
+**Release in die Vorlage** gesammelt, wenn erprobte Änderungen vorliegen, nicht nach jeder Sitzung:
+
+1. Auftrag „Harness-Release vorbereiten“. Der Agent zeigt die Änderungen seit dem letzten Release, `git diff harness-vX.Y -- AGENTS.md agentic-harness ':(exclude)agentic-harness/specs' ':(exclude)agentic-harness/ideas'` (Projektteile darin ignorieren), und die offenen Kandidaten.
+2. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
+3. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt), Diff prüfen, committen.
+4. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`.
+
 ## Harness als Vorlage exportieren
 
-Aus einem laufenden Projekt heraus, z. B. um die Vorlage mit neuen Erkenntnissen zu aktualisieren. Nur in ein **neues, leeres** Verzeichnis außerhalb der Quelle exportieren. Es gibt noch kein Export-Skript; der Block bricht bei falschen Pfaden oder nicht leerem Ziel ab:
+Das Skript kopiert nur universelle Dateien und Profile, setzt die Projektteile zurück und prüft auf Reste. Es committet und pusht nichts:
 
 ```sh
-set -eu
-QUELLE=/pfad/zu/diesem/projekt
-ZIEL=/pfad/zum/neuen-leeren-projekt
-test -f "$QUELLE/AGENTS.md" || { echo "Quelle falsch"; exit 1; }
-case "$ZIEL" in "$QUELLE"*) echo "Ziel liegt in der Quelle"; exit 1;; esac
-if [ -e "$ZIEL" ] && [ -n "$(ls -A "$ZIEL")" ]; then echo "Ziel nicht leer"; exit 1; fi
-mkdir -p "$ZIEL/agentic-harness/ideas" "$ZIEL/agentic-harness/specs"
-cd "$QUELLE"
-cp AGENTS.md "$ZIEL/"
-printf '.DS_Store\n.idea/\n' > "$ZIEL/.gitignore"
-cp -R agentic-harness/harness agentic-harness/docs agentic-harness/profiles "$ZIEL/agentic-harness/"
-cp agentic-harness/README.md agentic-harness/document-contract.md agentic-harness/harness-map.md agentic-harness/harness-learnings.md "$ZIEL/agentic-harness/"
-cp agentic-harness/ideas/I000-readme.md "$ZIEL/agentic-harness/ideas/"
-cp agentic-harness/specs/S000-readme.md "$ZIEL/agentic-harness/specs/"
-printf '# Neues Produktprojekt\n\nVorlage: Die Anleitung zum Harness steht in [agentic-harness/README.md](agentic-harness/README.md). Diese Datei wird beim Project Init durch die Produkt-README ersetzt.\n' > "$ZIEL/README.md"
+# leeres oder neues Ziel: neues Projekt oder neue Vorlage
+sh agentic-harness/tools/export-harness.sh /pfad/zum/leeren-ordner
+# sauberer Git-Klon der Vorlage: Inhalt außer .git und .idea wird ersetzt
+PRODUKTBEGRIFFE='produktname|domain|ort' sh agentic-harness/tools/export-harness.sh /pfad/zum/vorlagen-klon
 ```
 
-Danach im Zielordner zurücksetzen:
+Was das Skript tut:
 
-1. In `agentic-harness/harness/project.md` und jeder Datei unter `agentic-harness/docs/` alles unter „## Projektspezifische Befüllung“ durch **„Noch offen (Project Init).“** ersetzen. Status-Zeile: in `project.md` `Pending Project Init`, in den Docs „Noch offen (Project Init).“. Kopf und „Universeller Rahmen“ bleiben.
-2. In `AGENTS.md` unter „## Projektspezifische Ergänzungen“ alle Punkte löschen.
-3. In `agentic-harness/harness-learnings.md` die Status-Zeile auf „Noch keine Beobachtungen.“ setzen und alles nach dem Abschnitt „Abgrenzung“ durch „## Beobachtungen“ mit dem Satz „Noch keine Beobachtungen.“ ersetzen.
-4. Prüfen: `grep -rniE 'ALTER_PRODUKTNAME|alte-domain|@' "$ZIEL"` darf keine Produktangaben mehr finden (erwartet sind nur allgemeine Beispiele und optionale Verweise auf `project-brief.md`); jeder in Dokumentköpfen genannte `agentic-harness/…`-Pfad existiert, außer ausdrücklich optionalen.
+1. Kopiert `AGENTS.md`, `harness/`, `docs/`, `profiles/`, `tools/`, diese README, Vertrag, Landkarte, Learnings sowie `ideas/I000-readme.md` und `specs/S000-readme.md`; legt `.gitignore` und eine Root-README mit Vorlagenhinweis an.
+2. Ersetzt in `harness/project.md` und `docs/*.md` alles unter „Projektspezifische Befüllung“ durch „Noch offen (Project Init).“ und setzt die Status-Zeilen zurück (`Pending Project Init` bzw. „Noch offen (Project Init).“).
+3. Leert in `AGENTS.md` die „Projektspezifischen Ergänzungen“ und in `harness-learnings.md` alles nach dem Abschnitt „Abgrenzung“.
+4. Bricht ohne Änderung am Ziel ab, wenn es E-Mail-Adressen, die übergebenen Produktbegriffe oder Verweise auf fehlende `agentic-harness/…`-Dateien findet (außer dem optionalen `project-brief.md`).
 
 Nicht übernommen werden: Produktcode (`src/`, `scripts/`, `tests/`), `archiv/`, `dist/`, konkrete Ideas und Specs, `project-brief.md`, `.git/` und IDE-Dateien.
 
-Öffne den Zielordner dann mit deinem Coding-Agenten und beauftrage Project Init, z. B. „Kläre den ersten Nutzerablauf und initialisiere dieses neue Produktprojekt.“ Der Agent wählt ein passendes Profil, befüllt `project.md`, die betroffenen Projekt-Docs und die Produkt-`README.md`. Erkenntnisse über den Harness sammelt das neue Projekt wieder in `agentic-harness/harness-learnings.md`.
+Ein neu exportierter Ordner startet wie im Schnellstart: mit dem Agenten öffnen und den Auftrag geben.

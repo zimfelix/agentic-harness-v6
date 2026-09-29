@@ -21,7 +21,8 @@ Diese Dateien wandern unverändert in eine neue Vorlage.
 | `harness/init.md` | Leeres Projekt für ersten Schritt klären: Projektart, Stack, Architektur, Tests und Profil (oder keines) mit dem Auftraggeber entscheiden; Zusatzblock bei sichtbarer Oberfläche | Bei Init → `harness-map.md` und `document-contract.md`; danach Projektdateien befüllen. |
 | `harness-map.md` | Dateirollen, Ladewege, Export-Zuordnung | Bei Orientierung, Export oder Änderungen der Dokumentstruktur; keine Projektfakten. |
 | `document-contract.md` | Format, aktueller Stand statt Verlauf, Richtgrößen, Trennung für den Export | Beim Anlegen, Befüllen oder Verdichten von Projekt-Docs und bei Pfadänderungen. |
-| `README.md` | Anleitung zum Harness für Menschen: Schnellstart, Aufbau, Export | Bei Exportaufträgen über `AGENTS.md`; sonst kein Agenten-Ladeweg. |
+| `README.md` | Anleitung zum Harness für Menschen: Schnellstart, Aufbau, Weiterentwicklung und Release, Export | Bei Export- und Release-Aufträgen über `AGENTS.md`; sonst kein Agenten-Ladeweg. |
+| `tools/export-harness.sh` | Universelle Dateien exportieren, Projektteile zurücksetzen, auf Reste prüfen; in leeres Ziel oder sauberen Vorlagen-Klon | Nur bei Export oder Release, aufgerufen nach `README.md`; committet und pusht nichts. |
 | `ideas/I000-readme.md`, `specs/S000-readme.md` | Einstiege und Statusregeln für Ideas bzw. Specs | Bedingt über `AGENTS.md`; betroffene Artefakte lesen, Templates nur bei Neuanlage. |
 | `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
 | `harness/verification/gate.md` | Soll und belegtes Ist zur Abschlussentscheidung verbinden; kurzer Weg für Oberflächen-Iterationen | Nach Änderung → `harness/verification/requirements.md` und `harness/verification/implementation.md` (beim kurzen Weg `docs/design.md`); bei Lücke → `harness/verification/fail.md`. |
