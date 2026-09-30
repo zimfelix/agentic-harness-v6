@@ -57,7 +57,7 @@ Diese Dateien und Ordner werden **nicht** in eine neue Vorlage übernommen.
 
 | Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `README.md` (Root) | Produktüberblick, Einrichtung und Start für Menschen | Beim Init ohne Metakopf mit bestätigten Produktinformationen befüllen; beim Export nur mit Vorlagenhinweis anlegen. |
+| `README.md` (Root) | Produktüberblick, Einrichtung und Start für Menschen | Beim Init ohne Metakopf mit bestätigten Produktinformationen befüllen; beim Export nur mit kurzer Vorlagenbeschreibung anlegen. |
 | `project-brief.md` (optional) | Ausgangsbeschreibung eines Produkts für Project Init | Bei Project Init über `AGENTS.md`, falls vorhanden; bestätigte Fakten, Annahmen und offene Entscheidungen getrennt halten. |
 | `ideas/Innn-*.md`, `specs/Snnn-*.md` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte über `ideas/I000-readme.md` bzw. `specs/S000-readme.md` lesen. |
 | Archivordner (z. B. `archiv/`, Root) | Verworfene oder nicht mehr verlinkte Teile außerhalb von Build, Tests und Ladewegen | Wird nicht geladen; nur auf ausdrücklichen Auftrag öffnen oder ändern. Name steht im Projektprofil. |

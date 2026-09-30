@@ -196,7 +196,7 @@ So bleiben die universellen Dateien jederzeit freigabefähig. Unerprobtes steht 
 
 1. Auftrag „Harness-Release vorbereiten“. Der Agent zeigt die Änderungen seit dem letzten Release, `git diff harness-vX.Y -- AGENTS.md agentic-harness ':(exclude)agentic-harness/specs' ':(exclude)agentic-harness/ideas'` (Projektteile darin ignorieren), und die offenen Kandidaten.
 2. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
-3. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt), Diff prüfen, committen.
+3. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt, mit `VERSION=vX.Y`), Diff prüfen, committen.
 4. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`.
 
 ## Harness als Vorlage exportieren
@@ -212,7 +212,7 @@ PRODUKTBEGRIFFE='produktname|domain|ort' sh agentic-harness/tools/export-harness
 
 Was das Skript tut:
 
-1. Kopiert `AGENTS.md`, `harness/`, `docs/`, `profiles/`, `tools/`, diese README, Vertrag, Landkarte, Learnings sowie `ideas/I000-readme.md` und `specs/S000-readme.md`; legt `.gitignore` und eine Root-README mit Vorlagenhinweis an.
+1. Kopiert `AGENTS.md`, `harness/`, `docs/`, `profiles/`, `tools/`, diese README, Vertrag, Landkarte, Learnings sowie `ideas/I000-readme.md` und `specs/S000-readme.md`; legt `.gitignore` und eine kurze Root-README an, die die Vorlage beschreibt (mit `VERSION=vX.Y` samt Versionsnummer in der Überschrift).
 2. Ersetzt in `harness/project.md` und `docs/*.md` alles unter „Projektspezifische Befüllung“ durch „Noch offen (Project Init).“ und setzt die Status-Zeilen zurück (`Pending Project Init` bzw. „Noch offen (Project Init).“).
 3. Leert in `AGENTS.md` die „Projektspezifischen Ergänzungen“ und in `harness-learnings.md` alles nach dem Abschnitt „Abgrenzung“.
 4. Bricht ohne Änderung am Ziel ab, wenn es E-Mail-Adressen, die übergebenen Produktbegriffe oder Verweise auf fehlende `agentic-harness/…`-Dateien findet (außer dem optionalen `project-brief.md`).

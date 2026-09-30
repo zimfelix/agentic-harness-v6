@@ -8,6 +8,8 @@
 #     ZIEL sauberer Git-Klon der Vorlage → Inhalt außer .git und .idea ersetzen
 #   Zusätzliche Suchbegriffe für Produktreste (Groß-/Kleinschreibung egal):
 #   PRODUKTBEGRIFFE='produktname|domain|ort' sh agentic-harness/tools/export-harness.sh ZIEL
+#   Versionsnummer für die Überschrift der Root-README (bei Releases):
+#   VERSION=v5.4 sh agentic-harness/tools/export-harness.sh ZIEL
 set -eu
 
 H=agentic-harness
@@ -47,7 +49,13 @@ cp "$H/README.md" "$H/document-contract.md" "$H/harness-map.md" "$H/harness-lear
 cp "$H/ideas/I000-readme.md" "$TMP/$H/ideas/"
 cp "$H/specs/S000-readme.md" "$TMP/$H/specs/"
 printf '.DS_Store\n.idea/\n' > "$TMP/.gitignore"
-printf '# Neues Produktprojekt\n\nVorlage: Die Anleitung zum Harness steht in [agentic-harness/README.md](agentic-harness/README.md). Diese Datei wird beim Project Init durch die Produkt-README ersetzt.\n' > "$TMP/README.md"
+cat > "$TMP/README.md" <<EOF
+# Agentic Harness${VERSION:+ $VERSION}
+
+Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): \`AGENTS.md\` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; \`agentic-harness/\` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt, danach ersetzt der Agent diese Datei durch die Produkt-README.
+
+**Start:** Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md).
+EOF
 
 # 2. Projektteile zurücksetzen
 cd "$TMP"
