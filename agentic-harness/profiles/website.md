@@ -2,9 +2,9 @@
 
 > - **Typ:** Designregel
 > - **Status:** Aus einem ersten Website-Projekt (2026) abgeleitet; an weiteren Websites zu bestätigen.
-> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults und optionale Bausteine für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte und Nachweis von Websites festhalten.
+> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults, optionale Bausteine und eine vorgeschlagene Dateistruktur für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte und Nachweis von Websites festhalten.
 > - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `agentic-harness/docs/design.md` fest, welche.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`.
 > - **Nicht zuständig:** Konkrete Farben, Schriften, Texte oder Seiten eines Projekts festlegen. Projekte ohne dieses Profil und ohne ausdrücklichen Auftrag lesen es nicht.
 
 ## Wie das Profil wirkt
@@ -13,7 +13,7 @@ Das Profil ergänzt den universellen Harness für Website-Projekte. Es hat drei 
 
 - **Teil A – Pflichtregeln:** nur Konsistenz, Bedienbarkeit, Rechte und Nachweis, keine Stilvorgaben. Gilt in jedem Website-Projekt mit diesem Profil, auch wenn ein ganz anderes Design nachgebaut wird.
 - **Teil B – Stil-Defaults:** bewährte Gestaltungsentscheidungen. Gelten als Voreinstellung, sind aber abwählbar; eine Abweichung steht in `agentic-harness/docs/design.md` des Projekts.
-- **Teil C – Baukasten:** optionale Bausteine und Seitenaufbauten zum Übernehmen, Anpassen oder Weglassen, je nach Kunde und Branche.
+- **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten und eine bewährte Dateistruktur zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
 
 Neue Erkenntnisse kommen je nach Verbindlichkeit in Teil A, B oder C; projektbezogene Werte (Farben, Texte, konkrete Abstände) nie hierher.
 
@@ -26,14 +26,14 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 - **Kontakt und Recht:** tatsächlich zustellbare Kontaktwege, Firmendaten, Formularversand ja/nein.
 - **Bilder:** Herkunft und Nutzungsrechte; bis zur Klärung markierte Platzhalter.
 - **Betrieb:** Indexierung (Prototyp `noindex`?), Domain, Hosting, Analyse-Werkzeuge.
-- **Stil und Baukasten:** Welche Stil-Defaults (Teil B) gelten, welche Bausteine (Teil C) passen zu Branche und Kunde?
+- **Stil und Baukasten:** Welche Stil-Defaults (Teil B) gelten, welche Bausteine (Teil C) passen zu Branche und Kunde? Wird die Dateistruktur aus Teil C §9 übernommen?
 
 # Teil A – Pflichtregeln
 
 ## 1. Rahmen und Wiederholung
 
 - Header, Footer und wiederkehrende Blöcke (z. B. Kontaktblock) kommen aus **einer** Quelle und sind überall, wo sie vorgesehen sind, identisch: Markup, Farben, Schriftstärken, Höhe.
-- Gleichartige Abschnitte (Hero, Abschnittskopf, FAQ, Schritte, Karten) sind **ein** Baustein mit Varianten, nicht je Seite neu gebaut.
+- Gleichartige Abschnitte (Hero, Abschnittskopf, FAQ, Schritte, Karten) sind **ein** Baustein mit Varianten, nicht je Seite neu gebaut. Herausgezogen wird spätestens beim zweiten Vorkommen, nicht erst in einem späteren Umbau (`agentic-harness/harness/core.md`, „Struktur mitziehen“).
 - Ausgeliefert werden die ausdrücklich vorgesehenen Routen: über Navigation, Footer und Links erreichbare Seiten sowie bewusst vorgesehene direkte Einstiege (z. B. Kampagnen-Landingpages, Fehlerseiten). Konzeptseiten bleiben intern und `noindex` und werden nach der Entscheidung archiviert.
 
 ## 2. Schrift, Größen und Farben
@@ -151,3 +151,20 @@ Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen S
 | Fahrzeugbetrieb | technisch, kontrastreich | Fahrzeuge, Werkstatt, Galerie | Leistungskatalog, Preise, Öffnungszeiten, Anfahrt |
 
 Die Tabelle ist ein Startpunkt für das Gespräch mit dem Auftraggeber, keine Vorgabe.
+
+## 9. Dateistruktur (Vorschlag)
+
+Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framework dessen Konventionen nutzen und nur die Trennung übernehmen. Beim Init übernehmen, anpassen oder abwählen: Die gewählte Struktur steht im Projektteil von `agentic-harness/docs/architecture.md`, Benennungsregeln stehen in `agentic-harness/docs/code.md`.
+
+| Ort | Inhalt | Gehört nicht hierher |
+|---|---|---|
+| `src/site.*` | Projektkonfiguration: Marke, Kontaktwege, Navigation, Footer-Gruppen, Indexierung | Seitentexte |
+| `src/content.*` | Texte, die auf mehreren Seiten gleich erscheinen | Markup |
+| `src/pages/` | je Seite eine Datei: oben Texte als Daten, darunter der Aufbau aus Bausteinen; eine Liste aller gebauten Seiten | eigenes Markup für Abschnitte, die es als Baustein gibt |
+| `src/components/` | Bausteine mit Parametern und Varianten (Grundgerüst mit Header und Footer, Hero, Abschnittskopf, FAQ, Schritte, Kontaktblock, Links und Buttons) | Texte, Linkziele, Anzahlen |
+| `src/styles/` | Einstiegsdatei mit fester Reihenfolge: Tokens → Grundstil → `components/` (eine Datei je Baustein, Klassen beginnen mit dem Bausteinnamen, Varianten mit `--`) → `pages/` (seiteneigene Abschnitte und benannte Abweichungen) | Einzelfarben für bestehende Rollen, Seitenregeln im Baustein |
+| `src/browser/` | Skripte, die im Browser laufen | Build-Logik |
+| `scripts/` | Build, Vorschau, Mess- und Vergleichswerkzeuge | Inhalte |
+| `tests/` | allgemeine Tests (Routen, Rahmen, Layout, Anker) getrennt von den inhaltlichen Tests des Projekts | – |
+
+**Reihenfolge beim Bauen:** Die Struktur entsteht mit der ersten Seite (Grundgerüst, Header, Footer und Tokens als Bausteine). Ab der zweiten Seite werden wiederkehrende Abschnitte als Baustein herausgezogen, bevor die Seite als fertig gilt (Teil A §1).

@@ -22,7 +22,12 @@ Ist, entschiedenes Ziel und offene Möglichkeiten nicht verwechseln. Bausteine n
 
 ### Trennung von Konfiguration und Bausteinen
 
-Wenn ein Projekt als Vorlage für weitere Projekte dienen soll, trenne früh: projektspezifische Inhalte und Konfiguration (z. B. Namen, Zugänge, Regeln, Texte) von wiederverwendbaren Bausteinen; bei Oberflächen zusätzlich die Gestaltungswerte (Tokens nach `agentic-harness/docs/design.md`). Bausteine werden nach ihrer Rolle benannt, nicht nach dem Ort, an dem sie zuerst vorkamen.
+Trenne von Anfang an, nicht erst in einem späteren Umbau: projektspezifische Inhalte und Konfiguration (z. B. Namen, Zugänge, Regeln, Texte) von den Bausteinen, die sie verarbeiten oder darstellen; bei Oberflächen zusätzlich die Gestaltungswerte (Tokens nach `agentic-harness/docs/design.md`). Die Dateistruktur dafür wird beim Project Init festgelegt und im Projektteil dieser Datei eingetragen; ein Profil kann eine bewährte Struktur vorschlagen.
+
+- **Zweites Vorkommen → Baustein:** Ein Muster, das zum zweiten Mal gebraucht wird, wird ein Baustein mit Parametern oder Varianten (`agentic-harness/harness/core.md`, „Struktur mitziehen“).
+- **Eine Datei, eine Verantwortung:** Mischt eine Datei mehrere Bausteine, Seiten, Ansichten oder Zuständigkeiten, wird sie aufgeteilt, spätestens wenn das nächste Teil dazukommt.
+- **Bausteine ohne Projektinhalte:** Texte, Namen, Verweisziele und Anzahlen kommen als Daten herein; ein fester Standardwert nur, wenn er für jeden Einsatz gilt.
+- Bausteine werden nach ihrer Rolle benannt, nicht nach dem Ort, an dem sie zuerst vorkamen.
 
 ## Projektspezifische Befüllung
 

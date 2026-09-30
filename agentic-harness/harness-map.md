@@ -36,7 +36,7 @@ Werden mitexportiert; ein Projekt nutzt höchstens die zu ihm passenden.
 
 | Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `profiles/website.md` | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
+| `profiles/website.md` | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen und vorgeschlagener Dateistruktur | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
 
 ## Geteilte Dateien: universeller Rahmen + Projektbefüllung
 

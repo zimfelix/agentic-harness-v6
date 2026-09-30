@@ -43,8 +43,8 @@ Lies die Inhaltsvorgaben von `agentic-harness/harness/project.md` und den Projek
 Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Ist ein Bereich nicht entscheidbar oder nicht relevant, kennzeichne ihn ausdrücklich. Entferne den Platzhalterstatus erst nach tatsächlicher Befüllung.
 
 - `agentic-harness/harness/project.md`: bestätigtes Nutzerziel, Umfang, Grenzen und Freigaben; Start- und Prüfbefehle mit dem letzten tatsächlichen Ergebnis (ersetzen, nicht protokollieren).
-- `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten, Datenfluss und entschiedener Betrieb; Geplantes und Offenes gesondert kennzeichnen.
-- `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack.
+- `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten, Datenfluss und entschiedener Betrieb; dazu die **Dateistruktur** vor dem ersten Produktcode: wo Konfiguration, Inhalte, Bausteine und bei Oberflächen die Gestaltungswerte liegen (Grundsatz dort unter „Trennung von Konfiguration und Bausteinen“, Vorschlag ggf. aus dem Profil). Geplantes und Offenes gesondert kennzeichnen.
+- `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack, einschließlich Benennung und Ablage neuer Bausteine.
 - `agentic-harness/docs/testing.md`: aus Ablauf, Risiken, Architektur und Stack passende Testebenen und -arten wählen; Werkzeuge, Teststruktur und Grenzen für den ersten Meilenstein begründen. Bei sichtbarer Oberfläche auch Prüfgrößen (z. B. Bildschirmbreiten), Methoden und Mess-Werkzeug.
 - `agentic-harness/docs/design.md`: nur bei sichtbarer Oberfläche. Bestätigte Farbrollen, Schrift mit Lizenz, Größenskala und erste Bausteine eintragen; Unentschiedenes als offen markieren. Ohne Oberfläche den Bereich ausdrücklich als „nicht relevant“ kennzeichnen.
 - Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser und bestätigte Arbeitsabsprachen (z. B. Live-Vorschau) unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.

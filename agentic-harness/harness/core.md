@@ -23,6 +23,7 @@ AGENTS.md → core.md + project.md
                       architecture.md / code.md / design.md / testing.md
                                   ↓
                       Schritt 3: nur die beauftragte Änderung umsetzen;
+                      Struktur mitziehen (2. Vorkommen → Baustein);
                       bei Bedarf Produktcode/Tests ändern und
                       passende Checks schon während der Arbeit ausführen;
                       Projektdateien nachführen (ersetzen statt anhängen)
@@ -57,9 +58,11 @@ Lade die durch den Aufgabeninhalt ausgelösten Docs über `AGENTS.md`. Bei über
 
 Setze die kleinste Änderung um, die den **ganzen beauftragten Umfang** erfüllt. Wenn sich dabei neue Architektur-, Code-, Design- oder Testfragen ergeben, prüfe die Auslöser in `AGENTS.md` erneut und lies die jetzt betroffenen Docs vor dem Eingriff. Beachte bestätigte Projektgrenzen; kläre Rechte, echte Daten und irreversible Aktionen vor dem Eingriff.
 
+**Struktur mitziehen:** Ordne neuen Code beim Schreiben in die vorgesehene Struktur ein (`agentic-harness/docs/architecture.md`, `agentic-harness/docs/code.md`), statt sie später in einem Umbau nachzuholen. Wird ein Muster (Abschnitt, Funktion, Wert) zum zweiten Mal gebraucht, mache es jetzt zu einem gemeinsamen Baustein oder einer gemeinsamen Stelle und stelle nur die betroffenen Vorkommen darauf um. Das gehört zur kleinsten vollständigen Änderung und ist keine Nebenbei-Verbesserung, solange sich Verhalten und Aussehen nicht ändern. Würde das Einordnen weitere, nicht betroffene Teile umbauen oder sichtbar etwas ändern, setze den Auftrag um, benenne die Kopie als technische Schuld in `agentic-harness/docs/code.md` und schlage den Umbau vor.
+
 Erfordert die Arbeit eine neue Produktentscheidung oder ändert sich das Soll, gehe zur Klärung zurück und aktualisiere betroffene Projektdateien oder Specs, bevor du auf der neuen Annahme weiterarbeitest. Bei Strukturänderungen prüfe Ziel, tatsächlichen Baum und Folgen für Abhängigkeiten und Tests; übernimm keine projektspezifische Ordnerstruktur als allgemeine Pflicht.
 
-**Iterationen an sichtbaren Oberflächen:** Setze pro Auftrag nur die genannten Änderungen um. Weitere Auffälligkeiten berichtest du als Liste, statt sie nebenbei umzusetzen, es sei denn, der Auftrag erlaubt ausdrücklich eigene Verbesserungen. Verlangt der Auftraggeber „wie vorher, nur …“, stelle zuerst den vorherigen Stand exakt wieder her und ändere dann nur das Genannte. Belege jede Iteration im Zielmedium (z. B. Browser) nach `agentic-harness/docs/design.md`.
+**Iterationen an sichtbaren Oberflächen:** Setze pro Auftrag nur die genannten sichtbaren Änderungen um. Weitere Auffälligkeiten berichtest du als Liste, statt sie nebenbei umzusetzen, es sei denn, der Auftrag erlaubt ausdrücklich eigene Verbesserungen. Das Einordnen nach „Struktur mitziehen“ ändert nichts Sichtbares und bleibt davon unberührt. Verlangt der Auftraggeber „wie vorher, nur …“, stelle zuerst den vorherigen Stand exakt wieder her und ändere dann nur das Genannte. Belege jede Iteration im Zielmedium (z. B. Browser) nach `agentic-harness/docs/design.md`.
 
 **Projektdateien nachführen:** Ändert sich ein bestätigter Stand, ersetze die betroffene Aussage in Projektprofil, Doc oder Spec an ihrer Stelle, statt einen weiteren Absatz anzuhängen (`agentic-harness/document-contract.md`). Neue bestätigte Gestaltungsregeln gehören nach `agentic-harness/docs/design.md`, nicht ins Projektprofil.
 
