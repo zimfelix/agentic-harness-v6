@@ -4,7 +4,7 @@
 > - **Status:** Aus einem ersten Website-Projekt (2026) abgeleitet; an weiteren Websites zu bestätigen.
 > - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults, optionale Bausteine und eine vorgeschlagene Dateistruktur für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte und Nachweis von Websites festhalten.
 > - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `agentic-harness/docs/design.md` fest, welche.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`. Vorlage der Geräte-Vorschau (§6): `agentic-harness/profiles/website/device-preview.html`.
 > - **Nicht zuständig:** Konkrete Farben, Schriften, Texte oder Seiten eines Projekts festlegen. Projekte ohne dieses Profil und ohne ausdrücklichen Auftrag lesen es nicht.
 
 ## Wie das Profil wirkt
@@ -48,11 +48,16 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 - Festgelegte Ausrichtungen (z. B. zwei Spalten fluchten) werden bei den Prüfgrößen aus `agentic-harness/docs/testing.md` gemessen, nicht nur optisch geschätzt.
 - Abstände folgen einer Skala (Tokens im Code). Ein Einzelwert für eine einzelne Stelle steht nur im Code; in `design.md` steht er nur, wenn er eine Regel für mehrere Stellen bildet.
 
-## 4. Interaktion und Links
+## 4. Interaktion, Links und Bildschirmgrößen
 
 - Buttons gleicher Rolle teilen Form, Größe und Hover-Verhalten.
 - Linktexte sagen, was passiert („Kontakt aufnehmen“ führt zur Kontaktseite, „E-Mail schreiben“ öffnet eine E-Mail); gleiche Aktion heißt überall gleich.
 - Sichtbare Fokusmarkierung; Anker landen sichtbar unter einem angehefteten Header; Navigation per Tastatur und mobil bedienbar.
+- **Breite und Bedienart getrennt behandeln:** Die Bildschirmbreite in CSS-Pixeln bestimmt Anordnung, Spalten, Menüform und Schriftgrößen (Media Queries nach Breite; Umbruchpunkte dort, wo der Inhalt sie braucht, nicht nach Gerätenamen; Inhalt mit Höchstbreite, darüber wachsen nur die Ränder). Die Bedienart (Touch, Maus, Tastatur) bestimmt nur das Verhalten und wird über `hover` und `pointer` abgefragt, nie aus der Breite abgeleitet: Tablets mit Tastatur, Laptops mit Touchscreen und schmale Desktop-Fenster gibt es alle.
+- **Nichts nur per Hover:** Jede Funktion ist auch per Tippen und per Tastatur erreichbar. Hover-Effekte stehen unter `@media (hover: hover)`, damit sie auf Touch-Geräten nach dem Tippen nicht hängen bleiben.
+- **Tippflächen:** mindestens 24 × 24 CSS-Pixel oder so weit auseinander, dass sich 24-px-Kreise um benachbarte Ziele nicht überschneiden (WCAG 2.2, Kriterium 2.5.8); Menüschalter, Buttons und Formularfelder möglichst 44 px hoch.
+- **Formularfelder** mit mindestens 16 px Schrift, sonst zoomt Safari auf dem iPhone beim Antippen in die Seite.
+- **Bewegung:** Animationen und Übergänge entfallen bei `prefers-reduced-motion: reduce`.
 
 ## 5. Inhalte und Recht
 
@@ -64,8 +69,9 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 
 ## 6. Nachweis
 
-Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/docs/testing.md` fest (bewährt: 1440, 390, 320 px). Je Prüfziel die passende Methode: Schriftladung technisch prüfen, Positionen und Überlauf messen, optische Wirkung per Screenshot beurteilen.
+Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/docs/testing.md` fest (bewährt: 1440, 390, 320 px; dazu mindestens als Sichtprüfung eine Tablet-Breite um 800 px, wo Umbruchpunkte oft knapp greifen, und ein großer Monitor). Je Prüfziel die passende Methode: Schriftladung technisch prüfen, Positionen und Überlauf messen, optische Wirkung per Screenshot beurteilen. Die Bedienart prüft keine Bildschirmbreite: Touch einmal auf einem echten Smartphone, Tastatur einmal ganz durchgehen. Animationen mit beiden Werten von `prefers-reduced-motion` prüfen; ein headless Browser übernimmt sonst still die Einstellung des Rechners.
 
+- **Geräte-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Die Vorlage `agentic-harness/profiles/website/device-preview.html` zeigt die Website gleichzeitig als kleines Handy, Handy, Tablet, Laptop und Monitore, live und klickbar. Der lokale Vorschau-Server liefert die Datei unverändert unter `/_geraete/` aus (gleiche Herkunft wie die Website, nie im Produktions-Build; keine Kopie im Projekt) und meldet unter `/_geraete/stand` die Seitenliste und einen Stand, der sich nach jedem Neubau ändert (`{"stand": …, "seiten": ["/", …]}`); dann lädt die Vorschau bei Änderungen selbst neu. Ein Befehl (z. B. `npm run geraete`) startet bei Bedarf die Vorschau und öffnet sie in einem neuen Browserfenster. Sie ersetzt weder Messungen noch ein echtes Gerät (Touch, Pixeldichte).
 - **Nach einer kleinen Iteration:** geänderter Bereich und betroffene gemeinsame Bausteine.
 - **Umbau ohne sichtbare Änderung** (Refactoring von Markup oder CSS): vorher und nachher alle Seiten bei den Prüfgrößen aufnehmen und vergleichen, und zwar (1) Screenshots und (2) einen Fingerabdruck der berechneten Styles je Element, Breite und Zustand (normal, Hover, Fokus, aufgeklappt, ausgewählt). Screenshots zeigen keine Zustände, der Style-Vergleich keine Fehler im Prüfwerkzeug selbst; erst beide zusammen belegen „unverändert“. Ist das gebaute Ergebnis (HTML, CSS, Skripte) vorher und nachher bytegleich, genügt dieser Dateivergleich statt der Aufnahmen. Werkzeug einmal im Projekt einrichten (`agentic-harness/docs/testing.md`).
 - **Konsistenz-Audit** nach übergreifenden Umbauten und vor Meilenstein-Übergaben: (1) Header und Footer überall gleich, (2) Schriften geladen, Überschriften nach Skala, (3) kein horizontaler Überlauf, (4) festgelegte Ausrichtungen fluchten (Toleranz etwa 2 px) und gewählte Stil-Defaults aus Teil B sind eingehalten, (5) Buttons und Links folgen den Bausteinen, (6) interne Links und Anker erreichen ihr Ziel, (7) keine ungenutzten Selektoren oder unverlinkten Seiten.
@@ -77,7 +83,7 @@ Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/
   5. Referenzen, Kundenstimmen und Portfolio sind echt und freigegeben, sonst samt Links und Tests entfernt.
   6. Für jedes Bild und jede Schrift ist das Nutzungsrecht belegt; die Bildquellen-Seite stimmt.
   7. `noindex` ist entfernt, Domain, Hosting und Weiterleitungen funktionieren; Analyse-Werkzeuge nur mit Einwilligung, wo nötig.
-  8. Abnahmen sind erfolgt: Aussehen auf allen Prüfgrößen, Texte redaktionell, Bedienung per Tastatur und Screenreader, rechtliche Prüfung.
+  8. Abnahmen sind erfolgt: Aussehen auf allen Prüfgrößen, Texte redaktionell, Bedienung per Tastatur, Screenreader und auf einem echten Smartphone, rechtliche Prüfung.
 
 ## 7. Zusammenarbeit bei Gestaltungswünschen
 
@@ -101,6 +107,7 @@ Bewährt im ersten Website-Projekt; gelten, solange `design.md` nichts anderes f
 - **Pfeile:** ↗ führt auf eine andere Seite, ↓ springt innerhalb der aktuellen Seite; maßgeblich sind Quell- und Zielseite, nicht der verwendete Link-Baustein.
 - **Ruhige Beschriftungen** in Grafiken (normale oder mittlere Schriftstärke); gedämpfte statt grell weiße Schrift für ruhige Elemente auf dunklen Flächen.
 - **Eine Ecken-Sprache** (eckig oder gerundet) für die ganze Website.
+- **Schriftgrößen relativ** (`rem`), damit eine im Browser eingestellte größere Standardschrift wirkt; feste Pixel nur für Linien, Rahmen und Icons. Allgemeiner Standard, im ersten Projekt noch in `px` umgesetzt.
 - **Rhythmus heller und dunkler Abschnitte** auf allen Seiten gleich (z. B. Kontaktblock immer in derselben Fläche).
 
 # Teil C – Baukasten (optional)
@@ -111,7 +118,7 @@ Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen S
 
 ### 8.1 Rahmen
 
-- **Header mit Leistungsmenü:** Marke (Zeichen + Name + Unterzeile) links, Navigation mittig, Kontakt-Button rechts; ein Navigationspunkt „Leistungen“ führt zur Angebotssektion und hat einen separaten Pfeil, der die einzelnen Leistungen aufklappt (Desktop auch beim Darüberfahren, per Tastatur und mobil per Antippen). Sinnvoll ab zwei Leistungsbereichen; bei nur einer Leistung ein einfacher Link.
+- **Header mit Leistungsmenü:** Marke (Zeichen + Name + Unterzeile) links, Navigation mittig, Kontakt-Button rechts; ein Navigationspunkt „Leistungen“ führt zur Angebotssektion und hat einen separaten Pfeil, der die einzelnen Leistungen aufklappt (Desktop auch beim Darüberfahren, per Tastatur; im mobilen ☰-Menü per Antippen oder gleich aufgeklappt). Sinnvoll ab zwei Leistungsbereichen; bei nur einer Leistung ein einfacher Link.
 - **Footer mit vier Gruppen:** Marke und Kontaktadressen oben; darunter Leistungen, Branchen oder Zielgruppen, Unternehmen & Kontakt, Rechtliches; unten eine Statuszeile (Standort, Zertifikate nur wenn belegt, Copyright).
 - **Kontaktblock am Seitenende:** eine Überschrift, ein Satz, Hauptbutton zur Kontaktaufnahme und Zweitbutton zur Leistungsübersicht.
 
@@ -165,7 +172,7 @@ Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framew
 | `src/components/` | Bausteine mit Parametern und Varianten (Grundgerüst mit Header und Footer, Hero, Abschnittskopf, FAQ, Schritte, Kontaktblock, Links und Buttons) | Texte, Linkziele, Anzahlen |
 | `src/styles/` | Einstiegsdatei mit fester Reihenfolge: Tokens → Grundstil → `components/` (eine Datei je Baustein, Klassen beginnen mit dem Bausteinnamen, Varianten mit `--`) → `pages/` (seiteneigene Abschnitte und benannte Abweichungen) | Einzelfarben für bestehende Rollen, Seitenregeln im Baustein |
 | `src/browser/` | Skripte, die im Browser laufen | Build-Logik |
-| `scripts/` | Build, Vorschau, Mess- und Vergleichswerkzeuge | Inhalte |
+| `scripts/` | Build, Vorschau samt Geräte-Vorschau unter `/_geraete/` (§6), Mess- und Vergleichswerkzeuge | Inhalte |
 | `tests/` | allgemeine Tests (Routen, Rahmen, Layout, Anker) getrennt von den inhaltlichen Tests des Projekts | – |
 
 **Reihenfolge beim Bauen:** Die Struktur entsteht mit der ersten Seite (Grundgerüst, Header, Footer und Tokens als Bausteine). Ab der zweiten Seite werden wiederkehrende Abschnitte als Baustein herausgezogen, bevor die Seite als fertig gilt (Teil A §1).

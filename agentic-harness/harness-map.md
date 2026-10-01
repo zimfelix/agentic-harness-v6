@@ -37,6 +37,7 @@ Werden mitexportiert; ein Projekt nutzt höchstens die zu ihm passenden.
 | Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
 | `profiles/website.md` | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen und vorgeschlagener Dateistruktur | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
+| `profiles/website/device-preview.html` | Vorlage der Geräte-Vorschau: Website gleichzeitig in mehreren Bildschirmbreiten | Kein Agenten-Ladeweg; Einrichtung nach `profiles/website.md` §6. Der Vorschau-Server des Projekts liefert die Datei unverändert aus, statt sie zu kopieren. |
 
 ## Geteilte Dateien: universeller Rahmen + Projektbefüllung
 
