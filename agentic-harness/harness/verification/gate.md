@@ -3,7 +3,7 @@
 > - **Typ:** Prozess
 > - **Zuständigkeit:** Entscheiden, ob eine konkrete Änderung innerhalb des Auftrags ausreichend nachgewiesen ist.
 > - **Gilt bei:** Abschluss einer Änderung nach dem Ablauf in `agentic-harness/harness/core.md`.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` für Grenzen und aktive Prüfungen; dann `agentic-harness/harness/verification/requirements.md` für das Soll und `agentic-harness/harness/verification/implementation.md` für Ist und Nachweise. Beim kurzen Weg für Oberflächen-Iterationen stattdessen `agentic-harness/docs/design.md`. Bei einer Lücke `agentic-harness/harness/verification/fail.md`.
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` für Grenzen und aktive Prüfungen; dann `agentic-harness/harness/verification/requirements.md` für das Soll und `agentic-harness/harness/verification/implementation.md` für Ist und Nachweise. Beim kurzen Weg für Oberflächen-Iterationen stattdessen `agentic-harness/docs/design.md`. Für die Prüfung berührter Projektdateien `agentic-harness/document-contract.md` („Aktueller Stand statt Verlauf“), bei Specs zusätzlich `agentic-harness/specs/S000-readme.md`. Bei einer Lücke `agentic-harness/harness/verification/fail.md`.
 > - **Nicht zuständig:** Projekt-Tests festlegen oder selbst ausführen; Anforderungen und Nachweise stehen in den jeweils zuständigen Dateien.
 
 ## Entscheidungsweg

@@ -195,4 +195,5 @@ push main ──▶ CI: build ──▶ test ──┬─ rot  ──▶ Abbruch
 - **Auf den Server kommt nur Getestetes:** nur die Build-Ausgabe, kein Quellcode, keine Tests, keine Abhängigkeiten. Schlägt ein Test fehl, bleibt der Deploy-Branch unverändert.
 - **Freigabe bewusst wählen:** Ein manueller Abruf im Hosting-Panel („Pull now“) ist die letzte Sichtprüfung vor dem Veröffentlichen, denn Tests finden keine optischen Fehler. Ein Webhook veröffentlicht automatisch jeden grünen Stand von `main`; das passt erst, wenn `main` immer veröffentlichungsreif ist.
 - **Zurückrollen:** den Deploy-Branch auf einen früheren Commit setzen und erneut abrufen.
+- **Cache Busting vor dem ersten Update:** Eigene CSS- und JS-Dateien bindet der Build mit einer Prüfsumme ihres Inhalts ein (z. B. `/style.css?v=3f9a2c`); ein Test prüft, dass sie zum Inhalt passt. Sonst zeigen Browser nach einem Update weiter die zwischengespeicherte Datei, oft neues HTML mit altem CSS, und normales Neuladen hilft nicht.
 - Browser-Tests in der CI brauchen dort einen Browser mit Zeitlimit; Zugangsdaten und Webhook-Adressen stehen nie im Repo.
