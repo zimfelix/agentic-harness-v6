@@ -71,7 +71,7 @@ Projektprofil, Projekt-Docs und Specs beschreiben den **geltenden** Stand. Der V
 - Ändert sich eine bestätigte Aussage, ersetze sie an ihrer Stelle. Hänge keinen weiteren Absatz („früherer Stand“, „aktueller Stand“, „Stand vom …“) an und lass keine überholten Varianten stehen.
 - Specs führen pro Akzeptanzkriterium nur den letzten gültigen Nachweis. Nachweise ersetzter Stände entfallen.
 - Datumsangaben nur, wo sie entscheidungsrelevant sind (z. B. Stand eines Prüflaufs oder einer Freigabe).
-- **Richtgrößen** (bei geteilten Dateien nur der Abschnitt „Projektspezifische Befüllung“, weil der universelle Rahmen unterschiedlich lang ist): `agentic-harness/harness/project.md` etwa 6 KB, eine Projekt-Doc etwa 6 KB, eine Spec etwa 15 KB. Wird eine Grenze überschritten, verdichte zuerst; trenne erst dann ein eigenständiges Thema in eine eigene Datei oder Spec.
+- **Richtgrößen** (bei geteilten Dateien nur der Abschnitt „Projektspezifische Befüllung“, weil der universelle Rahmen unterschiedlich lang ist): `agentic-harness/harness/project.md` etwa 6 KB, eine Projekt-Doc etwa 6 KB, eine Spec etwa 15 KB oder etwa 15 AK (Zuschnitt: `agentic-harness/specs/S000-readme.md`). Wird eine Grenze überschritten, verdichte zuerst; trenne erst dann ein eigenständiges Thema in eine eigene Datei oder Spec. Das Gate prüft berührte Projektdateien darauf (`agentic-harness/harness/verification/gate.md`).
 - Bestätigte Entscheidungen beim Verdichten nicht stillschweigend löschen: Sie wandern an die zuständige Stelle (z. B. Gestaltung nach `agentic-harness/docs/design.md`, Verhalten in die Spec).
 
 ## Bei neuen, umbenannten oder entfernten Dateien

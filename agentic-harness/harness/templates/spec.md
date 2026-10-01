@@ -9,6 +9,8 @@
 
 ## Akzeptanzkriterien
 
+<!-- Mehr als etwa 15 AK oder unabhängig prüfbare Gruppen? Dann mehrere Specs (Zuschnitt: agentic-harness/specs/S000-readme.md). -->
+
 - **AK1:** [Ein einzeln prüfbares Verhalten mit klarem Pass/Fail, in ein bis drei Sätzen. Kein Layout-Detail in Pixeln oder Farben: Gestaltung steht in `agentic-harness/docs/design.md`.]
 - **AK2:** [Ein relevanter Erfolgs- oder Fehlerfall, falls benötigt.]
 

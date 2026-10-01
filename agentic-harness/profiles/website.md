@@ -2,7 +2,7 @@
 
 > - **Typ:** Designregel
 > - **Status:** Aus einem ersten Website-Projekt (2026) abgeleitet; an weiteren Websites zu bestätigen.
-> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults, optionale Bausteine und eine vorgeschlagene Dateistruktur für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte und Nachweis von Websites festhalten.
+> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults, optionale Bausteine, eine vorgeschlagene Dateistruktur und einen Veröffentlichungsweg für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte, Nachweis und Betrieb von Websites festhalten.
 > - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `agentic-harness/docs/design.md` fest, welche.
 > - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`. Vorlage der Geräte-Vorschau (§6): `agentic-harness/profiles/website/device-preview.html`.
 > - **Nicht zuständig:** Konkrete Farben, Schriften, Texte oder Seiten eines Projekts festlegen. Projekte ohne dieses Profil und ohne ausdrücklichen Auftrag lesen es nicht.
@@ -13,7 +13,7 @@ Das Profil ergänzt den universellen Harness für Website-Projekte. Es hat drei 
 
 - **Teil A – Pflichtregeln:** nur Konsistenz, Bedienbarkeit, Rechte und Nachweis, keine Stilvorgaben. Gilt in jedem Website-Projekt mit diesem Profil, auch wenn ein ganz anderes Design nachgebaut wird.
 - **Teil B – Stil-Defaults:** bewährte Gestaltungsentscheidungen. Gelten als Voreinstellung, sind aber abwählbar; eine Abweichung steht in `agentic-harness/docs/design.md` des Projekts.
-- **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten und eine bewährte Dateistruktur zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
+- **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten, eine bewährte Dateistruktur und ein Veröffentlichungsweg zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
 
 Neue Erkenntnisse kommen je nach Verbindlichkeit in Teil A, B oder C; projektbezogene Werte (Farben, Texte, konkrete Abstände) nie hierher.
 
@@ -25,7 +25,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 - **Inhalte:** Leistungen, Preise, Referenzen; wer liefert und wer gibt frei?
 - **Kontakt und Recht:** tatsächlich zustellbare Kontaktwege, Firmendaten, Formularversand ja/nein.
 - **Bilder:** Herkunft und Nutzungsrechte; bis zur Klärung markierte Platzhalter.
-- **Betrieb:** Indexierung (Prototyp `noindex`?), Domain, Hosting, Analyse-Werkzeuge.
+- **Betrieb:** Indexierung (Prototyp `noindex`?), Domain, Hosting, Analyse-Werkzeuge; wie ein Stand online geht und wer ihn freigibt (§10).
 - **Stil und Baukasten:** Welche Stil-Defaults (Teil B) gelten, welche Bausteine (Teil C) passen zu Branche und Kunde? Wird die Dateistruktur aus Teil C §9 übernommen?
 
 # Teil A – Pflichtregeln
@@ -71,6 +71,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 
 Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/docs/testing.md` fest (bewährt: 1440, 390, 320 px; dazu mindestens als Sichtprüfung eine Tablet-Breite um 800 px, wo Umbruchpunkte oft knapp greifen, und ein großer Monitor). Je Prüfziel die passende Methode: Schriftladung technisch prüfen, Positionen und Überlauf messen, optische Wirkung per Screenshot beurteilen. Die Bedienart prüft keine Bildschirmbreite: Touch einmal auf einem echten Smartphone, Tastatur einmal ganz durchgehen. Animationen mit beiden Werten von `prefers-reduced-motion` prüfen; ein headless Browser übernimmt sonst still die Einstellung des Rechners.
 
+- **Live-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Ein lokaler Vorschau-Server baut bei geänderten Quellen selbst neu; der Auftraggeber lädt im Browser nur neu. Vor jeder Übergabe prüft der Agent, dass die Vorschau läuft, und startet sie sonst im Hintergrund. Adresse und Befehl stehen in den Projektergänzungen von `AGENTS.md`. Für den Test auf einem echten Smartphone gibt ein eigener Befehl (z. B. `npm run dev:lan`) die Vorschau im lokalen Netz frei, nie als Standard.
 - **Geräte-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Die Vorlage `agentic-harness/profiles/website/device-preview.html` zeigt die Website gleichzeitig als kleines Handy, Handy, Tablet, Laptop und Monitore, live und klickbar. Der lokale Vorschau-Server liefert die Datei unverändert unter `/_geraete/` aus (gleiche Herkunft wie die Website, nie im Produktions-Build; keine Kopie im Projekt) und meldet unter `/_geraete/stand` die Seitenliste und einen Stand, der sich nach jedem Neubau ändert (`{"stand": …, "seiten": ["/", …]}`); dann lädt die Vorschau bei Änderungen selbst neu. Ein Befehl (z. B. `npm run geraete`) startet bei Bedarf die Vorschau und öffnet sie in einem neuen Browserfenster. Sie ersetzt weder Messungen noch ein echtes Gerät (Touch, Pixeldichte).
 - **Nach einer kleinen Iteration:** geänderter Bereich und betroffene gemeinsame Bausteine.
 - **Umbau ohne sichtbare Änderung** (Refactoring von Markup oder CSS): vorher und nachher alle Seiten bei den Prüfgrößen aufnehmen und vergleichen, und zwar (1) Screenshots und (2) einen Fingerabdruck der berechneten Styles je Element, Breite und Zustand (normal, Hover, Fokus, aufgeklappt, ausgewählt). Screenshots zeigen keine Zustände, der Style-Vergleich keine Fehler im Prüfwerkzeug selbst; erst beide zusammen belegen „unverändert“. Ist das gebaute Ergebnis (HTML, CSS, Skripte) vorher und nachher bytegleich, genügt dieser Dateivergleich statt der Aufnahmen. Werkzeug einmal im Projekt einrichten (`agentic-harness/docs/testing.md`).
@@ -121,6 +122,8 @@ Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen S
 - **Header mit Leistungsmenü:** Marke (Zeichen + Name + Unterzeile) links, Navigation mittig, Kontakt-Button rechts; ein Navigationspunkt „Leistungen“ führt zur Angebotssektion und hat einen separaten Pfeil, der die einzelnen Leistungen aufklappt (Desktop auch beim Darüberfahren, per Tastatur; im mobilen ☰-Menü per Antippen oder gleich aufgeklappt). Sinnvoll ab zwei Leistungsbereichen; bei nur einer Leistung ein einfacher Link.
 - **Footer mit vier Gruppen:** Marke und Kontaktadressen oben; darunter Leistungen, Branchen oder Zielgruppen, Unternehmen & Kontakt, Rechtliches; unten eine Statuszeile (Standort, Zertifikate nur wenn belegt, Copyright).
 - **Kontaktblock am Seitenende:** eine Überschrift, ein Satz, Hauptbutton zur Kontaktaufnahme und Zweitbutton zur Leistungsübersicht.
+- **Fehlerseite:** eigene 404-Seite im normalen Seitenrahmen mit Link zur Startseite und zum Kontakt, nicht verlinkt. Der Server liefert sie mit Status 404 aus (z. B. `.htaccess`), die lokale Vorschau ebenso. Stile, Schrift und Skripte über Pfade ab der Wurzel einbinden, sonst fehlen sie unter tiefen Adressen wie `/a/b/c`.
+- **Favicons aus dem Zeichen:** SVG, ICO (16 und 32 px) und Apple-Touch-Icon (180 px) per Skript aus dem Zeichen und den Farb-Tokens erzeugen, nicht von Hand. Ein Test prüft, dass sie zum aktuellen Zeichen passen. Für dunkle Browser-Tabs eine farbige Kachel hinter das Zeichen legen. Größere Profilbilder (z. B. für GitHub oder soziale Netzwerke) entstehen aus derselben Vorlage.
 
 ### 8.2 Seitenaufbau
 
@@ -176,3 +179,20 @@ Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framew
 | `tests/` | allgemeine Tests (Routen, Rahmen, Layout, Anker) getrennt von den inhaltlichen Tests des Projekts | – |
 
 **Reihenfolge beim Bauen:** Die Struktur entsteht mit der ersten Seite (Grundgerüst, Header, Footer und Tokens als Bausteine). Ab der zweiten Seite werden wiederkehrende Abschnitte als Baustein herausgezogen, bevor die Seite als fertig gilt (Teil A §1).
+
+## 10. Betrieb und Veröffentlichung (Vorschlag)
+
+Bewährt für eine statische Website auf einem Webhosting mit Git-Anbindung (z. B. Plesk). Bei einem Hoster, der selbst baut (z. B. Netlify, Cloudflare Pages), dessen Weg nutzen und nur die Freigabe übernehmen. Der gewählte Weg steht im Projektteil von `agentic-harness/docs/architecture.md`.
+
+```text
+push main ──▶ CI: build ──▶ test ──┬─ rot  ──▶ Abbruch, Deploy-Branch bleibt
+                                   └─ grün ──▶ nur die Build-Ausgabe ──▶ Deploy-Branch (z. B. `live`)
+                                                                                │
+                              Hosting zieht den Deploy-Branch (Freigabe) ◀──────┘
+```
+
+- **Getrennte Branches:** Gearbeitet wird nur auf `main`. Den Deploy-Branch schreibt allein die CI, ohne gemeinsame Historie mit `main` (orphan). Er wird nie zurück gemergt; die Angaben „ahead/behind“ auf GitHub sind für ihn bedeutungslos.
+- **Auf den Server kommt nur Getestetes:** nur die Build-Ausgabe, kein Quellcode, keine Tests, keine Abhängigkeiten. Schlägt ein Test fehl, bleibt der Deploy-Branch unverändert.
+- **Freigabe bewusst wählen:** Ein manueller Abruf im Hosting-Panel („Pull now“) ist die letzte Sichtprüfung vor dem Veröffentlichen, denn Tests finden keine optischen Fehler. Ein Webhook veröffentlicht automatisch jeden grünen Stand von `main`; das passt erst, wenn `main` immer veröffentlichungsreif ist.
+- **Zurückrollen:** den Deploy-Branch auf einen früheren Commit setzen und erneut abrufen.
+- Browser-Tests in der CI brauchen dort einen Browser mit Zeitlimit; Zugangsdaten und Webhook-Adressen stehen nie im Repo.

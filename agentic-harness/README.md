@@ -190,14 +190,15 @@ Die Vorlage enthält nur erprobte Änderungen. Neue Erkenntnisse durchlaufen im 
 2. **Kandidat:** Wirkt etwas über das Projekt hinaus, hält der Agent es in `harness-learnings.md` fest: Anlass, Ziel-Datei, Stand der Erprobung.
 3. **Universell:** Erst auf ausdrücklichen Auftrag, möglichst nach Erprobung, wandert es in eine universelle Datei oder ein Profil.
 
-So bleiben die universellen Dateien jederzeit freigabefähig. Unerprobtes steht nur als Kandidat und wird beim Export geleert. Parallele Sitzungen ändern universelle Dateien nicht nebenbei; sie notieren Kandidaten.
+So bleiben die universellen Dateien jederzeit freigabefähig. Die Learnings-Liste wächst im Projekt weiter; jeder Eintrag trägt einen Status (Offen, Lokal übernommen, In Vorlage vX.Y; Lebenszyklus in `harness-learnings.md`). Die Vorlage startet mit leerer Liste. Parallele Sitzungen ändern universelle Dateien nicht nebenbei; sie notieren Kandidaten.
 
 **Release in die Vorlage** gesammelt, wenn erprobte Änderungen vorliegen, nicht nach jeder Sitzung:
 
 1. Auftrag „Harness-Release vorbereiten“. Der Agent zeigt die Änderungen seit dem letzten Release, `git diff harness-vX.Y -- AGENTS.md agentic-harness ':(exclude)agentic-harness/specs' ':(exclude)agentic-harness/ideas'` (Projektteile darin ignorieren), und die offenen Kandidaten.
-2. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
-3. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt, mit `VERSION=vX.Y`), Diff prüfen, committen.
-4. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`.
+2. **Learnings gegenprüfen:** Für jeden Eintrag „Lokal übernommen“ prüft der Agent, ob die Regel noch so in der genannten Zieldatei steht. Fehlt sie oder wurde sie verändert, zieht er sie nach oder setzt den Eintrag zurück auf „Offen“ und meldet das.
+3. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
+4. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt, mit `VERSION=vX.Y`), Diff prüfen, committen.
+5. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`. Die exportierten Einträge stehen danach im Projekt auf „In Vorlage vX.Y“.
 
 ## Harness als Vorlage exportieren
 
