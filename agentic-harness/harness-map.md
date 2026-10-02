@@ -38,6 +38,8 @@ Werden mitexportiert; ein Projekt nutzt höchstens die zu ihm passenden.
 |---|---|---|
 | `profiles/website.md` | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen, vorgeschlagener Dateistruktur und Veröffentlichungsweg | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
 | `profiles/website/device-preview.html` | Vorlage der Geräte-Vorschau: Website gleichzeitig in mehreren Bildschirmbreiten | Kein Agenten-Ladeweg; Einrichtung nach `profiles/website.md` §6. Der Vorschau-Server des Projekts liefert die Datei unverändert aus, statt sie zu kopieren. |
+| `profiles/website/README.md`, `profiles/website/webtools/README.md` | Übersicht des Profil-Zubehörs: welche Datei welche Aufgabe hat, wie ein Projekt sie nutzt | Für Menschen und beim Ändern des Zubehörs; bei jeder Ergänzung im Profilordner mit anpassen (`document-contract.md`). |
+| `profiles/website/webtools/` | Prüf- und Vorschau-Werkzeuge für Websites (Browser steuern, Pflichtregeln messen, Vorschau mit Neubau, Dauer-Dienst, Screenshots, Style-Vergleich, CSS-Audit); Projekteinstellungen über `website.config.mjs` im Projekt | Kein Agenten-Ladeweg; über npm-Skripte und Tests des Projekts aufgerufen; Einrichtung nach Profil §6 und Teil C §9. |
 
 ## Geteilte Dateien: universeller Rahmen + Projektbefüllung
 

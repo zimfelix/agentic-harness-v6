@@ -77,7 +77,7 @@ Projektprofil, Projekt-Docs und Specs beschreiben den **geltenden** Stand. Der V
 ## Bei neuen, umbenannten oder entfernten Dateien
 
 1. **Vorher:** Suche repo-weit nach dem alten Pfad, Dateinamen und relativen Markdown-Links. Prüfe, welche Dateien darauf angewiesen sind.
-2. **Gemeinsam ändern:** Passe diese Verweise, den Einstieg und die Landkarte an. Entferne Verweise nur, wenn die Beziehung wirklich entfällt.
+2. **Gemeinsam ändern:** Passe diese Verweise, den Einstieg und die Landkarte an. Entferne Verweise nur, wenn die Beziehung wirklich entfällt. Liegt die Datei im Zubehörordner eines Profils (`agentic-harness/profiles/<name>/`), passe auch die `README.md` dieses Ordners und seiner Unterordner an; sie beschreibt, welche Datei welche Aufgabe hat.
 3. **Nachher:** Prüfe alle verbliebenen Verweise und die Ladebeziehungen in betroffenen Dokumentköpfen gegen reale Dateien. Geplante Pfade bleiben ausdrücklich als geplant markiert.
 
 Ändern sich Rollen oder Ladeauslöser ohne Umbenennung, gilt derselbe Abgleich für die betroffenen Köpfe, den Einstieg und die Landkarte. Prüfe sie bei solchen Änderungen, nicht pauschal bei jeder Produktaufgabe.

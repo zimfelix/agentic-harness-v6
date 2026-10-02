@@ -83,7 +83,8 @@ awk '
 printf '## Beobachtungen\n\nNoch keine Beobachtungen.\n' >> "$L"
 
 # 3. Auf Reste und fehlende Verweise prüfen
-FUND=$(grep -rnE '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}' . || true)
+# E-Mail-Adressen sind Produktreste; SSH-Adressen von Git-Hosts (git@github.com:…) sind keine.
+FUND=$(grep -rnoE '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}' . | grep -vE ':git@(github|gitlab)\.com$' || true)
 if [ -n "${PRODUKTBEGRIFFE:-}" ]; then
   FUND="$FUND$(grep -rniE "$PRODUKTBEGRIFFE" . || true)"
 fi
