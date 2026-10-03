@@ -16,16 +16,16 @@
 
 ## 0. Erkunden oder direkt festlegen?
 
-Lege im Init nur fest, was entschieden ist. Ist die Richtung noch offen, erkunde zuerst so billig wie möglich:
+Lege im Init nur fest, was entschieden ist. Ist die Richtung noch offen, erkunde zuerst so billig wie möglich. Es gilt genau **eine** Erkundungsstufe (E0–E3, nicht zu verwechseln mit den Abschnitten 0–4 dieser Datei):
 
-| Stufe | Wann | Vorgehen |
+| Erkundungsstufe | Wann | Vorgehen |
 |---|---|---|
-| 0 – direkt festlegen | Brief oder Auftrag entscheiden die Richtung (Standardfall) | weiter mit Abschnitt 1 |
-| 1 – Ideenrunde in Text | Gestaltung oder Lösungsweg offen | 2–3 klar verschiedene Leitideen in je wenigen Sätzen vorlegen; der Auftraggeber wählt |
-| 2 – ein Prototyp | die gewählte Idee muss man sehen oder ausprobieren, bevor man festlegt | einen Wegwerf-Prototyp bauen (bei Software ohne Oberfläche z. B. Trockenlauf mit Beispieldaten oder kleinster technischer Durchstich) |
-| 3 – mehrere Varianten | nur wenn ausdrücklich beauftragt | je Variante eine eigene Leitidee und eigene Gestaltung; geteilt werden nur Inhalte und Messwerkzeuge |
+| E0 – direkt festlegen | Brief oder Auftrag entscheiden die Richtung (Standardfall) | weiter mit Abschnitt 1 |
+| E1 – Ideenrunde in Text | Gestaltung oder Lösungsweg offen | 2–3 klar verschiedene Leitideen in je wenigen Sätzen vorlegen; der Auftraggeber wählt |
+| E2 – ein Prototyp | die gewählte Idee muss man sehen oder ausprobieren, bevor man festlegt | einen Wegwerf-Prototyp bauen (bei Software ohne Oberfläche z. B. Trockenlauf mit Beispieldaten oder kleinster technischer Durchstich) |
+| E3 – mehrere Varianten | nur wenn ausdrücklich beauftragt | je Variante eine eigene Leitidee und eigene Gestaltung; geteilt werden nur Inhalte und Messwerkzeuge |
 
-Beim Erkunden gelten nur die Pflichtregeln eines passenden Profils (Teil A) und die Prüfschleife im Zielmedium; keine Specs, keine befüllten Projekt-Docs, keine gemeinsame Gestaltungsbasis. Unterlagen sind Inspiration, die eigene Leitidee hat Vorrang. Prototypen und Varianten sind intern (`agentic-harness/docs/architecture.md`, „Varianten, Konzeptseiten und Archiv“) und liegen in einem eigenen Ordner (z. B. `entwuerfe/`); Werkzeuge eines Profils prüfen ihn ohne Projekt-Setup (Website: `ORDNER=entwuerfe`, `agentic-harness/profiles/website/README.md`). `Pending Project Init` bleibt stehen. Nach der Auswahl folgt das Init: Die gewählte Richtung wird Basis, der Rest wandert ins Archiv.
+Beim Erkunden gelten nur die Pflichtregeln eines passenden Profils (Teil A) und die Prüfschleife im Zielmedium; keine Specs, keine befüllten Projekt-Docs, keine gemeinsame Gestaltungsbasis. Prototypen nutzen die einfachste passende Technik (z. B. statisches HTML mit Beispieldaten als Klick-Prototyp) und legen keinen Tech-Stack fest; frage dafür nicht nach Stack oder Architektur, das entscheidet Abschnitt 1 nach der Auswahl. Ausnahme: Ist die offene Frage die Machbarkeit (z. B. eine Anbindung), nutzt der Durchstich eine vorläufige Technik, die als vorläufig gekennzeichnet bleibt. Unterlagen sind Inspiration, die eigene Leitidee hat Vorrang. Prototypen und Varianten sind intern (`agentic-harness/docs/architecture.md`, „Varianten, Konzeptseiten und Archiv“) und liegen in einem eigenen Ordner (z. B. `entwuerfe/`); Werkzeuge eines Profils prüfen ihn ohne Projekt-Setup (Website: `ORDNER=entwuerfe`, `agentic-harness/profiles/website/README.md`). `Pending Project Init` bleibt stehen. **Halt nach dem Erkunden:** Lege das Ergebnis zur Auswahl vor und stoppe. Nach der Auswahl folgt das Init (Abschnitte 1–4): Die gewählte Richtung wird Basis, der Rest wandert ins Archiv.
 
 ## 1. Ersten Schritt klären
 
@@ -35,7 +35,7 @@ Kläre Nutzer, Problem und den ersten beobachtbaren Ablauf (z. B. Bildschirm, Be
 
 Frage nur nach Daten, Betrieb, Integrationen und Freigaben, die diesen Schritt beeinflussen. Erfinde keine Antworten.
 
-**Architektur und Tech-Stack wählen (Kern des Init):** Leite aus Brief, erstem Ablauf, Daten, Betrieb und gesetzten Vorgaben 2–3 tragfähige Optionen ab (Architektur, Sprache und Frameworks, Datenhaltung, Betrieb, Testwerkzeuge). Vergleiche sie knapp: Passung zum Ziel, Komplexität und Wartung, Kosten und Betrieb, Risiken, Abhängigkeiten, Kenntnisse des Auftraggebers. Empfiehl eine Option mit Begründung; die einfachste, die den ersten Meilenstein und absehbare nächste Schritte trägt, ist der Normalfall. Prüfe entscheidungsrelevante Versionen und Voraussetzungen anhand verfügbarer Quellen oder Werkzeuge. Die bestätigte Entscheidung steht mit Begründung und verworfenen Alternativen in `agentic-harness/docs/architecture.md`.
+**Architektur und Tech-Stack wählen (Kern des Init):** Leite aus Brief, erstem Ablauf, Daten, Betrieb und gesetzten Vorgaben 2–3 tragfähige Optionen ab (Architektur, Sprache und Frameworks, Datenhaltung, Betrieb, Testwerkzeuge). Vergleiche sie knapp: Passung zum Ziel, Komplexität und Wartung, Kosten und Betrieb, Risiken, Abhängigkeiten, Kenntnisse des Auftraggebers. Empfiehl eine Option mit Begründung; die einfachste, die den ersten Meilenstein und absehbare nächste Schritte trägt, ist der Normalfall. Prüfe entscheidungsrelevante Versionen und Voraussetzungen anhand verfügbarer Quellen oder Werkzeuge. **Halt zur Technikwahl:** Lege Optionen und Empfehlung vor und warte auf Bestätigung, bevor du Projektdateien befüllst; nur wenn der Auftraggeber ausdrücklich selbst entscheiden lässt, gilt die Empfehlung als gekennzeichnete Annahme. Die bestätigte Entscheidung steht mit Begründung und verworfenen Alternativen in `agentic-harness/docs/architecture.md`.
 
 Technische Möglichkeiten bleiben **Vorschläge**, bis sie entschieden sind. Vertage nicht benötigte Technik.
 
@@ -66,7 +66,7 @@ Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung�
 - `agentic-harness/docs/design.md`: nur bei sichtbarer Oberfläche. Bestätigte Farbrollen, Schrift mit Lizenz, Größenskala und erste Bausteine eintragen; Unentschiedenes als offen markieren. Ohne Oberfläche den Bereich ausdrücklich als „nicht relevant“ kennzeichnen.
 - Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs (Kriterium und Ort: `agentic-harness/document-contract.md`, „Neue Projekt-Docs“; sie liegen unter `agentic-harness/project/`) mit konkretem Leseauslöser und bestätigte Arbeitsabsprachen (z. B. Live-Vorschau) unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.
 
-Befülle die Root-`README.md` des Zielprojekts ohne Metakopf mit bestätigtem Produktzweck und geprüften Startschritten. Ersetze dabei den Vorlagenkopf aus dem Export durch die Produktbeschreibung oben; liegen bereits Produktinformationen vor, ergänze statt zu überschreiben. Der Abschnitt „Projektstart mit dem Agentic Harness“ ist universell und bleibt unverändert am Ende. Die menschliche Harness-Anleitung in `agentic-harness/README.md` bleibt davon getrennt. Erfinde keine Produktfakten.
+Befülle die Root-`README.md` des Zielprojekts ohne Metakopf mit bestätigtem Produktzweck und geprüften Startschritten. Ersetze dabei den Vorlagenkopf aus dem Export durch die Produktbeschreibung oben; liegen bereits Produktinformationen vor, ergänze statt zu überschreiben. Reihenfolge: Titel, lokale Adresse (falls es eine gibt), unverändert der universelle Abschnitt „Projektstart mit dem Agentic Harness“, darunter projektspezifische Abschnitte (z. B. Projektaufbau, „Lokal ansehen“). Die menschliche Harness-Anleitung in `agentic-harness/README.md` bleibt davon getrennt. Erfinde keine Produktfakten.
 
 ## 3. Prüf-Einstieg und Verweise prüfen
 
@@ -86,7 +86,7 @@ Vor dem Wechsel zum Produktbau ausdrücklich **Go/No-Go** prüfen:
 2. Sind die bestätigten Fakten in `agentic-harness/harness/project.md` und den betroffenen Projekt-Docs an der richtigen Stelle, während Vorschläge, offene Punkte und noch nicht eingerichtete Checks sichtbar offen bleiben? Stimmen die Dokumentköpfe und Verweise mit dem tatsächlichen Baum überein?
 3. Sind für den beauftragten Schritt nötige Prüfungen eingerichtet und ausgeführt oder ehrlich als offen markiert? Eine Dokumentprüfung ersetzt keinen Produktcheck.
 
-Bei **No-Go** keine Produktimplementierung beginnen: die verbleibenden blockierenden Fragen gebündelt vorlegen und `Pending Project Init` beibehalten. Bei **Go** die begründete Entscheidung und eventuelle nicht blockierende Livegang-Lücken im Projektprofil festhalten; erst danach zur Einordnung des konkreten Bauauftrags zurückkehren. Der Übergang ist keine automatische Implementierungsfreigabe.
+Bei **No-Go** keine Produktimplementierung beginnen: die verbleibenden blockierenden Fragen gebündelt vorlegen und `Pending Project Init` beibehalten. Bei **Go** die begründete Entscheidung und eventuelle nicht blockierende Livegang-Lücken im Projektprofil festhalten; erst danach zur Einordnung des konkreten Bauauftrags zurückkehren. Der Übergang ist keine automatische Implementierungsfreigabe: Stoppe und schlage den ersten Bauauftrag vor (Ablauf in Prompts: Root-`README.md`, Abschnitt „Projektstart mit dem Agentic Harness“).
 
 Entferne `Pending Project Init` erst, wenn Ziel, Grenzen und erster Schritt ausreichend geklärt sind. Das bedeutet **nicht**: Produkt-Gate bestanden oder Spec `Implemented`.
 

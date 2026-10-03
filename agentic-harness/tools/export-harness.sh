@@ -55,12 +55,12 @@ cat > "$TMP/README.md" <<EOF
 
 Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): \`AGENTS.md\` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; \`agentic-harness/\` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch die Beschreibung des Produkts.
 
-**Start:** Idee in \`agentic-harness/project/brief.md\` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier die Beschreibung des Produkts; der folgende Abschnitt bleibt am Ende.
+**Start:** Idee in \`agentic-harness/project/brief.md\` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier oben die lokale Adresse des Produkts, darunter dieser Abschnitt und danach die Projektabschnitte (Aufbau, lokal ansehen).
 
 EOF
-# Universeller Abschnitt der Root-README (bis Dateiende) wandert unverändert mit
+# Universeller Abschnitt der Root-README (bis zur nächsten ##-Überschrift außerhalb von Codeblöcken) wandert unverändert mit
 grep -q '^## Projektstart mit dem Agentic Harness' README.md || { echo "Abschnitt „Projektstart mit dem Agentic Harness“ fehlt in README.md" >&2; exit 1; }
-awk '/^## Projektstart mit dem Agentic Harness/ { f = 1 } f' README.md >> "$TMP/README.md"
+awk 'f && !c && /^## / { exit } /^## Projektstart mit dem Agentic Harness/ { f = 1 } /^```/ { c = !c } f' README.md >> "$TMP/README.md"
 
 # 2. Projektteile zurücksetzen
 cd "$TMP"

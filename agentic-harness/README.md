@@ -24,7 +24,7 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  ├─ Neues Produktprojekt: Init beauftragt oder vor erster
                  │  Produktumsetzung noch „Pending Project Init“?
                  │    └→ init.md
-                 │         ├→ Richtung offen? erst billig erkunden (Stufen 0–3:
+                 │         ├→ Richtung offen? erst billig erkunden (Erkundungsstufen E0–E3:
                  │         │  direkt · Ideenrunde · ein Prototyp · Varianten nur auf Auftrag)
                  │         ├→ Ziel, Grenzen und ersten Schritt klären
                  │         ├→ Architektur und Tech-Stack: 2–3 Optionen → Empfehlung

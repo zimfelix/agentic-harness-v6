@@ -1,14 +1,41 @@
-# Agentic Harness v5.11
+# Agentic Harness v5.12
 
 Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): `AGENTS.md` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; `agentic-harness/` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch die Beschreibung des Produkts.
 
-**Start:** Idee in `agentic-harness/project/brief.md` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier die Beschreibung des Produkts; der folgende Abschnitt bleibt am Ende.
+**Start:** Idee in `agentic-harness/project/brief.md` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier oben die lokale Adresse des Produkts, darunter dieser Abschnitt und danach die Projektabschnitte (Aufbau, lokal ansehen).
 
 ## Projektstart mit dem Agentic Harness
 
-Dieses Projekt nutzt den Agentic Harness: `AGENTS.md` führt den Coding-Agenten, `agentic-harness/README.md` erklärt den Harness für Menschen. Dieser Abschnitt ist universell und bleibt in jedem Projekt unverändert am Ende der README; darüber steht die Beschreibung des Produkts.
+Dieses Projekt nutzt den Agentic Harness: `AGENTS.md` führt den Coding-Agenten, `agentic-harness/README.md` erklärt den Harness für Menschen. Dieser Abschnitt ist universell und steht in jedem Projekt unverändert oben, direkt unter der lokalen Adresse; darunter folgen die projektspezifischen Abschnitte.
 
-### So fängt ein Projekt an
+### Ablauf in Prompts
+
+```text
+PROMPT 1  BRIEF + START     du: agentic-harness/project/brief.md frei erzählen (Themen unten), dann
+          │                     „Lies AGENTS.md. Brief: agentic-harness/project/brief.md. Auftrag: …“
+          │                 Agent (init.md, Abschnitt 0): Richtung klar oder offen?
+          ├─ klar (E0) ─────────────────────────────────────────────┐
+          └─ offen → ERKUNDEN, genau eine Stufe:                     │
+                E1 Ideen in Text · E2 ein Prototyp · E3 Varianten (nur auf Auftrag)
+                ⏸ Agent stoppt und legt das Ergebnis zur Auswahl vor   │
+PROMPT 2  AUSWAHL           du: „Wir nehmen B.“                       │
+          ▼                                                           ▼
+          INIT (init.md, Abschnitte 1–4)
+          ├─ Brief kurz bestätigen, nur Lücken nachfragen
+          ├─ Architektur und Tech-Stack: 2–3 Optionen + Empfehlung
+          │     ⏸ du bestätigst (oder sagst ausdrücklich „entscheide selbst“)
+          ├─ project.md und docs/ befüllen, Checks einrichten und ausführen
+          └─ Go/No-Go ⏸ Agent stoppt vor dem Bau und schlägt den ersten Bauauftrag vor
+PROMPT 3  ERSTER BAUAUFTRAG du: „Bau …“
+          Bereichs-Spec(s) anlegen → umsetzen → Gate → Übergabe
+PROMPT 4+ WEITERENTWICKELN
+          ├─ größere Änderung oder neue Funktion → Idea mit Teilaufgaben → Specs → Gate → Archiv
+          └─ kleine Änderung („Footer anders“) → Iteration, kurzer Gate-Weg
+```
+
+Ist die Richtung schon im Brief klar, entfällt Prompt 2: Prompt 1 führt direkt ins Init. Die Haltepunkte ⏸ sind Stellen, an denen der Agent auf dich wartet.
+
+### Was der Brief und das Init beitragen
 
 ```text
 1. ERZÄHLEN  (brief.md, Auftraggeber)          2. KONKRETISIEREN  (Project Init, Agent)
@@ -52,3 +79,4 @@ Zeit, Budget, Abgabe oder Präsentation, beteiligte Personen und Freigaben
 ## Unterlagen
 Bereitgestellte Dateien (z. B. unter `material/`) und wie sie genutzt werden dürfen
 ```
+

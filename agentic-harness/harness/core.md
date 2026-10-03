@@ -13,7 +13,7 @@ AGENTS.md → core.md + project.md
                  │
                  ├─ Arbeitsbaum prüfen (git status, parallele Sitzungen)
                  ├─ Init beauftragt / erste Produktumsetzung bei Pending?
-                 │     └─ init.md: Richtung offen? → erst billig erkunden (Stufen 0–3)
+                 │     └─ init.md: Richtung offen? → erst billig erkunden (Erkundungsstufen E0–E3)
                  │        → Architektur/Tech-Stack wählen → Projektdateien → zurück zum Auftrag
                  └─ Ziel, Umfang und Freigaben klären (Diktat sinngemäß deuten)
                        beide Fragen prüfen, beide können zutreffen:
