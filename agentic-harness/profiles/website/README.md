@@ -8,7 +8,7 @@ profiles/
 └─ website/                  ← dieser Ordner
    ├─ README.md              ← diese Übersicht
    ├─ device-preview.html    ← Geräte-Vorschau: Website als Handy, Tablet, Laptop, Monitor nebeneinander
-   ├─ inspiration/           ← gelungene Entwürfe als Maßstab: Steckbriefe in README.md, Screenshots je Eintrag
+   ├─ inspiration/           ← gelungene Entwürfe als Maßstab: Index in README.md, je Eintrag steckbrief.md + Bilder
    └─ webtools/              ← Prüf- und Vorschau-Werkzeuge (Node.js + Brave/Chrome), siehe „Die Werkzeuge“ unten
 ```
 

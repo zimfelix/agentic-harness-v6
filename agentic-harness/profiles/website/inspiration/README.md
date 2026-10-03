@@ -1,72 +1,76 @@
 # Inspiration – gelungene Website-Entwürfe
 
 > - **Typ:** Referenz
-> - **Status:** Fünf Einträge (Oberfranken, 2026): drei ganze Entwürfe, zwei Abschnitte.
-> - **Zuständigkeit:** Vom Auftraggeber als gelungen bewertete Entwürfe mit Wirkung und tragenden Elementen festhalten, damit neue Entwürfe an diesem Niveau ansetzen.
-> - **Gilt bei:** Erkunden von Website-Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen und auf Auftrag „in die Sammlung aufnehmen“.
-> - **Ladebeziehungen:** Über `agentic-harness/harness/init.md` (Abschnitt 0) und `agentic-harness/profiles/website.md`. Bilder liegen je Eintrag im gleichnamigen Ordner.
+> - **Status:** Fünf Einträge (Oberfranken, 2026): drei ganze Entwürfe (einer mit Abschnitten), zwei Abschnitte.
+> - **Zuständigkeit:** Vom Auftraggeber als gelungen bewertete Entwürfe oder Abschnitte so festhalten, dass klar ist, **was genau** daran gut ist (Schrift, Farbe, Anordnung, Atmosphäre …) und was davon übertragbar ist.
+> - **Gilt bei:** Erkunden von Website-Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen, einem Auftrag mit Bezug auf einen Eintrag („wie oberfranken-magazin, aber …“) und auf Auftrag „in die Sammlung aufnehmen“.
+> - **Ladebeziehungen:** Über `agentic-harness/harness/init.md` (Abschnitt 0) und `agentic-harness/profiles/website.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
 > - **Nicht zuständig:** Regeln oder Projektwerte festlegen; die Gestaltung eines Projekts steht in dessen `agentic-harness/docs/design.md`.
 
-## Wie die Sammlung genutzt wird
+## Index
+
+Suchen nach Stärke: Spalte „Stark in“. Details, Farben und Übertragbares im Steckbrief.
+
+| Eintrag | Art | Stark in | Stichworte |
+|---|---|---|---|
+| [`oberfranken-magazin`](oberfranken-magazin/steckbrief.md) | ganzer Entwurf + 4 Abschnitte | Anordnung (Seitenverlauf) · Grafik · Farbe · Atmosphäre · Schrift | stimmigster Gesamtaufbau, Berge als Übergang, grünes Design, braun-rote Wellen, Porträtkarten, Kalenderliste, warmes Papier, kleine Themenpunkte; Hero schwach |
+| [`oberfranken-kompass`](oberfranken-kompass/steckbrief.md) | ganzer Entwurf | Grafik · Anordnung · Schrift | genial, Sternenkarte auf Dunkel (Aktivität als Helligkeit), simpel und auf den Punkt, Dashboard-Kacheln, relative Zeiten |
+| [`oberfranken-dialog`](oberfranken-dialog/steckbrief.md) | ganzer Entwurf | Anordnung · Bedienung | Chatfenster, Seitenleiste, Vorschlagskacheln |
+| [`oberfranken-buehne`](oberfranken-buehne/steckbrief.md) | Abschnitt | Anordnung | clean, Kennzahl links + nummerierte Schritte rechts, dunkle Fläche |
+| [`oberfranken-frag`](oberfranken-frag/steckbrief.md) | Abschnitt | Anordnung · Bedienung | clean, simpel wie Google, Chat-Hero, Antworten als Mini-Wort-Pillen, Eingabefeld als hellster Punkt |
+
+**Kategorien für „Stark in“:** Schrift · Farbe · Atmosphäre · Anordnung · Grafik · Bedienung · Details. Nur nennen, was der Auftraggeber lobt oder was die Wirkung nachweislich trägt.
+
+## Nutzen
 
 ```text
-Erkunden ──▶ Steckbriefe lesen, 1–2 Bilder ansehen ──▶ Niveau und Mittel als Maßstab
-                                                     (Schrift, Inhaltsdichte, Grafik)
-                                                              │
-                     eigene Leitidee je Entwurf ◀─────────────┘  nicht nachbauen
-                              │
-Auftraggeber findet einen Entwurf gelungen ──▶ Eintrag hier ergänzen
+Auftrag: „wie oberfranken-magazin: die lebendige Schrift, die einladende Atmosphäre,
+          die Farbzusammensetzung – aber Rot statt Grün“
+   │
+   ├─▶ Index: Eintrag finden ──▶ steckbrief.md: Abschnitt „Übertragbar“
+   │                               Prinzip behalten: heller warmer Grund · dunkle Hauptfarbe ·
+   │                               warmer Akzent · kleine Themenpunkte · Serifen-Headline …
+   │                               Frei austauschbar: konkrete Farbtöne, Motive …
+   └─▶ Bild ansehen, um die Wirkung zu prüfen ──▶ neues Farbset nach demselben Prinzip
 ```
 
-- **Maßstab, keine Vorlage:** Übernommen werden Qualität und Mittel (z. B. eigene Schriftpaarung, echte Inhaltsdichte, eine erklärende Grafik), nicht Texte, Logos oder ganze Layouts.
-- **Nur Bewertetes:** Ein Eintrag entsteht nur, wenn der Auftraggeber einen Entwurf als gelungen bewertet; seine Worte stehen unter „Wirkung“.
-- **Ganzer Entwurf oder einzelner Abschnitt:** Gefällt die Seite als Ganzes, `start.jpg` (Desktop 1440 px, erster Bildschirm), `ganz.jpg` (ganze Seite) und `handy.jpg` (390 px). Gefällt nur ein Teil, ein Ausschnitt `abschnitt-<name>.jpg`; das Lob gehört an den Abschnitt, nicht an die ganze Seite. Lob für einen Teil eines bestehenden Eintrags wird dort als Abschnitt ergänzt.
-- **Bilder sind die Quelle, Code ist Zusatz:** Bilder reisen mit der Vorlage und sind ohne laufende Vorschau lesbar. Repo und Datei unter „Quelle“ helfen nur, wenn das Repo erreichbar ist; lokale Adressen (`127.0.0.1:…`) nie als einzige Quelle, sie gelten nur auf einem Rechner und solange die Vorschau läuft.
-- **Aufnahme:** mit `browser.mjs` aus `../webtools/` oder als Bildschirmausschnitt, als JPEG, damit die Sammlung klein bleibt (Ziel unter 1 MB je Eintrag).
-- **Kurz halten:** ein Steckbrief je Eintrag, höchstens etwa zehn Einträge; schwächere werden ersetzt, nicht angehäuft.
+- **Maßstab, keine Vorlage:** Übernommen werden Prinzip und Mittel, nicht Texte, Logos oder ganze Layouts.
+- **Beim Erkunden:** Index lesen; jeder Entwurf setzt mindestens auf dem Niveau der Einträge an (Schrift, Inhaltsdichte, Grafik).
 
-## Steckbrief (Vorlage)
+## Aufnehmen
+
+Nur, was der Auftraggeber als gelungen bewertet. Lob für einen Teil gehört an den Abschnitt, nicht an die ganze Seite.
+
+1. Ordner `<projekt>-<kurzname>/` (beschreibender Name), Bilder als JPEG (Ziel unter 1 MB je Eintrag):
+   - ganzer Entwurf: `start.jpg` (Desktop 1440 px, erster Bildschirm) und `ganz.jpg` (ganze Seite);
+   - Abschnitt: `abschnitt-<name>.jpg`.
+   Aufnahme mit `browser.mjs` aus `../webtools/` oder als Bildschirmausschnitt.
+2. `steckbrief.md` nach dem Muster unten. Die Worte des Auftraggebers wörtlich unter „Auftraggeber“; fehlt eigenes Lob, das offen sagen.
+3. Zeile im Index ergänzen. Lob für einen Teil eines bestehenden Eintrags: Abschnitt dort ergänzen statt neuer Eintrag.
+
+Bilder sind die Hauptquelle: Sie reisen mit der Vorlage und sind ohne laufende Vorschau lesbar. Repo und Datei unter „Herkunft“ helfen nur, wenn das Repo erreichbar ist; lokale Adressen (`127.0.0.1:…`) nie als Quelle. Höchstens etwa zehn Einträge; schwächere werden ersetzt, nicht angehäuft.
+
+## Steckbrief (Muster)
 
 ```markdown
-### <name> – <Leitidee in drei Wörtern>
-- **Herkunft:** Projekt, Datum, Art (Landingpage, Firmenseite …)
-- **Wirkung:** wie der Auftraggeber sie beschreibt (z. B. lebendig, einladend)
-- **Schrift:** Familien und Rolle (mit Lizenz)
-- **Farben:** Grund, Text, Akzente in Worten, ggf. Hex
-- **Tragende Elemente:** was die Wirkung ausmacht (Karte, Anordnung, Grafik …)
-- **Abschnitte:** `abschnitt-<name>.jpg` – Wirkung in Worten des Auftraggebers, was sie trägt
-- **Quelle:** Repo und Datei (falls erreichbar)
-- **Bilder:** <ordner>/start.jpg · ganz.jpg · handy.jpg
+# <eintrag> – <Leitidee in wenigen Wörtern>
+
+- **Herkunft:** Art, Projekt, Datum. Quelle: Repo, Datei.
+- **Stark in:** <Kategorien aus dem Index>
+- **Auftraggeber:** „<wörtliches Lob>“
+
+## Was gut ist
+
+| Kategorie | Was es ausmacht |
+|---|---|
+| **<Kategorie>** | konkret: welche Schrift, welche Farben (Hex), welche Anordnung, warum es wirkt |
+
+## Übertragbar
+
+- **Prinzip behalten:** was die Wirkung trägt
+- **Frei austauschbar:** was sich ändern darf, ohne die Wirkung zu verlieren
+
+## Bilder
+
+- `<datei>.jpg` – was das Bild zeigt und warum es hier ist
 ```
-
-## Einträge
-
-Alle drei entstanden am 03.10.2026 als freie Landingpage-Entwürfe für eine regionale Plattform (Studienprojekt „Plattform Oberfranken“; Quelle: Repo `trendmanagement-oberfranken`, `entwuerfe/a-magazin.html`, `b-dialog.html`, `c-kompass.html`); Inhalte sind erfundene Beispiele. **Wirkung (Auftraggeber):** „smooth, stimmig, herzlich, einladend; Farben besser, Grafiken klar angeordnet, kreativ“ – deutlich stärker als ein späterer Vergleichslauf mit Systemschriften und weniger Inhalt.
-
-### oberfranken-magazin – Redaktionelles Magazin
-- **Schrift:** Fraunces (Serifen, Überschriften; Hervorhebung **kursiv in Akzentfarbe**) + Inter (Text); beide SIL OFL, lokal eingebunden.
-- **Farben:** warmes Papier `#F6F1E7`, Tinte `#1D1A16`, Waldgrün `#22443A`, Bernstein `#E9A93A` als Licht-Akzent.
-- **Tragende Elemente:** große Serifen-Headline mit kursivem Schluss; Karte „Gerade veröffentlicht“ neben dem Hero; gezeichnete Hügel- und Burgsilhouette als Übergang; Kartenraster mit Linien-Grafiken je Thema; Wochenkalender als Liste; dunkler Redaktionsblock; Ablauf in fünf nummerierten Schritten.
-- **Bilder:** `oberfranken-magazin/start.jpg` · `ganz.jpg` · `handy.jpg`
-
-### oberfranken-dialog – Chat als Startseite
-- **Schrift:** Inter durchgehend, große fette Headline.
-- **Farben:** dunkelgrüne Seitenleiste `#13201A`, heller Grund `#F7F6F2`, weiße Karten, Bernstein-Punkte als Kennung.
-- **Tragende Elemente:** Aufbau wie ein modernes KI-Chatfenster (Seitenleiste mit Redaktionswissen und Regionen, zentrales Eingabefeld); Profil- und Ortswahl oben rechts; Vorschlagsfragen als Kacheln; „Gerade in deiner Region“ als Karten mit Thema, Ort und Zeit; Hinweis zur Quelle direkt unter dem Eingabefeld.
-- **Bilder:** `oberfranken-dialog/start.jpg` · `ganz.jpg` · `handy.jpg`
-
-### oberfranken-kompass – Dashboard mit Karte
-- **Schrift:** Bricolage Grotesque (Headline, eigenwillig) + Inter (Text); beide SIL OFL.
-- **Farben:** warmes Grau `#F1EFE9`, weiße Kacheln, Nachtblau `#0E1A2B` für die Karte, gelbe Leuchtpunkte, Grün für Redaktion.
-- **Tragende Elemente:** persönliche Begrüßung mit Datum, Headline mit grau abgesetztem Mittelteil; Profil als Segment-Umschalter; **Bühnenkarte** (Orte als Sterne, Helligkeit = Zahl der Meldungen); Kachelraster mit „Als Nächstes für dich“, Redaktion und „Region des Tages“ mit Landschaftsgrafik; Sieben-Tage-Spalten mit farbiger Themenkante.
-- **Bilder:** `oberfranken-kompass/start.jpg` · `ganz.jpg` · `handy.jpg`
-
-### oberfranken-buehne – Erklärblock auf dunkler Fläche (Abschnitt)
-- **Herkunft:** Blindtest 2, Startseite nach Entwurf B „Bühne“ (Repo `oberfranken-harnesstest-2`, `src/pages/startseite.mjs`), 03.10.2026.
-- **Wirkung (Auftraggeber):** Anordnung „ziemlich clean“.
-- **Abschnitte:** `abschnitt-hinter-den-kulissen.jpg` – zwei Spalten auf Dunkelgrün: links eine große Kennzahl als Satz („25 % Redaktion · 75 % KI“) mit schmalem Balken und kurzer Erklärung, rechts fünf nummerierte Schritte mit Bernstein-Ziffern, fett gesetztem Anfang und feinen Trennlinien; kleine Versal-Kennung über einer Serifen-Überschrift.
-
-### oberfranken-frag – Chat-Hero (Abschnitt)
-- **Herkunft:** Blindtest 1, Entwurf A (Repo `oberfranken-harnesstest`, `src/pages/entwurf-a.mjs`), 03.10.2026.
-- **Wirkung (Auftraggeber):** Anordnung „ziemlich clean“.
-- **Abschnitte:** `abschnitt-hero.jpg` – dunkler Verlauf, Headline mit grau abgesetztem zweitem Wort („Frag Oberfranken.“), weißes Eingabefeld mit rotem Knopf, Profil als Pillen-Auswahl, Beispielfragen als Pillen mit feinen Icons, darunter ein Beispielverlauf.
