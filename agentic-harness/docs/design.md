@@ -28,7 +28,7 @@ Gestaltung driftet, wenn sie nur im Code steht: Schriften werden nicht geladen, 
 - Neue Werte zuerst als Rolle/Token hier und im Code anlegen, dann verwenden. Keine neuen Einzelfarben oder Einzelgrößen für eine bestehende Rolle.
 - Hier stehen Regeln, keine Einzelwerte je Stelle: Ein Wert für eine einzelne Stelle (z. B. ein Button-Abstand) steht nur im Code als Token. Eine festgelegte Ausrichtung sichert ein gemessener Test; hier steht dann nur die Regel in einer Zeile mit Verweis auf den Test.
 - Abweichungen von einer Regel nur nach Entscheidung des Auftraggebers; die Entscheidung ersetzt die alte Regel hier (kein zweiter Absatz daneben).
-- Bei Oberflächen-Iterationen nur das Genannte ändern; weitere Auffälligkeiten als Liste berichten (`agentic-harness/harness/core.md`).
+- Bei Oberflächen-Iterationen nur das Genannte ändern; weitere Auffälligkeiten als Liste berichten (`agentic-harness/harness/core.md`, „Nur das Beauftragte“).
 - **Nachweis im Zielmedium:** Aussehen ist aus Quelltext nicht ableitbar. Nach sichtbaren Änderungen im Zielmedium (Browser, Emulator, Gerät) messen oder den geänderten Bereich per Screenshot prüfen, bei den Prüfgrößen aus `agentic-harness/docs/testing.md`. Bei Websites z. B. berechnete Stile, Positionen, geladene Schriften und horizontalen Überlauf. Das Werkzeug dafür einmal im Projekt einrichten und in `agentic-harness/docs/testing.md` nennen, statt es je Sitzung neu zu schreiben.
 - **Konsistenz-Audit** vor größeren Übergaben: wiederkehrende Rahmen (z. B. Header, Footer, Navigation) überall identisch, Überschriften entsprechen der Skala, wiederkehrende Elemente folgen den Bausteinen, Schriften tatsächlich geladen. Ein Profil kann die Liste konkretisieren.
 

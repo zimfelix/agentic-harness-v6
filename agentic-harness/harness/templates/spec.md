@@ -1,9 +1,11 @@
-# [Spec – beauftragtes Verhalten]
+# [Spec – Bereich]
 
-> **Vorlage:** Konkreter Auftrag mit überprüfbarem Soll; ausgefüllte Specs liegen unter `agentic-harness/specs/`.
+> **Vorlage:** Lebender Soll-Stand eines Bereichs mit überprüfbaren Kriterien; ausgefüllte Specs liegen unter `agentic-harness/specs/` (Regeln: `agentic-harness/specs/S000-readme.md`).
 
 - **State:** Modified
-- **Ziel und Nutzer:** [Wozu wird die Änderung benötigt?]
+- **Bereich:** [Welcher Teil des Produkts? Abgrenzung zu benachbarten Bereichs-Specs.]
+- **Zuletzt geändert durch:** [Idea, z. B. `ideas/I005-konto.md`, oder „direkter Auftrag“.]
+- **Ziel und Nutzer:** [Wozu dient der Bereich?]
 - **Beschreibung:** [Beobachtbares Verhalten, ohne technischen Lösungsplan.]
 - **Nicht im Umfang:** [Bewusste Abgrenzung.]
 

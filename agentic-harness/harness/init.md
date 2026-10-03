@@ -1,7 +1,7 @@
 # Project Init – leeres Projekt beginnen
 
 > - **Typ:** Prozess
-> - **Zuständigkeit:** Ein neues, leeres Produktprojekt für den ersten beauftragten Arbeitsschritt vorbereiten.
+> - **Zuständigkeit:** Ein neues, leeres Produktprojekt für den ersten beauftragten Arbeitsschritt vorbereiten: bei offener Richtung zuerst billig erkunden, dann Architektur, Tech-Stack und Prüfungen wählen und die Projektdateien befüllen.
 > - **Gilt bei:** Beauftragtem Project Init für ein neues, leeres Produktprojekt oder vor der ersten Produktumsetzung, wenn `agentic-harness/harness/project.md` noch `Pending Project Init` enthält. Nicht bei Harness-Engineering.
 > - **Ladebeziehungen:**
 >   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`.
@@ -12,6 +12,21 @@
 
 **Grundsatz:** Der Harness ist universell und legt weder Projektart noch Stack, Architektur, Tests oder Profil fest. Diese Entscheidungen fallen hier, gemeinsam mit dem Auftraggeber, und landen erst nach Bestätigung in den Projektabschnitten. Fehlt eine Festlegung für ein neues Projekt, ist das kein Mangel des Harnesses, sondern eine Init-Frage.
 
+**Aufgabenteilung:** Der **Brief** beschreibt, was entstehen soll und warum, auch technische Vorstellungen in eigenen Worten. Das **Init** übersetzt das in einen tragfähigen technischen Rahmen (Architektur, Tech-Stack, Tests, Betrieb) und befüllt die Projektdateien. Dazwischen liegt nur bei offener Richtung ein kurzes **Erkunden**.
+
+## 0. Erkunden oder direkt festlegen?
+
+Lege im Init nur fest, was entschieden ist. Ist die Richtung noch offen, erkunde zuerst so billig wie möglich:
+
+| Stufe | Wann | Vorgehen |
+|---|---|---|
+| 0 – direkt festlegen | Brief oder Auftrag entscheiden die Richtung (Standardfall) | weiter mit Abschnitt 1 |
+| 1 – Ideenrunde in Text | Gestaltung oder Lösungsweg offen | 2–3 klar verschiedene Leitideen in je wenigen Sätzen vorlegen; der Auftraggeber wählt |
+| 2 – ein Prototyp | die gewählte Idee muss man sehen oder ausprobieren, bevor man festlegt | einen Wegwerf-Prototyp bauen (bei Software ohne Oberfläche z. B. Trockenlauf mit Beispieldaten oder kleinster technischer Durchstich) |
+| 3 – mehrere Varianten | nur wenn ausdrücklich beauftragt | je Variante eine eigene Leitidee und eigene Gestaltung; geteilt werden nur Inhalte und Messwerkzeuge |
+
+Beim Erkunden gelten nur die Pflichtregeln eines passenden Profils (Teil A) und die Prüfschleife im Zielmedium; keine Specs, keine befüllten Projekt-Docs, keine gemeinsame Gestaltungsbasis. Unterlagen sind Inspiration, die eigene Leitidee hat Vorrang. Prototypen und Varianten sind intern (`agentic-harness/docs/architecture.md`, „Varianten, Konzeptseiten und Archiv“). `Pending Project Init` bleibt stehen. Nach der Auswahl folgt das Init: Die gewählte Richtung wird Basis, der Rest wandert ins Archiv.
+
 ## 1. Ersten Schritt klären
 
 **Brief erzählt, Init konkretisiert:** Liegt `agentic-harness/project/brief.md` vor, gilt, was er beantwortet, als gegeben: Fasse es kurz zur Bestätigung zusammen, statt es neu abzufragen. Prüfe dann wie ein Kontrolleur, was für die Umsetzung noch fehlt oder sich widerspricht, und frage nur dazu nach. Inhaltliche Themen (Idee, Zielgruppen, Inhalte, Ton, Vorbilder, Vorgaben, Rahmen) stehen einmal in der Root-`README.md`, Abschnitt „Projektstart mit dem Agentic Harness“; dieser Abschnitt ergänzt, was zur Umsetzung dazukommt: Anforderungen, Tech-Stack, Daten, Betrieb, Tests und Arbeitsabsprachen. Fehlt der Brief, kläre die inhaltlichen Themen zuerst im Gespräch.
@@ -20,7 +35,7 @@ Kläre Nutzer, Problem und den ersten beobachtbaren Ablauf (z. B. Bildschirm, Be
 
 Frage nur nach Daten, Betrieb, Integrationen und Freigaben, die diesen Schritt beeinflussen. Erfinde keine Antworten.
 
-Leite für den ersten Ablauf passende Bausteine, Stack- und Testkandidaten ab. Prüfe entscheidungsrelevante Versionen und Voraussetzungen anhand verfügbarer Quellen oder Werkzeuge. Vergleiche echte Alternativen kurz mit Nutzen und Kosten.
+**Architektur und Tech-Stack wählen (Kern des Init):** Leite aus Brief, erstem Ablauf, Daten, Betrieb und gesetzten Vorgaben 2–3 tragfähige Optionen ab (Architektur, Sprache und Frameworks, Datenhaltung, Betrieb, Testwerkzeuge). Vergleiche sie knapp: Passung zum Ziel, Komplexität und Wartung, Kosten und Betrieb, Risiken, Abhängigkeiten, Kenntnisse des Auftraggebers. Empfiehl eine Option mit Begründung; die einfachste, die den ersten Meilenstein und absehbare nächste Schritte trägt, ist der Normalfall. Prüfe entscheidungsrelevante Versionen und Voraussetzungen anhand verfügbarer Quellen oder Werkzeuge. Die bestätigte Entscheidung steht mit Begründung und verworfenen Alternativen in `agentic-harness/docs/architecture.md`.
 
 Technische Möglichkeiten bleiben **Vorschläge**, bis sie entschieden sind. Vertage nicht benötigte Technik.
 
@@ -44,12 +59,12 @@ Lies die Inhaltsvorgaben von `agentic-harness/harness/project.md` und den Projek
 
 Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Ist ein Bereich nicht entscheidbar oder nicht relevant, kennzeichne ihn ausdrücklich. Entferne den Platzhalterstatus erst nach tatsächlicher Befüllung.
 
-- `agentic-harness/harness/project.md`: bestätigtes Nutzerziel, Umfang, Grenzen und Freigaben; Start- und Prüfbefehle mit dem letzten tatsächlichen Ergebnis (ersetzen, nicht protokollieren).
+- `agentic-harness/harness/project.md`: bestätigtes Nutzerziel, Umfang, Grenzen und Freigaben; Start- und Prüfbefehle je eine Zeile, für die vom Gate gebrauchten mit dem letzten tatsächlichen Ergebnis (ersetzen, nicht protokollieren).
 - `agentic-harness/docs/architecture.md`: bestätigte erste Bausteine, Zuständigkeiten, Datenfluss und entschiedener Betrieb; dazu die **Dateistruktur** vor dem ersten Produktcode: wo Konfiguration, Inhalte, Bausteine und bei Oberflächen die Gestaltungswerte liegen (Grundsatz dort unter „Trennung von Konfiguration und Bausteinen“, Vorschlag ggf. aus dem Profil). Geplantes und Offenes gesondert kennzeichnen.
 - `agentic-harness/docs/code.md`: nur geltende Konventionen für den gewählten Stack, einschließlich Benennung und Ablage neuer Bausteine.
 - `agentic-harness/docs/testing.md`: aus Ablauf, Risiken, Architektur und Stack passende Testebenen und -arten wählen; Werkzeuge, Teststruktur und Grenzen für den ersten Meilenstein begründen. Bei sichtbarer Oberfläche auch Prüfgrößen (z. B. Bildschirmbreiten), Methoden und Mess-Werkzeug.
 - `agentic-harness/docs/design.md`: nur bei sichtbarer Oberfläche. Bestätigte Farbrollen, Schrift mit Lizenz, Größenskala und erste Bausteine eintragen; Unentschiedenes als offen markieren. Ohne Oberfläche den Bereich ausdrücklich als „nicht relevant“ kennzeichnen.
-- Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser und bestätigte Arbeitsabsprachen (z. B. Live-Vorschau) unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.
+- Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs (Kriterium und Ort: `agentic-harness/document-contract.md`, „Neue Projekt-Docs“; sie liegen unter `agentic-harness/project/`) mit konkretem Leseauslöser und bestätigte Arbeitsabsprachen (z. B. Live-Vorschau) unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.
 
 Befülle die Root-`README.md` des Zielprojekts ohne Metakopf mit bestätigtem Produktzweck und geprüften Startschritten. Ersetze dabei den Vorlagenkopf aus dem Export durch die Produktbeschreibung oben; liegen bereits Produktinformationen vor, ergänze statt zu überschreiben. Der Abschnitt „Projektstart mit dem Agentic Harness“ ist universell und bleibt unverändert am Ende. Die menschliche Harness-Anleitung in `agentic-harness/README.md` bleibt davon getrennt. Erfinde keine Produktfakten.
 
@@ -77,4 +92,4 @@ Entferne `Pending Project Init` erst, wenn Ziel, Grenzen und erster Schritt ausr
 
 Für beauftragtes Nutzerverhalten nutze `agentic-harness/specs/S000-readme.md` und `agentic-harness/harness/templates/spec.md`.
 
-Eine Idea nach `agentic-harness/ideas/I000-readme.md` ist nur bei offenem Klärungsbedarf nötig. Nach dem Init lies das aktualisierte `agentic-harness/harness/project.md` und kehre für den aktuellen Auftrag zu `agentic-harness/harness/core.md` zurück. Init allein ist keine Implementierungsfreigabe. Bleibt eine dafür nötige Entscheidung offen, berichte den Blocker statt auf einer Annahme umzusetzen. Übertragbare Beobachtungen zum Harness, die beim Init auffallen, gehören als offene Kandidaten nach `agentic-harness/harness-learnings.md`, nicht in die Produktdateien.
+Eine Idea nach `agentic-harness/ideas/I000-readme.md` ist für größere Änderungen oder offenen Klärungsbedarf da, nicht für den ersten Schritt selbst. Nach dem Init lies das aktualisierte `agentic-harness/harness/project.md` und kehre für den aktuellen Auftrag zu `agentic-harness/harness/core.md` zurück. Init allein ist keine Implementierungsfreigabe. Bleibt eine dafür nötige Entscheidung offen, berichte den Blocker statt auf einer Annahme umzusetzen. Übertragbare Beobachtungen zum Harness, die beim Init auffallen, gehören als offene Kandidaten nach `agentic-harness/harness-learnings.md`, nicht in die Produktdateien.

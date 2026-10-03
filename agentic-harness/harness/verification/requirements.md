@@ -9,7 +9,7 @@
 ## Soll abgleichen
 
 1. Bestimme aus dem **beauftragten** Ziel den Umfang und die Nicht-Ziele. Gleiche sie mit den bestätigten Grenzen und Freigaben in `agentic-harness/harness/project.md` ab. Bei Widerspruch oder ungeklärter Entscheidung das Soll nicht selbst erfinden.
-2. Bei neuem oder geändertem Nutzerverhalten: Lies die betroffenen Specs und ihre Akzeptanzkriterien (AK); prüfe relevante Erfolgs- und Fehlerfälle sowie weitere betroffene Specs. Fehlt die erforderliche Spec, ist das Soll noch nicht abschließbar. Eine Idea erklärt gegebenenfalls den Hintergrund, ersetzt aber weder Auftrag noch Spec.
+2. Bei neuem oder geändertem Nutzerverhalten: Lies die betroffenen Specs und ihre Akzeptanzkriterien (AK); prüfe relevante Erfolgs- und Fehlerfälle sowie weitere betroffene Specs. Fehlt die erforderliche Spec, ist das Soll noch nicht abschließbar. Gehört die Arbeit zu einer Idea, muss sie „Beauftragt“ sein; sie nennt die betroffenen Bereichs-Specs und Abhängigkeiten, die Kriterien selbst stehen nur in den Specs.
 3. Bei Refactor, Struktur- oder Dokumentationspflege ohne neues Nutzerverhalten: Prüfe stattdessen den beauftragten Umfang und die geltenden Projektgrenzen. Eine neue Produktspec ist dafür nicht pauschal nötig. Bei Strukturänderungen vergleiche das Ziel in `agentic-harness/docs/architecture.md` mit dem Auftrag; geplante Architektur nicht als Ist ausgeben.
 4. Bei sichtbaren Oberflächenänderungen gehören die Regeln aus `agentic-harness/docs/design.md` zum Soll, auch wenn der Auftrag sie nicht nennt (z. B. Größenskala, Farbrollen, identische wiederkehrende Rahmen). Widerspricht der Auftrag einer Regel, gilt der Auftrag; die Regel wird danach in `agentic-harness/docs/design.md` ersetzt.
 

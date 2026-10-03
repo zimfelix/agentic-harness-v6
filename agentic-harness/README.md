@@ -24,7 +24,10 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  ├─ Neues Produktprojekt: Init beauftragt oder vor erster
                  │  Produktumsetzung noch „Pending Project Init“?
                  │    └→ init.md
+                 │         ├→ Richtung offen? erst billig erkunden (Stufen 0–3:
+                 │         │  direkt · Ideenrunde · ein Prototyp · Varianten nur auf Auftrag)
                  │         ├→ Ziel, Grenzen und ersten Schritt klären
+                 │         ├→ Architektur und Tech-Stack: 2–3 Optionen → Empfehlung
                  │         ├→ project.md + passende Projekt-Docs befüllen
                  │         ├→ ggf. echte Checks einrichten und ausführen
                  │         └→ zurück zu core.md und zum konkreten Auftrag
@@ -32,13 +35,12 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  │
                  ↓
    [R1] ───→ AUFTRAG KLÄREN: Ziel, Umfang, Nicht-Ziele, Freigaben
-                 │
-                 ├─ Größeres Vorhaben noch offen?
-                 │    └→ Idea klären → zurück zum Auftrag
-                 │         („Ready“ ist noch kein Umsetzungsauftrag)
+                 │   (beide Fragen prüfen, beide können zutreffen)
+                 ├─ Größere Änderung oder offenes Vorhaben?
+                 │    └→ Idea als Akte: Offen → Beauftragt → (nach Gate) Umgesetzt → Archiv
                  │
                  ├─ Neues/geändertes Nutzerverhalten beauftragt?
-                 │    └→ betroffene Spec(s) erstellen/ändern:
+                 │    └→ Bereichs-Spec(s) anlegen/ändern (lebender Soll-Stand):
                  │       prüfbare Akzeptanzkriterien; zunächst „Modified“
                  │
                  └─ Sonst, z. B. Refactor/Doku/Struktur:
@@ -67,6 +69,8 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  │
                  ↓
            GATE-DURCHLAUF BEGINNT: gate.md
+                 │   reine Oberflächen-Iteration? → kurzer Weg: Auftrag + design.md
+                 │   → Diff, Build/Tests, Nachweis im Zielmedium → Ergebnis
                  │
                  ├→ requirements.md
                  │    Auftrag + project.md + ggf. Spec/architecture.md
@@ -82,9 +86,11 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                  │
                  ↓
            gate.md ENTSCHEIDET: Belegen IST und Nachweise das SOLL?
+                 │                + berührte Projektdateien sauber?
                  │
-                 ├─ JA → Ergebnis berichten;
-                 │        ggf. betroffene Spec „Implemented“
+                 ├─ JA → Ergebnis berichten; erledigte Teilaufgaben abhaken;
+                 │        Spec „Implemented“, wenn alle ihre AK belegt sind;
+                 │        Idea „Umgesetzt“ → ideas/archiv/, wenn ganz erledigt
                  │
                  └─ NEIN → fail.md: konkrete Lücke und Ursache bestimmen
                              │
@@ -105,7 +111,8 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
                              ├─ Prüfung fehlt oder Nachweis ist veraltet
                              │    └→ betroffene Prüfung nachholen → [R4]
                              │
-                             └─ Entscheidung oder Nachweis weiter unmöglich
+                             └─ Entscheidung oder Nachweis weiter unmöglich,
+                                oder dieselbe Ursache 2× gescheitert
                                   └→ STOPP: Blocker und offene Checks berichten
 
            Nach jeder möglichen Korrektur:
@@ -116,36 +123,7 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
 
 **Welche Datei wann gelesen wird**, steht an genau einer Stelle: in der Routing-Tabelle von `AGENTS.md`; Rollen und Ladewege aller Dateien beschreibt `harness-map.md`.
 
-Teststruktur:
-```text
-   Auftrag + project.md + ggf. Spec (Akzeptanzkriterien)
-                       │
-                       ├→ architecture.md + code.md
-                       │          ↓
-                       └────→ testing.md
-                              Welche Prüfungen passen zum Risiko?
-                              Wo, wie und wann werden sie ausgeführt?
-                                         │
-                                         ↓
-   core.md, Schritt 3: UMSETZUNG
-     ├→ Source Code ändern
-     ├→ passende Tests erstellen/ändern
-     └→ vorgesehene Checks ggf. schon während der Arbeit ausführen
-                                         │
-                                         ↓
-   gate.md: EINE Abschlussprüfung beginnt
-     ├→ requirements.md → SOLL: Auftrag, Grenzen, betroffene AK
-     └→ implementation.md → IST: tatsächliche Änderung prüfen;
-          │                  testing.md heranziehen, erforderliche Checks
-          │                  auf aktuellem Stand ausführen, Belege erfassen
-          └─────────────────────────┬───────────────────────────────
-                                    ↓
-                      gate.md entscheidet: Soll ausreichend belegt?
-                        ├→ JA: Ergebnis berichten; ggf. Spec „Implemented“
-                        └→ NEIN: fail.md → Ursache klären/korrigieren
-                                         → betroffene Checks wiederholen
-                                         → gate.md erneut durchlaufen
- ```
+Wie das Gate im Einzelnen arbeitet (welche Datei was liest und liefert, Rücksprungziele je Ursache), zeigt die Grafik in `harness/verification/gate.md`.
 ## Drei Ebenen
 
 | Ebene | Dateien | Wandert in eine neue Vorlage? |
@@ -214,7 +192,7 @@ So bleiben die universellen Dateien jederzeit freigabefähig. In `harness-learni
 
 **Release in die Vorlage** gesammelt, wenn erprobte Änderungen vorliegen, nicht nach jeder Sitzung:
 
-1. Auftrag „Harness-Release vorbereiten“. Der Agent zeigt die Änderungen seit dem letzten Release, `git diff harness-vX.Y -- AGENTS.md agentic-harness ':(exclude)agentic-harness/specs' ':(exclude)agentic-harness/ideas'` (Projektteile darin ignorieren), und die offenen Kandidaten.
+1. Auftrag „Harness-Release vorbereiten“. Der Agent zeigt die Änderungen seit dem letzten Release, `git diff harness-vX.Y -- AGENTS.md README.md agentic-harness ':(exclude)agentic-harness/project'` (Projektteile darin ignorieren: konkrete Ideas und Specs, Projektabschnitte; die Leitdateien `ideas/I000-readme.md` und `specs/S000-readme.md` gehören dazu), und die offenen Kandidaten. Dabei auch die Ideas des Projekts durchsehen (`ideas/I000-readme.md`, „Durchsicht“).
 2. **Learnings gegenprüfen:** Für jeden Eintrag „Lokal übernommen“ prüft der Agent, ob die Regel noch so in der genannten Zieldatei steht. Fehlt sie oder wurde sie verändert, zieht er sie nach oder setzt den Eintrag zurück auf „Offen“ und meldet das.
 3. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
 4. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt, mit `VERSION=vX.Y`), Diff prüfen, committen.

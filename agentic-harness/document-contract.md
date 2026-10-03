@@ -52,15 +52,16 @@ Jede Information hat genau einen Ort. Fehlt der passende Ort, entsteht Wildwuchs
 | Information | Ort |
 |---|---|
 | Bestätigtes Ziel, Grenzen, Freigaben, Livegang-Blocker, offene Entscheidungen | `agentic-harness/harness/project.md` |
-| Eingerichtete Befehle und **letztes** Prüfergebnis | `agentic-harness/harness/project.md` (Tabelle, ersetzen) |
-| Beauftragtes Verhalten und Inhalte (AK) samt letztem Nachweis | Spec unter `agentic-harness/specs/` |
+| Eingerichtete Befehle (je eine Zeile) und **letztes** Ergebnis der Gate-Befehle | `agentic-harness/harness/project.md` (Tabelle, ersetzen) |
+| Lebender Soll-Stand je Bereich (AK) samt letztem Nachweis | Bereichs-Spec unter `agentic-harness/specs/` |
 | Gewähltes Profil | Name oben im Projektprofil; übernommene, angepasste oder abgewählte Profilteile in der thematisch zuständigen Datei dieser Tabelle |
 | Gestaltungsregeln: Farbrollen, Schrift, Größenskala, Bausteine, Zustände (keine Einzelwerte je Stelle) | `agentic-harness/docs/design.md` |
 | Bausteine, Dateien, Datenfluss, Archiv | `agentic-harness/docs/architecture.md` |
 | Betrieb: Ausführung, Auslöser/Zeitplan, Umgebungen, Konfiguration, Ort der Zugangsdaten (nie Werte), Protokolle | `agentic-harness/docs/architecture.md` |
 | Stack, Konventionen, technische Schulden | `agentic-harness/docs/code.md` |
 | Teststrategie, Suiten, Werkzeuge, Prüfgrößen und Methoden | `agentic-harness/docs/testing.md` |
-| Offene größere Vorhaben | Idea unter `agentic-harness/ideas/` |
+| Größere Änderungen und offene Vorhaben (Anlass, Umfang, betroffene Specs, Teilaufgaben, Status); auch Aufgabenlisten und mehrschrittige Pläne | Idea unter `agentic-harness/ideas/`, erledigt unter `ideas/archiv/` |
+| Eigenständiges Projektthema ohne passende Doc (Kriterium: „Neue Projekt-Docs“) | `agentic-harness/project/<thema>.md` |
 | Verlauf, was wann geändert wurde, einzelne Prüfläufe | Git (Commit-Nachricht) und Übergabe im Chat, **nicht** in Projektdateien |
 | Beobachtungen über den Harness, wiederkehrende Agentenfehler, Begründung von Harness-Änderungen | `agentic-harness/harness-learnings.md` (aktiv), `agentic-harness/project/learnings-archiv.md` (erledigt) |
 
@@ -73,6 +74,21 @@ Projektprofil, Projekt-Docs und Specs beschreiben den **geltenden** Stand. Der V
 - Datumsangaben nur, wo sie entscheidungsrelevant sind (z. B. Stand eines Prüflaufs oder einer Freigabe).
 - **Richtgrößen** (bei geteilten Dateien nur der Abschnitt „Projektspezifische Befüllung“, weil der universelle Rahmen unterschiedlich lang ist): `agentic-harness/harness/project.md` etwa 6 KB, eine Projekt-Doc etwa 6 KB, eine Spec etwa 15 KB oder etwa 15 AK (Zuschnitt: `agentic-harness/specs/S000-readme.md`). Wird eine Grenze überschritten, verdichte zuerst; trenne erst dann ein eigenständiges Thema in eine eigene Datei oder Spec. Das Gate prüft berührte Projektdateien darauf (`agentic-harness/harness/verification/gate.md`).
 - Bestätigte Entscheidungen beim Verdichten nicht stillschweigend löschen: Sie wandern an die zuständige Stelle (z. B. Gestaltung nach `agentic-harness/docs/design.md`, Verhalten in die Spec).
+
+## Neue Projekt-Docs
+
+Ein neues Thema wird zuerst in eine bestehende Datei eingeordnet. Eine **eigene Projekt-Doc** lohnt sich erst, wenn das Thema eigene Regeln oder Entscheidungen braucht, bei mehreren Aufgaben gelesen wird und in keine bestehende Doc passt, ohne deren Richtgröße zu sprengen (z. B. Datenschutz bei einem CRM, Betrieb einer Automation). Nicht auf Vorrat anlegen.
+
+```text
+neues Thema
+  ├─ passt in eine bestehende Datei?                → dort einordnen (Standard)
+  ├─ eigenständig, wiederholt gebraucht, nur DIESES Projekt
+  │     → agentic-harness/project/<thema>.md        (wird nie exportiert)
+  └─ für ALLE Projekte bzw. eine Projektart sinnvoll
+        → Eintrag in harness-learnings.md → beim Release als Profil-Doc oder universelle Doc mit Gerüst
+```
+
+Eine neue Projekt-Doc bekommt den Standard-Kopf (Typ „Projektdoku“), einen konkreten Leseauslöser unter „Projektspezifische Ergänzungen“ in `AGENTS.md` im Format `- **Thema:** bei <konkretem Auslöser> → agentic-harness/project/<thema>.md` und eine eigene Zeile mit ihrem Pfad in `agentic-harness/harness-map.md` (unter der allgemeinen Zeile `project/<thema>.md`). Der Auslöser nennt Aufgaben, nicht das Thema allein: „bei personenbezogenen Daten, Löschung oder Auskunft“ statt „Datenschutz“. Unter `agentic-harness/docs/` liegen nur Docs mit universellem Rahmen und Abschnitt „Projektspezifische Befüllung“; das Export-Skript erwartet diese Trennung dort in jeder Datei.
 
 ## Bei neuen, umbenannten oder entfernten Dateien
 

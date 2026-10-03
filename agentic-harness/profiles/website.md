@@ -12,7 +12,7 @@
 Das Profil ergänzt den universellen Harness für Website-Projekte. Es hat drei Teile:
 
 - **Teil A – Pflichtregeln:** nur Konsistenz, Bedienbarkeit, Rechte und Nachweis, keine Stilvorgaben. Gilt in jedem Website-Projekt mit diesem Profil, auch wenn ein ganz anderes Design nachgebaut wird.
-- **Teil B – Stil-Defaults:** bewährte Gestaltungsentscheidungen. Gelten als Voreinstellung, sind aber abwählbar; eine Abweichung steht in `agentic-harness/docs/design.md` des Projekts.
+- **Teil B – Stil-Defaults:** bewährte Gestaltungsentscheidungen. Gelten als Voreinstellung, sind aber abwählbar; eine Abweichung steht in `agentic-harness/docs/design.md` des Projekts. Beim Erkunden von Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0) ausgesetzt: Dort gilt nur Teil A, damit jeder Entwurf eine eigene Gestaltung bekommt.
 - **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten, eine bewährte Dateistruktur und ein Veröffentlichungsweg zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
 
 Neue Erkenntnisse kommen je nach Verbindlichkeit in Teil A, B oder C; projektbezogene Werte (Farben, Texte, konkrete Abstände) nie hierher.

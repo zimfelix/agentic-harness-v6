@@ -1,4 +1,4 @@
-# Agentic Harness v5.9
+# Agentic Harness v5.10
 
 Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): `AGENTS.md` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; `agentic-harness/` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch die Beschreibung des Produkts.
 
@@ -43,8 +43,8 @@ du oder Sie, sachlich oder locker, Sprache(n)
 ## Vorbilder und No-Gos
 Was gefällt (mit Begründung), was auf keinen Fall?
 
-## Bekannte Vorgaben
-Technik, die gesetzt ist oder ausgeschlossen (z. B. „muss mit Outlook laufen“, „keine Cloud“), Datenschutz, Betrieb
+## Technik und Betrieb
+Wo und wie soll es laufen (Browser, Handy, Server, eigener Rechner), wer bedient und pflegt es, welche Systeme oder Daten müssen angebunden werden, wie viel Last ist zu erwarten? Was ist gesetzt oder ausgeschlossen (z. B. „muss mit Outlook laufen“, „keine Cloud“), Datenschutz. Eigene Worte genügen; das Init leitet daraus Architektur und Tech-Stack ab.
 
 ## Rahmen
 Zeit, Budget, Abgabe oder Präsentation, beteiligte Personen und Freigaben
