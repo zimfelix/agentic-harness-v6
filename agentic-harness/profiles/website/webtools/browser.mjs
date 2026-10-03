@@ -6,7 +6,7 @@ import { existsSync } from 'node:fs';
 import { mkdtemp, readdir, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, extname } from 'node:path';
-import { konfig } from './konfig.mjs';
+import { konfig, dateitypen } from './konfig.mjs';
 
 export const browserPath = [
   process.env.CHROME_PATH,
@@ -18,7 +18,7 @@ export const browserPath = [
 
 export const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.mjs':'text/javascript; charset=utf-8', '.jpg':'image/jpeg', '.png':'image/png', '.svg':'image/svg+xml', '.ico':'image/x-icon', '.woff2':'font/woff2' };
+const types = dateitypen;
 
 // Alle gebauten Seiten eines Ordners als Routen, z. B. ['/', '/ablauf/', …].
 // Ordner aus `interneOrdner` (z. B. Konzeptseiten unter /konzepte/) gehören nicht zur Website und fehlen hier.

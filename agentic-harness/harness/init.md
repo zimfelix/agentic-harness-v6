@@ -25,7 +25,7 @@ Lege im Init nur fest, was entschieden ist. Ist die Richtung noch offen, erkunde
 | 2 – ein Prototyp | die gewählte Idee muss man sehen oder ausprobieren, bevor man festlegt | einen Wegwerf-Prototyp bauen (bei Software ohne Oberfläche z. B. Trockenlauf mit Beispieldaten oder kleinster technischer Durchstich) |
 | 3 – mehrere Varianten | nur wenn ausdrücklich beauftragt | je Variante eine eigene Leitidee und eigene Gestaltung; geteilt werden nur Inhalte und Messwerkzeuge |
 
-Beim Erkunden gelten nur die Pflichtregeln eines passenden Profils (Teil A) und die Prüfschleife im Zielmedium; keine Specs, keine befüllten Projekt-Docs, keine gemeinsame Gestaltungsbasis. Unterlagen sind Inspiration, die eigene Leitidee hat Vorrang. Prototypen und Varianten sind intern (`agentic-harness/docs/architecture.md`, „Varianten, Konzeptseiten und Archiv“). `Pending Project Init` bleibt stehen. Nach der Auswahl folgt das Init: Die gewählte Richtung wird Basis, der Rest wandert ins Archiv.
+Beim Erkunden gelten nur die Pflichtregeln eines passenden Profils (Teil A) und die Prüfschleife im Zielmedium; keine Specs, keine befüllten Projekt-Docs, keine gemeinsame Gestaltungsbasis. Unterlagen sind Inspiration, die eigene Leitidee hat Vorrang. Prototypen und Varianten sind intern (`agentic-harness/docs/architecture.md`, „Varianten, Konzeptseiten und Archiv“) und liegen in einem eigenen Ordner (z. B. `entwuerfe/`); Werkzeuge eines Profils prüfen ihn ohne Projekt-Setup (Website: `ORDNER=entwuerfe`, `agentic-harness/profiles/website/README.md`). `Pending Project Init` bleibt stehen. Nach der Auswahl folgt das Init: Die gewählte Richtung wird Basis, der Rest wandert ins Archiv.
 
 ## 1. Ersten Schritt klären
 

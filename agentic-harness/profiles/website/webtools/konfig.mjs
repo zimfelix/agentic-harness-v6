@@ -20,5 +20,20 @@ const standard = {
 const datei = join(process.cwd(), 'website.config.mjs');
 const projekt = existsSync(datei) ? (await import(pathToFileURL(datei).href)).default : {};
 
-export const konfig = { ...standard, ...projekt };
+// Statischer Ordner ohne Build (z. B. Entwürfe beim Erkunden, init.md Abschnitt 0): ORDNER=entwuerfe liefert und prüft
+// diesen Ordner direkt, ohne website.config.mjs und ohne Build; interne Ordner gibt es dann nicht.
+const ordner = process.env.ORDNER;
+const statisch = ordner ? { quelle: ordner, ausgabe: ordner, styles: ordner, build: null, interneOrdner: [] } : {};
+
+export const konfig = { ...standard, ...projekt, ...statisch };
+
+// Dateitypen für Vorschau und Prüfserver (eine Tabelle für beide).
+export const dateitypen = {
+  '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8',
+  '.js':'text/javascript; charset=utf-8', '.mjs':'text/javascript; charset=utf-8', '.json':'application/json; charset=utf-8',
+  '.txt':'text/plain; charset=utf-8', '.xml':'application/xml; charset=utf-8', '.webmanifest':'application/manifest+json',
+  '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png', '.gif':'image/gif', '.webp':'image/webp', '.avif':'image/avif',
+  '.svg':'image/svg+xml', '.ico':'image/x-icon', '.woff':'font/woff', '.woff2':'font/woff2', '.ttf':'font/ttf', '.pdf':'application/pdf',
+  '.mp4':'video/mp4', '.webm':'video/webm',
+};
 export const projektOrdner = process.cwd();

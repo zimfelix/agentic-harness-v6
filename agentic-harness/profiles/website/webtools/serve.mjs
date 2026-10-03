@@ -8,11 +8,11 @@ import { networkInterfaces } from 'node:os';
 import { join, normalize, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { routesIn } from './browser.mjs';
-import { konfig } from './konfig.mjs';
+import { konfig, dateitypen } from './konfig.mjs';
 const root = join(process.cwd(), konfig.ausgabe);
 // Geräte-Vorschau: Vorlage aus dem Website-Profil, unverändert ausgeliefert (eine Quelle für Projekt und Harness-Vorlage).
 const devicePreview = fileURLToPath(new URL('../device-preview.html', import.meta.url));
-const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.mjs':'text/javascript; charset=utf-8', '.jpg':'image/jpeg', '.png':'image/png', '.svg':'image/svg+xml', '.ico':'image/x-icon', '.woff2':'font/woff2' };
+const types = dateitypen;
 // Baut vor jeder Anfrage neu, sobald sich Dateien in konfig.quelle geändert haben – Browser-Refresh genügt.
 let builtAt = Date.now();
 const newestSource = async (dir = join(process.cwd(), konfig.quelle)) => {
@@ -24,6 +24,7 @@ const newestSource = async (dir = join(process.cwd(), konfig.quelle)) => {
   return newest;
 };
 const rebuildIfChanged = async () => {
+  if (!konfig.build) return; // statischer Ordner (ORDNER=…): nichts zu bauen
   if (await newestSource() <= builtAt) return;
   builtAt = Date.now();
   const [befehl, ...argumente] = konfig.build;

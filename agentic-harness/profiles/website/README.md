@@ -55,10 +55,10 @@ Allgemeine Prüf- und Vorschau-Werkzeuge für statische Websites. Sie brauchen N
 
 | Datei in `webtools/` | Aufgabe | Typischer Aufruf |
 |---|---|---|
-| `konfig.mjs` | Standardwerte (Pfade, Build-Befehl, Port, Prüfbreiten, interne Ordner) + Abweichungen aus `website.config.mjs` des Projekts | – |
+| `konfig.mjs` | Standardwerte (Pfade, Build-Befehl, Port, Prüfbreiten, interne Ordner) + Abweichungen aus `website.config.mjs` des Projekts; Dateitypen für Vorschau und Prüfserver; mit `ORDNER=<ordner>` statischer Modus ohne Build und ohne Konfiguration (z. B. Entwürfe beim Erkunden) | – |
 | `browser.mjs` | startet Brave oder Chrome unsichtbar und steuert ihn; statischer Server für den Build-Ordner; Liste aller Seiten | Import in Tests und Werkzeugen |
-| `pruefen.mjs` | misst auf allen Seiten und Prüfbreiten: Überlauf, Schriften, Skriptfehler, fehlende Dateien, Felder unter 16 px, Bedienelemente unter 24 px, Kontrast | `npm run pruefen` |
-| `serve.mjs` | lokale Vorschau, baut bei Änderungen neu, eigene 404-Seite, Geräte-Vorschau unter `/_geraete/` | `npm run dev` |
+| `pruefen.mjs` | misst auf allen Seiten und Prüfbreiten: Überlauf, Schriften, Skriptfehler, fehlende Dateien, Felder unter 16 px, Bedienelemente unter 24 px, Kontrast | `npm run pruefen`; Entwürfe: `ORDNER=entwuerfe node <webtools>/pruefen.mjs` |
+| `serve.mjs` | lokale Vorschau, baut bei Änderungen neu, eigene 404-Seite, Geräte-Vorschau unter `/_geraete/` | `npm run dev`; Entwürfe ohne Build: `ORDNER=entwuerfe PORT=… node <webtools>/serve.mjs` |
 | `vorschau-dauerhaft.sh` | richtet die Vorschau als macOS-Dienst ein (startet beim Anmelden und nach Abstürzen neu) | `npm run vorschau` (`-- status`, `-- entfernen`) |
 | `device-preview.mjs` | öffnet die Geräte-Vorschau in Brave, startet die Vorschau bei Bedarf | `npm run geraete` |
 | `screens.mjs` | ganzseitige Screenshots aller Seiten; Vergleich zweier Aufnahmen | `npm run screens -- <ordner>` |
