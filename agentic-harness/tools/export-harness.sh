@@ -110,7 +110,8 @@ if [ "$MODUS" = neu ]; then
   cp -R "$TMP"/. "$ZIEL"/
   echo "Harness nach $ZIEL exportiert. Nächster Schritt: Ordner mit dem Agenten öffnen und den Auftrag geben."
 else
-  rsync -a --delete --exclude '.git' --exclude '.idea' --exclude '.DS_Store' "$TMP"/ "$ZIEL"/
+  # --checksum: gleich große Dateien (z. B. README mit v5.14 → v5.16) sonst je nach Zeitstempel übersprungen
+  rsync -a --checksum --delete --exclude '.git' --exclude '.idea' --exclude '.DS_Store' "$TMP"/ "$ZIEL"/
   echo "Vorlage in $ZIEL aktualisiert. Änderungen:"
   git -C "$ZIEL" status --short
   echo "Diff prüfen, committen und erst nach Freigabe pushen."

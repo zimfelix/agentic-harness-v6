@@ -1,7 +1,7 @@
 # Inspiration – gelungene Website-Entwürfe
 
 > - **Typ:** Referenz
-> - **Status:** Fünf Einträge (Oberfranken, 2026): drei ganze Entwürfe (einer mit Abschnitten), zwei Abschnitte.
+> - **Status:** Drei Einträge (Oberfranken, 2026): zwei ganze Entwürfe (einer mit Abschnitten), ein Abschnitt.
 > - **Zuständigkeit:** Vom Auftraggeber als gelungen bewertete Entwürfe oder Abschnitte so festhalten, dass klar ist, **was genau** daran gut ist (Schrift, Farbe, Anordnung, Atmosphäre …) und was davon übertragbar ist.
 > - **Gilt bei:** Erkunden von Website-Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen, einem Auftrag mit Bezug auf einen Eintrag („wie oberfranken-magazin, aber …“) und auf Auftrag „in die Sammlung aufnehmen“.
 > - **Ladebeziehungen:** Über `agentic-harness/harness/init.md` (Abschnitt 0) und `agentic-harness/profiles/website.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
@@ -15,8 +15,6 @@ Suchen nach Stärke: Spalte „Stark in“. Details, Farben und Übertragbares i
 |---|---|---|---|
 | [`oberfranken-magazin`](oberfranken-magazin/steckbrief.md) | ganzer Entwurf + 4 Abschnitte | Anordnung (Seitenverlauf) · Grafik · Farbe · Atmosphäre · Schrift | stimmigster Gesamtaufbau, Berge als Übergang, grünes Design, braun-rote Wellen, Porträtkarten, Kalenderliste, warmes Papier, kleine Themenpunkte; Hero schwach |
 | [`oberfranken-kompass`](oberfranken-kompass/steckbrief.md) | ganzer Entwurf | Grafik · Anordnung · Schrift | genial, Sternenkarte auf Dunkel (Aktivität als Helligkeit), simpel und auf den Punkt, Dashboard-Kacheln, relative Zeiten |
-| [`oberfranken-dialog`](oberfranken-dialog/steckbrief.md) | ganzer Entwurf | Anordnung · Bedienung | Chatfenster, Seitenleiste, Vorschlagskacheln |
-| [`oberfranken-buehne`](oberfranken-buehne/steckbrief.md) | Abschnitt | Anordnung | clean, Kennzahl links + nummerierte Schritte rechts, dunkle Fläche |
 | [`oberfranken-frag`](oberfranken-frag/steckbrief.md) | Abschnitt | Anordnung · Bedienung | clean, simpel wie Google, Chat-Hero, Antworten als Mini-Wort-Pillen, Eingabefeld als hellster Punkt |
 
 **Kategorien für „Stark in“:** Schrift · Farbe · Atmosphäre · Anordnung · Grafik · Bedienung · Details. Nur nennen, was der Auftraggeber lobt oder was die Wirkung nachweislich trägt.
