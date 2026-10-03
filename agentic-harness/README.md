@@ -129,7 +129,7 @@ Wie das Gate im Einzelnen arbeitet (welche Datei was liest und liefert, Rückspr
 | Ebene | Dateien | Wandert in eine neue Vorlage? |
 |---|---|---|
 | **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `agentic-harness/tools/` (Export-Skript), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md`, `project/README.md`, der Abschnitt „Projektstart mit dem Agentic Harness“ der Root-`README.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
-| **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten; Zubehör eines Profils im gleichnamigen Ordner (z. B. `profiles/website/device-preview.html` und die Werkzeuge in `profiles/website/webtools/`) | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
+| **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B wählbare Stil-Vorschläge (kein Standard), Teil C optionaler Baukasten; Zubehör eines Profils im gleichnamigen Ordner (z. B. `profiles/website/device-preview.html` und die Werkzeuge in `profiles/website/webtools/`) | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
 | **Projekt** | Abschnitt „Projektspezifische Befüllung“ in `project.md` und `docs/*.md`, „Projektspezifische Ergänzungen“ in `AGENTS.md`, Ideas, Specs, `project/brief.md`, Learnings-Einträge, Produktteil der Root-`README.md`, Produktcode, Tests, Archiv | nein; wird zurückgesetzt oder weggelassen |
 
 Neue Erkenntnisse wandern je nach Reichweite: für jedes Projekt → universelle Datei; für eine Projektart → Profil; nur für dieses Produkt → Projektdatei.
@@ -178,7 +178,7 @@ Ausführlich mit Grafik und Aufrufen: `profiles/website/README.md`.
 
 **Universell heißt: offen bis zum Init.** Der Harness legt weder Projektart noch Stack, Architektur, Tests oder Profil fest. Bei jedem neuen Projekt werden Ziel, erster Ablauf und das dafür Nötige im Project Init neu besprochen. `AGENTS.md` führt dorthin, `harness/init.md` treibt die Klärung und schreibt das Bestätigte in die Projektabschnitte. Fehlende Festlegungen in der Vorlage sind deshalb gewollt.
 
-**Ein weiteres Profil** (z. B. Automation, API) folgt dem Muster von `profiles/website.md`: Kopf mit „Gilt bei“ als Ladeauslöser, zusätzliche Init-Fragen, Teil A Pflichtregeln, Teil B abwählbare Defaults, Teil C optionaler Baukasten. `AGENTS.md` lädt jedes gewählte Profil über eine allgemeine Zeile; im universellen Teil ist dafür nichts zu ergänzen außer dem Eintrag in `harness-map.md`.
+**Ein weiteres Profil** (z. B. Automation, API) folgt dem Muster von `profiles/website.md`: Kopf mit „Gilt bei“ als Ladeauslöser, zusätzliche Init-Fragen, Teil A Pflichtregeln, Teil B wählbare Vorschläge, Teil C optionaler Baukasten. `AGENTS.md` lädt jedes gewählte Profil über eine allgemeine Zeile; im universellen Teil ist dafür nichts zu ergänzen außer dem Eintrag in `harness-map.md`.
 
 ## Harness weiterentwickeln
 

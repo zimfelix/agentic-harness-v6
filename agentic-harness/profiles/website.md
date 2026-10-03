@@ -2,9 +2,9 @@
 
 > - **Typ:** Designregel
 > - **Status:** Aus einem ersten Website-Projekt (2026) abgeleitet; an weiteren Websites zu bestätigen.
-> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, abwählbare Stil-Defaults, optionale Bausteine, eine vorgeschlagene Dateistruktur und einen Veröffentlichungsweg für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte, Nachweis und Betrieb von Websites festhalten.
+> - **Zuständigkeit:** Projektübergreifende Pflichtregeln, wählbare Stil-Vorschläge, optionale Bausteine, eine vorgeschlagene Dateistruktur und einen Veröffentlichungsweg für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte, Nachweis und Betrieb von Websites festhalten.
 > - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `agentic-harness/docs/design.md` fest, welche.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`. Zubehör (§6): Geräte-Vorschau `agentic-harness/profiles/website/device-preview.html` und Werkzeuge in `agentic-harness/profiles/website/webtools/` (Übersicht: `agentic-harness/profiles/website/README.md`).
+> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`. Beim Erkunden: Inspirations-Sammlung `agentic-harness/profiles/website/inspiration/README.md`. Zubehör (§6): Geräte-Vorschau `agentic-harness/profiles/website/device-preview.html` und Werkzeuge in `agentic-harness/profiles/website/webtools/` (Übersicht: `agentic-harness/profiles/website/README.md`).
 > - **Nicht zuständig:** Konkrete Farben, Schriften, Texte oder Seiten eines Projekts festlegen. Projekte ohne dieses Profil und ohne ausdrücklichen Auftrag lesen es nicht.
 
 ## Wie das Profil wirkt
@@ -12,7 +12,7 @@
 Das Profil ergänzt den universellen Harness für Website-Projekte. Es hat drei Teile:
 
 - **Teil A – Pflichtregeln:** nur Konsistenz, Bedienbarkeit, Rechte und Nachweis, keine Stilvorgaben. Gilt in jedem Website-Projekt mit diesem Profil, auch wenn ein ganz anderes Design nachgebaut wird.
-- **Teil B – Stil-Defaults:** bewährte Gestaltungsentscheidungen. Gelten als Voreinstellung, sind aber abwählbar; eine Abweichung steht in `agentic-harness/docs/design.md` des Projekts. Beim Erkunden von Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0) ausgesetzt: Dort gilt nur Teil A, damit jeder Entwurf eine eigene Gestaltung bekommt.
+- **Teil B – Stil-Vorschläge:** der Gestaltungsstil der ersten Website mit diesem Harness, kein Standard. Gelten nur, wenn das Projekt sie in `agentic-harness/docs/design.md` ausdrücklich übernimmt. Die Gestaltung eines Projekts kommt aus Brief, Auftraggeber und gewähltem Entwurf; beim Erkunden (`agentic-harness/harness/init.md`, Abschnitt 0) gilt nur Teil A, damit jeder Entwurf eine eigene Gestaltung bekommt.
 - **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten, eine bewährte Dateistruktur und ein Veröffentlichungsweg zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
 
 Neue Erkenntnisse kommen je nach Verbindlichkeit in Teil A, B oder C; projektbezogene Werte (Farben, Texte, konkrete Abstände) nie hierher.
@@ -26,7 +26,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 - **Kontakt und Recht:** tatsächlich zustellbare Kontaktwege, Firmendaten, Formularversand ja/nein.
 - **Bilder:** Herkunft und Nutzungsrechte; bis zur Klärung markierte Platzhalter.
 - **Betrieb:** Indexierung (Prototyp `noindex`?), Domain, Hosting, Analyse-Werkzeuge; wie ein Stand online geht und wer ihn freigibt (§10).
-- **Stil und Baukasten:** Welche Stil-Defaults (Teil B) gelten, welche Bausteine (Teil C) passen zu Branche und Kunde? Wird die Dateistruktur aus Teil C §9 übernommen?
+- **Stil und Baukasten:** Gibt es einen gewählten Entwurf oder Vorbilder, deren Gestaltung übernommen wird? Werden einzelne Stil-Vorschläge (Teil B) gewünscht, welche Bausteine (Teil C) passen zu Branche und Kunde? Wird die Dateistruktur aus Teil C §9 übernommen?
 
 # Teil A – Pflichtregeln
 
@@ -38,7 +38,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 
 ## 2. Schrift, Größen und Farben
 
-- Jede eingebundene Schrift hat eine Lizenz und wird im Browser als **tatsächlich geladen** geprüft (sonst fällt sie still auf eine Ersatzschrift zurück).
+- Jede eingebundene Schrift hat eine Lizenz und wird im Browser als **tatsächlich geladen** geprüft (sonst fällt sie still auf eine Ersatzschrift zurück). Freie Schriften (z. B. SIL Open Font License) lokal einzubinden ist der übliche Weg; Systemschriften sind eine Gestaltungsentscheidung, kein Ausweg, um Lizenz- oder Ladeprüfung zu sparen.
 - Eine Größenskala für Überschriften und Text; Ausnahmen werden benannt.
 - Farben als Rollen (Hintergrund, Text, gedämpft, Linie, Akzente, helle/dunkle Fläche, Text auf dunkel), keine Einzelwerte für eine bestehende Rolle. Texte bleiben auf ihrer Fläche lesbar (Kontrast).
 - Großbuchstaben per CSS, nicht im Text.
@@ -77,7 +77,7 @@ Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/
 - **Geräte-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Die Vorlage `agentic-harness/profiles/website/device-preview.html` zeigt die Website gleichzeitig als kleines Handy, Handy, Tablet, Laptop und Monitore, live und klickbar. Der lokale Vorschau-Server liefert die Datei unverändert unter `/_geraete/` aus (gleiche Herkunft wie die Website, nie im Produktions-Build; keine Kopie im Projekt) und meldet unter `/_geraete/stand` die Seitenliste und einen Stand, der sich nach jedem Neubau ändert (`{"stand": …, "seiten": ["/", …]}`); dann lädt die Vorschau bei Änderungen selbst neu. Ein Befehl (z. B. `npm run geraete`) startet bei Bedarf die Vorschau und öffnet sie in einem neuen Browserfenster. Sie ersetzt weder Messungen noch ein echtes Gerät (Touch, Pixeldichte).
 - **Nach einer kleinen Iteration:** geänderter Bereich und betroffene gemeinsame Bausteine.
 - **Umbau ohne sichtbare Änderung** (Refactoring von Markup oder CSS): vorher und nachher alle Seiten bei den Prüfgrößen aufnehmen und vergleichen, und zwar (1) Screenshots und (2) einen Fingerabdruck der berechneten Styles je Element, Breite und Zustand (normal, Hover, Fokus, aufgeklappt, ausgewählt). Screenshots zeigen keine Zustände, der Style-Vergleich keine Fehler im Prüfwerkzeug selbst; erst beide zusammen belegen „unverändert“. Ist das gebaute Ergebnis (HTML, CSS, Skripte) vorher und nachher bytegleich, genügt dieser Dateivergleich statt der Aufnahmen. Werkzeuge: `webtools/screens.mjs` und `webtools/style-snapshot.mjs`.
-- **Konsistenz-Audit** nach übergreifenden Umbauten und vor Meilenstein-Übergaben: (1) Header und Footer überall gleich, (2) Schriften geladen, Überschriften nach Skala, (3) kein horizontaler Überlauf, (4) festgelegte Ausrichtungen fluchten (Toleranz etwa 2 px) und gewählte Stil-Defaults aus Teil B sind eingehalten, (5) Buttons und Links folgen den Bausteinen, (6) interne Links und Anker erreichen ihr Ziel, (7) keine ungenutzten Selektoren oder unverlinkten Seiten.
+- **Konsistenz-Audit** nach übergreifenden Umbauten und vor Meilenstein-Übergaben: (1) Header und Footer überall gleich, (2) Schriften geladen, Überschriften nach Skala, (3) kein horizontaler Überlauf, (4) festgelegte Ausrichtungen fluchten (Toleranz etwa 2 px) und in `design.md` übernommene Stil-Vorschläge aus Teil B sind eingehalten, (5) Buttons und Links folgen den Bausteinen, (6) interne Links und Anker erreichen ihr Ziel, (7) keine ungenutzten Selektoren oder unverlinkten Seiten.
 - **Livegang-Checkliste** vor jeder Veröffentlichung; jeder Punkt ist erledigt oder als Blocker im Projektprofil genannt:
   1. Firmendaten, Anschrift und Rechtstexte (Impressum, Datenschutz, ggf. AGB) sind geprüft und vom Auftraggeber freigegeben; kein Entwurfshinweis mehr.
   2. Leistungen, Preise und Zusagen sind bestätigt; keine Platzhalter oder Preisideen sichtbar.
@@ -95,9 +95,9 @@ Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/
 - Nach jeder Iteration kurz berichten, was sichtbar anders ist, mit Messwert oder Screenshot.
 - Gestaltungsentscheidungen des Auftraggebers so sichern, dass sie nicht wieder verloren gehen: als Token oder gemessener Test; in `design.md` nur, wenn sie eine übergreifende Regel oder eine bewusste Abweichung vom Profil sind (kurzer Gate-Weg).
 
-# Teil B – Stil-Defaults (abwählbar)
+# Teil B – Stil-Vorschläge (nur auf Wahl)
 
-Bewährt im ersten Website-Projekt; gelten, solange `design.md` nichts anderes festlegt.
+Stil der ersten Website mit diesem Harness (sachlich, ruhig, eine Schrift). Kein Standard: Ein Vorschlag gilt nur, wenn `design.md` des Projekts ihn ausdrücklich übernimmt. Gewählter Entwurf, Brief und Auftraggeber gehen vor.
 
 - **Eine Schriftfamilie** für die ganze Website.
 - **Hervorhebung in Überschriften** nur über Farbe (letzter Teil), nie kursiv oder in anderer Schrift; auf dunklen Flächen die helle Akzentfarbe.
@@ -117,7 +117,7 @@ Bewährt im ersten Website-Projekt; gelten, solange `design.md` nichts anderes f
 
 ## 8. Bausteine und Seitenaufbauten (übernehmen, anpassen oder weglassen)
 
-Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen Seiten mit dem Auftraggeber auswählen. Teil A gilt für jeden gewählten Baustein, Teil B als Voreinstellung. Die Bausteine beschreiben Aufbau und Zweck; Überschriften, Texte und Ansprache (du/Sie) entstehen je Projekt neu.
+Erprobt im ersten Website-Projekt mit diesem Harness. Beim Init oder bei neuen Seiten mit dem Auftraggeber auswählen. Teil A gilt für jeden gewählten Baustein, Teil B nur, soweit übernommen. Die Bausteine beschreiben Aufbau und Zweck; Überschriften, Texte und Ansprache (du/Sie) entstehen je Projekt neu.
 
 ### 8.1 Rahmen
 

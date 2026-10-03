@@ -4,10 +4,11 @@ Dieser Ordner gehört zum Profil [`../website.md`](../website.md). Das Profil en
 
 ```text
 profiles/
-├─ website.md                ← Regeln: Teil A Pflicht, Teil B Stil-Defaults, Teil C Baukasten
+├─ website.md                ← Regeln: Teil A Pflicht, Teil B Stil-Vorschläge, Teil C Baukasten
 └─ website/                  ← dieser Ordner
    ├─ README.md              ← diese Übersicht
    ├─ device-preview.html    ← Geräte-Vorschau: Website als Handy, Tablet, Laptop, Monitor nebeneinander
+   ├─ inspiration/           ← gelungene Entwürfe als Maßstab: Steckbriefe in README.md, Screenshots je Eintrag
    └─ webtools/              ← Prüf- und Vorschau-Werkzeuge (Node.js + Brave/Chrome), siehe „Die Werkzeuge“ unten
 ```
 
