@@ -1,4 +1,4 @@
-# Agentic Harness v5.13
+# Agentic Harness v5.14
 
 Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): `AGENTS.md` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; `agentic-harness/` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch Titel und lokale Adresse des Produkts.
 
