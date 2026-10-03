@@ -14,7 +14,7 @@ Dieser Harness ist **universell** für Softwareprojekte jeder Art. **Profile** u
 
 | Auslöser | Zusätzlich lesen | Zweck |
 |---|---|---|
-| Project Init für ein neues, leeres Produktprojekt beauftragt oder erste Produktumsetzung bei `Pending Project Init` | `agentic-harness/harness/init.md`; falls vorhanden `agentic-harness/project-brief.md` | Projektziel und Grenzen klären; einen Brief als Ausgangsbeschreibung nutzen, nicht als bestätigte Spec. |
+| Project Init für ein neues, leeres Produktprojekt beauftragt oder erste Produktumsetzung bei `Pending Project Init` | `agentic-harness/harness/init.md`; falls vorhanden `agentic-harness/project/brief.md` | Projektziel und Grenzen klären; einen Brief als Ausgangsbeschreibung nutzen, nicht als bestätigte Spec. |
 | Produktarchitektur, Produktbausteine oder deren Dateistruktur; Betrieb; neue Seiten, Routen oder Einstiege | `agentic-harness/docs/architecture.md` | Produktaufbau und Abhängigkeiten prüfen; nur Erreichbares bauen. |
 | Konzept- oder Variantenvergleich, Aufräumen, Archivieren | `agentic-harness/docs/architecture.md` (Abschnitt „Varianten, Konzeptseiten und Archiv“) | Varianten intern halten; nach Entscheidung archivieren oder löschen. |
 | Projektprofil nennt „Profil: …“ oder der Auftrag verlangt ausdrücklich ein Profil | `agentic-harness/profiles/<name>.md` nach dessen Kopfzeile „Gilt bei“ | Profilregeln als Standard anwenden; Projektwerte und Abweichungen stehen in der thematisch zuständigen Projektdatei. |
@@ -28,7 +28,7 @@ Dieser Harness ist **universell** für Softwareprojekte jeder Art. **Profile** u
 | Markdown-Datei neu anlegen, befüllen oder eine gewachsene Projektdatei verdichten | `agentic-harness/document-contract.md`; bei neuer Datei oder Rolle auch `agentic-harness/harness-map.md` | Passende Form, aktueller Stand statt Verlauf, Verweise und Kopf gegen tatsächliche Rollen und Pfade prüfen. |
 | Harness exportieren oder Harness-Release in die Vorlage vorbereiten | `agentic-harness/README.md` (Abschnitte „Harness weiterentwickeln“ und „Harness als Vorlage exportieren“) und `agentic-harness/harness-map.md` | Mit `agentic-harness/tools/export-harness.sh` in ein leeres Ziel oder einen sauberen Vorlagen-Klon; Diff zeigen; erst nach Freigabe pushen. |
 | Harness-Pfade, Dateirollen oder Ladeauslöser ändern | `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md` | Betroffene Dokumentköpfe, Einstieg und Verweise gemeinsam abgleichen. |
-| Beim Einsatz im Zielprojekt fällt eine möglicherweise universelle Stärke, Schwäche oder Unklarheit des Harnesses auf | `agentic-harness/harness-learnings.md` | Beobachtung lokal als Kandidat festhalten; universelle Harness-Dateien und Profile nur auf ausdrücklichen Auftrag ändern; Projektfakten bleiben in den zuständigen Projektdateien. |
+| Eine Schwäche oder Unklarheit des Harnesses fällt auf, ein Agentenfehler wiederholt sich, oder eine universelle Harness-Datei, ein Profil oder ein Werkzeug soll geändert werden | `agentic-harness/harness-learnings.md` | Vor einer Harness-Änderung die aktiven Einträge prüfen (nichts Bewusstes zurückdrehen); Beobachtung oder Änderung im selben Schritt als Eintrag festhalten; universelle Dateien nur auf ausdrücklichen Auftrag ändern; Projektfakten bleiben in den Projektdateien. |
 
 Treffen mehrere Auslöser zu, lies die betreffenden Dateien. Lade nicht alle Docs auf Vorrat. Neue thematische Projekt-Docs brauchen einen klaren Auslöser im Einstieg; verweise auf Regeln statt sie hier zu kopieren.
 

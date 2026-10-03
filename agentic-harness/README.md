@@ -1,12 +1,16 @@
 # Agentic Harness für neue Produktprojekte
 
-Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht – vom kleinen CLI- oder Web-Produkt bis zu größeren Vorhaben mit klar begrenztem erstem Meilenstein. Diese Datei ist die Anleitung für Menschen im Ordner `agentic-harness/`; die Root-`README.md` gehört dem jeweiligen Produkt. Der Agent wird über Root-`AGENTS.md` geführt, nicht über diese Anleitung.
+Dieser technologieoffene Harness ist für neue, leere Produktprojekte gedacht – vom kleinen CLI- oder Web-Produkt bis zu größeren Vorhaben mit klar begrenztem erstem Meilenstein. Diese Datei ist die Anleitung für Menschen im Ordner `agentic-harness/`; Landkarte (`harness-map.md`), Dokumentenvertrag (`document-contract.md`) und Learnings sind dagegen Arbeitsdokumente für den Agenten, die er über die Auslöser in `AGENTS.md` liest; die Root-`README.md` gehört dem jeweiligen Produkt. Der Agent wird über Root-`AGENTS.md` geführt, nicht über diese Anleitung.
 
 ## Schnellstart: neues Projekt aus der Vorlage
 
 1. **Anlegen:** auf GitHub „Use this template“ oder den Inhalt der Vorlage ohne `.git` in einen leeren Ordner kopieren. Ohne Git-Repository schlägt der Agent beim Init `git init` vor.
-2. **Optional beschreiben:** `agentic-harness/project-brief.md` mit Ziel, Nutzern, Wünschen und bekannten Grenzen anlegen. Der Agent nutzt sie als Ausgangsbeschreibung, nicht als bestätigte Vorgabe.
-3. **Auftrag geben:** den Ordner mit dem Coding-Agenten öffnen und in eigenen Worten sagen, was entstehen soll, z. B. „Eine Automatisierung, die meine E-Mails sortiert“ oder „Eine Website für einen Tischlereibetrieb“. Weil `harness/project.md` noch `Pending Project Init` enthält, startet der Agent das Init: gebündelte Rückfragen, danach Profil (z. B. Website) oder keines, Stack, Architektur und Tests.
+2. **Frei erzählen (optional):** in `agentic-harness/project/brief.md` die Idee in eigenen Worten beschreiben, gern als Stichworte oder kopierte Nachrichten. Ablauf und Themen zum Erzählen stehen in der Root-`README.md`, Abschnitt „Projektstart mit dem Agentic Harness“.
+
+   ```text
+   brief.md: frei erzählen ──▶ Init: was ist klar, was fehlt, was muss geklärt werden? ──▶ Anforderungen, Tech-Stack, Projektdateien
+   ```
+3. **Auftrag geben:** den Ordner mit dem Coding-Agenten öffnen und in eigenen Worten sagen, was entstehen soll, z. B. „Eine Automatisierung, die meine E-Mails sortiert“ oder „Eine Website für einen Tischlereibetrieb“. Weil `harness/project.md` noch `Pending Project Init` enthält, startet der Agent das Init: Er fasst zusammen, was der Brief schon beantwortet, fragt gebündelt nur nach, was zur Umsetzung fehlt, und klärt danach Profil (z. B. Website) oder keines, Stack, Architektur und Tests.
 4. **Freigeben:** Nach dem Init den ersten Schritt ausdrücklich beauftragen. Init allein ist keine Implementierungsfreigabe.
 
 Erkenntnisse über den Harness sammelt jedes Projekt in `agentic-harness/harness-learnings.md`; wie erprobte Erkenntnisse zurück in die Vorlage kommen, steht unter „Harness weiterentwickeln“.
@@ -110,34 +114,8 @@ Tatsächlicher Arbeits- und Entscheidungsfluss
  ```
 
 
- Welche Datei wird wann gelesen?
+**Welche Datei wann gelesen wird**, steht an genau einer Stelle: in der Routing-Tabelle von `AGENTS.md`; Rollen und Ladewege aller Dateien beschreibt `harness-map.md`.
 
- ```text
-   AUFTRAG
-     ↓
-   AGENTS.md                         Einstieg: ordnet die Aufgabe zu
-     ├─ IMMER → harness/core.md       steuert den Arbeits- und Entscheidungsfluss
-     ├─ IMMER → harness/project.md    bestätigte Ziele, Grenzen, aktive Befehle
-     │
-     ├─ BEI Project Init ───────────→ harness/init.md
-     ├─ BEI gewähltem Profil ───────→ profiles/<name>.md (laut „Gilt bei“)
-     ├─ BEI Architektur/Betrieb ───→ docs/architecture.md
-     ├─ BEI Code/Refactor ──────────→ docs/code.md
-     ├─ BEI sichtbarer Änderung ───→ docs/design.md
-     ├─ BEI Testplanung/-arbeit ───→ docs/testing.md
-     │
-     ├─ BEI offener größerer Idee ──→ ideas/I000-readme.md
-     │                                └→ konkrete Idea;
-     │                                   Vorlage nur bei Neuanlage
-     ├─ BEI neuem/geändertem
-     │  Nutzerverhalten ────────────→ specs/S000-readme.md
-     │                                └→ betroffene Spec(s);
-     │                                   Vorlage nur bei Neuanlage
-     │
-     ├─ VOR Abschluss ──────────────→ harness/verification/gate.md
-     └─ BEI Harness-/MD-Pflege ─────→ harness-map.md /
-                                      document-contract.md
- ```
 Teststruktur:
 ```text
    Auftrag + project.md + ggf. Spec (Akzeptanzkriterien)
@@ -172,11 +150,53 @@ Teststruktur:
 
 | Ebene | Dateien | Wandert in eine neue Vorlage? |
 |---|---|---|
-| **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `agentic-harness/tools/` (Export-Skript), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
-| **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten; Werkzeugvorlagen eines Profils im gleichnamigen Ordner (z. B. `profiles/website/device-preview.html`) | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
-| **Projekt** | Abschnitt „Projektspezifische Befüllung“ in `project.md` und `docs/*.md`, „Projektspezifische Ergänzungen“ in `AGENTS.md`, Ideas, Specs, `project-brief.md`, Learnings-Einträge, Root-`README.md`, Produktcode, Tests, Archiv | nein; wird zurückgesetzt oder weggelassen |
+| **Universell** | `AGENTS.md` (oberer Teil), `agentic-harness/harness/` (Core, Init, Verifikation, Vorlagen), `agentic-harness/tools/` (Export-Skript), `document-contract.md`, `harness-map.md`, diese README, `ideas/I000-readme.md`, `specs/S000-readme.md`, `project/README.md`, der Abschnitt „Projektstart mit dem Agentic Harness“ der Root-`README.md` sowie Kopf und „Universeller Rahmen“ von `harness/project.md` und `docs/*.md` | ja, unverändert |
+| **Profil** | `agentic-harness/profiles/*.md`, z. B. `website.md`: Teil A Pflichtregeln, Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten; Zubehör eines Profils im gleichnamigen Ordner (z. B. `profiles/website/device-preview.html` und die Werkzeuge in `profiles/website/webtools/`) | ja; das neue Projekt wählt beim Init ein passendes Profil (oder keines) und hält Übernahmen und Abweichungen in der thematisch zuständigen Projektdatei fest (z. B. Gestaltung in `docs/design.md`, Prüfgrößen in `docs/testing.md`) |
+| **Projekt** | Abschnitt „Projektspezifische Befüllung“ in `project.md` und `docs/*.md`, „Projektspezifische Ergänzungen“ in `AGENTS.md`, Ideas, Specs, `project/brief.md`, Learnings-Einträge, Produktteil der Root-`README.md`, Produktcode, Tests, Archiv | nein; wird zurückgesetzt oder weggelassen |
 
 Neue Erkenntnisse wandern je nach Reichweite: für jedes Projekt → universelle Datei; für eine Projektart → Profil; nur für dieses Produkt → Projektdatei.
+
+## Ausführbare Dateien im Harness
+
+Neben den Markdown-Dateien enthält der Harness wenige Programme. Sie bleiben in jedem Projekt **unverändert**; ein Projekt passt sie nur über Einstellungen an. Ist ein Werkzeug für alle Projekte falsch oder lückenhaft, wird es nicht im Projekt geflickt, sondern als Learning festgehalten und in der nächsten Version verbessert.
+
+**Regeln und Werkzeuge im Verification Loop.** Markdown-Dateien sind Regeln, die der Agent liest. Programme sind Werkzeuge, die er ausführt. Die Werkzeuge sind Teil des Verification Loop: Der Harness legt den Ablauf fest, die Werkzeuge liefern im Schritt „Prüfen“ die Messwerte.
+
+```text
+Regel (Profil, .md):  „Felder mindestens 16 px“
+      │ Agent liest sie und baut
+      ▼
+   bauen ──▶ PRÜFEN ──▶ erfüllt? ──ja──▶ übergeben            Ablauf: harness/verification/
+               ▲  │          │                                 (gate.md, implementation.md, fail.md)
+               │  │         nein ──▶ korrigieren ──┐
+               │  └─ Werkzeug misst (z. B. pruefen.mjs):       Messgeräte: Profil-Werkzeuge
+               │     „/kontakt/ Feld 15 px ❌“                 (z. B. profiles/website/webtools/)
+               └───────────────────────────────────┘
+```
+
+Der Ablauf ist universell und gilt für jedes Projekt. Die Werkzeuge hängen am Profil, weil jede Projektart anders gemessen wird; ohne Werkzeuge läuft die Schleife nach Augenmaß.
+
+| Datei | Ebene | Aufgabe |
+|---|---|---|
+| `tools/export-harness.sh` | universell | exportiert die universellen Dateien und Profile in eine Vorlage oder ein leeres Projekt und prüft auf Projektreste |
+| `profiles/website/webtools/konfig.mjs` | Profil Website | Standardwerte aller Webtools (Pfade, Build-Befehl, Port, Prüfbreiten); liest die Abweichungen aus `website.config.mjs` des Projekts |
+| `…/webtools/browser.mjs` | Profil Website | startet Brave oder Chrome unsichtbar, steuert ihn und liefert den Build-Ordner aus; Grundlage aller Prüfungen und Browsertests |
+| `…/webtools/pruefen.mjs` | Profil Website | misst die Pflichtregeln aus Teil A auf allen Seiten: Überlauf, Schriften, Skriptfehler, fehlende Dateien, Feldgrößen, Bedienelemente, Kontrast |
+| `…/webtools/serve.mjs` | Profil Website | lokale Vorschau, baut bei Änderungen neu, eigene 404-Seite, Geräte-Vorschau unter `/_geraete/` |
+| `…/webtools/vorschau-dauerhaft.sh` | Profil Website | macht die Vorschau zum macOS-Dienst (startet beim Anmelden und nach Abstürzen neu) |
+| `…/webtools/device-preview.mjs` | Profil Website | öffnet die Geräte-Vorschau (`profiles/website/device-preview.html`) in Brave |
+| `…/webtools/screens.mjs` | Profil Website | Screenshots aller Seiten vorher und nachher, für Umbauten ohne sichtbare Änderung |
+| `…/webtools/style-snapshot.mjs` | Profil Website | Fingerabdruck der berechneten Styles je Element, Breite und Zustand, ebenfalls für Umbauten |
+| `…/webtools/css.mjs`, `unused-css.mjs`, `css-audit.mjs` | Profil Website | CSS lesen, ungenutzte Selektoren finden und auf Wunsch entfernen |
+
+Ausführlich mit Grafik und Aufrufen: `profiles/website/README.md`.
+
+**Was ein Website-Projekt selbst anlegt** (projektspezifisch, beim Init oder mit der ersten Seite):
+
+- `website.config.mjs`: nur die Abweichungen von den Standardwerten, z. B. Name, Port oder ruhende CSS-Dateien; passen alle Standardwerte, entfällt die Datei.
+- einen Build, der die Website in den Ausgabeordner schreibt (Standard: `scripts/build.mjs` → `dist/`); ein anderer Befehl steht in `website.config.mjs`.
+- eigene Erzeugungsskripte nach Profilregel, z. B. Favicons aus dem eigenen Zeichen.
+- npm-Skripte, die die Webtools aufrufen (`dev`, `vorschau`, `pruefen`, `screens` …), und inhaltliche Tests; Browsertests importieren `browser.mjs` aus den Webtools.
 
 **Universell heißt: offen bis zum Init.** Der Harness legt weder Projektart noch Stack, Architektur, Tests oder Profil fest. Bei jedem neuen Projekt werden Ziel, erster Ablauf und das dafür Nötige im Project Init neu besprochen. `AGENTS.md` führt dorthin, `harness/init.md` treibt die Klärung und schreibt das Bestätigte in die Projektabschnitte. Fehlende Festlegungen in der Vorlage sind deshalb gewollt.
 
@@ -190,7 +210,7 @@ Die Vorlage enthält nur erprobte Änderungen. Neue Erkenntnisse durchlaufen im 
 2. **Kandidat:** Wirkt etwas über das Projekt hinaus, hält der Agent es in `harness-learnings.md` fest: Anlass, Ziel-Datei, Stand der Erprobung.
 3. **Universell:** Erst auf ausdrücklichen Auftrag, möglichst nach Erprobung, wandert es in eine universelle Datei oder ein Profil.
 
-So bleiben die universellen Dateien jederzeit freigabefähig. Die Learnings-Liste wächst im Projekt weiter; jeder Eintrag trägt einen Status (Offen, Lokal übernommen, In Vorlage vX.Y; Lebenszyklus in `harness-learnings.md`). Die Vorlage startet mit leerer Liste. Parallele Sitzungen ändern universelle Dateien nicht nebenbei; sie notieren Kandidaten.
+So bleiben die universellen Dateien jederzeit freigabefähig. In `harness-learnings.md` stehen nur aktive Einträge (Offen, Lokal übernommen); jede Harness-Änderung bekommt dort sofort einen Eintrag mit Grund. Beim Release übernommene Einträge wandern nach `project/learnings-archiv.md` (Lebenszyklus in `harness-learnings.md`). Die Vorlage startet mit leerer Liste und ohne Archiv. Parallele Sitzungen ändern universelle Dateien nicht nebenbei; sie notieren Kandidaten.
 
 **Release in die Vorlage** gesammelt, wenn erprobte Änderungen vorliegen, nicht nach jeder Sitzung:
 
@@ -198,7 +218,7 @@ So bleiben die universellen Dateien jederzeit freigabefähig. Die Learnings-List
 2. **Learnings gegenprüfen:** Für jeden Eintrag „Lokal übernommen“ prüft der Agent, ob die Regel noch so in der genannten Zieldatei steht. Fehlt sie oder wurde sie verändert, zieht er sie nach oder setzt den Eintrag zurück auf „Offen“ und meldet das.
 3. Du wählst aus; Ausgewähltes wird universell, der Rest bleibt Kandidat.
 4. Export mit dem Skript in den Vorlagen-Klon (nächster Abschnitt, mit `VERSION=vX.Y`), Diff prüfen, committen.
-5. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`. Die exportierten Einträge stehen danach im Projekt auf „In Vorlage vX.Y“.
+5. Nach Freigabe pushen und beide Stände taggen: im Projekt `harness-vX.Y`, in der Vorlage `vX.Y`. Die exportierten Einträge wandern als „In Vorlage vX.Y“ aus `harness-learnings.md` nach `project/learnings-archiv.md`.
 
 ## Harness als Vorlage exportieren
 
@@ -213,11 +233,11 @@ PRODUKTBEGRIFFE='produktname|domain|ort' sh agentic-harness/tools/export-harness
 
 Was das Skript tut:
 
-1. Kopiert `AGENTS.md`, `harness/`, `docs/`, `profiles/`, `tools/`, diese README, Vertrag, Landkarte, Learnings sowie `ideas/I000-readme.md` und `specs/S000-readme.md`; legt `.gitignore` und eine kurze Root-README an, die die Vorlage beschreibt (mit `VERSION=vX.Y` samt Versionsnummer in der Überschrift).
+1. Kopiert `AGENTS.md`, `harness/`, `docs/`, `profiles/`, `tools/`, diese README, Vertrag, Landkarte, Learnings sowie `ideas/I000-readme.md`, `specs/S000-readme.md` und `project/README.md`; legt `.gitignore` und eine Root-README aus Vorlagenkopf und dem universellen Abschnitt „Projektstart mit dem Agentic Harness“ an (mit `VERSION=vX.Y` samt Versionsnummer in der Überschrift).
 2. Ersetzt in `harness/project.md` und `docs/*.md` alles unter „Projektspezifische Befüllung“ durch „Noch offen (Project Init).“ und setzt die Status-Zeilen zurück (`Pending Project Init` bzw. „Noch offen (Project Init).“).
-3. Leert in `AGENTS.md` die „Projektspezifischen Ergänzungen“ und in `harness-learnings.md` alles nach dem Abschnitt „Abgrenzung“.
-4. Bricht ohne Änderung am Ziel ab, wenn es E-Mail-Adressen, die übergebenen Produktbegriffe oder Verweise auf fehlende `agentic-harness/…`-Dateien findet (außer dem optionalen `project-brief.md`).
+3. Leert in `AGENTS.md` die „Projektspezifischen Ergänzungen“ und in `harness-learnings.md` alles nach dem Abschnitt „Zweck und Regeln“.
+4. Bricht ohne Änderung am Ziel ab, wenn es E-Mail-Adressen, die übergebenen Produktbegriffe oder Verweise auf fehlende `agentic-harness/…`-Dateien findet (außer dem optionalen `project/brief.md`).
 
-Nicht übernommen werden: Produktcode (`src/`, `scripts/`, `tests/`), `archiv/`, `dist/`, konkrete Ideas und Specs, `project-brief.md`, `.git/` und IDE-Dateien.
+Nicht übernommen werden: Produktcode (`src/`, `scripts/`, `tests/`), `archiv/`, `dist/`, konkrete Ideas und Specs, `project/brief.md` und `project/learnings-archiv.md`, die Einträge in `harness-learnings.md`, `.git/` und IDE-Dateien.
 
 Ein neu exportierter Ordner startet wie im Schnellstart: mit dem Agenten öffnen und den Auftrag geben.

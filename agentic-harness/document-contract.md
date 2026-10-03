@@ -39,7 +39,7 @@ Vorlagen und Idea-/Spec-Artefakte einschließlich `ideas/I000-readme.md` und `sp
 
 ## Projektspezifische Gerüste
 
-In `agentic-harness/harness/project.md` und den Projekt-Docs (`agentic-harness/docs/*.md`) bleiben Kopf und „Universeller Rahmen“ erhalten. `agentic-harness/harness/init.md` ersetzt den Platzhalter **„Noch offen (Project Init).“** unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Die Root-`README.md` enthält nach dem Export nur einen Vorlagenhinweis; sie wird für Menschen ohne Metakopf mit bestätigten Produktinformationen befüllt; vorhandene Produktinhalte werden ergänzt.
+In `agentic-harness/harness/project.md` und den Projekt-Docs (`agentic-harness/docs/*.md`) bleiben Kopf und „Universeller Rahmen“ erhalten. `agentic-harness/harness/init.md` ersetzt den Platzhalter **„Noch offen (Project Init).“** unter „Projektspezifische Befüllung“ durch bestätigte Inhalte. Die Root-`README.md` enthält nach dem Export einen Vorlagenkopf und den universellen Abschnitt „Projektstart mit dem Agentic Harness“; beim Init ersetzt die Produktbeschreibung (für Menschen, ohne Metakopf) den Vorlagenkopf, vorhandene Produktinhalte werden ergänzt. Der universelle Abschnitt bleibt unverändert am Ende; das Export-Skript übernimmt ihn ab seiner Überschrift.
 
 Beim Befüllen dieser Gerüste auch den Kopf gegen das Projekt prüfen: Stimmen **Zuständigkeit, Auslöser, Ladebeziehungen und Abgrenzung** noch? Status nur ändern, wenn die Datei tatsächlich befüllt ist. Offene Entscheidungen ausdrücklich offen lassen. Neue Projekt-Docs brauchen einen erreichbaren Leseauslöser; eine geänderte Dateirolle ist Harness-Arbeit.
 
@@ -62,7 +62,7 @@ Jede Information hat genau einen Ort. Fehlt der passende Ort, entsteht Wildwuchs
 | Teststrategie, Suiten, Werkzeuge, Prüfgrößen und Methoden | `agentic-harness/docs/testing.md` |
 | Offene größere Vorhaben | Idea unter `agentic-harness/ideas/` |
 | Verlauf, was wann geändert wurde, einzelne Prüfläufe | Git (Commit-Nachricht) und Übergabe im Chat, **nicht** in Projektdateien |
-| Beobachtungen über den Harness selbst | `agentic-harness/harness-learnings.md` |
+| Beobachtungen über den Harness, wiederkehrende Agentenfehler, Begründung von Harness-Änderungen | `agentic-harness/harness-learnings.md` (aktiv), `agentic-harness/project/learnings-archiv.md` (erledigt) |
 
 ## Aktueller Stand statt Verlauf
 

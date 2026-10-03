@@ -1,32 +1,49 @@
-# Harness-Learnings – übertragbare Beobachtungen
+# Harness-Learnings – Agentic-Coding-Learnings
 
 > - **Typ:** Lernnotiz
-> - **Status:** Noch keine Beobachtungen.
-> - **Zuständigkeit:** Beim Einsatz in diesem Projekt beobachtete Stärken, Schwächen und Unklarheiten des universellen Harnesses für eine spätere Prüfung festhalten.
-> - **Gilt bei:** Wenn bei Project Init, Umsetzung, Rückfragen oder Verifikation eine möglicherweise projektübergreifende Harness-Erkenntnis entsteht.
-> - **Ladebeziehungen:** Bei diesem Auslöser über `AGENTS.md` lesen; für eine konkrete Beobachtung nur die betroffene Harness-Datei hinzuziehen. Format und neue Ladewege nach `agentic-harness/document-contract.md` und `agentic-harness/harness-map.md` prüfen.
-> - **Nicht zuständig:** Produktfakten, projektspezifische Regeln oder eine automatische Änderung am Quell-Harness.
+> - **Status:** Noch keine Einträge.
+> - **Zuständigkeit:** Harness-Schwächen und wiederkehrende Agentenfehler bis zur Lösung festhalten; Harness-Änderungen mit Grund dokumentieren (Regeln unten).
+> - **Gilt bei:** einer Harness-Schwäche oder einem wiederholten Agentenfehler; **vor jeder Änderung** an einer universellen Harness-Datei, einem Profil oder einem Werkzeug; beim Release.
+> - **Ladebeziehungen:** Über `AGENTS.md`; für einen Eintrag nur die betroffene Harness-Datei hinzuziehen. Archiv: `agentic-harness/project/learnings-archiv.md`. Release: `agentic-harness/README.md` („Harness weiterentwickeln“).
 
-## Abgrenzung
+## Zweck und Regeln
 
-Hier landen **Kandidaten für universelle Verbesserungen**, keine Gesprächsprotokolle und keine bestätigten Regeln. Gewählter Stack, Produktgrenzen und konkrete Befehle gehören in `agentic-harness/harness/project.md` und die betroffenen `agentic-harness/docs/`-Dateien. Pro Beobachtung: Anlass, betroffene Datei oder Rolle, warum sie für andere Projekte relevant ist, Vorschlag bzw. Umsetzung und Status.
+**Was hier hineingehört:** Agentic-Coding-Learnings, also Erkenntnisse über den Harness und über die Arbeit des Agenten, nicht über das Produkt:
 
-**Lebenszyklus:** Die Liste wächst im Projekt und wird dort nicht geleert. Jeder Eintrag beginnt mit seinem Status:
+- Der Agent schafft etwas wiederholt nicht oder macht denselben Fehler mehrfach (z. B. widersprüchliche Stände, eine Prüfung, die nichts findet).
+- Eine Regel, ein Ablauf oder ein Werkzeug des Harness fehlt, ist unklar oder führt in die Irre.
+- Eine Änderung an einer universellen Harness-Datei, einem Profil oder einem Werkzeug wurde vorgenommen.
+
+Pro Eintrag: Anlass, betroffene Datei oder Rolle, warum es über dieses Projekt hinaus wichtig ist, Vorschlag oder Umsetzung, Status. Produktfakten gehören in `agentic-harness/harness/project.md` und `agentic-harness/docs/`.
+
+**Vor jeder Harness-Änderung:** Zuerst die aktiven Einträge hier lesen. Widerspricht die geplante Änderung einem Eintrag „Lokal übernommen“, wird eine bewusste Entscheidung vielleicht zurückgedreht: erst klären, nicht stillschweigend überschreiben.
+
+**Nach jeder Harness-Änderung:** Im selben Schritt einen Eintrag „Lokal übernommen“ mit Grund anlegen oder einen offenen Eintrag umstellen. So bleibt die Änderung auch für Sitzungen ohne Gesprächsverlauf (z. B. nach `/clear`) nachvollziehbar.
+
+**Lebenszyklus:**
 
 ```text
-Beobachtung ──▶ Offen ──▶ (Auftrag) universelle Datei geändert ──▶ Lokal übernommen
-                                                                        │
-Release in die Vorlage: steht die Regel noch so in der Zieldatei? ◀─────┘
-        ├─ ja   ──▶ In Vorlage vX.Y   (bleibt hier als Spur)
+Beobachtung ──▶ Offen ──▶ universelle Datei geändert ──▶ Lokal übernommen
+                                                              │
+Release in die Vorlage: steht die Regel noch so in der Zieldatei? ◀┘
+        ├─ ja   ──▶ In Vorlage vX.Y ──▶ verschoben nach agentic-harness/project/learnings-archiv.md
         └─ nein ──▶ nachziehen oder zurück auf Offen
 ```
 
-- **Offen:** Kandidat, keine universelle Datei geändert.
-- **Lokal übernommen:** in die genannte universelle Datei oder das Profil eingearbeitet, aber noch nicht in der Vorlage.
-- **In Vorlage vX.Y:** beim Release gegengeprüft und exportiert.
+- **Offen:** Kandidat oder wiederkehrender Fehler, keine universelle Datei geändert.
+- **Lokal übernommen:** in die genannte Datei eingearbeitet, aber noch nicht in der Vorlage.
+- **In Vorlage vX.Y:** beim Release gegengeprüft, exportiert und ins Archiv verschoben (dort mit diesem Status vorangestellt).
 
-Beim Release prüft der Agent jeden Eintrag mit „Lokal übernommen“ gegen die genannte Zieldatei, denn eine übernommene Regel kann später wieder geändert worden sein (`agentic-harness/README.md`, „Harness weiterentwickeln“). Die Vorlage selbst startet mit leerer Liste: Der Export übernimmt nur diesen Abschnitt.
+Der Status ergibt sich aus dem Unterabschnitt unter „Aktive Learnings“; ändert er sich, wandert der Eintrag in den passenden Unterabschnitt.
 
-## Beobachtungen
+Die Vorlage startet ohne Einträge: Der Export übernimmt nur Kopf und diesen Abschnitt. Das Archiv ist Projektgeschichte und wird nie exportiert.
 
-Noch keine Beobachtungen.
+## Aktive Learnings
+
+### Offen
+
+Keine.
+
+### Lokal übernommen
+
+Keine.

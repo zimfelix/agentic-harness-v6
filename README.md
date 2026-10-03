@@ -1,5 +1,54 @@
-# Agentic Harness v5.8
+# Agentic Harness v5.9
 
-Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): `AGENTS.md` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; `agentic-harness/` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt, danach ersetzt der Agent diese Datei durch die Produkt-README.
+Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): `AGENTS.md` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; `agentic-harness/` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch die Beschreibung des Produkts.
 
-**Start:** Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md).
+**Start:** Idee in `agentic-harness/project/brief.md` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier die Beschreibung des Produkts; der folgende Abschnitt bleibt am Ende.
+
+## Projektstart mit dem Agentic Harness
+
+Dieses Projekt nutzt den Agentic Harness: `AGENTS.md` führt den Coding-Agenten, `agentic-harness/README.md` erklärt den Harness für Menschen. Dieser Abschnitt ist universell und bleibt in jedem Projekt unverändert am Ende der README; darüber steht die Beschreibung des Produkts.
+
+### So fängt ein Projekt an
+
+```text
+1. ERZÄHLEN  (brief.md, Auftraggeber)          2. KONKRETISIEREN  (Project Init, Agent)
+   frei und in eigenen Worten:                    prüft wie ein Kontrolleur, was zur Umsetzung fehlt:
+   Idee, Problem, Wunsch, Ziel                    ├─ Was ist schon klar? → kurz zur Bestätigung zusammenfassen
+   Stichworte aus den Themen unten                ├─ Was fehlt oder widerspricht sich? → gezielt nachfragen
+   Unterlagen, Beispiele, No-Gos         ──▶      ├─ Anforderungen präzisieren, Tech-Stack vorschlagen
+   bekannte Vorgaben, auch technische             └─ erst Bestätigtes in project.md, docs/ und Specs schreiben
+```
+
+Der Brief muss nicht vollständig oder geordnet sein; Stichworte, Freitext oder kopierte Nachrichten genügen. Was er beantwortet, fragt das Init nicht noch einmal ab. Der Brief ist **optional**; ohne ihn klärt das Init alles im Gespräch. Er bleibt als Quelle erhalten und wird nicht nachgeführt, bestätigte Entscheidungen stehen danach in `agentic-harness/harness/project.md`, `docs/` und Specs.
+
+### Themen zum Erzählen
+
+Zum Anlegen nach `agentic-harness/project/brief.md` kopieren und frei ausfüllen; nicht passende Themen weglassen.
+
+```markdown
+# Brief – {Projektname}
+
+## Idee und Ziel
+Was soll entstehen, welches Problem löst es, was soll danach anders sein?
+
+## Zielgruppen
+Wer nutzt es, und was brauchen diese Menschen?
+
+## Inhalte und Daten
+Was gibt es schon (Texte, Daten, Bilder, Systeme), was liefert der Auftraggeber, was fehlt?
+
+## Ton und Ansprache
+du oder Sie, sachlich oder locker, Sprache(n)
+
+## Vorbilder und No-Gos
+Was gefällt (mit Begründung), was auf keinen Fall?
+
+## Bekannte Vorgaben
+Technik, die gesetzt ist oder ausgeschlossen (z. B. „muss mit Outlook laufen“, „keine Cloud“), Datenschutz, Betrieb
+
+## Rahmen
+Zeit, Budget, Abgabe oder Präsentation, beteiligte Personen und Freigaben
+
+## Unterlagen
+Bereitgestellte Dateien (z. B. unter `material/`) und wie sie genutzt werden dürfen
+```

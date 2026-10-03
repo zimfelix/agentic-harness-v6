@@ -6,13 +6,15 @@
 > - **Ladebeziehungen:**
 >   - Vorher: `AGENTS.md` → `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`.
 >   - Für Dateirollen und Format: `agentic-harness/harness-map.md` und `agentic-harness/document-contract.md`.
->   - Falls vorhanden: `agentic-harness/project-brief.md` als Ausgangsbeschreibung (keine bestätigte Spec).
+>   - Falls vorhanden: `agentic-harness/project/brief.md` als Ausgangsbeschreibung (keine bestätigte Spec); Themen und Ablauf: Root-`README.md`, Abschnitt „Projektstart mit dem Agentic Harness“.
 >   - Danach: betroffene Projektdateien befüllen; Abschluss nach Abschnitt 4.
 > - **Nicht zuständig:** Bestehende Anwendungen analysieren, spätere Features planen oder eine Produktspec als umgesetzt erklären.
 
 **Grundsatz:** Der Harness ist universell und legt weder Projektart noch Stack, Architektur, Tests oder Profil fest. Diese Entscheidungen fallen hier, gemeinsam mit dem Auftraggeber, und landen erst nach Bestätigung in den Projektabschnitten. Fehlt eine Festlegung für ein neues Projekt, ist das kein Mangel des Harnesses, sondern eine Init-Frage.
 
 ## 1. Ersten Schritt klären
+
+**Brief erzählt, Init konkretisiert:** Liegt `agentic-harness/project/brief.md` vor, gilt, was er beantwortet, als gegeben: Fasse es kurz zur Bestätigung zusammen, statt es neu abzufragen. Prüfe dann wie ein Kontrolleur, was für die Umsetzung noch fehlt oder sich widerspricht, und frage nur dazu nach. Inhaltliche Themen (Idee, Zielgruppen, Inhalte, Ton, Vorbilder, Vorgaben, Rahmen) stehen einmal in der Root-`README.md`, Abschnitt „Projektstart mit dem Agentic Harness“; dieser Abschnitt ergänzt, was zur Umsetzung dazukommt: Anforderungen, Tech-Stack, Daten, Betrieb, Tests und Arbeitsabsprachen. Fehlt der Brief, kläre die inhaltlichen Themen zuerst im Gespräch.
 
 Kläre Nutzer, Problem und den ersten beobachtbaren Ablauf (z. B. Bildschirm, Befehl, Schnittstelle oder automatisch erzeugtes Ergebnis). Halte Umfang und Nicht-Ziele des ersten Meilensteins fest.
 
@@ -26,7 +28,7 @@ Fasse den ersten Schritt und offene Entscheidungen zusammen. Bündle zusammengeh
 
 **Profil wählen:** Profile unter `agentic-harness/profiles/` bündeln Regeln und Init-Fragen für eine Projektart (z. B. `website.md`). Passt eines, trage „Profil: …“ oben im Projektprofil ein, stelle zusätzlich die Init-Fragen des Profils und nutze seine Regeln als Standard. Wann das Profil später gelesen wird, steht in seinem Kopf unter „Gilt bei“; `AGENTS.md` verweist darauf. Was aus dem Profil übernommen, angepasst oder abgewählt wird, steht in der thematisch zuständigen Projektdatei (Grenzen → Projektprofil, Struktur und Betrieb → Architektur, Stack → Code, Prüfungen → Testing, Gestaltung → Design). Passt keines (z. B. CLI, API, Bibliothek, Datenpipeline), arbeite ohne Profil; bewährte Regeln einer neuen Projektart können später als eigenes Profil entstehen.
 
-**Zusatzblock bei sichtbarer Oberfläche** (Website, Web- oder Mobile-App, Desktop-Oberfläche; nur fragen, was für den ersten Schritt zählt):
+**Zusatzblock bei sichtbarer Oberfläche** (Website, Web- oder Mobile-App, Desktop-Oberfläche; nur fragen, was für den ersten Schritt zählt und nicht schon im Brief steht):
 
 - **Marke und Anmutung:** Name, Logo, vorhandene Farben und Schriften (mit Lizenz), Vorbilder. Vorbilder liefern Struktur, nicht Texte, Bilder oder Logos.
 - **Zielgeräte:** Plattformen, Bildschirmgrößen, Barrierefreiheit.
@@ -49,7 +51,7 @@ Ersetze „Noch offen (Project Init)“ unter „Projektspezifische Befüllung�
 - `agentic-harness/docs/design.md`: nur bei sichtbarer Oberfläche. Bestätigte Farbrollen, Schrift mit Lizenz, Größenskala und erste Bausteine eintragen; Unentschiedenes als offen markieren. Ohne Oberfläche den Bereich ausdrücklich als „nicht relevant“ kennzeichnen.
 - Root-`AGENTS.md`: bei Bedarf zusätzliche Projekt-Docs mit konkretem Leseauslöser und bestätigte Arbeitsabsprachen (z. B. Live-Vorschau) unter „Projektspezifische Ergänzungen“ eintragen; keine Detailregeln kopieren.
 
-Befülle die Root-`README.md` des Zielprojekts ohne Metakopf mit bestätigtem Produktzweck und geprüften Startschritten. Enthält sie nur die Vorlagenbeschreibung aus dem Export, ersetze sie; liegen bereits Produktinformationen vor, ergänze statt zu überschreiben. Die menschliche Harness-Anleitung in `agentic-harness/README.md` bleibt davon getrennt. Erfinde keine Produktfakten.
+Befülle die Root-`README.md` des Zielprojekts ohne Metakopf mit bestätigtem Produktzweck und geprüften Startschritten. Ersetze dabei den Vorlagenkopf aus dem Export durch die Produktbeschreibung oben; liegen bereits Produktinformationen vor, ergänze statt zu überschreiben. Der Abschnitt „Projektstart mit dem Agentic Harness“ ist universell und bleibt unverändert am Ende. Die menschliche Harness-Anleitung in `agentic-harness/README.md` bleibt davon getrennt. Erfinde keine Produktfakten.
 
 ## 3. Prüf-Einstieg und Verweise prüfen
 

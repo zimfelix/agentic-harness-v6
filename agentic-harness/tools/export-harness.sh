@@ -41,21 +41,26 @@ TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
 # 1. Universelle Dateien und Profile kopieren
-mkdir -p "$TMP/$H/ideas" "$TMP/$H/specs"
+mkdir -p "$TMP/$H/ideas" "$TMP/$H/specs" "$TMP/$H/project"
 cd "$QUELLE"
 cp AGENTS.md "$TMP/"
 cp -R "$H/harness" "$H/docs" "$H/profiles" "$H/tools" "$TMP/$H/"
 cp "$H/README.md" "$H/document-contract.md" "$H/harness-map.md" "$H/harness-learnings.md" "$TMP/$H/"
 cp "$H/ideas/I000-readme.md" "$TMP/$H/ideas/"
 cp "$H/specs/S000-readme.md" "$TMP/$H/specs/"
+cp "$H/project/README.md" "$TMP/$H/project/"
 printf '.DS_Store\n.idea/\n' > "$TMP/.gitignore"
 cat > "$TMP/README.md" <<EOF
 # Agentic Harness${VERSION:+ $VERSION}
 
-Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): \`AGENTS.md\` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; \`agentic-harness/\` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt, danach ersetzt der Agent diese Datei durch die Produkt-README.
+Vorlage für Softwareprojekte mit KI-Coding-Agenten (z. B. Claude Code, Codex, Pi): \`AGENTS.md\` führt den Agenten von der Klärung über die Umsetzung bis zu einem Verifikations-Gate; \`agentic-harness/\` enthält Arbeitsablauf, Projekt-Docs, Spec- und Idea-Vorlagen sowie optionale Profile (z. B. Website). Projektart, Stack und Tests legt der Harness nicht fest: Sie werden beim Project Init mit dir geklärt; danach ersetzt der Agent diesen Kopf durch die Beschreibung des Produkts.
 
-**Start:** Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md).
+**Start:** Idee in \`agentic-harness/project/brief.md\` frei erzählen (Themen unten) oder direkt den Ordner mit dem Agenten öffnen und sagen, was entstehen soll. Anleitung: [agentic-harness/README.md](agentic-harness/README.md). Nach dem Project Init steht hier die Beschreibung des Produkts; der folgende Abschnitt bleibt am Ende.
+
 EOF
+# Universeller Abschnitt der Root-README (bis Dateiende) wandert unverändert mit
+grep -q '^## Projektstart mit dem Agentic Harness' README.md || { echo "Abschnitt „Projektstart mit dem Agentic Harness“ fehlt in README.md" >&2; exit 1; }
+awk '/^## Projektstart mit dem Agentic Harness/ { f = 1 } f' README.md >> "$TMP/README.md"
 
 # 2. Projektteile zurücksetzen
 cd "$TMP"
@@ -75,12 +80,12 @@ braucht AGENTS.md '^## Projektspezifische Ergänzungen'
 awk '/^## Projektspezifische Ergänzungen/ { print; exit } { print }' AGENTS.md > AGENTS.md.neu && mv AGENTS.md.neu AGENTS.md
 
 L="$H/harness-learnings.md"
-braucht "$L" '^## Abgrenzung'
+braucht "$L" '^## Zweck und Regeln'
 awk '
-  /^> - \*\*Status:\*\*/ { print "> - **Status:** Noch keine Beobachtungen."; next }
-  /^## / { if (gesehen) exit; if ($0 == "## Abgrenzung") gesehen = 1 }
+  /^> - \*\*Status:\*\*/ { print "> - **Status:** Noch keine Einträge."; next }
+  /^## / { if (gesehen) exit; if ($0 == "## Zweck und Regeln") gesehen = 1 }
   { print }' "$L" > "$L.neu" && mv "$L.neu" "$L"
-printf '## Beobachtungen\n\nNoch keine Beobachtungen.\n' >> "$L"
+printf '## Aktive Learnings\n\n### Offen\n\nKeine.\n\n### Lokal übernommen\n\nKeine.\n' >> "$L"
 
 # 3. Auf Reste und fehlende Verweise prüfen
 # E-Mail-Adressen sind Produktreste; SSH-Adressen von Git-Hosts (git@github.com:…) sind keine.
@@ -89,7 +94,9 @@ if [ -n "${PRODUKTBEGRIFFE:-}" ]; then
   FUND="$FUND$(grep -rniE "$PRODUKTBEGRIFFE" . || true)"
 fi
 FEHLT=$(grep -rhoE "$H/[A-Za-z0-9_./-]+\.(md|sh)" . | sort -u | while read -r p; do
-  [ -e "$p" ] || [ "$p" = "$H/project-brief.md" ] || echo "$p"
+  # Projektspezifische Dateien in project/ (Brief, Learnings-Archiv) werden bewusst nicht exportiert.
+  case "$p" in ("$H/project/README.md") ;; ("$H/project/"*) continue ;; esac
+  [ -e "$p" ] || echo "$p"
 done)
 if [ -n "$FUND" ] || [ -n "$FEHLT" ]; then
   [ -z "$FUND" ] || { echo "Mögliche Produktreste:" >&2; echo "$FUND" >&2; }

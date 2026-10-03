@@ -38,7 +38,7 @@ Werden mitexportiert; ein Projekt nutzt höchstens die zu ihm passenden.
 |---|---|---|
 | `profiles/website.md` | Für Websites: Teil A Pflichtregeln (Konsistenz, Bedienbarkeit, Rechte, Nachweis), Teil B abwählbare Stil-Defaults, Teil C optionaler Baukasten mit Branchenhinweisen, vorgeschlagener Dateistruktur und Veröffentlichungsweg | Nur wenn das Projektprofil „Profil: Website“ nennt oder ein Auftrag es ausdrücklich verlangt; über die allgemeine Profil-Zeile in `AGENTS.md`, zu den Anlässen unter „Gilt bei“ im Profilkopf (Init, sichtbare Änderungen, vor Meilensteinen und Veröffentlichung). Weitere Profile (z. B. Automation, API) nach demselben Muster; jedes nennt seine Anlässe selbst. |
 | `profiles/website/device-preview.html` | Vorlage der Geräte-Vorschau: Website gleichzeitig in mehreren Bildschirmbreiten | Kein Agenten-Ladeweg; Einrichtung nach `profiles/website.md` §6. Der Vorschau-Server des Projekts liefert die Datei unverändert aus, statt sie zu kopieren. |
-| `profiles/website/README.md`, `profiles/website/webtools/README.md` | Übersicht des Profil-Zubehörs: welche Datei welche Aufgabe hat, wie ein Projekt sie nutzt | Für Menschen und beim Ändern des Zubehörs; bei jeder Ergänzung im Profilordner mit anpassen (`document-contract.md`). |
+| `profiles/website/README.md` | Übersicht des Profil-Zubehörs: welche Datei welche Aufgabe hat, wie ein Projekt sie nutzt | Für Menschen und beim Ändern des Zubehörs; bei jeder Ergänzung im Profilordner mit anpassen (`document-contract.md`). |
 | `profiles/website/webtools/` | Prüf- und Vorschau-Werkzeuge für Websites (Browser steuern, Pflichtregeln messen, Vorschau mit Neubau, Dauer-Dienst, Screenshots, Style-Vergleich, CSS-Audit); Projekteinstellungen über `website.config.mjs` im Projekt | Kein Agenten-Ladeweg; über npm-Skripte und Tests des Projekts aufgerufen; Einrichtung nach Profil §6 und Teil C §9. |
 
 ## Geteilte Dateien: universeller Rahmen + Projektbefüllung
@@ -52,7 +52,8 @@ Kopf (außer der Status-Zeile) und „Universeller Rahmen“ sind universell. St
 | `docs/code.md` | Geltender Stack, Abhängigkeiten und Codekonventionen | Bei Codearbeit; Modulgrenzen → `docs/architecture.md`; Gestaltungswerte → `docs/design.md`. |
 | `docs/design.md` | Gestaltungsregeln: Farbrollen, Schrift, Größenskala, Bausteine, Zustände, was im Zielmedium nachzuweisen ist (nur bei sichtbarer Oberfläche) | Bei sichtbaren Änderungen, neuen Seiten oder Abschnitten und beim kurzen Gate-Weg. |
 | `docs/testing.md` | Auswahl von Testebenen/-arten, Ausführungsanlässen, Werkzeugen und Teststruktur; bei Oberflächen Prüfgrößen und Methoden | Bei Init und Testarbeit aus Ziel, Architektur und Stack; konkrete Befehle → `harness/project.md`. |
-| `harness-learnings.md` | Übertragbare Stärken, Schwächen und Verbesserungsfragen aus einem Zielprojekt | Nur bei einer konkreten Harness-Beobachtung über `AGENTS.md`. Beim Export Beobachtungen leeren; übernommene Verbesserungen stehen dann bereits in den universellen Dateien. |
+| `harness-learnings.md` | Agentic-Coding-Learnings: Harness-Schwächen, wiederkehrende Agentenfehler und dokumentierte Harness-Änderungen, nur aktive Einträge; Regeln und Lebenszyklus im universellen Abschnitt „Zweck und Regeln“ | Über `AGENTS.md` bei einer Harness-Beobachtung, einem wiederholten Fehler und vor jeder Harness-Änderung. Beim Export Einträge leeren. |
+| `project/learnings-archiv.md` | Erledigte Learnings (in eine Vorlage übernommen) als Spur, warum Regeln existieren | Beim Release beschrieben; vor dem Zurückdrehen einer Regel nachsehen. Projektspezifisch, wird nie exportiert. |
 
 ## Nur projektspezifisch
 
@@ -60,8 +61,9 @@ Diese Dateien und Ordner werden **nicht** in eine neue Vorlage übernommen.
 
 | Pfad | Eine Verantwortung | Direkter Ladeweg |
 |---|---|---|
-| `README.md` (Root) | Produktüberblick, Einrichtung und Start für Menschen | Beim Init ohne Metakopf mit bestätigten Produktinformationen befüllen; beim Export nur mit kurzer Vorlagenbeschreibung anlegen. |
-| `project-brief.md` (optional) | Ausgangsbeschreibung eines Produkts für Project Init | Bei Project Init über `AGENTS.md`, falls vorhanden; bestätigte Fakten, Annahmen und offene Entscheidungen getrennt halten. |
+| `README.md` (Root) | Oben Produktüberblick, Einrichtung und Start für Menschen (projektspezifisch); unten der universelle Abschnitt „Projektstart mit dem Agentic Harness“ mit Ablauf „Erzählen → Konkretisieren“ und den Themen für den Brief | Beim Init den Produktteil oben befüllen, den universellen Abschnitt unverändert lassen; beim Export Vorlagenkopf + universeller Abschnitt. |
+| `project/brief.md` (optional) | Ausgangsbeschreibung eines Produkts für Project Init | Bei Project Init über `AGENTS.md`, falls vorhanden; bestätigte Fakten, Annahmen und offene Entscheidungen getrennt halten. |
+| `project/README.md` | Universelle Anleitung zum Projektordner (Brief, Learnings-Archiv); verweist für Ablauf und Themen auf die Root-README | Beim Anlegen eines Briefs und bei Project Init über `harness/init.md`; wird exportiert, `brief.md` daneben nicht. |
 | `ideas/Innn-*.md`, `specs/Snnn-*.md` | Konkrete Ideen bzw. beauftragtes Soll | Nur betroffene Artefakte über `ideas/I000-readme.md` bzw. `specs/S000-readme.md` lesen. |
 | Archivordner (z. B. `archiv/`, Root) | Verworfene oder nicht mehr verlinkte Teile außerhalb von Build, Tests und Ladewegen | Wird nicht geladen; nur auf ausdrücklichen Auftrag öffnen oder ändern. Name steht im Projektprofil. |
 | Produktcode, Tests, Assets (Root) | Das Produkt selbst | Über die Projekt-Docs. |
