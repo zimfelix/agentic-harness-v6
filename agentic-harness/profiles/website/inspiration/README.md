@@ -13,7 +13,7 @@ Suchen nach Stärke: Spalte „Stark in“. Details, Farben und Übertragbares i
 
 | Eintrag | Art | Stark in | Stichworte |
 |---|---|---|---|
-| [`oberfranken-magazin`](oberfranken-magazin/steckbrief.md) | ganzer Entwurf + 4 Abschnitte | Anordnung (Seitenverlauf) · Grafik · Farbe · Atmosphäre · Schrift | stimmigster Gesamtaufbau, Berge als Übergang, grünes Design, braun-rote Wellen, Porträtkarten, Kalenderliste, warmes Papier, kleine Themenpunkte; Hero schwach |
+| [`oberfranken-magazin`](oberfranken-magazin/steckbrief.md) | ganzer Entwurf + 4 Abschnitte | Anordnung (Seitenverlauf) · Grafik · Farbe · Atmosphäre · Schrift | stimmigster Gesamtaufbau, Berge als nahtloser Übergang (zwei Abschnitte wirken wie einer), grünes Design, braun-rote Wellen, Porträtkarten, Kalenderliste, warmes Papier, kleine Themenpunkte; Hero schwach |
 | [`oberfranken-kompass`](oberfranken-kompass/steckbrief.md) | ganzer Entwurf | Grafik · Anordnung · Schrift | genial, Sternenkarte auf Dunkel (Aktivität als Helligkeit), simpel und auf den Punkt, Dashboard-Kacheln, relative Zeiten |
 | [`oberfranken-frag`](oberfranken-frag/steckbrief.md) | Abschnitt | Anordnung · Bedienung | clean, simpel wie Google, Chat-Hero, Antworten als Mini-Wort-Pillen, Eingabefeld als hellster Punkt |
 
