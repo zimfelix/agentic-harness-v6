@@ -23,7 +23,7 @@ Oder einen bereinigten Export ohne lokale Projektbefüllung/Learnings erzeugen:
 VERSION=v4.5 sh agentic-harness/tools/export-harness.sh /pfad/zum/leeren-projekt
 ```
 
-Projektordner mit dem Agenten öffnen und frei erzählen, was entstehen soll. Optional zuerst `project/brief.md` schreiben. `AGENTS.md` führt über Init → Soll/Specs → Umsetzung → Nachweise. Details: [Anleitung](agentic-harness/harness/README.md).
+Projektordner mit dem Agenten öffnen und frei erzählen, was entstehen soll. Eine vorhandene Ausgangsbeschreibung kannst du dabei direkt angeben. `AGENTS.md` führt über Init → Soll/Specs → Umsetzung → Nachweise. Details: [Anleitung](agentic-harness/harness/README.md).
 
 ## Struktur
 
@@ -32,7 +32,7 @@ agentic-harness/
 ├── AGENTS.md                  Einstieg und Leseauslöser
 ├── harness/                   Core, Init, Projektprofil, Verification, Templates
 ├── profiles/                  Website und Business Software: Regeln, Referenzen, Tools, Assets
-├── docs/, project/            Projektwissen und Ausgangsbeschreibung
+├── docs/                      Bedarfsbezogenes Projektwissen
 ├── ideas/, specs/             Vorhaben und beauftragtes Verhalten
 ├── tools/                     Struktur-/Init-Check und Export
 ├── document-contract.md       Dokumentpflege

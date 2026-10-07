@@ -4,7 +4,7 @@
 
 ## 0. Ausgangslage und Erkundung
 
-Bestand, Git, Struktur, vorhandene Befehle/Tests prüfen. Optionalen `project/brief.md` als Quelle lesen, nicht als bestätigte Spec behandeln. Ohne Git `git init` vorschlagen; Commits nur auf Auftrag.
+Bestand, Git, Struktur, vorhandene Befehle/Tests prüfen. Eine vom Auftraggeber angegebene Ausgangsbeschreibung als Quelle lesen, nicht als bestätigte Spec behandeln. Ohne Git `git init` vorschlagen; Commits nur auf Auftrag.
 
 Ist die Richtung klar, direkt zum Brief. Bei offener Richtung genau eine passende Stufe wählen:
 

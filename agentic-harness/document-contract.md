@@ -7,7 +7,7 @@
 - Vor dem Anlegen prüfen: Passt das Wissen in Code/Konfiguration, Projektprofil, Spec oder vorhandene Doc? Nur dauerhaft benötigtes Wissen dokumentieren, nicht Offensichtliches oder ausführbare Werte doppeln.
 - Neue Doc nur bei eigenständigem, wiederholt benötigtem Thema. Keine Pflicht zu zusätzlichen Dokumenten/Ordnern; gewählte Profile dürfen risikobezogen konkrete Docs verlangen.
 - Steuerungs-/Projekt-Docs beginnen mit Titel und kurzem **Zuständigkeit/Gilt bei**-Hinweis. Nur notwendige direkte Leseverweise und Abgrenzungen ergänzen. Kein obligatorischer sechsteiliger Metakopf. Profile benennen Zuständigkeit und Leseauslöser; Ideas/Specs nutzen ihr Template; menschliche READMEs keinen Agenten-Metakopf.
-- Neue Projekt-Docs über konkreten Auslöser in `AGENTS.md` erreichbar machen. Beispiel: „bei Personendaten, Auskunft oder Löschung → `project/datenschutz.md`“. Eine separate Landkarte ist nicht erforderlich; Einstieg plus lokale Verweise müssen ausreichen.
+- Neue Projekt-Docs über konkreten Auslöser in `AGENTS.md` erreichbar machen. Beispielauslöser für eine bei Bedarf angelegte Datenschutz-Doc: „bei Personendaten, Auskunft oder Löschung“. Eine separate Landkarte ist nicht erforderlich; Einstieg plus lokale Verweise müssen ausreichen.
 - Ein Leseverweis ist keine Änderungsfreigabe. Harness-Regeln nur auf Auftrag ändern.
 
 ## Ablage und Quelle der Wahrheit
@@ -21,8 +21,8 @@
 | Nicht technisch abbildbare Codekonventionen / technische Schulden | `docs/code.md` |
 | Teststrategie, Regression, Umgebungen und Prüfgrößen | `docs/testing.md` |
 | Übergreifende Gestaltung / bewusste Abweichungen | `docs/design.md`; konkrete Tokens im Code referenzieren |
-| Eigenständiges Projektthema | `project/<thema>.md` oder fachlich passende Doc; neue Docs sind rein projektspezifisch |
-| Harness-Beobachtungen/Änderungsgründe | `harness-learnings.md`; erledigt ggf. `project/learnings-archiv.md` |
+| Eigenständiges Projektthema | Fachlich passende Doc unter `docs/`, nur bei Bedarf; zusätzliche Docs sind rein projektspezifisch |
+| Harness-Beobachtungen/Änderungsgründe | `harness-learnings.md`; ältere Details in Git |
 | Verlauf und einzelne Prüfläufe | Git und Übergabe; kein Gesprächsprotokoll in geltenden Regeln |
 
 ## Profile als einzige Quelle

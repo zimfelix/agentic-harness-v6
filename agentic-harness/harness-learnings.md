@@ -6,16 +6,19 @@
 
 Produktfakten gehören in Projektprofil/Docs/Specs. Hier pro Eintrag kurz: Anlass, betroffene Regel, Grund, Vorschlag/Umsetzung und Erprobungsstand. Vor Änderungen aktive Einträge prüfen, bewusste Entscheidungen nicht still zurückdrehen. Neue Regeländerungen im selben Schritt dokumentieren; universelle Änderungen nur auf Auftrag.
 
-**Offen** = Beobachtung/Hypothese. **Lokal übernommen** = Regel/Tool geändert, Wirksamkeit ggf. noch ungeprüft. Nach beauftragtem Release gegen Zieldateien prüfen und erledigte Einträge ggf. mit Release-Verweis nach `project/learnings-archiv.md` verschieben. Export übernimmt diese Regeln, keine Einträge/Archive. Statische Checks belegen keine konstante Agentenleistung.
+**Offen** = Beobachtung/Hypothese. **Lokal übernommen** = Regel/Tool geändert, Wirksamkeit ggf. noch ungeprüft. Nach beauftragtem Release gegen Zieldateien prüfen und erledigte Einträge verdichten; ältere Details bleiben in Git, kein separater Archivordner. Export übernimmt diese Regeln, keine Einträge/Archive. Statische Checks belegen keine konstante Agentenleistung.
 
 ## Aktive Learnings
 
 ### Offen
 
 - Mail-Prototyp: Agent las Init/Geschäftssoftware-Regeln, schrieb dennoch Produktcode bei `Pending Project Init`, ohne Projektbefüllung, Strukturentscheidung, erforderliche Docs, Soll/Prüfplan oder Tests. Auftraggeber stoppte. Beobachteter Regelverstoß; vorhandene Regeln verhinderten ihn nicht. Offen: Wirksamkeit des Vor-Code-Checks in frischer Agentensitzung. Readiness ist kein technisches Schreibverbot.
-- Aus Lite erhalten: Robustheit von Spec-Status bei externen Testblockern, risikobezogener Check-/TDD-Auswahl, Fortsetzung nach Kontextverlust, Nichtumsetzung zurückgestellter Ideen und Begrenzung des Dokumentenwachstums praktisch offen. Review: `project/harness-review.md`.
+- Aus Lite erhalten: Robustheit von Spec-Status bei externen Testblockern, risikobezogener Check-/TDD-Auswahl, Fortsetzung nach Kontextverlust, Nichtumsetzung zurückgestellter Ideen und Begrenzung des Dokumentenwachstums praktisch offen.
 
 ### Lokal übernommen
+
+- Vorlagenordner `project/` auf Auftrag entfernt: Ausgangsbeschreibung optional direkt angeben, bestätigten Brief im Init nach `harness/project.md` überführen. Produkt-Soll bleibt in Specs; keine zweite Projektprofil-/Spec-Definition. Review-Erkenntnisse hier verdichtet, Verweise und Export angepasst. Alte saubere Export-Klone dürfen ihre frühere Projekt-README verlieren; konkrete Produktnotizen werden weiter geschützt. Nachprüfung: 8/8 Prüfungen bestanden (neuer Export/Kopie, idempotente Aktualisierung, Migration des alten v4.5-Exports, Schutz konkreter Projektdateien/verschmutzter Ziele, fehlende Abhängigkeit, Init-Readiness). Strukturcheck, Shell-Syntax und `git diff --check` bestanden; keine neue Testdatei in der Vorlage.
+- Review-Grundlage erhalten: kurze vollständige Instruktionen und Referenzen nach Bedarf ([Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)); native Skill-Erkennung bewusst nicht übernommen. Für neue Python-Anwendungen `src` als Ausgangsvorschlag ([PyPA](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)), nicht als Pflicht für jeden Stack. Primärquellen geprüft, keine umfassende Marktstudie/Agenten-Verhaltensmessung. Überflüssige Metaköpfe und Pflicht-README-Abläufe entfernt; keine zusätzlichen Leergerüste oder blinden Abstraktionen.
 
 - v4.5 führt ursprünglichen Harness und sinnvolle Lite-Regeln in einer Vorlage zusammen: kurzer Einstieg, Brief/Technik/Struktur im Init, ein Verification Loop, Bereichs-Specs/Ideas/Templates erhalten. Produktverhalten vor Code spezifizieren; begrenzte Erkundungs-Spikes ausdrücklich abgrenzen. Separate Lite-Variante entfällt; Mail-Prototyp und separate Worktrees unverändert.
 - Auf ausdrücklichen Wunsch nur `profiles/`: Website und Business Software bündeln Einstieg, Referenzen, Werkzeuge und Assets. Native Skill-/Adapterordner entfernt, keine Kopiersynchronisierung. Profile werden durch `AGENTS.md` ausdrücklich geladen. Website-Stil bleibt opt-in; Geschäftssoftware-Bereiche risikobezogen wählen.

@@ -14,7 +14,7 @@ AGENTS.md → core.md + project.md
 
 ## Start
 
-In ein leeres Projekt den Inhalt dieser Vorlage einschließlich versteckter Verzeichnisse und relativer Links kopieren, oder aus einem befüllten Projekt exportieren. Idee frei erzählen; optional `project/brief.md`. Init nimmt bestehende Vorgaben auf, bestätigt den Brief und legt die Technik/Struktur fest. Ein vorhandener Bauauftrag läuft nach Init-Go weiter; Init allein beauftragt keinen Produktbau.
+In ein leeres Projekt den Inhalt dieser Vorlage einschließlich versteckter Verzeichnisse und relativer Links kopieren, oder aus einem befüllten Projekt exportieren. Idee frei erzählen oder eine vorhandene Ausgangsbeschreibung angeben. Init nimmt bestehende Vorgaben auf, bestätigt den Brief und legt die Technik/Struktur fest. Ein vorhandener Bauauftrag läuft nach Init-Go weiter; Init allein beauftragt keinen Produktbau.
 
 Projektarten liegen nur unter `profiles/<name>/`: `profile.md` routet Fachregeln/Referenzen, `tools/` und `assets/` bündeln das Zubehör. Auswahl/Bereiche stehen in `harness/project.md`; `AGENTS.md` schreibt das Lesen bei passenden Aufgaben vor. Keine native automatische Skill-Erkennung oder Adapter-Synchronisierung. Pflegevorgaben: `document-contract.md`.
 
@@ -43,6 +43,6 @@ Das Skript lokalisiert seine Quelle unabhängig vom Arbeitsverzeichnis, setzt Pr
 
 Vor Harness-/Profil-/Tooländerung aktive Learnings lesen. Gilt die Erkenntnis universell, für eine Projektart oder nur lokal? Nur ausdrücklich beauftragte Regeln übernehmen; im selben Schritt Verweise/Export und Learning mit Grund nachführen. Produktfakten bleiben lokal.
 
-Release: Diff und aktive Learnings prüfen, bewusst ausgewählte Änderungen exportieren, Kopier-/Export-/Konsistenztests ausführen. Commit/Push/Tags nur nach Auftrag. Übernommene Learnings können mit Release-Verweis nach `project/learnings-archiv.md` wandern; neue Vorlage startet ohne Einträge.
+Release: Diff und aktive Learnings prüfen, bewusst ausgewählte Änderungen exportieren, Kopier-/Export-/Konsistenztests ausführen. Commit/Push/Tags nur nach Auftrag. Übernommene Learnings nach dem Release verdichten; die Historie bleibt in Git, neue Exporte starten ohne Einträge.
 
 Kleine Textdateien und grüne Strukturtests garantieren keine Agentenqualität. Frische Agentenproben müssen mindestens Init vor Code, Spec vor Verhalten, Fortsetzung und Verhalten bei fehlenden Nachweisen prüfen.

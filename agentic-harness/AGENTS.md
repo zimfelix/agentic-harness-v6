@@ -4,7 +4,7 @@ Immer zuerst `harness/core.md` und `harness/project.md` lesen. Alle Pfade gelten
 
 | Auslöser | Zusätzlich lesen |
 |---|---|
-| Init beauftragt oder Produktarbeit bei `Pending Project Init` | `harness/init.md`; optional `project/brief.md` |
+| Init beauftragt oder Produktarbeit bei `Pending Project Init` | `harness/init.md`; vorhandene Ausgangsbeschreibung, falls vom Auftraggeber angegeben |
 | Neues/geändertes Nutzerverhalten | `specs/S000-readme.md` und betroffene Specs |
 | Größeres oder unklareres Vorhaben | `ideas/I000-readme.md` und betroffene Idea |
 | Architektur, Datenmodell, Schnittstellen, Betrieb, Dateistruktur | `docs/architecture.md` |

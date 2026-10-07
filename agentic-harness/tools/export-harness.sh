@@ -33,7 +33,9 @@ if any(p.name not in allowed for p in root.iterdir()):
     sys.exit('Ziel enthält Produkt-/Fremddateien; Aktualisierung abgelehnt')
 for directory, allowed_names in [('docs',{'architecture.md','code.md','testing.md','design.md'}),
                                  ('project',{'README.md'}),('ideas',{'I000-readme.md'}),('specs',{'S000-readme.md'})]:
-    if any(p.name not in allowed_names for p in (root/directory).iterdir()):
+    # Legacy exports may contain only the old project README, never product notes.
+    path=root/directory
+    if path.exists() and any(p.name not in allowed_names for p in path.iterdir()):
         sys.exit('Ziel enthält konkrete Projektartefakte; Aktualisierung abgelehnt')
 PY
   MODUS=aktualisieren
@@ -43,7 +45,7 @@ else
 fi
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
-mkdir -p "$TMP/harness/templates" "$TMP/docs" "$TMP/ideas" "$TMP/specs" "$TMP/project"
+mkdir -p "$TMP/harness/templates" "$TMP/docs" "$TMP/ideas" "$TMP/specs"
 cd "$QUELLE"
 cp AGENTS.md document-contract.md harness-learnings.md "$TMP/"
 cp harness/core.md harness/init.md harness/project.md harness/verification.md harness/README.md "$TMP/harness/"
@@ -52,13 +54,12 @@ for name in architecture code testing design; do cp "docs/$name.md" "$TMP/docs/"
 cp -R profiles tools "$TMP/"
 cp ideas/I000-readme.md "$TMP/ideas/"
 cp specs/S000-readme.md "$TMP/specs/"
-cp project/README.md "$TMP/project/"
 printf '.DS_Store\n.idea/\n__pycache__/\n' > "$TMP/.gitignore"
 printf 'Agentic Harness export template\n' > "$TMP/.harness-template"
 cat > "$TMP/README.md" <<EOF
 # Agentic Harness${VERSION:+ $VERSION}
 
-Vorlage für Softwareprojekte mit KI-Coding-Agenten. Ordner öffnen und das Vorhaben beschreiben; optional zuerst \`project/brief.md\` schreiben. Init klärt Brief, Technik, Struktur und Prüfungen vor Produktcode.
+Vorlage für Softwareprojekte mit KI-Coding-Agenten. Ordner öffnen und das Vorhaben beschreiben oder eine vorhandene Ausgangsbeschreibung angeben. Init klärt Brief, Technik, Struktur und Prüfungen vor Produktcode.
 
 Anleitung: [harness/README.md](harness/README.md). Nach Init hier Produktzweck, Einrichtung und geprüfte Startschritte eintragen.
 EOF
