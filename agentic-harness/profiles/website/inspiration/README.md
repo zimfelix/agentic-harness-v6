@@ -3,9 +3,9 @@
 > - **Typ:** Referenz
 > - **Status:** Drei Einträge (Oberfranken, 2026): zwei ganze Entwürfe (einer mit Abschnitten), ein Abschnitt.
 > - **Zuständigkeit:** Vom Auftraggeber als gelungen bewertete Entwürfe oder Abschnitte so festhalten, dass klar ist, **was genau** daran gut ist (Schrift, Farbe, Anordnung, Atmosphäre …) und was davon übertragbar ist.
-> - **Gilt bei:** Erkunden von Website-Entwürfen (`agentic-harness/harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen, einem Auftrag mit Bezug auf einen Eintrag („wie oberfranken-magazin, aber …“) und auf Auftrag „in die Sammlung aufnehmen“.
-> - **Ladebeziehungen:** Über `agentic-harness/harness/init.md` (Abschnitt 0) und `agentic-harness/profiles/website.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
-> - **Nicht zuständig:** Regeln oder Projektwerte festlegen; die Gestaltung eines Projekts steht in dessen `agentic-harness/docs/design.md`.
+> - **Gilt bei:** Erkunden von Website-Entwürfen (`harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen, einem Auftrag mit Bezug auf einen Eintrag („wie oberfranken-magazin, aber …“) und auf Auftrag „in die Sammlung aufnehmen“.
+> - **Ladebeziehungen:** Über `harness/init.md` (Abschnitt 0) und `profiles/website.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
+> - **Nicht zuständig:** Regeln oder Projektwerte festlegen; die Gestaltung eines Projekts steht in dessen `docs/design.md`.
 
 ## Index
 

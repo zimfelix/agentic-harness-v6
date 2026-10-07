@@ -3,12 +3,12 @@
 > - **Typ:** Index
 > - **Zuständigkeit:** Eigentümer der Themen, direkte Ladewege und die Export-Zuordnung (universell oder projektspezifisch) sichtbar machen.
 > - **Gilt bei:** Einstieg in einen unbekannten Harness, Project Init, Export als Vorlage oder Änderung von Dateirollen und Pfaden.
-> - **Ladebeziehungen:** Einstieg und Routing: `AGENTS.md`. Markdown-Format: `agentic-harness/document-contract.md`.
+> - **Ladebeziehungen:** Einstieg und Routing: `AGENTS.md`. Markdown-Format: `document-contract.md`.
 > - **Nicht zuständig:** Projektentscheidungen treffen oder Regeln der verlinkten Dateien wiederholen.
 
 ## Pfadbasis
 
-Die Tabellen zeigen die tatsächlichen Pfade **relativ zum Ordner `agentic-harness/`**. Dateien im Repo-Root sind mit „(Root)“ markiert. Maßgeblich für das Routing ist `AGENTS.md`.
+Alle Pfade gelten **ab dem Root der gewählten Variante** (`agentic-harness/` in diesem Vorlagen-Repository, Projekt-Root nach dem Kopieren ihres Inhalts). „(Root)“ bezeichnet dieses Root, nicht das übergeordnete Vorlagen-Repository. Maßgeblich für das Routing ist die `AGENTS.md` dieser Variante.
 
 ## Universelle Dateien
 
@@ -21,8 +21,8 @@ Diese Dateien wandern unverändert in eine neue Vorlage.
 | `harness/init.md` | Leeres Projekt für ersten Schritt klären: bei offener Richtung erst billig erkunden (Erkundungsstufen E0–E3); dann Projektart, Stack, Architektur, Tests und Profil (oder keines) mit dem Auftraggeber entscheiden; Zusatzblock bei sichtbarer Oberfläche | Bei Init → `harness-map.md` und `document-contract.md`; danach Projektdateien befüllen. |
 | `harness-map.md` | Dateirollen, Ladewege, Export-Zuordnung | Bei Orientierung, Export oder Änderungen der Dokumentstruktur; keine Projektfakten. |
 | `document-contract.md` | Format, aktueller Stand statt Verlauf, Richtgrößen, Trennung für den Export | Beim Anlegen, Befüllen oder Verdichten von Projekt-Docs und bei Pfadänderungen. |
-| `README.md` | Anleitung zum Harness für Menschen: Schnellstart, Aufbau, Weiterentwicklung und Release, Export | Bei Export- und Release-Aufträgen über `AGENTS.md`; sonst kein Agenten-Ladeweg. |
-| `tools/export-harness.sh` | Universelle Dateien exportieren, Projektteile zurücksetzen, auf Reste prüfen; in leeres Ziel oder sauberen Vorlagen-Klon | Nur bei Export oder Release, aufgerufen nach `README.md`; committet und pusht nichts. |
+| `harness/README.md` | Anleitung zum Harness für Menschen: Schnellstart, Aufbau, Weiterentwicklung und Release, Export | Bei Export- und Release-Aufträgen über `AGENTS.md`; sonst kein Agenten-Ladeweg. |
+| `tools/export-harness.sh` | Universelle Dateien exportieren, Projektteile zurücksetzen, auf Reste prüfen; in leeres Ziel oder sauberen Vorlagen-Klon | Nur bei Export oder Release, aufgerufen nach `harness/README.md`; committet und pusht nichts. |
 | `ideas/I000-readme.md`, `specs/S000-readme.md` | Ideas als Akte größerer Änderungen (Lebenszyklus, Archiv, Durchsicht) bzw. Bereichs-Specs als lebender Soll-Stand | Bedingt über `AGENTS.md`; betroffene Artefakte lesen, Templates nur bei Neuanlage. |
 | `harness/templates/idea.md`, `harness/templates/spec.md` | Form der jeweiligen Artefakte | Nur beim Anlegen von Ideas bzw. Specs. |
 | `project/README.md` | Universelle Anleitung zum Projektordner (Brief, Learnings-Archiv); verweist für Ablauf und Themen auf die Root-README | Beim Anlegen eines Briefs und bei Project Init über `harness/init.md`; wird exportiert, `brief.md` und weitere Dateien daneben nicht. |

@@ -3,8 +3,8 @@
 > - **Typ:** Designregel
 > - **Status:** Aus einem ersten Website-Projekt (2026) abgeleitet; an weiteren Websites zu bestätigen.
 > - **Zuständigkeit:** Projektübergreifende Pflichtregeln, wählbare Stil-Vorschläge, optionale Bausteine, eine vorgeschlagene Dateistruktur und einen Veröffentlichungsweg für Aufbau, Gestaltung, Ausrichtung, Interaktion, Inhalte, Nachweis und Betrieb von Websites festhalten.
-> - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `agentic-harness/docs/design.md` fest, welche.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `agentic-harness/docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `agentic-harness/docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `agentic-harness/docs/testing.md`. Beim Erkunden: Inspirations-Sammlung `agentic-harness/profiles/website/inspiration/README.md`. Zubehör (§6): Geräte-Vorschau `agentic-harness/profiles/website/device-preview.html` und Werkzeuge in `agentic-harness/profiles/website/webtools/` (Übersicht: `agentic-harness/profiles/website/README.md`).
+> - **Gilt bei:** Projekten, deren Projektprofil „Profil: Website“ nennt, und zwar bei Project Init, sichtbaren Änderungen, neuen Seiten oder Abschnitten, vor Übergaben und vor einer Veröffentlichung. Außerdem auf ausdrücklichen Auftrag in anderen Projekten mit Oberfläche (z. B. „mach es schöner, nutz dafür das Website-Profil“): Dann gelten nur die passenden Teile, und das Projekt hält in `docs/design.md` fest, welche.
+> - **Ladebeziehungen:** Vorher `harness/project.md`. Gestalterische Projektwerte und bewusste Abweichungen stehen in `docs/design.md`; Seiten, Routen, gewählte Dateistruktur, Betrieb und Archiv in `docs/architecture.md`; Prüfgrößen, Methoden und Werkzeuge in `docs/testing.md`. Beim Erkunden: Inspirations-Sammlung `profiles/website/inspiration/README.md`. Zubehör (§6): Geräte-Vorschau `profiles/website/device-preview.html` und Werkzeuge in `profiles/website/webtools/` (Übersicht: `profiles/website/README.md`).
 > - **Nicht zuständig:** Konkrete Farben, Schriften, Texte oder Seiten eines Projekts festlegen. Projekte ohne dieses Profil und ohne ausdrücklichen Auftrag lesen es nicht.
 
 ## Wie das Profil wirkt
@@ -12,14 +12,14 @@
 Das Profil ergänzt den universellen Harness für Website-Projekte. Es hat drei Teile:
 
 - **Teil A – Pflichtregeln:** nur Konsistenz, Bedienbarkeit, Rechte und Nachweis, keine Stilvorgaben. Gilt in jedem Website-Projekt mit diesem Profil, auch wenn ein ganz anderes Design nachgebaut wird.
-- **Teil B – Stil-Vorschläge:** der Gestaltungsstil der ersten Website mit diesem Harness, kein Standard. Gelten nur, wenn das Projekt sie in `agentic-harness/docs/design.md` ausdrücklich übernimmt. Die Gestaltung eines Projekts kommt aus Brief, Auftraggeber und gewähltem Entwurf; beim Erkunden (`agentic-harness/harness/init.md`, Abschnitt 0) gilt nur Teil A, damit jeder Entwurf eine eigene Gestaltung bekommt.
+- **Teil B – Stil-Vorschläge:** der Gestaltungsstil der ersten Website mit diesem Harness, kein Standard. Gelten nur, wenn das Projekt sie in `docs/design.md` ausdrücklich übernimmt. Die Gestaltung eines Projekts kommt aus Brief, Auftraggeber und gewähltem Entwurf; beim Erkunden (`harness/init.md`, Abschnitt 0) gilt nur Teil A, damit jeder Entwurf eine eigene Gestaltung bekommt.
 - **Teil C – Baukasten:** optionale Bausteine, Seitenaufbauten, eine bewährte Dateistruktur und ein Veröffentlichungsweg zum Übernehmen, Anpassen oder Weglassen, je nach Kunde, Branche und Stack.
 
 Neue Erkenntnisse kommen je nach Verbindlichkeit in Teil A, B oder C; projektbezogene Werte (Farben, Texte, konkrete Abstände) nie hierher.
 
 ## Zusätzliche Init-Fragen für Websites
 
-Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
+Ergänzend zum Fragenblock in `harness/init.md`:
 
 - **Seiten und Navigation:** Seitenumfang, Hauptnavigation, Pflichtseiten (Impressum, Datenschutz), Sprache und Ansprache (du/Sie).
 - **Inhalte:** Leistungen, Preise, Referenzen; wer liefert und wer gibt frei?
@@ -33,7 +33,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 ## 1. Rahmen und Wiederholung
 
 - Header, Footer und wiederkehrende Blöcke (z. B. Kontaktblock) kommen aus **einer** Quelle und sind überall, wo sie vorgesehen sind, identisch: Markup, Farben, Schriftstärken, Höhe.
-- Gleichartige Abschnitte (Hero, Abschnittskopf, FAQ, Schritte, Karten) sind **ein** Baustein mit Varianten, nicht je Seite neu gebaut. Herausgezogen wird spätestens beim zweiten Vorkommen, nicht erst in einem späteren Umbau (`agentic-harness/harness/core.md`, „Struktur mitziehen“).
+- Gleichartige Abschnitte (Hero, Abschnittskopf, FAQ, Schritte, Karten) sind **ein** Baustein mit Varianten, nicht je Seite neu gebaut. Herausgezogen wird spätestens beim zweiten Vorkommen, nicht erst in einem späteren Umbau (`harness/core.md`, „Struktur mitziehen“).
 - Ausgeliefert werden die ausdrücklich vorgesehenen Routen: über Navigation, Footer und Links erreichbare Seiten sowie bewusst vorgesehene direkte Einstiege (z. B. Kampagnen-Landingpages, Fehlerseiten). Konzeptseiten bleiben intern und `noindex` und werden nach der Entscheidung archiviert.
 
 ## 2. Schrift, Größen und Farben
@@ -45,7 +45,7 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 
 ## 3. Ausrichtung und Abstände
 
-- Festgelegte Ausrichtungen (z. B. zwei Spalten fluchten) werden bei den Prüfgrößen aus `agentic-harness/docs/testing.md` gemessen, nicht nur optisch geschätzt.
+- Festgelegte Ausrichtungen (z. B. zwei Spalten fluchten) werden bei den Prüfgrößen aus `docs/testing.md` gemessen, nicht nur optisch geschätzt.
 - Abstände folgen einer Skala (Tokens im Code). Ein Einzelwert für eine einzelne Stelle steht nur im Code; in `design.md` steht er nur, wenn er eine Regel für mehrere Stellen bildet.
 
 ## 4. Interaktion, Links und Bildschirmgrößen
@@ -69,12 +69,12 @@ Ergänzend zum Fragenblock in `agentic-harness/harness/init.md`:
 
 ## 6. Nachweis
 
-Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `agentic-harness/docs/testing.md` fest (bewährt: 1440, 390, 320 px; dazu mindestens als Sichtprüfung eine Tablet-Breite um 800 px, wo Umbruchpunkte oft knapp greifen, und ein großer Monitor). Je Prüfziel die passende Methode: Schriftladung technisch prüfen, Positionen und Überlauf messen, optische Wirkung per Screenshot beurteilen. Die Bedienart prüft keine Bildschirmbreite: Touch einmal auf einem echten Smartphone, Tastatur einmal ganz durchgehen. Animationen mit beiden Werten von `prefers-reduced-motion` prüfen; ein headless Browser übernimmt sonst still die Einstellung des Rechners.
+Prüfgrößen und Werkzeug legt das Projekt im Projektteil von `docs/testing.md` fest (bewährt: 1440, 390, 320 px; dazu mindestens als Sichtprüfung eine Tablet-Breite um 800 px, wo Umbruchpunkte oft knapp greifen, und ein großer Monitor). Je Prüfziel die passende Methode: Schriftladung technisch prüfen, Positionen und Überlauf messen, optische Wirkung per Screenshot beurteilen. Die Bedienart prüft keine Bildschirmbreite: Touch einmal auf einem echten Smartphone, Tastatur einmal ganz durchgehen. Animationen mit beiden Werten von `prefers-reduced-motion` prüfen; ein headless Browser übernimmt sonst still die Einstellung des Rechners.
 
-- **Webtools** (fertig im Profil, nicht neu schreiben): `agentic-harness/profiles/website/webtools/` liefert Browser-Steuerung, die Messung der Pflichtregeln aus Teil A (`pruefen.mjs`), die Live-Vorschau mit Neubau und Geräte-Vorschau, den Dauer-Dienst für die Vorschau, Screenshots, Style-Fingerabdruck und CSS-Audit. Mit der ersten Seite einrichten: Abweichungen des Projekts (Name, Pfade, Build-Befehl, Port) in `website.config.mjs` im Projektordner, Aufrufe als npm-Skripte, Tests importieren `browser.mjs`. Aufgaben der Dateien: `agentic-harness/profiles/website/README.md`.
+- **Webtools** (fertig im Profil, nicht neu schreiben): `profiles/website/webtools/` liefert Browser-Steuerung, die Messung der Pflichtregeln aus Teil A (`pruefen.mjs`), die Live-Vorschau mit Neubau und Geräte-Vorschau, den Dauer-Dienst für die Vorschau, Screenshots, Style-Fingerabdruck und CSS-Audit. Mit der ersten Seite einrichten: Abweichungen des Projekts (Name, Pfade, Build-Befehl, Port) in `website.config.mjs` im Projektordner, Aufrufe als npm-Skripte, Tests importieren `browser.mjs`. Aufgaben der Dateien: `profiles/website/README.md`.
 
 - **Live-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten; `webtools/serve.mjs`, dauerhaft mit `webtools/vorschau-dauerhaft.sh`): Ein lokaler Vorschau-Server baut bei geänderten Quellen selbst neu; der Auftraggeber lädt im Browser nur neu. Vor jeder Übergabe prüft der Agent, dass die Vorschau läuft, und startet sie sonst im Hintergrund. Adresse und Befehl stehen in den Projektergänzungen von `AGENTS.md`. Für den Test auf einem echten Smartphone gibt ein eigener Befehl (z. B. `npm run dev:lan`) die Vorschau im lokalen Netz frei, nie als Standard.
-- **Geräte-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Die Vorlage `agentic-harness/profiles/website/device-preview.html` zeigt die Website gleichzeitig als kleines Handy, Handy, Tablet, Laptop und Monitore, live und klickbar. Der lokale Vorschau-Server liefert die Datei unverändert unter `/_geraete/` aus (gleiche Herkunft wie die Website, nie im Produktions-Build; keine Kopie im Projekt) und meldet unter `/_geraete/stand` die Seitenliste und einen Stand, der sich nach jedem Neubau ändert (`{"stand": …, "seiten": ["/", …]}`); dann lädt die Vorschau bei Änderungen selbst neu. Ein Befehl (z. B. `npm run geraete`) startet bei Bedarf die Vorschau und öffnet sie in einem neuen Browserfenster. Sie ersetzt weder Messungen noch ein echtes Gerät (Touch, Pixeldichte).
+- **Geräte-Vorschau** (Standardwerkzeug, mit der ersten Seite einrichten): Die Vorlage `profiles/website/device-preview.html` zeigt die Website gleichzeitig als kleines Handy, Handy, Tablet, Laptop und Monitore, live und klickbar. Der lokale Vorschau-Server liefert die Datei unverändert unter `/_geraete/` aus (gleiche Herkunft wie die Website, nie im Produktions-Build; keine Kopie im Projekt) und meldet unter `/_geraete/stand` die Seitenliste und einen Stand, der sich nach jedem Neubau ändert (`{"stand": …, "seiten": ["/", …]}`); dann lädt die Vorschau bei Änderungen selbst neu. Ein Befehl (z. B. `npm run geraete`) startet bei Bedarf die Vorschau und öffnet sie in einem neuen Browserfenster. Sie ersetzt weder Messungen noch ein echtes Gerät (Touch, Pixeldichte).
 - **Nach einer kleinen Iteration:** geänderter Bereich und betroffene gemeinsame Bausteine.
 - **Umbau ohne sichtbare Änderung** (Refactoring von Markup oder CSS): vorher und nachher alle Seiten bei den Prüfgrößen aufnehmen und vergleichen, und zwar (1) Screenshots und (2) einen Fingerabdruck der berechneten Styles je Element, Breite und Zustand (normal, Hover, Fokus, aufgeklappt, ausgewählt). Screenshots zeigen keine Zustände, der Style-Vergleich keine Fehler im Prüfwerkzeug selbst; erst beide zusammen belegen „unverändert“. Ist das gebaute Ergebnis (HTML, CSS, Skripte) vorher und nachher bytegleich, genügt dieser Dateivergleich statt der Aufnahmen. Werkzeuge: `webtools/screens.mjs` und `webtools/style-snapshot.mjs`.
 - **Konsistenz-Audit** nach übergreifenden Umbauten und vor Meilenstein-Übergaben: (1) Header und Footer überall gleich, (2) Schriften geladen, Überschriften nach Skala, (3) kein horizontaler Überlauf, (4) festgelegte Ausrichtungen fluchten (Toleranz etwa 2 px) und in `design.md` übernommene Stil-Vorschläge aus Teil B sind eingehalten, (5) Buttons und Links folgen den Bausteinen, (6) interne Links und Anker erreichen ihr Ziel, (7) keine ungenutzten Selektoren oder unverlinkten Seiten.
@@ -167,7 +167,7 @@ Die Tabelle ist ein Startpunkt für das Gespräch mit dem Auftraggeber, keine Vo
 
 ## 9. Dateistruktur (Vorschlag)
 
-Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framework dessen Konventionen nutzen und nur die Trennung übernehmen. Beim Init übernehmen, anpassen oder abwählen: Die gewählte Struktur steht im Projektteil von `agentic-harness/docs/architecture.md`, Benennungsregeln stehen in `agentic-harness/docs/code.md`.
+Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framework dessen Konventionen nutzen und nur die Trennung übernehmen. Beim Init übernehmen, anpassen oder abwählen: Die gewählte Struktur steht im Projektteil von `docs/architecture.md`, Benennungsregeln stehen in `docs/code.md`.
 
 | Ort | Inhalt | Gehört nicht hierher |
 |---|---|---|
@@ -185,7 +185,7 @@ Bewährt für eine statische Website mit kleinem eigenem Build. Bei einem Framew
 
 ## 10. Betrieb und Veröffentlichung (Vorschlag)
 
-Bewährt für eine statische Website auf einem Webhosting mit Git-Anbindung (z. B. Plesk). Bei einem Hoster, der selbst baut (z. B. Netlify, Cloudflare Pages), dessen Weg nutzen und nur die Freigabe übernehmen. Der gewählte Weg steht im Projektteil von `agentic-harness/docs/architecture.md`.
+Bewährt für eine statische Website auf einem Webhosting mit Git-Anbindung (z. B. Plesk). Bei einem Hoster, der selbst baut (z. B. Netlify, Cloudflare Pages), dessen Weg nutzen und nur die Freigabe übernehmen. Der gewählte Weg steht im Projektteil von `docs/architecture.md`.
 
 ```text
 push main ──▶ CI: build ──▶ test ──┬─ rot  ──▶ Abbruch, Deploy-Branch bleibt

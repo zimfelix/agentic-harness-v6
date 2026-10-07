@@ -75,7 +75,7 @@ Projektfakten (Namen, Pfade, Farben) gehören nie in diese Dateien, sondern in `
 ```text
 Projekt
 ├─ website.config.mjs   ── nennt nur Abweichungen (Name, Pfade, Build-Befehl, Port …) ──┐
-├─ package.json         ── npm-Skripte rufen agentic-harness/profiles/website/webtools/… │
+├─ package.json         ── npm-Skripte rufen profiles/website/webtools/… │
 ├─ tests/               ── importieren browser.mjs aus webtools/                         │
 └─ scripts/             ── projekteigene Programme (siehe unten)                         │
                                                                                           ▼
@@ -91,13 +91,13 @@ Was?    nur projekteigene Programme, die von Aufbau oder Marke DIESES Projekts a
           ├─ favicons.mjs     erzeugt Favicons aus dem eigenen Zeichen und den eigenen Farben
           └─ lib/             Hilfen dafür, z. B. die Favicon-Vorlage
 Nicht?  Kopien der Webtools; Vorschau, Messen und Vergleichen kommen immer aus webtools/
-Wo?     Regel: ../website.md Teil C §9 (Dateistruktur) · Überblick: agentic-harness/README.md,
+Wo?     Regel: ../website.md Teil C §9 (Dateistruktur) · Überblick: README.md,
         Abschnitt „Ausführbare Dateien im Harness“ · gewählte Struktur des Projekts:
-        agentic-harness/docs/architecture.md (Projektteil)
+        docs/architecture.md (Projektteil)
 ```
 
 Wird der Build anders gestartet oder liegt die Ausgabe woanders, steht das in `website.config.mjs`. Dann finden die Webtools beides.
 
 ## Pflege
 
-Wird in diesem Ordner oder in `webtools/` eine Datei ergänzt, umbenannt oder entfernt, diese README im selben Schritt anpassen. Sie ist die einzige Beschreibung des Zubehörs. Neue Rollen zusätzlich in `agentic-harness/harness-map.md` eintragen.
+Wird in diesem Ordner oder in `webtools/` eine Datei ergänzt, umbenannt oder entfernt, diese README im selben Schritt anpassen. Sie ist die einzige Beschreibung des Zubehörs. Neue Rollen zusätzlich in `harness-map.md` eintragen.

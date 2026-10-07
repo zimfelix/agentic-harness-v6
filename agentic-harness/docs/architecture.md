@@ -4,7 +4,7 @@
 > - **Status:** Noch offen (Project Init).
 > - **Zuständigkeit:** Entschiedene Bausteine, ihre Aufgaben, Abhängigkeiten und den Betrieb für den aktuellen Meilenstein erklären.
 > - **Gilt bei:** Project Init sowie Architektur-, Schnittstellen-, Betriebs- oder Strukturfragen, neue Seiten oder Routen, Konzept-/Variantenvergleiche und Archivieren.
-> - **Ladebeziehungen:** Vorher `agentic-harness/harness/project.md` für Ziel und Grenzen lesen. Bei Codekonventionen zusätzlich `agentic-harness/docs/code.md`; bei Gestaltungsbausteinen `agentic-harness/docs/design.md`; bei Teststruktur `agentic-harness/docs/testing.md`.
+> - **Ladebeziehungen:** Vorher `harness/project.md` für Ziel und Grenzen lesen. Bei Codekonventionen zusätzlich `docs/code.md`; bei Gestaltungsbausteinen `docs/design.md`; bei Teststruktur `docs/testing.md`.
 > - **Nicht zuständig:** Agentenablauf, Code-Stil, Gestaltungsregeln oder beauftragtes Nutzerverhalten festlegen.
 
 ## Universeller Rahmen
@@ -22,9 +22,9 @@ Ist, entschiedenes Ziel und offene Möglichkeiten nicht verwechseln. Bausteine n
 
 ### Trennung von Konfiguration und Bausteinen
 
-Trenne von Anfang an, nicht erst in einem späteren Umbau: projektspezifische Inhalte und Konfiguration (z. B. Namen, Zugänge, Regeln, Texte) von den Bausteinen, die sie verarbeiten oder darstellen; bei Oberflächen zusätzlich die Gestaltungswerte (Tokens nach `agentic-harness/docs/design.md`). Die Dateistruktur dafür wird beim Project Init festgelegt und im Projektteil dieser Datei eingetragen; ein Profil kann eine bewährte Struktur vorschlagen.
+Trenne von Anfang an, nicht erst in einem späteren Umbau: projektspezifische Inhalte und Konfiguration (z. B. Namen, Zugänge, Regeln, Texte) von den Bausteinen, die sie verarbeiten oder darstellen; bei Oberflächen zusätzlich die Gestaltungswerte (Tokens nach `docs/design.md`). Die Dateistruktur dafür wird beim Project Init festgelegt und im Projektteil dieser Datei eingetragen; ein Profil kann eine bewährte Struktur vorschlagen.
 
-- **Zweites Vorkommen → Baustein:** Ein Muster, das zum zweiten Mal gebraucht wird, wird ein Baustein mit Parametern oder Varianten (`agentic-harness/harness/core.md`, „Struktur mitziehen“).
+- **Zweites Vorkommen → Baustein:** Ein Muster, das zum zweiten Mal gebraucht wird, wird ein Baustein mit Parametern oder Varianten (`harness/core.md`, „Struktur mitziehen“).
 - **Eine Datei, eine Verantwortung:** Mischt eine Datei mehrere Bausteine, Seiten, Ansichten oder Zuständigkeiten, wird sie aufgeteilt, spätestens wenn das nächste Teil dazukommt.
 - **Bausteine ohne Projektinhalte:** Texte, Namen, Verweisziele und Anzahlen kommen als Daten herein; ein fester Standardwert nur, wenn er für jeden Einsatz gilt.
 - Bausteine werden nach ihrer Rolle benannt, nicht nach dem Ort, an dem sie zuerst vorkamen.

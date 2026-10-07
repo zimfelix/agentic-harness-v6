@@ -20,14 +20,14 @@ Offen ──(Klärung + Auftrag)──▶ Beauftragt     (direkter Auftrag mit k
 
 - **Offen:** Klärung läuft; Lösungsansatz und Alternativen werden gesammelt. Keine Umsetzung.
 - **Beauftragt:** Der Auftraggeber hat die Umsetzung freigegeben; ein direkter Umsetzungsauftrag mit klarem Umfang genügt. Neue Funktionen, betroffene Bereichs-Specs, Abhängigkeiten und Teilaufgaben stehen fest. Teilaufgaben werden einzeln umgesetzt, geprüft und abgehakt; so kann eine spätere Sitzung genau dort weitermachen.
-- **Umgesetzt:** Gate bestanden, betroffene Bereichs-Specs und Docs sind nachgeführt. Datum, Ergebnis und Verweise unter „Abschluss“ eintragen, Datei nach `agentic-harness/ideas/archiv/` verschieben.
+- **Umgesetzt:** Gate bestanden, betroffene Bereichs-Specs und Docs sind nachgeführt. Datum, Ergebnis und Verweise unter „Abschluss“ eintragen, Datei nach `ideas/archiv/` verschieben.
 - **Zurückgestellt / Verworfen:** Grund unter „Abschluss“ eintragen, Datei ins Archiv. Zurückgestelltes wird bei der Durchsicht erneut geprüft und kann zurückgeholt werden.
 
 Ältere Ideas mit `Draft` gelten als Offen, mit `Ready` als geklärt, aber noch nicht beauftragt.
 
 ## Zusammenspiel mit Specs
 
-Die Idea ist die **Akte der Änderung** (warum, was, welche Bereiche, in welcher Reihenfolge). Akzeptanzkriterien und Nachweise stehen **nur** in der Bereichs-Spec (`agentic-harness/specs/S000-readme.md`). Die Idea nennt, welche Specs neu entstehen und welche AK geändert werden, ohne sie zu kopieren.
+Die Idea ist die **Akte der Änderung** (warum, was, welche Bereiche, in welcher Reihenfolge). Akzeptanzkriterien und Nachweise stehen **nur** in der Bereichs-Spec (`specs/S000-readme.md`). Die Idea nennt, welche Specs neu entstehen und welche AK geändert werden, ohne sie zu kopieren.
 
 ```text
 Wunsch ──▶ Idea (Offen) ──Auftrag──▶ Idea (Beauftragt) ──▶ Bereichs-Spec(s) anlegen/ändern ──▶ umsetzen
@@ -37,4 +37,4 @@ Wunsch ──▶ Idea (Offen) ──Auftrag──▶ Idea (Beauftragt) ──▶
 
 ## Durchsicht
 
-Bei jedem Harness-Release und bei Meilensteinen: Sind offene Ideas noch aktuell? Ist Beauftragtes umgesetzt? Stimmt jeder Status? Erledigtes, Zurückgestelltes und Verworfenes ins Archiv. Neue Ideen nach `agentic-harness/harness/templates/idea.md` anlegen.
+Bei jedem Harness-Release und bei Meilensteinen: Sind offene Ideas noch aktuell? Ist Beauftragtes umgesetzt? Stimmt jeder Status? Erledigtes, Zurückgestelltes und Verworfenes ins Archiv. Neue Ideen nach `harness/templates/idea.md` anlegen.

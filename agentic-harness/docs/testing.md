@@ -4,7 +4,7 @@
 > - **Status:** Noch offen (Project Init).
 > - **Zuständigkeit:** Universelle Auswahlhilfe für Tests bieten und die begründete Teststrategie des Projekts festhalten.
 > - **Gilt bei:** Project Init sowie Testplanung, Teständerung und Testausführung.
-> - **Ladebeziehungen:** Zuerst `agentic-harness/harness/project.md` für Ziel, Risiken und eingerichtete Befehle lesen. Für Bausteine und Grenzen bei Bedarf `agentic-harness/docs/architecture.md`, für Stack und Werkzeugwahl `agentic-harness/docs/code.md`, für Gestaltungsregeln `agentic-harness/docs/design.md` (Prüfgrößen, Methoden und Werkzeuge stehen hier), bei beauftragtem Verhalten die betroffene Spec unter `agentic-harness/specs/`. Zum Abschluss `agentic-harness/harness/verification/gate.md`.
+> - **Ladebeziehungen:** Zuerst `harness/project.md` für Ziel, Risiken und eingerichtete Befehle lesen. Für Bausteine und Grenzen bei Bedarf `docs/architecture.md`, für Stack und Werkzeugwahl `docs/code.md`, für Gestaltungsregeln `docs/design.md` (Prüfgrößen, Methoden und Werkzeuge stehen hier), bei beauftragtem Verhalten die betroffene Spec unter `specs/`. Zum Abschluss `harness/verification/gate.md`.
 > - **Nicht zuständig:** Produkt-Stack oder Akzeptanzkriterien festlegen, Befehle und Ergebnisse duplizieren oder über ein bestandenes Gate entscheiden.
 
 ## Universeller Rahmen
@@ -13,8 +13,8 @@
 
 ### Auswahlgrundlage
 
-1. Aus `agentic-harness/harness/project.md` Ziel, Betrieb, Daten, Rechte und Risiken entnehmen; aus betroffenen Specs die Akzeptanzkriterien. Ohne Spec den beauftragten Umfang prüfen.
-2. Aus `agentic-harness/docs/architecture.md` die entschiedenen Bausteine und Schnittstellen ableiten; aus `agentic-harness/docs/code.md` Sprache, Laufzeit, Abhängigkeiten und Entwicklungsumgebung. Nicht bestätigte Entscheidungen bleiben offen.
+1. Aus `harness/project.md` Ziel, Betrieb, Daten, Rechte und Risiken entnehmen; aus betroffenen Specs die Akzeptanzkriterien. Ohne Spec den beauftragten Umfang prüfen.
+2. Aus `docs/architecture.md` die entschiedenen Bausteine und Schnittstellen ableiten; aus `docs/code.md` Sprache, Laufzeit, Abhängigkeiten und Entwicklungsumgebung. Nicht bestätigte Entscheidungen bleiben offen.
 3. Für wichtige Abläufe und relevante Fehlerfälle die kleinste aussagekräftige Kombination aus Ebenen und Arten wählen. Für den beauftragten Ablauf einen Nachweis an einer geeigneten beobachtbaren Grenze vorsehen; isolierte Tests allein belegen kein Zusammenspiel. Werkzeug, Aufwand und Nachweisgrenze begründen.
 
 ### Testebenen – wo wird geprüft?
@@ -43,7 +43,7 @@ Ebenen sind Auswahlmöglichkeiten, keine Ordnerpflicht. Ein kleines Projekt kann
 | **Kompatibilität** | Müssen ausdrücklich mehrere Umgebungen, Plattformen oder Versionen unterstützt werden? |
 | **Eigenschaftsbasiert/Fuzzing** | Gibt es komplexe Invarianten oder breite Eingaberäume, die Beispieltests schlecht abdecken? |
 | **Gerendertes Verhalten (Navigation, Scrollen, Layout)** | Hängt die Korrektheit von gerendertem Verhalten ab, z. B. Ankersprünge unter angehefteten Headern, Menüs, Umbrüche oder Bildschirmgrößen? Solches Verhalten ist aus Quelltext nicht ableitbar: im Zielmedium (Browser, Emulator, Terminal) messen (Position, Sichtbarkeit), nicht nur Markup prüfen, und die Nutzer nicht damit testen lassen. |
-| **Aussehen und Gestaltungskonsistenz** | Gibt es verbindliche Gestaltungsregeln (`agentic-harness/docs/design.md`), die über Seiten hinweg gelten müssen, z. B. geladene Schrift, Größenskala, identische wiederkehrende Rahmen, kein Überlauf? Im Zielmedium messen oder per Screenshot vergleichen, nicht über Quelltext. |
+| **Aussehen und Gestaltungskonsistenz** | Gibt es verbindliche Gestaltungsregeln (`docs/design.md`), die über Seiten hinweg gelten müssen, z. B. geladene Schrift, Größenskala, identische wiederkehrende Rahmen, kein Überlauf? Im Zielmedium messen oder per Screenshot vergleichen, nicht über Quelltext. |
 | **Fachliche Akzeptanz/Exploration** | Muss ein Mensch den Nutzerablauf beurteilen oder einen noch unklaren Fehler erkunden? Schritte und beobachtetes Ergebnis festhalten; manuell ist eine Methode, keine eigene Testebene. |
 
 Lint, Typprüfung und Build sind ergänzende Qualitätschecks, aber allein kein Nachweis für Nutzerverhalten. Coverage-Zahlen zeigen geprüften Code, nicht automatisch erfüllte Akzeptanzkriterien.
@@ -54,7 +54,7 @@ Werkzeuge anhand des **gewählten** Stacks, der zu prüfenden Grenze und verfüg
 
 **Quelltextvergleiche sparsam einsetzen:** Exakte Quelltext-Strings (z. B. HTML, CSS, generierte Ausgaben) in Tests sind zerbrechlich (jede Stiländerung bricht sie) und blind für echte Fehler (eine nicht geladene Schrift fällt nicht auf). Nutze sie nur für harte Inhaltsgrenzen, etwa verbotene Versprechen, Pflichtkennzeichnungen oder das Fehlen von Formularversand. Aussehen und Layout prüfen gemessene Eigenschaften im Zielmedium.
 
-**Werkzeuge einmal einrichten:** Mess-, Screenshot- oder Audit-Skripte, die mehr als einmal gebraucht werden, gehören ins Projekt (mit Befehl in `agentic-harness/harness/project.md`), nicht in eine temporäre Sitzung. Eine Gegenprobe gegen einen absichtlich kaputten Stand zeigt, dass ein neuer Test im Zielmedium wirklich prüft. Bei sichtbarer Oberfläche legt der Projektteil dieser Datei Prüfgrößen (z. B. Bildschirmbreiten), Methoden und Werkzeug fest; `agentic-harness/docs/design.md` hält nur die zu prüfenden Regeln.
+**Werkzeuge einmal einrichten:** Mess-, Screenshot- oder Audit-Skripte, die mehr als einmal gebraucht werden, gehören ins Projekt (mit Befehl in `harness/project.md`), nicht in eine temporäre Sitzung. Eine Gegenprobe gegen einen absichtlich kaputten Stand zeigt, dass ein neuer Test im Zielmedium wirklich prüft. Bei sichtbarer Oberfläche legt der Projektteil dieser Datei Prüfgrößen (z. B. Bildschirmbreiten), Methoden und Werkzeug fest; `docs/design.md` hält nur die zu prüfenden Regeln.
 
 ## Projektspezifische Befüllung
 
