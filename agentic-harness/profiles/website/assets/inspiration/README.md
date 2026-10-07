@@ -4,7 +4,7 @@
 > - **Status:** Drei Einträge (Oberfranken, 2026): zwei ganze Entwürfe (einer mit Abschnitten), ein Abschnitt.
 > - **Zuständigkeit:** Vom Auftraggeber als gelungen bewertete Entwürfe oder Abschnitte so festhalten, dass klar ist, **was genau** daran gut ist (Schrift, Farbe, Anordnung, Atmosphäre …) und was davon übertragbar ist.
 > - **Gilt bei:** Erkunden von Website-Entwürfen (`harness/init.md`, Abschnitt 0, E1–E3), neuen Gestaltungsrichtungen, einem Auftrag mit Bezug auf einen Eintrag („wie oberfranken-magazin, aber …“) und auf Auftrag „in die Sammlung aufnehmen“.
-> - **Ladebeziehungen:** Über `harness/init.md` (Abschnitt 0) und `profiles/website.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
+> - **Ladebeziehungen:** Über `harness/init.md` (Abschnitt 0) und `profiles/website/profile.md`. Erst diesen Index lesen, dann nur die passenden `<eintrag>/steckbrief.md` und deren Bilder.
 > - **Nicht zuständig:** Regeln oder Projektwerte festlegen; die Gestaltung eines Projekts steht in dessen `docs/design.md`.
 
 ## Index
@@ -42,7 +42,7 @@ Nur, was der Auftraggeber als gelungen bewertet. Lob für einen Teil gehört an 
 1. Ordner `<projekt>-<kurzname>/` (beschreibender Name), Bilder als JPEG (Ziel unter 1 MB je Eintrag):
    - ganzer Entwurf: `start.jpg` (Desktop 1440 px, erster Bildschirm) und `ganz.jpg` (ganze Seite);
    - Abschnitt: `abschnitt-<name>.jpg`.
-   Aufnahme mit `browser.mjs` aus `../webtools/` oder als Bildschirmausschnitt.
+   Aufnahme mit `browser.mjs` aus `../../tools/` oder als Bildschirmausschnitt.
 2. `steckbrief.md` nach dem Muster unten. Die Worte des Auftraggebers wörtlich unter „Auftraggeber“; fehlt eigenes Lob, das offen sagen.
 3. Zeile im Index ergänzen. Lob für einen Teil eines bestehenden Eintrags: Abschnitt dort ergänzen statt neuer Eintrag.
 

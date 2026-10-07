@@ -1,49 +1,23 @@
-# Harness-Learnings – Agentic-Coding-Learnings
+# Harness-Learnings
 
-> - **Typ:** Lernnotiz
-> - **Status:** Paketstruktur lokal übernommen; Kopier- und Exportprüfungen bestanden.
-> - **Zuständigkeit:** Harness-Schwächen und wiederkehrende Agentenfehler bis zur Lösung festhalten; Harness-Änderungen mit Grund dokumentieren (Regeln unten).
-> - **Gilt bei:** einer Harness-Schwäche oder einem wiederholten Agentenfehler; **vor jeder Änderung** an einer universellen Harness-Datei, einem Profil oder einem Werkzeug; beim Release.
-> - **Ladebeziehungen:** Über `AGENTS.md`; für einen Eintrag nur die betroffene Harness-Datei hinzuziehen. Archiv: `project/learnings-archiv.md`. Release: `harness/README.md` („Harness weiterentwickeln“).
+**Zuständigkeit:** Harness-Schwächen, wiederkehrende Agentenfehler und Gründe beauftragter Harness-/Profil-/Tooländerungen. Bei Beobachtungen, vor Harness-Änderungen und beim Release lesen.
 
 ## Zweck und Regeln
 
-**Was hier hineingehört:** Agentic-Coding-Learnings, also Erkenntnisse über den Harness und über die Arbeit des Agenten, nicht über das Produkt:
+Produktfakten gehören in Projektprofil/Docs/Specs. Hier pro Eintrag kurz: Anlass, betroffene Regel, Grund, Vorschlag/Umsetzung und Erprobungsstand. Vor Änderungen aktive Einträge prüfen, bewusste Entscheidungen nicht still zurückdrehen. Neue Regeländerungen im selben Schritt dokumentieren; universelle Änderungen nur auf Auftrag.
 
-- Der Agent schafft etwas wiederholt nicht oder macht denselben Fehler mehrfach (z. B. widersprüchliche Stände, eine Prüfung, die nichts findet).
-- Eine Regel, ein Ablauf oder ein Werkzeug des Harness fehlt, ist unklar oder führt in die Irre.
-- Eine Änderung an einer universellen Harness-Datei, einem Profil oder einem Werkzeug wurde vorgenommen.
-
-Pro Eintrag: Anlass, betroffene Datei oder Rolle, warum es über dieses Projekt hinaus wichtig ist, Vorschlag oder Umsetzung, Status. Produktfakten gehören in `harness/project.md` und `docs/`.
-
-**Vor jeder Harness-Änderung:** Zuerst die aktiven Einträge hier lesen. Widerspricht die geplante Änderung einem Eintrag „Lokal übernommen“, wird eine bewusste Entscheidung vielleicht zurückgedreht: erst klären, nicht stillschweigend überschreiben.
-
-**Nach jeder Harness-Änderung:** Im selben Schritt einen Eintrag „Lokal übernommen“ mit Grund anlegen oder einen offenen Eintrag umstellen. So bleibt die Änderung auch für Sitzungen ohne Gesprächsverlauf (z. B. nach `/clear`) nachvollziehbar.
-
-**Lebenszyklus:**
-
-```text
-Beobachtung ──▶ Offen ──▶ universelle Datei geändert ──▶ Lokal übernommen
-                                                              │
-Release in die Vorlage: steht die Regel noch so in der Zieldatei? ◀┘
-        ├─ ja   ──▶ In Vorlage vX.Y ──▶ verschoben nach project/learnings-archiv.md
-        └─ nein ──▶ nachziehen oder zurück auf Offen
-```
-
-- **Offen:** Kandidat oder wiederkehrender Fehler, keine universelle Datei geändert.
-- **Lokal übernommen:** in die genannte Datei eingearbeitet, aber noch nicht in der Vorlage.
-- **In Vorlage vX.Y:** beim Release gegengeprüft, exportiert und ins Archiv verschoben (dort mit diesem Status vorangestellt).
-
-Der Status ergibt sich aus dem Unterabschnitt unter „Aktive Learnings“; ändert er sich, wandert der Eintrag in den passenden Unterabschnitt.
-
-Die Vorlage startet ohne Einträge: Der Export übernimmt nur Kopf und diesen Abschnitt. Das Archiv ist Projektgeschichte und wird nie exportiert.
+**Offen** = Beobachtung/Hypothese. **Lokal übernommen** = Regel/Tool geändert, Wirksamkeit ggf. noch ungeprüft. Nach beauftragtem Release gegen Zieldateien prüfen und erledigte Einträge ggf. mit Release-Verweis nach `project/learnings-archiv.md` verschieben. Export übernimmt diese Regeln, keine Einträge/Archive. Statische Checks belegen keine konstante Agentenleistung.
 
 ## Aktive Learnings
 
 ### Offen
 
-Keine.
+- Mail-Prototyp: Agent las Init/Geschäftssoftware-Regeln, schrieb dennoch Produktcode bei `Pending Project Init`, ohne Projektbefüllung, Strukturentscheidung, erforderliche Docs, Soll/Prüfplan oder Tests. Auftraggeber stoppte. Beobachteter Regelverstoß; vorhandene Regeln verhinderten ihn nicht. Offen: Wirksamkeit des Vor-Code-Checks in frischer Agentensitzung. Readiness ist kein technisches Schreibverbot.
+- Aus Lite erhalten: Robustheit von Spec-Status bei externen Testblockern, risikobezogener Check-/TDD-Auswahl, Fortsetzung nach Kontextverlust, Nichtumsetzung zurückgestellter Ideen und Begrenzung des Dokumentenwachstums praktisch offen. Review: `project/harness-review.md`.
 
 ### Lokal übernommen
 
-- Zwei eigenständige Varianten im Vorlagen-Repository: Die bisherige Root-`AGENTS.md` gehört jetzt zur vollständigen Variante. Alle internen Pfade gelten ab Varianten-/Projekt-Root; die menschliche Harness-Anleitung liegt getrennt von der Produkt-README in `harness/README.md`. Export lokalisiert seine eigene Variante unabhängig vom Arbeitsverzeichnis und übernimmt keine Lite-Dateien. Grund: genau eine Variante ins neue Projekt kopieren, ohne übergeordnete Anweisungen oder Abhängigkeiten auf das Vorlagen-Repository. Geprüft: 32/32 Paketprüfungen bestanden (echte Kopien beider Varianten, Links, Export aus fremdem Arbeitsverzeichnis, erneuter Export, Rücksetzen, Aktualisierung eines sauberen Testklons, unveränderte Ablehnung ungeeigneter/verschmutzter Ziele und fehlender Verweise); 19 Profil-Module/Bilder bytegleich zum bisherigen GitHub-main. Keine Agenten-Verhaltensprobe oder Browserprüfung.
+- v4.5 führt ursprünglichen Harness und sinnvolle Lite-Regeln in einer Vorlage zusammen: kurzer Einstieg, Brief/Technik/Struktur im Init, ein Verification Loop, Bereichs-Specs/Ideas/Templates erhalten. Produktverhalten vor Code spezifizieren; begrenzte Erkundungs-Spikes ausdrücklich abgrenzen. Separate Lite-Variante entfällt; Mail-Prototyp und separate Worktrees unverändert.
+- Auf ausdrücklichen Wunsch nur `profiles/`: Website und Business Software bündeln Einstieg, Referenzen, Werkzeuge und Assets. Native Skill-/Adapterordner entfernt, keine Kopiersynchronisierung. Profile werden durch `AGENTS.md` ausdrücklich geladen. Website-Stil bleibt opt-in; Geschäftssoftware-Bereiche risikobezogen wählen.
+- Dokumentenvertrag/Map/Produkt-README vereinfacht; Struktur vor Code und Regression bei Refactoring erhalten. Bei jeder Harness-Änderung Definitionen, Abhängigkeiten, Ladeauslöser, Verweise, Werkzeugpfade und Export im selben Schritt abgleichen. Spec-Regeln und Template sind keine zweite Projektprofil-Definition.
+- Website-Werkzeuge unter `profiles/website/tools/`, Vorschau/Inspiration unter `assets/`; relativen Vorschau-Assetpfad angepasst. Export nutzt explizite universelle Dateiliste und lehnt Produktziele ab. Prüfstand der endgültigen Profilstruktur: 17/17 Kopier-/Export-/Readiness-/Dependency-Tests einschließlich Fehlergegenproben und HTTP-Smoke der Vorschau bestanden; Strukturcheck, Shell-/JavaScript-Syntax und `git diff --check` bestanden. Einmalige Testdatei danach auf Auftrag entfernt; dauerhafter Struktur-/Readiness-Checker bleibt. Keine frische Agenten-Verhaltensprobe.

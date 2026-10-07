@@ -1,109 +1,113 @@
 #!/bin/sh
-# Exportiert nur die vollständige Variante, setzt Projektteile zurück und prüft Verweise.
-# Quelle wird am Skript lokalisiert, unabhängig von Arbeitsverzeichnis und Varianten-Repository.
-# Aufruf: sh tools/export-harness.sh ZIEL
-# ZIEL: leer/nicht vorhanden oder sauberer Git-Klon dieser flachen vollständigen Vorlage.
-# Optional: PRODUKTBEGRIFFE='produktname|domain|ort', VERSION=v5.17
-# Committet und pusht nichts. Nie auf ein Produktprojekt oder das Varianten-Repository richten.
+# Exportiert die explizite universelle Dateiliste, nie Produktdaten. Kein Commit/Push.
+# ZIEL: leer oder sauberer, unbefüllter Export-Klon mit .harness-template.
 set -eu
-
 QUELLE=$(cd "$(dirname "$0")/.." && pwd)
-ZIEL=${1:-}
-[ -n "$ZIEL" ] || { echo 'Aufruf: sh tools/export-harness.sh ZIEL' >&2; exit 1; }
-[ -f "$QUELLE/AGENTS.md" ] && [ -f "$QUELLE/harness/core.md" ] || {
-  echo "Quelle ist keine vollständige Harness-Variante: $QUELLE" >&2; exit 1;
-}
-
-pruefe_lage() {
-  case "$1/" in "$QUELLE/"*) echo "Ziel liegt in der Quelle: $1" >&2; exit 1;; esac
-  case "$QUELLE/" in "$1/"*) echo "Quelle liegt im Ziel: $1" >&2; exit 1;; esac
-}
-case "$ZIEL" in /*) ;; *) ZIEL="$PWD/$ZIEL";; esac
-pruefe_lage "$ZIEL"
-mkdir -p "$ZIEL"
-ZIEL=$(cd "$ZIEL" && pwd)
-pruefe_lage "$ZIEL"
-
-if [ -z "$(ls -A "$ZIEL")" ]; then
+[ -n "${1:-}" ] || { echo 'Aufruf: sh tools/export-harness.sh ZIEL' >&2; exit 1; }
+export QUELLE
+ZIEL=$(python3 - "$1" <<'PY'
+import os, sys
+from pathlib import Path
+src=Path(os.environ['QUELLE']).resolve(); dst=Path(sys.argv[1]).resolve()
+if src == dst or src in dst.parents or dst in src.parents:
+    sys.exit('Quelle/Ziel dürfen nicht ineinander liegen')
+print(dst)
+PY
+)
+if [ ! -e "$ZIEL" ]; then
   MODUS=neu
-elif [ -e "$ZIEL/.git" ] && [ -f "$ZIEL/AGENTS.md" ] && [ -f "$ZIEL/harness/core.md" ] \
-  && [ ! -d "$ZIEL/agentic-harness" ] && [ ! -d "$ZIEL/agentic-harness-lite" ]; then
-  [ -z "$(git -C "$ZIEL" status --porcelain)" ] || { echo "Ziel hat offene Änderungen: $ZIEL" >&2; exit 1; }
+elif [ -d "$ZIEL" ] && [ -z "$(ls -A "$ZIEL")" ]; then
+  MODUS=neu
+elif [ -d "$ZIEL" ] && [ -e "$ZIEL/.git" ] && [ -f "$ZIEL/.harness-template" ] \
+  && [ -f "$ZIEL/harness/project.md" ] && grep -q '^\*\*Status:\*\* Pending Project Init$' "$ZIEL/harness/project.md" \
+  && grep -q '^# Agentic Harness' "$ZIEL/README.md"; then
+  [ -z "$(git -C "$ZIEL" status --porcelain)" ] || { echo 'Ziel hat offene Änderungen' >&2; exit 1; }
+  # A stale template marker must not turn a pending product project into an update target.
+  python3 - "$ZIEL" <<'PY'
+import sys
+from pathlib import Path
+root=Path(sys.argv[1])
+allowed={'.git','.idea','.DS_Store','.gitignore','.harness-template','AGENTS.md','README.md',
+         'document-contract.md','harness-learnings.md','harness','profiles','tools','docs','project','ideas','specs'}
+if any(p.name not in allowed for p in root.iterdir()):
+    sys.exit('Ziel enthält Produkt-/Fremddateien; Aktualisierung abgelehnt')
+for directory, allowed_names in [('docs',{'architecture.md','code.md','testing.md','design.md'}),
+                                 ('project',{'README.md'}),('ideas',{'I000-readme.md'}),('specs',{'S000-readme.md'})]:
+    if any(p.name not in allowed_names for p in (root/directory).iterdir()):
+        sys.exit('Ziel enthält konkrete Projektartefakte; Aktualisierung abgelehnt')
+PY
   MODUS=aktualisieren
 else
-  echo "Ziel ist weder leer noch ein Git-Klon dieser vollständigen Harness-Vorlage: $ZIEL" >&2
+  echo 'Ziel ist weder leer noch ein sauberer unbefüllter Export-Klon' >&2
   exit 1
 fi
-
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
-
-# Universelle Dateien kopieren; konkrete Projektartefakte werden nicht übernommen.
-mkdir -p "$TMP/ideas" "$TMP/specs" "$TMP/project"
+mkdir -p "$TMP/harness/templates" "$TMP/docs" "$TMP/ideas" "$TMP/specs" "$TMP/project"
 cd "$QUELLE"
-cp AGENTS.md "$TMP/"
-cp -R harness docs profiles tools "$TMP/"
-cp document-contract.md harness-map.md harness-learnings.md "$TMP/"
+cp AGENTS.md document-contract.md harness-learnings.md "$TMP/"
+cp harness/core.md harness/init.md harness/project.md harness/verification.md harness/README.md "$TMP/harness/"
+cp harness/templates/idea.md harness/templates/spec.md harness/templates/project.md "$TMP/harness/templates/"
+for name in architecture code testing design; do cp "docs/$name.md" "$TMP/docs/"; done
+cp -R profiles tools "$TMP/"
 cp ideas/I000-readme.md "$TMP/ideas/"
 cp specs/S000-readme.md "$TMP/specs/"
 cp project/README.md "$TMP/project/"
-printf '.DS_Store\n.idea/\n' > "$TMP/.gitignore"
+printf '.DS_Store\n.idea/\n__pycache__/\n' > "$TMP/.gitignore"
+printf 'Agentic Harness export template\n' > "$TMP/.harness-template"
 cat > "$TMP/README.md" <<EOF
 # Agentic Harness${VERSION:+ $VERSION}
 
-Vollständige Vorlage für Softwareprojekte mit KI-Coding-Agenten. \`AGENTS.md\` führt von Klärung und Init über Umsetzung bis zur Verifikation. Projektart, Stack und Prüfungen werden beim Init geklärt; danach ersetzt der Agent diesen Kopf durch die Produktbeschreibung.
+Vorlage für Softwareprojekte mit KI-Coding-Agenten. Ordner öffnen und das Vorhaben beschreiben; optional zuerst \`project/brief.md\` schreiben. Init klärt Brief, Technik, Struktur und Prüfungen vor Produktcode.
 
-**Start:** Idee optional in \`project/brief.md\` erzählen oder den Projektordner mit dem Agenten öffnen und den Auftrag geben. Anleitung: [harness/README.md](harness/README.md).
-
+Anleitung: [harness/README.md](harness/README.md). Nach Init hier Produktzweck, Einrichtung und geprüfte Startschritte eintragen.
 EOF
-grep -q '^## Projektstart mit dem Agentic Harness' README.md || {
-  echo 'Abschnitt „Projektstart mit dem Agentic Harness“ fehlt in README.md' >&2; exit 1;
-}
-awk 'f && !c && /^## / { exit } /^## Projektstart mit dem Agentic Harness/ { f = 1 } /^```/ { c = !c } f' README.md >> "$TMP/README.md"
-
-# Projektteile zurücksetzen.
-cd "$TMP"
-braucht() { grep -q "$2" "$1" || { echo "Abschnitt „$2“ fehlt in $1" >&2; exit 1; }; }
-befuellung_leeren() {
-  braucht "$1" '^## Projektspezifische Befüllung'
-  awk -v st="$2" '
-    /^> - \*\*Status:\*\*/ { print "> - **Status:** " st; next }
-    /^## Projektspezifische Befüllung/ { print; print ""; print "Noch offen (Project Init)."; exit }
-    { print }' "$1" > "$1.neu" && mv "$1.neu" "$1"
-}
-befuellung_leeren harness/project.md 'Pending Project Init'
-for f in docs/*.md; do befuellung_leeren "$f" 'Noch offen (Project Init).'; done
-braucht AGENTS.md '^## Projektspezifische Ergänzungen'
-awk '/^## Projektspezifische Ergänzungen/ { print; exit } { print }' AGENTS.md > AGENTS.md.neu && mv AGENTS.md.neu AGENTS.md
-braucht harness-learnings.md '^## Zweck und Regeln'
-awk '
-  /^> - \*\*Status:\*\*/ { print "> - **Status:** Noch keine Einträge."; next }
-  /^## / { if (gesehen) exit; if ($0 == "## Zweck und Regeln") gesehen = 1 }
-  { print }' harness-learnings.md > harness-learnings.md.neu && mv harness-learnings.md.neu harness-learnings.md
-printf '## Aktive Learnings\n\n### Offen\n\nKeine.\n\n### Lokal übernommen\n\nKeine.\n' >> harness-learnings.md
-
-# Erst bei vollständig validiertem Export wird das Ziel befüllt/geändert.
-FUND=$(grep -rnoE '[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}' . | grep -vE ':git@(github|gitlab)\.com$' || true)
-if [ -n "${PRODUKTBEGRIFFE:-}" ]; then
-  FUND="$FUND$(grep -rniE "$PRODUKTBEGRIFFE" . || true)"
+# Produktteile zurücksetzen; der Reset verwendet die unbefüllte Vorlage nicht als Produktquelle.
+python3 - "$QUELLE" "$TMP" <<'PY'
+import sys
+from pathlib import Path
+src, dst=map(Path,sys.argv[1:])
+for name in ('harness/project.md','docs/architecture.md','docs/code.md','docs/testing.md','docs/design.md'):
+    p=dst/name; before, marker, _=p.read_text().partition('## Projektspezifische Befüllung')
+    if not marker: sys.exit('Export-Trennung fehlt: '+name)
+    if name == 'harness/project.md':
+        # Required field defaults have one source: the unfilled project template.
+        template=(src/'harness/templates/project.md').read_text()
+        _, found, body=template.partition('## Projektspezifische Befüllung')
+        if not found: sys.exit('Projekt-Template fehlt')
+        body=body.lstrip()
+    else: body='Noch offen (Project Init).\n'
+    p.write_text(before+marker+'\n\n'+body)
+for name,marker,body in [('AGENTS.md','## Projektspezifische Ergänzungen',''),
+                         ('harness-learnings.md','## Aktive Learnings','\n### Offen\n\nKeine.\n\n### Lokal übernommen\n\nKeine.\n')]:
+    p=dst/name; before, found, _=p.read_text().partition(marker)
+    if not found: sys.exit('Export-Trennung fehlt: '+name)
+    p.write_text(before+marker+'\n'+body)
+# No IDE artifacts or caches from the source belong in exports.
+import shutil
+for p in list(dst.rglob('__pycache__'))+list(dst.rglob('.DS_Store')):
+    if p.is_dir(): shutil.rmtree(p)
+    else: p.unlink()
+PY
+python3 "$TMP/tools/check-harness.py"
+python3 - "$TMP" <<'PY'
+import re, sys
+from pathlib import Path
+pattern=re.compile(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}')
+for path in Path(sys.argv[1]).rglob('*'):
+    if not path.is_file(): continue
+    try: text=path.read_text()
+    except UnicodeError: continue
+    found=[s for s in pattern.findall(text) if s not in ('git@github.com','git@gitlab.com')]
+    if found: sys.exit('Mögliche Produktadresse in '+str(path.relative_to(sys.argv[1]))+'; Ziel unverändert')
+PY
+if [ -n "${PRODUKTBEGRIFFE:-}" ] && grep -rniE "$PRODUKTBEGRIFFE" "$TMP"; then
+  echo 'Abbruch: mögliche Produktreste; Ziel unverändert' >&2; exit 1
 fi
-FEHLT=$(grep -rhoE '(^|[^A-Za-z0-9_./-])(harness|docs|profiles|tools|ideas|specs|project)/[A-Za-z0-9_./-]+\.(md|sh)' . | sed 's/^[^A-Za-z]//' | sort -u | while read -r p; do
-  # Projektdateien und ausdrücklich als xxx benannte Vorlagenbeispiele sind keine realen Ziele.
-  case "$p" in (project/README.md) ;; (project/*|ideas/Ixxx-*|specs/Sxxx-*) continue ;; esac
-  [ -e "$p" ] || echo "$p"
-done)
-if [ -n "$FUND" ] || [ -n "$FEHLT" ]; then
-  [ -z "$FUND" ] || { echo 'Mögliche Produktreste:' >&2; echo "$FUND" >&2; }
-  [ -z "$FEHLT" ] || { echo 'Verweise auf fehlende Dateien:' >&2; echo "$FEHLT" >&2; }
-  echo 'Abbruch: Ziel wurde nicht verändert.' >&2
-  exit 1
-fi
-
 if [ "$MODUS" = neu ]; then
+  mkdir -p "$ZIEL"
   cp -R "$TMP"/. "$ZIEL"/
-  echo "Vollständigen Harness nach $ZIEL exportiert. Ordner mit dem Agenten öffnen und Auftrag geben."
 else
   rsync -a --checksum --delete --exclude '.git' --exclude '.idea' --exclude '.DS_Store' "$TMP"/ "$ZIEL"/
-  echo "Vollständige Vorlage in $ZIEL aktualisiert. Diff prüfen und erst nach Freigabe pushen."
-  git -C "$ZIEL" status --short
 fi
+echo "Harness nach $ZIEL exportiert. Diff prüfen; kein Commit/Push ausgeführt."

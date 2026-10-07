@@ -1,28 +1,29 @@
-# [Spec – Bereich]
+# S{nnn} – {Bereich}
 
-> **Vorlage:** Lebender Soll-Stand eines Bereichs mit überprüfbaren Kriterien; ausgefüllte Specs liegen unter `specs/` (Regeln: `specs/S000-readme.md`).
-
-- **State:** Modified
-- **Bereich:** [Welcher Teil des Produkts? Abgrenzung zu benachbarten Bereichs-Specs.]
-- **Zuletzt geändert durch:** [Idea, z. B. `ideas/Ixxx-konto.md`, oder „direkter Auftrag“.]
-- **Ziel und Nutzer:** [Wozu dient der Bereich?]
-- **Beschreibung:** [Beobachtbares Verhalten, ohne technischen Lösungsplan.]
-- **Nicht im Umfang:** [Bewusste Abgrenzung.]
+- **Status:** Modified
+- **Herkunft:** [Beauftragte Idea oder direkter Auftrag.]
+- **Ziel und Nutzer:** [Wer braucht welches Ergebnis?]
+- **Verhalten:** [Beobachtbares Soll, kein technischer Lösungsplan.]
+- **Nicht im Umfang:** [Abgrenzung zu anderen Specs.]
+- **Offene Fragen / Abhängigkeiten:** [Entscheidung, zuständige Person, betroffene Specs/Docs.]
 
 ## Akzeptanzkriterien
 
-<!-- Mehr als etwa 15 AK oder unabhängig prüfbare Gruppen? Dann mehrere Specs (Zuschnitt: specs/S000-readme.md). -->
+- **AK1:** [Ein unabhängig prüfbares Ergebnis, klarer Pass/Fail.]
 
-- **AK1:** [Ein einzeln prüfbares Verhalten mit klarem Pass/Fail, in ein bis drei Sätzen. Kein Layout-Detail in Pixeln oder Farben: Gestaltung steht in `docs/design.md`.]
-- **AK2:** [Ein relevanter Erfolgs- oder Fehlerfall, falls benötigt.]
+## Prüfplan
+
+[Vor Umsetzung: Pflichtchecks, relevante Fehlerfälle, Regression, Befehle, Nachweisgrenze und Umgebung gemäß Projektstrategie.]
+
+## Arbeitsstand
+
+- **Erledigt / ausstehend:** [Aktueller Stand.]
+- **Blocker:** [Fehlende Entscheidung, Umgebung oder Nachweis; sonst keine.]
+- **Nächster Schritt:** [Konkreter Wiedereinstieg.]
 
 ## Nachweise
 
-Pro AK nur der **letzte gültige** Nachweis auf dem aktuellen Stand; ersetzte Nachweise löschen, nicht als „früherer Stand“ behalten. Verlauf steht in Git.
+- **AK1:** [Prüfziel · Test/Schritte · Stand · Ergebnis; kein Platzhalter gilt als bestanden.]
+- **Pflichtchecks / Regression:** [Befehle und Ergebnisse; nicht ausgeführte Checks separat.]
 
-
-- **AK1:** [Prüfziel · Test oder Prüfschritte · geprüfter Stand (Commit oder „uncommittet, Datum Uhrzeit“) · Ergebnis.]
-- **AK2:** [Nachweis, falls vorhanden.]
-- **Gate:** [Tatsächlich ausgeführter Projektbefehl und Ergebnis.]
-
-Bei inhaltlicher Änderung an einer bereits implementierten Spec zunächst `Modified`. `Implemented` erst nach gültigen Nachweisen für **sämtliche** geltenden AK und bestandenem `harness/verification/gate.md`; sonst `Modified` und Blocker offen berichten. Bei verhaltensgleichem Refactor ohne Spec-Änderung keinen künstlichen Statuswechsel auslösen. Vorlagen-Platzhalter nicht als bestandene Nachweise übernehmen.
+Regeln: `specs/S000-readme.md`. `Implemented` erst nach vollständigem Nachweis gemäß `harness/verification.md`.

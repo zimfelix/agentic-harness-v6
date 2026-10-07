@@ -1,11 +1,8 @@
----
-name: business-software
-description: Regeln für Software, die dauerhaft Geschäfts- oder Personendaten hält oder Seiteneffekte nach außen auslöst (Mails, Zahlungen, Exporte, Webhooks), unabhängig vom Stack. Beispiele sind CRM, Buchung, Buchhaltung, Warenwirtschaft, Mail- oder Workflow-Automatisierung und Importe. Abgedeckt sind Fachmodell, Schichten, Datenintegrität, Migrationen, Idempotenz, Geld und Zeit, Rechte und Mandanten, Audit-Trail, Personendaten, Seiteneffekte, Entscheidungsnotizen und Teststrategie. Nutzen beim Init solcher Projekte, wenn ein Auftrag einen solchen Teil neu hinzufügt, und bei Änderungen an Fachlogik, Datenmodell, Schnittstellen, Importen, Jobs oder Berechtigungen.
----
+# Profil Geschäftssoftware
 
-# Geschäftssoftware
+**Gilt bei:** Init oder neuem Geschäftssoftware-Teil sowie Änderungen an Fachlogik, Datenmodell, Schnittstellen, Importen, Jobs und Berechtigungen, wenn gewählt. **Zuständigkeit:** Dauerhafte Geschäfts-/Personendaten und Seiteneffekte (CRM, Mail-Automatisierung, Buchung, Buchhaltung); Regeln gelten nach ausgewählten Bereichen.
 
-Fehler in solcher Software kosten Geld, Daten oder Rechtssicherheit, und sie lebt oft jahrelang. Deshalb gelten hier strengere Regeln als bei einfachen Projekten, aber nur dort, wo sie das Projekt tatsächlich betreffen. Die allgemeinen Regeln aus `AGENTS.md` gelten weiter, insbesondere Freigaben, „Keine erfundenen Fakten“ und „Fertig heißt“; hier stehen nur die Ergänzungen für Geschäftssoftware.
+Fehler in solcher Software kosten Geld, Daten oder Rechtssicherheit, und sie lebt oft jahrelang. Deshalb gelten hier strengere Regeln als bei einfachen Projekten, aber nur dort, wo sie das Projekt tatsächlich betreffen. Ablauf und Freigaben stehen in `harness/core.md`, Abschluss in `harness/verification.md`; hier stehen nur die risikobezogenen Ergänzungen.
 
 | Referenz | Lies sie, wenn … |
 |---|---|
@@ -16,11 +13,11 @@ Fehler in solcher Software kosten Geld, Daten oder Rechtssicherheit, und sie leb
 
 ## Bereiche auswählen
 
-Wähle beim Init oder bei der Einordnung eines neuen Projektteils die zutreffenden Bereiche aus: Fachmodell, Daten und Migrationen, Geld und Zeit, Rechte und Mandanten, Personendaten, Seiteneffekte, Buchhaltung. Halte die Auswahl in `AGENTS.md` unter „Skills“ fest, mit einem Halbsatz Begründung für jeden abgewählten Bereich. Ein Beispiel: `business-software (Seiteneffekte, Personendaten, Idempotenz; abgewählt: Geld und Buchhaltung, da keine Beträge)`. Pflichtregeln aus abgewählten Bereichen gelten nicht. Kommt ein Bereich später hinzu, ergänzt du die Auswahl.
+Wähle beim Init oder bei der Einordnung eines neuen Projektteils die zutreffenden Bereiche aus: Fachmodell, Daten und Migrationen, Geld und Zeit, Rechte und Mandanten, Personendaten, Seiteneffekte, Buchhaltung. Halte die Auswahl in `harness/project.md` unter „Profile“ fest, mit einem Halbsatz Begründung für jeden abgewählten Bereich. Ein Beispiel: `business-software (Seiteneffekte, Personendaten, Idempotenz; abgewählt: Geld und Buchhaltung, da keine Beträge)`. Pflichtregeln aus abgewählten Bereichen gelten nicht. Kommt ein Bereich später hinzu, ergänzt du die Auswahl.
 
 ## Init-Fragen
 
-Zusätzlich zu `project-init`:
+Zusätzlich zu `harness/init.md`:
 
 - **Fachbegriffe:** Welche zentralen Begriffe gibt es (z. B. Lead, Kunde, Auftrag, Buchung), und was bedeuten sie genau? Welche Zustände durchlaufen sie?
 - **Mandanten und Rollen:** Gibt es mehrere Firmen oder Teams mit getrennten Daten? Welche Rollen dürfen was?
@@ -30,7 +27,7 @@ Zusätzlich zu `project-init`:
 
 ## Projektdateien
 
-Lege diese Dateien an, sobald das Projekt mehr als einen Baustein oder eine erste Fachentscheidung hat; ab Reifegrad MVP gleich beim Init. Trage sie in `AGENTS.md` unter „Projekt-Docs“ mit ihrem Leseauslöser ein:
+Lege diese Dateien an, sobald das Projekt mehr als einen Baustein oder eine erste Fachentscheidung hat; ab Reifegrad MVP gleich beim Init. Trage nötige zusätzliche Docs mit konkretem Leseauslöser unter „Projektspezifische Ergänzungen“ in `AGENTS.md` ein; `docs/architecture.md` ist bereits im Einstieg geroutet:
 
 - **`docs/architecture.md`** (Auslöser: Änderungen an Fachlogik, Datenmodell, Schnittstellen oder Struktur): Glossar, Fachmodell mit Zuständen und erlaubten Übergängen, Schichten und Abhängigkeitsrichtung, Datenfluss, Betrieb (Jobs, Umgebungen, Ort der Zugangsdaten), Teststrategie je Schicht.
 - **`docs/decisions/`** (Auslöser: neue Architektur- oder Fachentscheidung oder Zweifel an einer bestehenden): je Entscheidung eine kurze Notiz nach `references/entscheidung-vorlage.md`. Wird eine Entscheidung abgelöst, bekommt die alte Notiz den Status „ersetzt durch …“. Das ist die bewusste Ausnahme von „ersetzen statt anhängen“: Hier zählt gerade die Begründung über die Zeit.
@@ -62,7 +59,7 @@ Lege diese Dateien an, sobald das Projekt mehr als einen Baustein oder eine erst
 ### 4. Seiteneffekte nach außen
 
 - Mails, Zahlungen, Exporte an Dritte und Webhooks laufen über eine **Ausgangsstelle** (Postausgang oder Warteschlange) mit **Probelauf** als Standard.
-- Echter Versand ist eine Konfiguration, die nur der Auftraggeber nach dem Probelauf freigibt (siehe „Freigabe“ in `AGENTS.md`). Der Agent schaltet ihn nie selbst ein, auch nicht „nur kurz zum Testen“.
+- Echter Versand ist eine Konfiguration, die nur der Auftraggeber nach dem Probelauf freigibt (Freigabeablauf in `harness/core.md`). Der Agent schaltet ihn nie selbst ein, auch nicht „nur kurz zum Testen“.
 - Jeder Seiteneffekt hat eine eindeutige Kennung, damit ein Wiederholungslauf ihn nicht doppelt auslöst.
 
 ### 5. Tests

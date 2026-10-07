@@ -1,4 +1,4 @@
-// Öffnet die Geräte-Vorschau (../device-preview.html, vom Vorschau-Server serve.mjs unter /_geraete/ ausgeliefert)
+// Öffnet die Geräte-Vorschau (../assets/device-preview.html, vom Vorschau-Server serve.mjs unter /_geraete/ ausgeliefert)
 // in einem neuen Brave-Fenster: die Website gleichzeitig als Handy, Tablet, MacBook und Monitor.
 // Läuft die Vorschau nicht, wird sie gebaut und im Hintergrund gestartet. Aufruf aus dem Projektordner.
 import { execFileSync, spawn } from 'node:child_process';

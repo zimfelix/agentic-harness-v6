@@ -1,16 +1,30 @@
-# Projektprofil – Grenzen und Befehle
+# Projektprofil
 
-> - **Typ:** Projektdoku
-> - **Status:** Pending Project Init
-> - **Zuständigkeit:** Den aktuellen Meilenstein, Projektgrenzen, Freigaben, eingerichtete Befehle und offene Entscheidungen festhalten.
-> - **Gilt bei:** Einordnung jeder Aufgabe über `AGENTS.md`; projektspezifisches Befüllen bei `harness/init.md`.
-> - **Ladebeziehungen:** Einstieg über `AGENTS.md` und `harness/core.md`. Gewähltes Profil (falls eines genannt ist) unter `profiles/`; Bausteine: `docs/architecture.md`; Gestaltung: `docs/design.md`; Testpraxis: `docs/testing.md`; Verhalten und AK: betroffene Specs unter `specs/`.
-> - **Nicht zuständig:** Architekturdetails, Gestaltungsregeln, Codekonventionen oder Akzeptanzkriterien wiederholen.
-
-## Universeller Rahmen
-
-Dieses Profil wird bei jeder Aufgabe gelesen und bleibt deshalb kurz (Projektteil etwa 6 KB). Es nennt oben das gewählte Profil (z. B. „Profil: Website“ → `profiles/`) und sonst nur den **aktuellen** bestätigten Stand: Ziel, Grenzen, Freigaben, eingerichtete Befehle und offene Entscheidungen. Überholte Aussagen werden ersetzt, nicht als Verlauf ergänzt; der Verlauf steht in Git (`document-contract.md`). Betrieb und Bausteine gehören nach `docs/architecture.md`, Gestaltung nach `docs/design.md`, Verhalten und Inhalte in Specs. **Nicht hierher:** Aufgabenlisten und Pläne mit mehreren Schritten (→ Idea mit Teilaufgaben nach `ideas/I000-readme.md`, hier nur der Verweis als nächster Schritt) und Werkzeugdetails (→ `docs/testing.md` bzw. Profil). Befehle: je Befehl eine Zeile mit Zweck; den letzten Lauf nur für die Befehle, die das Gate braucht (z. B. Build, Tests). Ein geklärtes Init ist kein bestandenes Produkt-Gate.
+**Zuständigkeit:** Bestätigter Produktbrief, aktueller Meilenstein, Grenzen und Befehle. Mit Core bei jeder Aufgabe lesen. Details nicht wiederholen; nach `document-contract.md` an die zuständige Stelle verweisen.
 
 ## Projektspezifische Befüllung
 
-Noch offen (Project Init).
+**Status:** Pending Project Init
+
+- **Ziel und Nutzer:** offen
+- **Reifegrad:** offen (Prototyp | MVP | Produkt)
+- **Erstes Ergebnis und Nicht-Ziele:** offen
+- **Erfolgskriterium:** offen
+- **Risiken, Grenzen und Freigaben:** offen (Daten, Rechte, externe Verarbeitung, Kosten, irreversible Aktionen)
+- **Ausgangslage:** offen (Bestand, Betrieb, Vorgaben)
+- **Stack und Struktur:** offen (Entscheidung und Verweis auf `docs/architecture.md`)
+- **Standards und Qualitätsziele:** offen (Geltungsbereich, Durchsetzung; keine unbeauftragten Standards)
+- **Prüfstrategie:** offen (Ebenen/Risiken, TDD, Pflichtchecks, Regression, Umgebung, lokal/CI; Detailstrategie bei Bedarf in `docs/testing.md`)
+- **Profile:** keine gewählt; gewählte Bereiche und begründet Abgewähltes eintragen
+- **Projekt-Docs:** offen (erforderliche Dateien oder begründet nicht relevant)
+- **Archiv:** keins (nicht laden, bauen, testen oder ändern)
+- **Init-Go:** offen (Begründung, nicht blockierende Lücken; kein Produktnachweis)
+
+| Zweck | Befehl | Letztes tatsächliches Ergebnis |
+|---|---|---|
+| Start/Vorschau | offen | – |
+| Pflichtchecks/Regression | offen | – |
+
+**Offene Entscheidungen und Annahmen:** offen
+
+**Fortsetzungsstand:** kein aktiver Produktauftrag. Bei Arbeit ohne Idea/Spec hier Auftrag, erledigt/ausstehend, Blocker, nächste Schritte und Prüfplan eintragen; sonst nur Verweis auf deren Arbeitsstand.

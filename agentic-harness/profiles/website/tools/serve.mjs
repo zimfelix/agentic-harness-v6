@@ -11,7 +11,7 @@ import { routesIn } from './browser.mjs';
 import { konfig, dateitypen } from './konfig.mjs';
 const root = join(process.cwd(), konfig.ausgabe);
 // Geräte-Vorschau: Vorlage aus dem Website-Profil, unverändert ausgeliefert (eine Quelle für Projekt und Harness-Vorlage).
-const devicePreview = fileURLToPath(new URL('../device-preview.html', import.meta.url));
+const devicePreview = fileURLToPath(new URL('../assets/device-preview.html', import.meta.url));
 const types = dateitypen;
 // Baut vor jeder Anfrage neu, sobald sich Dateien in konfig.quelle geändert haben – Browser-Refresh genügt.
 let builtAt = Date.now();
