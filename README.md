@@ -1,10 +1,10 @@
-# Agentic Harness v4.5
+# Agentic Harness v6
 
-Eine universelle Vorlage für Softwareprojekte mit KI-Coding-Agenten. Der aktuelle Harness liegt vollständig unter [`agentic-harness/`](agentic-harness/); das bestehende GitHub-Repository behält seinen Namen `agentic-harness-v5`.
+Eine universelle Vorlage für Softwareprojekte mit KI-Coding-Agenten. Der aktuelle Harness liegt vollständig unter [`agentic-harness/`](agentic-harness/). GitHub-Repository: `agentic-harness-v6`.
 
 ## Was sich geändert hat
 
-Die ursprüngliche Vorlage war zu ausführlich und die zusätzliche Lite-Variante sowie Skill-/Adapterordner machten die Orientierung unnötig kompliziert. **v4.5 führt alles in einer Vorlage zusammen:** kurzer Agenteneinstieg, Brief und Technik im Init, ein Verification Loop und nur ein Ordner `profiles/` für Website- und Business-Software-Regeln samt Werkzeugen.
+Die ursprüngliche Vorlage war zu ausführlich und die zusätzliche Lite-Variante sowie Skill-/Adapterordner machten die Orientierung unnötig kompliziert. **v6 führt alles in einer Vorlage zusammen:** kurzer Agenteneinstieg, Brief und Technik im Init, ein Verification Loop und nur ein Ordner `profiles/` für Website- und Business-Software-Regeln samt Werkzeugen.
 
 Templates, Ideas, Bereichs-Specs, Dokumentenvertrag und Harness-Learnings bleiben. Init, Dateistruktur und beauftragtes Soll müssen vor Produktcode feststehen; eine kleinere Vorlage allein garantiert keine zuverlässige Agentenarbeit.
 
@@ -20,7 +20,7 @@ cp -R agentic-harness/. /pfad/zum/neuen-projekt/
 Oder einen bereinigten Export ohne lokale Projektbefüllung/Learnings erzeugen:
 
 ```sh
-VERSION=v4.5 sh agentic-harness/tools/export-harness.sh /pfad/zum/leeren-projekt
+VERSION=v6 sh agentic-harness/tools/export-harness.sh /pfad/zum/leeren-projekt
 ```
 
 Projektordner mit dem Agenten öffnen und frei erzählen, was entstehen soll. Eine vorhandene Ausgangsbeschreibung kannst du dabei direkt angeben. `AGENTS.md` führt über Init → Soll/Specs → Umsetzung → Nachweise. Details: [Anleitung](agentic-harness/harness/README.md).
