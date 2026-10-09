@@ -5,21 +5,28 @@
 // Elemente werden über ihre Position im Dokument verglichen, nicht über Klassen: Umbenennen bleibt erlaubt,
 // solange die HTML-Struktur gleich bleibt. link-, script- und style-Elemente zählen nicht mit.
 import { readFile, writeFile } from 'node:fs/promises';
-import { launch, open, routesIn, serve, sleep } from './browser.mjs';
+import { launch, open, checkedRoutes, serve, sleep } from './browser.mjs';
 import { konfig } from './konfig.mjs';
 
 const [first, second, third] = process.argv.slice(2);
 
 if (first === '--compare') {
   const [a, b] = await Promise.all([second, third].map(async f => JSON.parse(await readFile(f, 'utf8'))));
+  for (const data of [a, b]) {
+    if (!data || Array.isArray(data) || typeof data !== 'object' || !Object.keys(data).length ||
+        Object.values(data).some(v => !Array.isArray(v) || !v.length || v.some(s => typeof s !== 'string'))) {
+      throw new Error('Leere/ungültige Stylezustände; kein Nachweis');
+    }
+  }
+  const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])].sort();
   let bad = 0;
-  for (const key of Object.keys(a)) {
+  for (const key of keys) {
     const x = a[key], y = b[key];
-    if (!y) { console.log(`${key}: fehlt`); bad++; continue; }
+    if (!x || !y) { console.log(`${key}: fehlt in ${x ? 'B' : 'A'}`); bad++; continue; }
     const i = x.findIndex((v, n) => v !== y[n]);
     if (i !== -1 || x.length !== y.length) { console.log(`${key}: Element ${i === -1 ? x.length : i} (${x[i] ?? '–'} → ${y[i] ?? '–'})`); bad++; }
   }
-  console.log(bad ? `${bad} von ${Object.keys(a).length} Zuständen abweichend.` : `Alle ${Object.keys(a).length} Zustände gleich.`);
+  console.log(bad ? `${bad} von ${keys.length} Zuständen abweichend.` : `Alle ${keys.length} Zustände gleich.`);
   process.exit(bad ? 1 : 0);
 }
 
@@ -59,10 +66,12 @@ const states = {
 };
 
 const out = {};
+const routes = await checkedRoutes(root);
 const server = await serve(root);
-const page = await launch();
+let page;
 try {
-  for (const route of await routesIn(root)) {
+  page = await launch();
+  for (const route of routes) {
     for (const width of konfig.breiten) {
       for (const [name, apply] of Object.entries(states)) {
         await open(page, server.base + route, width);
@@ -75,4 +84,4 @@ try {
   }
   await writeFile(first, JSON.stringify(out));
   console.log(`${Object.keys(out).length} Zustände in ${first}`);
-} finally { await page.close(); server.close(); }
+} finally { await page?.close(); server.close(); }

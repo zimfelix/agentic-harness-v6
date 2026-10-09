@@ -26,6 +26,7 @@ Freie Beschreibung in diese Felder übersetzen; Antworten nicht erneut abfragen:
 | Erfolgskriterium | Woran wird der erste Schritt geprüft? |
 | Risiken, Grenzen, Freigaben | Echte Daten, Rechte, externe Dienste, Kosten, Löschen/Versand/Veröffentlichung |
 | Ausgangslage | Bestand, Vorgaben, Betrieb, Material, Kenntnisse |
+| Arbeitsmodus und Autonomie | Shipping/Learning/Kombination; delegierte Entscheidungen, Grenzen und gesonderte Freigaben |
 
 Je Feld **bestätigt**, **Annahme** oder **offen** markieren. Brief kompakt vorlegen und nötige Bestätigung einholen; nur folgenschwere Lücken gebündelt fragen. Ausdrücklich überlassene reversible Entscheidungen als Annahmen markieren. Bestätigtes in `harness/project.md` eintragen; die optionale Quelldatei muss nicht nachgeführt werden.
 
@@ -33,7 +34,7 @@ Bei Oberfläche zusätzlich nur relevante Lücken: Marke/Material/Rechte, Anmutu
 
 ## 2. Technik und Arbeitsrahmen
 
-- **Profile:** Projektart einordnen, passende Profile lesen und deren Init-Fragen/Bereichsauswahl nutzen. `profiles/business-software/profile.md` für Geschäfts-/Personendaten oder externe Seiteneffekte; `profiles/website/profile.md` für Websites. Gewählte Bereiche und Abgewähltes mit Grund im Projektprofil eintragen. Kein Profil auf Vorrat.
+- **Profile:** Projektart einordnen, passende Profile lesen und deren Init-Fragen/Bereichsauswahl nutzen. `profiles/business-software/profile.md` für Geschäftssoftware mit Fachlogik, Schnittstellen, Daten, Importen/Jobs, Berechtigungen oder externen Seiteneffekten; `profiles/website/profile.md` für Websites. Gewählte Bereiche und Abgewähltes mit Grund im Format des jeweiligen Profils unter „Profile“ eintragen; mehrere Profile mit ` | ` trennen, ohne passendes Profil `keine (Begründung)`. Auswahl ist keine Abwahl tatsächlich vorhandener Risiken. Kein Profil auf Vorrat.
 - **Stack:** Gesetztes übernehmen; sonst tragfähige Alternativen kurz nach Nutzen, Aufwand, Kosten und Risiken vergleichen, Empfehlung vorlegen. Entscheidungsrelevante Versionen/Voraussetzungen an Primärquellen prüfen. Technik bestätigen lassen oder ausdrücklich delegierte Entscheidung als Annahme führen.
 - **Struktur vor Code:** In `docs/architecture.md` Zuständigkeiten, Abhängigkeits-/Datenfluss, Betrieb und tatsächliche Zielstruktur festlegen: Source, Tests, Konfiguration, Inhalte, Scripts, Assets, ggf. Tokens und Archiv. Für neue Python-Anwendungen ist `src/<paket>/` mit `tests/` der Ausgangsvorschlag; bestehende Struktur/Framework-Konventionen nicht ohne Grund umbauen. Abweichungen begründen. Kein Produktcode im Harness-Ordner.
 - **Standards/Qualität:** Geltende Coding-Konventionen und fachliche/technische Standards samt Geltungsbereich klären. Messbare risikorelevante Ziele festlegen; durchsetzbare Regeln in Formatter/Linter/Typprüfung/Tests, nicht in doppelte Prosa. Offenes ausdrücklich benennen.
@@ -58,4 +59,4 @@ Checks einrichten, sobald ausführbar; tatsächlich ausführen und neue Prüflog
 3. Welche Fragen blockieren diesen Bau, welche erst den Livegang? Fehlende Checks sichtbar offen mit Nachholplan?
 
 **No-Go:** `Pending Project Init` stehen lassen, Blocker gebündelt melden; kein Produktcode.
-**Go:** Begründung und verbleibende nicht blockierende Lücken unter `Init-Go` eintragen, Status auf `Init abgeschlossen` setzen. Zurück zum Core: liegenden Umsetzungsauftrag ausführen, sonst ersten Bauauftrag vorschlagen. Init ist weder automatische Implementierungsfreigabe noch Produktnachweis.
+**Go:** Begründung und verbleibende nicht blockierende Lücken unter `Init-Go` eintragen, Status auf `Init abgeschlossen` setzen und `python3 tools/check-harness.py --go` ausführen. Dieser Check prüft Einträge/Status, nicht deren fachliche Wahrheit. Zurück zum Core: liegenden Umsetzungsauftrag ausführen, sonst ersten Bauauftrag vorschlagen. Init ist weder automatische Implementierungsfreigabe noch Produktnachweis.

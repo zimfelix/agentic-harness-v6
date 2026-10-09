@@ -3,7 +3,7 @@
 // damit nur wirklich tote Regeln gemeldet werden.
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { launch, open, routesIn, serve } from './browser.mjs';
+import { launch, open, checkedRoutes, serve } from './browser.mjs';
 import { allRules, parseCss } from './css.mjs';
 import { konfig } from './konfig.mjs';
 
@@ -36,14 +36,16 @@ export async function unusedSelectors({ stylesDir = konfig.styles, root = konfig
   const files = await readStyles(stylesDir);
   const selectors = [...new Set(files.flatMap(f => allRules(f.items).flatMap(r => r.selectors)))];
   const used = new Set();
+  const routes = await checkedRoutes(root);
   const server = await serve(root);
-  const page = await launch();
+  let page;
   try {
-    for (const route of await routesIn(root)) {
+    page = await launch();
+    for (const route of routes) {
       await open(page, server.base + route, 1440);
       for (const sel of await page.evaluate(matchScript(selectors.filter(s => !used.has(s))))) used.add(sel);
     }
-  } finally { await page.close(); server.close(); }
+  } finally { await page?.close(); server.close(); }
   const unused = Object.fromEntries(files.map(f => [f.path, [...new Set(allRules(f.items).flatMap(r => r.selectors).filter(s => !used.has(s)))]]));
   return { files, used, unused };
 }

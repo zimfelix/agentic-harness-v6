@@ -1,10 +1,12 @@
 # Rechnungen, Buchungen und steuerrelevante Belege
 
-Diese Regeln gelten nur, wenn das Projekt Rechnungen, Buchungen oder andere steuerrelevante Belege führt. Rechtliche Anforderungen (z. B. GoBD, E-Rechnung, Aufbewahrungsfristen) bestätigt der Auftraggeber bzw. seine Steuerberatung. Der Agent erfindet keine Rechtsauslegung, sondern markiert offene Punkte.
+**Gilt bei:** Gewähltem Bereich Buchhaltung. **Zuständigkeit:** Prüffragen und Integritätsregeln für Belege, keine universelle Rechtsauslegung. Anwendbare Anforderungen (GoBD, E-Rechnung, Fristen, Korrekturweg) bestätigt Auftraggeber/Fachberatung.
 
-- **Unveränderbarkeit:** Ein festgeschriebener Beleg oder eine Buchung wird nie geändert oder gelöscht. Korrekturen laufen über **Storno und Neubuchung**, beide mit Verweis aufeinander.
-- **Lückenlose Nummernkreise:** Rechnungsnummern werden eindeutig und fortlaufend vergeben, und zwar transaktionssicher, auch bei gleichzeitigen Anfragen. Entwürfe bekommen erst beim Festschreiben eine Nummer.
-- **Zeitbezug:** Steuersatz, Firmendaten und Preise werden mit dem Stand zum Belegdatum gespeichert, nicht live nachgeschlagen.
-- **Summen:** Netto, Steuer und Brutto je Position und gesamt folgen der dokumentierten Rundungsregel (`references/daten-geld-zeit.md`); ein Test prüft, dass die Summen aufgehen.
-- **Exporte** an Buchhaltung oder Steuerberatung (z. B. DATEV-Format, E-Rechnung) werden gegen eine vom Auftraggeber bestätigte Vorlage oder Spezifikation getestet.
-- **Aufbewahrung:** Belege werden für die gesetzliche Frist unveränderbar archiviert; Löschanfragen nach DSGVO führen hier zum Sperren statt zum Löschen.
+- **Festschreibung:** Festgeschriebene Inhalte nicht still überschreiben/löschen. Korrekturweg nach bestätigter Beleg-/Buchungsregel, z. B. Storno und Neubuchung mit Verweisen; nicht jede Rechnungskorrektur pauschal als Neubuchung behandeln.
+- **Nummernkreise:** Eindeutig, nach bestätigter Regel fortlaufend und parallelitätssicher vergeben. Entwurfs-/Festschreibungszeitpunkt, Nummernreihen, Abbruch/Lücken und deren Nachvollziehbarkeit festlegen. Keine pauschale gesetzliche Lückenlosigkeitsbehauptung. §14 Abs.4 Nr.4 UStG nennt einmalig vergebene fortlaufende Nummern mit einer oder mehreren Zahlenreihen; weitere Anforderungen separat prüfen.
+- **Zeitbezug:** Relevante Steuer-/Firmen-/Preisangaben als Belegstand sichern, nicht durch späteren Live-Nachschlag verändern.
+- **Summen:** Netto/Steuer/Brutto je Position und gesamt nach dokumentierter Rundung prüfen; Geldregeln aus `daten-geld-zeit.md`.
+- **Exporte:** Gegen bestätigte Vorlage/Spezifikation (z. B. E-Rechnung/DATEV) und Fehlerfälle testen; Formatprüfung beweist keine steuerliche Richtigkeit.
+- **Aufbewahrung:** Unveränderbare Speicherung, Zugriff und Frist nach konkret bestätigter Pflicht. Löschanfragen nur für tatsächlich aufbewahrungspflichtige Daten einschränken, übrige Personendaten nicht pauschal behalten.
+
+Quellen und Grenzen bei Profilpflege: `quellen.md`.

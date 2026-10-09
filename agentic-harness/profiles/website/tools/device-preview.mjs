@@ -12,8 +12,11 @@ const url = `http://127.0.0.1:${port}/_geraete/`;
 // 'ok' = Vorschau mit Geräte-Vorschau, 'alt' = Vorschau ohne (vor dieser Funktion gestartet), 'aus' = keine Vorschau
 const check = async () => {
   try {
-    const res = await fetch(`http://127.0.0.1:${port}/_geraete/stand`);
-    return res.ok && res.headers.get('content-type')?.includes('json') ? 'ok' : 'alt';
+    const res = await fetch(`http://127.0.0.1:${port}/_geraete/stand`, { signal:AbortSignal.timeout(1000) });
+    if (!res.headers.get('content-type')?.includes('json')) return 'alt';
+    const info = await res.json();
+    if (info.aktuell === false) return 'fehler';
+    return res.ok && info.aktuell === true ? 'ok' : 'alt';
   } catch { return 'aus'; }
 };
 
@@ -22,12 +25,14 @@ if (state === 'alt') {
   console.error(`Auf Port ${port} läuft eine ältere Vorschau ohne Geräte-Vorschau. Bitte beenden und neu starten.`);
   process.exit(1);
 }
+if (state === 'fehler') {
+  console.error('Vorschau meldet einen Buildfehler; kein aktueller Stand. Buildquelle prüfen.');
+  process.exit(1);
+}
 if (state === 'aus') {
-  const [befehl, ...argumente] = konfig.build;
-  execFileSync(befehl === 'node' ? process.execPath : befehl, argumente, { stdio:'inherit' });
   spawn(process.execPath, [fileURLToPath(new URL('./serve.mjs', import.meta.url))], { detached:true, stdio:'ignore' }).unref();
-  for (let i = 0; i < 40 && state !== 'ok'; i++) { await sleep(250); state = await check(); }
-  if (state !== 'ok') { console.error('Die Vorschau ließ sich nicht starten.'); process.exit(1); }
+  for (let i = 0; i < 40 && !['ok', 'fehler'].includes(state); i++) { await sleep(250); state = await check(); }
+  if (state !== 'ok') { console.error('Die Vorschau ließ sich nicht aktuell starten (ggf. Buildfehler).'); process.exit(1); }
   console.log(`Vorschau gestartet: http://127.0.0.1:${port}/ (läuft im Hintergrund weiter)`);
 }
 

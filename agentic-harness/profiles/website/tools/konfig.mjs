@@ -15,6 +15,9 @@ const standard = {
   port: 4173,                 // lokale Vorschau
   interneOrdner: ['konzepte'],// gebaut, aber nicht Teil der Website (Konzeptseiten): von Prüfungen ausgenommen
   breiten: [1440, 390, 320],  // Prüfgrößen (docs/testing.md im Projekt)
+  routen: null,              // erwartete statische Routen; null = entdecken, Soll-Abgleich separat
+  bereit: null,             // optionaler JS-Ausdruck für projektspezifische Layoutbereitschaft
+  warteMs: 15000,            // begrenztes Browser-/CDP-/Zustandswarten
 };
 
 const datei = join(process.cwd(), 'website.config.mjs');
@@ -26,6 +29,8 @@ const ordner = process.env.ORDNER;
 const statisch = ordner ? { quelle: ordner, ausgabe: ordner, styles: ordner, build: null, interneOrdner: [] } : {};
 
 export const konfig = { ...standard, ...projekt, ...statisch };
+if (!Number.isInteger(konfig.warteMs) || konfig.warteMs < 100) throw new Error('warteMs muss ein positiver Integer >= 100 sein');
+if (konfig.bereit !== null && typeof konfig.bereit !== 'string') throw new Error('bereit muss ein JS-Ausdruck oder null sein');
 
 // Dateitypen für Vorschau und Prüfserver (eine Tabelle für beide).
 export const dateitypen = {

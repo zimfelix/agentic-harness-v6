@@ -4,7 +4,7 @@
 // Aufruf aus dem Projektordner, vorher bauen:  node <webtools>/pruefen.mjs [build-ordner]
 // Ergebnis: eine Zeile je Seite und Breite; Exit-Code 1 bei harten Fehlern (Überlauf, Skriptfehler, 404, Feldgröße, Schrift nicht geladen).
 // Hinweise (Kontrast, kleine Bedienelemente) brechen nicht ab, sondern werden zur Beurteilung aufgelistet.
-import { launch, open, routesIn, serve } from './browser.mjs';
+import { launch, open, checkedRoutes, serve } from './browser.mjs';
 import { konfig } from './konfig.mjs';
 
 const root = process.argv[2] || konfig.ausgabe;
@@ -52,13 +52,15 @@ const MESSUNG = `(() => {
   return r;
 })()`;
 
+const routes = await checkedRoutes(root);
 const server = await serve(root);
-const page = await launch();
+let page;
 const harte = [];
 let hinweise = 0;
 try {
+  page = await launch();
   await page.send('Page.addScriptToEvaluateOnNewDocument', { source: FEHLERFANG });
-  for (const route of await routesIn(root)) {
+  for (const route of routes) {
     for (const breite of konfig.breiten) {
       await open(page, server.base + route, breite);
       const m = await page.evaluate(MESSUNG);
@@ -74,7 +76,7 @@ try {
     }
   }
 } finally {
-  await page.close();
+  await page?.close();
   server.close();
 }
 console.log(harte.length ? `\n❌ ${harte.length} harte Fehler: ${harte.join(', ')}` : `\n✅ Keine harten Fehler${hinweise ? ` · ${hinweise} Hinweise zur Beurteilung` : ''}.`);

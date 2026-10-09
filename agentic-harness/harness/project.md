@@ -12,10 +12,11 @@
 - **Erfolgskriterium:** offen
 - **Risiken, Grenzen und Freigaben:** offen (Daten, Rechte, externe Verarbeitung, Kosten, irreversible Aktionen)
 - **Ausgangslage:** offen (Bestand, Betrieb, Vorgaben)
+- **Arbeitsmodus und Autonomie:** offen (Shipping/Learning/Kombination; delegierte Entscheidungen, Grenzen/Freigaben)
 - **Stack und Struktur:** offen (Entscheidung und Verweis auf `docs/architecture.md`)
 - **Standards und Qualitätsziele:** offen (Geltungsbereich, Durchsetzung; keine unbeauftragten Standards)
 - **Prüfstrategie:** offen (Ebenen/Risiken, TDD, Pflichtchecks, Regression, Umgebung, lokal/CI; Detailstrategie bei Bedarf in `docs/testing.md`)
-- **Profile:** keine gewählt; gewählte Bereiche und begründet Abgewähltes eintragen
+- **Profile:** offen (Auswahl nach Profilformat; mehrere Profile mit | trennen; ohne passendes Profil: keine mit Grund)
 - **Projekt-Docs:** offen (erforderliche Dateien oder begründet nicht relevant)
 - **Archiv:** keins (nicht laden, bauen, testen oder ändern)
 - **Init-Go:** offen (Begründung, nicht blockierende Lücken; kein Produktnachweis)
