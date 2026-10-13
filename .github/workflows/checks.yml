@@ -1,0 +1,28 @@
+name: Deterministic checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Template, export, preview and runner tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Acceptance-oracle self-tests (no model calls)
+        run: python3 -W error::ResourceWarning -m unittest discover -s benchmarks -p 'test_*.py' -v
+      - name: Whitespace check
+        run: git diff --check
+# Five real-Brave cases are intentionally skipped here, not claimed passed.
+# Full HARNESS_BRAVE_TESTS=1 verification is documented from the local Brave run.
+# Agent comparisons never run automatically and need explicit authenticated opt-in.

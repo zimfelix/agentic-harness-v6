@@ -1,0 +1,1865 @@
+{
+  "reviewer_model": "gpt-6.1-sol",
+  "budget": "7 minutes",
+  "runtime": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "products": [
+    {
+      "label": "A",
+      "outcomes": [
+        {
+          "name": "entrypoint_and_demo",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "projects": 2,
+              "tasks": 7,
+              "demo_exit": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-0/state --help",
+                "exit": 0,
+                "output_sha256": "35cb2d19c0722888d0811baa1573cd04d56914aa9f4deab21ba0c5305568da6c",
+                "observation": "usage: planner.py [-h] [--db DB]\n                  {project-add,project-edit,project-delete,task-add,task-edit,done,reopen,task-delete,depend,undepend,overview,next,import,restore,export,backup} ...\n\nLocal project and task planner. Run --help for the CLI.\n\npositional arguments:\n  {project-add,project-edit,project-delete,task-add,task-edit,done,reopen,task-delete,depend,undepend,overview,next,import,restore,export,backup}\n\noptions:\n  -h, --help            show this help message and exit\n  --db DB               SQLite state path (default: .planner/planner.sqlite3)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 examples/demo.py",
+                "exit": 0,
+                "output_sha256": "99b52a30a1ebe5d79427a1d92f61f02a43d208ae673f201c446d1d10d67a00b8",
+                "observation": "lockers: []\n  a2 ready blockers: []\n  a3 blocked blockers: ['a2']\n  a4 blocked blockers: ['a3']\nbeacon {'blocked': 1, 'done': 0, 'ready': 2} remaining minutes: 115\n  b1 ready blockers: []\n  b2 ready blockers: []\n  b3 blocked blockers: ['b1', 'b2']\nFresh invocation read exact saved state: True\nNext: a2 Draft sample layout (blocked/done excluded)\nerror: invalid JSON: Expecting value: line 1 column 12 (char 11)\nMalformed import preserved exact state: True\nerror: dependency cycle detected\nerror: completed task a3 has unfinished prerequisite a2\nCycle and blocked completion rejected without mutation: True\nBackup restored exact original state: True\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-0/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-0/state export <copy>/review-0/export-1.json",
+                "exit": 0,
+                "output_sha256": "b11144c8a4c2fa5751846901269aa05ba28df55b58fb14148f738fefb0858f4e",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-0/export-1.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fresh_process_persistence",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "state_hash": "0f62013a8020284b2f0b7b54e78c0240c071336598790e7253d652fdceceb72e",
+              "task_count": 1
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-1/state project-add Independent synthetic --id p",
+                "exit": 0,
+                "output_sha256": "178eb52492353284e9ec1d5650770e3e3d00a20cbb70011e0d2d2282d19ee74f",
+                "observation": "{\n  \"item\": {\n    \"id\": \"p\",\n    \"name\": \"Independent synthetic\"\n  },\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-1/state task-add p Independent task --id x --estimate 12",
+                "exit": 0,
+                "output_sha256": "d1a2a8bcd3fcadff9b27f237408d646eff4ddb50a9d358dd723e5f0e6c66d309",
+                "observation": "{\n  \"item\": {\n    \"dependencies\": [],\n    \"done\": false,\n    \"due\": null,\n    \"estimate_minutes\": 12,\n    \"id\": \"x\",\n    \"priority\": 3,\n    \"project_id\": \"p\",\n    \"title\": \"Independent task\"\n  },\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-1/state overview",
+                "exit": 0,
+                "output_sha256": "a58fbb569e777ce29141f995fd302ebd356f9c97cb47e1a15bd068ea1741e0a6",
+                "observation": "{\n  \"projects\": [\n    {\n      \"counts\": {\n        \"blocked\": 0,\n        \"done\": 0,\n        \"ready\": 1\n      },\n      \"estimate_minutes\": 12,\n      \"id\": \"p\",\n      \"name\": \"Independent synthetic\",\n      \"remaining_minutes\": 12,\n      \"tasks\": [\n        {\n          \"blockers\": [],\n          \"dependencies\": [],\n          \"done\": false,\n          \"due\": null,\n          \"estimate_minutes\": 12,\n          \"id\": \"x\",\n          \"priority\": 3,\n          \"project_id\": \"p\",\n          \"status\": \"ready\",\n          \"title\": \"Independent task\"\n        }\n      ]\n    }\n  ]\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-1/state export <copy>/review-1/export-1.json",
+                "exit": 0,
+                "output_sha256": "b65920c9d09aafa651ae31b2db4404c63b01c5c547a71dc5888fd1dd383a8cff",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-1/export-1.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "dependency_block",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "selected": [
+                "a2"
+              ],
+              "preserved": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-2/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-2/state export <copy>/review-2/export-1.json",
+                "exit": 0,
+                "output_sha256": "98c3c0940c5a51c4f44827abbfed862d4cdc241697f8a44396f17e2856ad477f",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-2/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-2/state done a3",
+                "exit": 1,
+                "output_sha256": "ee315d31c02e6f540de8697037718dfe26e8d958c03f6c946109e44c3e797257",
+                "observation": "error: completed task a3 has unfinished prerequisite a2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-2/state export <copy>/review-2/export-2.json",
+                "exit": 0,
+                "output_sha256": "f66839a8a187a439441d087bb4f75be02845184bf2a3cb270aa875894bb6ecf0",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-2/export-2.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-2/state next",
+                "exit": 0,
+                "output_sha256": "895d95afe160280cd53c83a97f0d7b0637ba2cf2754add94fd1e18d01cc91851",
+                "observation": "{\n  \"reason\": \"priority descending, due ascending (undated last), effort ascending, ID\",\n  \"task\": {\n    \"blockers\": [],\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": false,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"status\": \"ready\",\n    \"title\": \"Draft sample layout\"\n  }\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "cycle_rejection",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe",
+              "after_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-3/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-3/state export <copy>/review-3/export-1.json",
+                "exit": 0,
+                "output_sha256": "0c792ceb858887b1becda32867190b242242258d8f99c35fac331a31fcb11dd8",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-3/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-3/state depend a2 a4",
+                "exit": 1,
+                "output_sha256": "faa189a6ea685128712196c020759652a50ed11fe5465294556ffa457ca23853",
+                "observation": "error: dependency cycle detected\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-3/state export <copy>/review-3/export-2.json",
+                "exit": 0,
+                "output_sha256": "ca4f94e5cb03b1db8c43628df34bcfa4a126b6714540ed695e169f0a9ff84dd1",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-3/export-2.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-3/state export <copy>/review-3/export-3.json",
+                "exit": 0,
+                "output_sha256": "c8a17bf86bd74eafcd3c18458fbb1ecf024d133e95ab88d6b8549e6ab848c394",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-3/export-3.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deterministic_next_and_completed_exclusion",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "repeated_order": [
+                "a2"
+              ],
+              "after_completion": [
+                "a3"
+              ]
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state export <copy>/review-4/export-1.json",
+                "exit": 0,
+                "output_sha256": "c3e33a3be27d2022d39c0b242c170b7a986d41a1903323a0d7d0efea85652f97",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-4/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "895d95afe160280cd53c83a97f0d7b0637ba2cf2754add94fd1e18d01cc91851",
+                "observation": "{\n  \"reason\": \"priority descending, due ascending (undated last), effort ascending, ID\",\n  \"task\": {\n    \"blockers\": [],\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": false,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"status\": \"ready\",\n    \"title\": \"Draft sample layout\"\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "895d95afe160280cd53c83a97f0d7b0637ba2cf2754add94fd1e18d01cc91851",
+                "observation": "{\n  \"reason\": \"priority descending, due ascending (undated last), effort ascending, ID\",\n  \"task\": {\n    \"blockers\": [],\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": false,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"status\": \"ready\",\n    \"title\": \"Draft sample layout\"\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "895d95afe160280cd53c83a97f0d7b0637ba2cf2754add94fd1e18d01cc91851",
+                "observation": "{\n  \"reason\": \"priority descending, due ascending (undated last), effort ascending, ID\",\n  \"task\": {\n    \"blockers\": [],\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": false,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"status\": \"ready\",\n    \"title\": \"Draft sample layout\"\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state done a2",
+                "exit": 0,
+                "output_sha256": "1860147abc7ebc2701a98e6635060a60c95b6cf5d01cfd87cf820d4f48b19fae",
+                "observation": "{\n  \"item\": {\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": true,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"title\": \"Draft sample layout\"\n  },\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "33f6de7383f966f117b5f6e9fdad0a0d191bde24f6d70643630f4e1777741c54",
+                "observation": "{\n  \"reason\": \"priority descending, due ascending (undated last), effort ascending, ID\",\n  \"task\": {\n    \"blockers\": [],\n    \"dependencies\": [\n      \"a2\"\n    ],\n    \"done\": false,\n    \"due\": \"2030-04-02\",\n    \"estimate_minutes\": 45,\n    \"id\": \"a3\",\n    \"priority\": 5,\n    \"project_id\": \"atlas\",\n    \"status\": \"ready\",\n    \"title\": \"Review sample layout\"\n  }\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "malformed_import_preservation",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "rejections": [
+                "syntax",
+                "dangling",
+                "cycle"
+              ],
+              "preserved_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state export <copy>/review-5/export-1.json",
+                "exit": 0,
+                "output_sha256": "b5cdfa1a75d9a52e90760c84a68e7bd082238b961a25cc2842e1641f3f67c172",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-5/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "e983f3e683c0a4d6e1f68417f00ad3aed27d4ff52abaeae96ed095de27540b66",
+                "observation": "error: invalid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state export <copy>/review-5/export-2.json",
+                "exit": 0,
+                "output_sha256": "81e10d0d552037ddcdbcb76e6b8dfdc4508ede2a479b379cc61eaf86bf97b459",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-5/export-2.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "eb02470abdc56582e5c23fabf478891f1f39997def169755f55cc9e383340ca9",
+                "observation": "error: unknown dependency: missing\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state export <copy>/review-5/export-3.json",
+                "exit": 0,
+                "output_sha256": "02069630bbe24a6d4ffd4d38c1623816401e0454634d81dd4d217169fc63b6f8",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-5/export-3.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "faa189a6ea685128712196c020759652a50ed11fe5465294556ffa457ca23853",
+                "observation": "error: dependency cycle detected\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-5/state export <copy>/review-5/export-4.json",
+                "exit": 0,
+                "output_sha256": "886802c47bf292bf28ffbb0099372f4a3e1ddb4318848a49fe002505705a8aaa",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-5/export-4.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "export_import_roundtrip",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe",
+              "after_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-6/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-6/state export <copy>/review-6/export-1.json",
+                "exit": 0,
+                "output_sha256": "1ddf5db56cd264daa71b93d676089e9bfd56d4ea5401a0691c822fb350099184",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-6/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-6/state export <copy>/review-6/transfer.json",
+                "exit": 0,
+                "output_sha256": "7496a0d3a275bcd618e159993f062c266c07b2a9468013bb07dbebe8f073bfdf",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-6/transfer.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-6/other-state import <copy>/review-6/transfer.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-6/other-state export <copy>/review-6/export-2.json",
+                "exit": 0,
+                "output_sha256": "1a447fd1cf95de8bf839e696b7b523bd3f67498ae12ed37add44bf1f3dc644ae",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-6/export-2.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backup_restore",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe",
+              "after_hash": "631bc1f92315a9ae4903df757d68c34ad19d753161f5c1135c16795f8d0e9bfe",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state export <copy>/review-7/export-1.json",
+                "exit": 0,
+                "output_sha256": "48825cbf4e1f594387a629b90d19f2380d834ba554c1f7daae43497a2e42535c",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-7/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state backup <copy>/review-7/transfer.json",
+                "exit": 0,
+                "output_sha256": "6681e53f6e023748480f264398425007a91e504e004e68a0415bb2a8b3127325",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-7/transfer.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state done a2",
+                "exit": 0,
+                "output_sha256": "1860147abc7ebc2701a98e6635060a60c95b6cf5d01cfd87cf820d4f48b19fae",
+                "observation": "{\n  \"item\": {\n    \"dependencies\": [\n      \"a1\"\n    ],\n    \"done\": true,\n    \"due\": \"2030-04-03\",\n    \"estimate_minutes\": 90,\n    \"id\": \"a2\",\n    \"priority\": 4,\n    \"project_id\": \"atlas\",\n    \"title\": \"Draft sample layout\"\n  },\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state export <copy>/review-7/export-2.json",
+                "exit": 0,
+                "output_sha256": "aded9deeb4ebcf14f837cc5f1c18cb5bda33fe4a9e03fa9ad1a1a0ea49a12ad9",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-7/export-2.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state restore <copy>/review-7/transfer.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-7/state export <copy>/review-7/export-3.json",
+                "exit": 0,
+                "output_sha256": "de7c88eca61331540bc2996d4c861ecfca4c841513ba0274f91d2d56d186e8c7",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-7/export-3.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deletion_integrity",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "tasks_after": 6,
+              "dangling_references": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state import <copy>/examples/synthetic.json --replace",
+                "exit": 0,
+                "output_sha256": "f2d089b1514fa9e730207c5134936bf2ecf3e1dee367c5cd172ff8da7e8300f4",
+                "observation": "{\n  \"mode\": \"whole-state replacement\",\n  \"ok\": true,\n  \"projects\": 2,\n  \"tasks\": 7\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state export <copy>/review-8/export-1.json",
+                "exit": 0,
+                "output_sha256": "7745465087981adfc2ddea97de8e7b5c065049add81797270f809d38139aa0f4",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-8/export-1.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state task-delete a2",
+                "exit": 1,
+                "output_sha256": "3d674ed95f1843b2009861c5a355712fe7acc792f6dcc1716fc3ac5cca2a084c",
+                "observation": "error: task is referenced by dependencies; explicitly remove them first\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state export <copy>/review-8/export-2.json",
+                "exit": 0,
+                "output_sha256": "42a565fa4b0840d00f687ece1a7ee9ea45c24c59c00c198195e3216087a06237",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-8/export-2.json\",\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state task-delete b3",
+                "exit": 0,
+                "output_sha256": "b2e534c751737c602dd7940c4b5db0bb39d6b8f23e58d2b878c459e1a4c37b27",
+                "observation": "{\n  \"item\": {\n    \"dependencies\": [\n      \"b1\",\n      \"b2\"\n    ],\n    \"done\": false,\n    \"due\": null,\n    \"estimate_minutes\": 15,\n    \"id\": \"b3\",\n    \"priority\": 5,\n    \"project_id\": \"beacon\",\n    \"title\": \"Bundle pretend toolkit\"\n  },\n  \"ok\": true\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --db <copy>/review-8/state export <copy>/review-8/export-3.json",
+                "exit": 0,
+                "output_sha256": "b09146588c399733a4bb57a84334295017599b1b3ed48ff6de4195ec489b21d5",
+                "observation": "{\n  \"file\": \"/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-dr9o50oz/A/review-8/export-3.json\",\n  \"ok\": true\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "own_behavior_suite",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "summary": "st_transaction_exception_and_killed_writer_roll_back) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 6.153s\n\nOK\n"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v",
+                "exit": 0,
+                "output_sha256": "cf9e46b481220bd989253958c88ffab5a4eb72396520e33d149b47904cbaa275",
+                "observation": "w_and_next) ... ok\ntest_invalid_mutations_and_output_protection (test_cli.CLI.test_invalid_mutations_and_output_protection) ... ok\ntest_long_dependency_chain (test_cli.CLI.test_long_dependency_chain) ... ok\ntest_malformed_imports_leave_exact_state (test_cli.CLI.test_malformed_imports_leave_exact_state) ... ok\ntest_ranking_ties_and_cross_project_filter (test_cli.CLI.test_ranking_ties_and_cross_project_filter) ... ok\ntest_transaction_exception_and_killed_writer_roll_back (test_cli.CLI.test_transaction_exception_and_killed_writer_roll_back) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 6.153s\n\nOK\n"
+              }
+            ]
+          }
+        }
+      ],
+      "own_test_result": {
+        "summary": "st_transaction_exception_and_killed_writer_roll_back) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 6.153s\n\nOK\n"
+      },
+      "trial_label": "sol-autonomy-r1-lean"
+    },
+    {
+      "label": "B",
+      "outcomes": [
+        {
+          "name": "entrypoint_and_demo",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "projects": 2,
+              "tasks": 7,
+              "demo_exit": 0
+            },
+            "commands": [
+              {
+                "command": "<copy>/planner --help",
+                "exit": 0,
+                "output_sha256": "64dc63b936aca98f5b7de4507e1d75ff789216b256b6c294a71003ed90f6c073",
+                "observation": "e projects\n    task                manage tasks\n    dep                 task dependencies\n    list                list tasks\n    blocked             list blocked tasks and what blocks them\n    next                suggest what to work on next\n    overview            project overview\n    export              write JSON document\n    import              add projects from a JSON document (all or nothing)\n    backup              write a full backup\n    restore             replace current state with a backup\n\noptions:\n  -h, --help            show this help message and exit\n  --db DB               SQLite file (default: $PLANNER_DB or data/planner.db)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-0/state --help",
+                "exit": 0,
+                "output_sha256": "64dc63b936aca98f5b7de4507e1d75ff789216b256b6c294a71003ed90f6c073",
+                "observation": "e projects\n    task                manage tasks\n    dep                 task dependencies\n    list                list tasks\n    blocked             list blocked tasks and what blocks them\n    next                suggest what to work on next\n    overview            project overview\n    export              write JSON document\n    import              add projects from a JSON document (all or nothing)\n    backup              write a full backup\n    restore             replace current state with a backup\n\noptions:\n  -h, --help            show this help message and exit\n  --db DB               SQLite file (default: $PLANNER_DB or data/planner.db)\n"
+              },
+              {
+                "command": "sh scripts/demo.sh",
+                "exit": 0,
+                "output_sha256": "3797162707e767b6f7e9f4b8f25592f73d0fb079d625c8e68d2a03dc714a0952",
+                "observation": "p of previous state: .demo/backups/planner-20261009T221936538077Z.json\nrestored 2 project(s), 8 task(s) from .demo/backup.json\nCHECK OK: state identical\n\n### 8. completing work moves the suggestion along\ncompleted task #2\n1. #3 Build pages [bakery-site] - normal priority, unblocks 1 task\nerror: task #3 is blocked by unfinished #2 'Design page layout'\nerror: rejected: #2 after #4 would create the cycle #2 -> #4 -> #3 -> #2\nerror: .demo/broken.json is not valid JSON: Expecting ',' delimiter: line 1 column 101 (char 100)\nerror: import rejected: project(s) already exist: bakery-site, dash-tool (import only adds new projects; nothing was changed)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-0/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-0/state export <copy>/review-0/export-1.json",
+                "exit": 0,
+                "output_sha256": "329eb0a8c43975e27f995f93b81d815d65f33cbbf648f1e59506e9e6ec266f61",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-0/export-1.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fresh_process_persistence",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "state_hash": "0db7558aa236b6b7c86c83161da74ef66d16badabcfaefc7a0ea4a8af39f1e37",
+              "task_count": 1
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-1/state project add p Independent synthetic",
+                "exit": 0,
+                "output_sha256": "6fb51cc539f44b036bd27fa447dab4f00d4695f84fe5ac9c1ae6f924dc9db91e",
+                "observation": "created project 'p'\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-1/state task add p Independent task --estimate 12m",
+                "exit": 0,
+                "output_sha256": "4a24866e1aa5ce27546129ee47d04408484a232b6ab8a89abca624e16fe703b6",
+                "observation": "created task #1 in 'p' [ready]\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-1/state overview",
+                "exit": 0,
+                "output_sha256": "b998bf55b7af02c4c1de5c21333c40654d328be048976306075f2122ff1faccb",
+                "observation": "== p: Independent synthetic ==\n  1 tasks: 0 done (0%), 1 ready, 0 blocked; remaining estimate 12m\n  #1    [ready  ] Independent task  (normal; est 12m)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-1/state export <copy>/review-1/export-1.json",
+                "exit": 0,
+                "output_sha256": "fdcda70f481d256ef4d695bc5f56e68cfa26ade48833ddf99c652a3229f11e9c",
+                "observation": "exported 1 project(s), 1 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-1/export-1.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "dependency_block",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "selected": [
+                2,
+                5,
+                6
+              ],
+              "preserved": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-2/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-2/state export <copy>/review-2/export-1.json",
+                "exit": 0,
+                "output_sha256": "88e5640febd698f05e0910ebc52f9fba7284bcbcbca37885c1c6749717748b3b",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-2/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-2/state task done 3",
+                "exit": 1,
+                "output_sha256": "44b846c981bed21f257d9816d26610cab8a8ef3392d13d305222fb8e8845c474",
+                "observation": "error: task #3 is blocked by unfinished #2 'Design page layout'\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-2/state export <copy>/review-2/export-2.json",
+                "exit": 0,
+                "output_sha256": "7507e588282b86c512e3be958a81b4563691d4e9a018d5ff7162847ecf093c1d",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-2/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-2/state next --today 2026-10-10 --limit 20",
+                "exit": 0,
+                "output_sha256": "a027602d2fe074a0c03530211d20c10e987ddae09181170cf54fa9f89b5e740a",
+                "observation": "1. #2 Design page layout [bakery-site] - due in 2d, high priority, unblocks 2 tasks\n2. #5 Clarify KPI list [dash-tool] - normal priority, unblocks 1 task\n3. #6 Set up data export [dash-tool] - low priority, unblocks 1 task\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "cycle_rejection",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "b86c45383d9b9b24f62e6824f323100dd88e098e7b91e4b31adfa76094745b1c",
+              "after_hash": "b86c45383d9b9b24f62e6824f323100dd88e098e7b91e4b31adfa76094745b1c"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-3/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-3/state export <copy>/review-3/export-1.json",
+                "exit": 0,
+                "output_sha256": "cd225d30da507b7736666fc01e1fa15f76ba546bfc82a244851673af1b0259d7",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-3/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-3/state dep add 2 4",
+                "exit": 1,
+                "output_sha256": "e678d959a3912faee0cce19422cad678fc18a134212eb42910ce2d3dbe20f903",
+                "observation": "error: rejected: #2 after #4 would create the cycle #2 -> #4 -> #3 -> #2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-3/state export <copy>/review-3/export-2.json",
+                "exit": 0,
+                "output_sha256": "97b90b19b40bc5e8d663b904ab016720d52d77815d486989260e462200da8601",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-3/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-3/state export <copy>/review-3/export-3.json",
+                "exit": 0,
+                "output_sha256": "4234cba9bf2c361885dead53b3f9ba49c87eff4a4fa1d4a9ba063ec82d842cef",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-3/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deterministic_next_and_completed_exclusion",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "repeated_order": [
+                2,
+                5,
+                6
+              ],
+              "after_completion": [
+                5,
+                3,
+                6
+              ]
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state export <copy>/review-4/export-1.json",
+                "exit": 0,
+                "output_sha256": "e5192f00b8f4b04ff654948f2561c26499c09a813e0e07de1be3e630763c51cc",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-4/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state next --today 2026-10-10 --limit 20",
+                "exit": 0,
+                "output_sha256": "a027602d2fe074a0c03530211d20c10e987ddae09181170cf54fa9f89b5e740a",
+                "observation": "1. #2 Design page layout [bakery-site] - due in 2d, high priority, unblocks 2 tasks\n2. #5 Clarify KPI list [dash-tool] - normal priority, unblocks 1 task\n3. #6 Set up data export [dash-tool] - low priority, unblocks 1 task\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state next --today 2026-10-10 --limit 20",
+                "exit": 0,
+                "output_sha256": "a027602d2fe074a0c03530211d20c10e987ddae09181170cf54fa9f89b5e740a",
+                "observation": "1. #2 Design page layout [bakery-site] - due in 2d, high priority, unblocks 2 tasks\n2. #5 Clarify KPI list [dash-tool] - normal priority, unblocks 1 task\n3. #6 Set up data export [dash-tool] - low priority, unblocks 1 task\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state next --today 2026-10-10 --limit 20",
+                "exit": 0,
+                "output_sha256": "a027602d2fe074a0c03530211d20c10e987ddae09181170cf54fa9f89b5e740a",
+                "observation": "1. #2 Design page layout [bakery-site] - due in 2d, high priority, unblocks 2 tasks\n2. #5 Clarify KPI list [dash-tool] - normal priority, unblocks 1 task\n3. #6 Set up data export [dash-tool] - low priority, unblocks 1 task\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state task done 2",
+                "exit": 0,
+                "output_sha256": "0fc4fde5574331a7b6ae1274c2e8f7f9ded323658d21accb467ec81e0ba62b55",
+                "observation": "completed task #2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-4/state next --today 2026-10-10 --limit 20",
+                "exit": 0,
+                "output_sha256": "00fd43595c9faab402d1435b3a7b020018cbd437b85ec8a35444212aa071a959",
+                "observation": "1. #5 Clarify KPI list [dash-tool] - normal priority, unblocks 1 task\n2. #3 Build pages [bakery-site] - normal priority, unblocks 1 task\n3. #6 Set up data export [dash-tool] - low priority, unblocks 1 task\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "malformed_import_preservation",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "rejections": [
+                "syntax",
+                "dangling",
+                "cycle"
+              ],
+              "preserved_hash": "b86c45383d9b9b24f62e6824f323100dd88e098e7b91e4b31adfa76094745b1c"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state export <copy>/review-5/export-1.json",
+                "exit": 0,
+                "output_sha256": "6cf33d6b43eae115b340a003f1517417b8b41cc6ec4cf2f8c05b634fc824f64b",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-5/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state import <copy>/review-5/bad.json",
+                "exit": 1,
+                "output_sha256": "294b2f6f4c9c58ec23b8112c242d4297e98ffac829bef345c0e073b6b27971cb",
+                "observation": "error: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-5/bad.json is not valid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state export <copy>/review-5/export-2.json",
+                "exit": 0,
+                "output_sha256": "a4d5b325bfc338d8ff835c56a6c955af03f3634e42e9650072cd8aabbae601fa",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-5/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state import <copy>/review-5/bad.json",
+                "exit": 1,
+                "output_sha256": "530304c84de94bf5ac5ee59cb053354226f64a43fae84e7312465978af914432",
+                "observation": "error: invalid document: task #2 depends on missing task #999\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state export <copy>/review-5/export-3.json",
+                "exit": 0,
+                "output_sha256": "802b1b04cb20d340a9fdc5bd54100d13b86e7633c38074ecb75b6e7650ef93bd",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-5/export-3.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state import <copy>/review-5/bad.json",
+                "exit": 1,
+                "output_sha256": "34d9f2c4fcc7476c64f7ccd57740229ed283ba3be17a1ae0cd3089d8e3b7a738",
+                "observation": "error: invalid document: dependency cycle: #2 -> #3 -> #2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-5/state export <copy>/review-5/export-4.json",
+                "exit": 0,
+                "output_sha256": "8c6b9fae049a3b44d2599195842a359fea1fd24e8140b97ac8172a2392487e3e",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-5/export-4.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "export_import_roundtrip",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "d306e9bfcf33ce8a3ab29c01f541ae8081924ca8278ad3be2bdc038476b1c930",
+              "after_hash": "d306e9bfcf33ce8a3ab29c01f541ae8081924ca8278ad3be2bdc038476b1c930",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-6/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-6/state export <copy>/review-6/export-1.json",
+                "exit": 0,
+                "output_sha256": "d76264276bd8a7c394c5b7bc9d0ab9af0d2003ef19600e7d1d6f4a377b8fa7fa",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-6/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-6/state export <copy>/review-6/transfer.json",
+                "exit": 0,
+                "output_sha256": "2d0d73d55ecfe535a93f47954037dd74f3e1ff22610fa6e95d956e8d142a3527",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-6/transfer.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-6/other-state import <copy>/review-6/transfer.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-6/other-state export <copy>/review-6/export-2.json",
+                "exit": 0,
+                "output_sha256": "8ed10037e9a0c2e83956250b6bf3ad7dfc169f5403ad743d93acc56d9747a431",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-6/export-2.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backup_restore",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "d306e9bfcf33ce8a3ab29c01f541ae8081924ca8278ad3be2bdc038476b1c930",
+              "after_hash": "d306e9bfcf33ce8a3ab29c01f541ae8081924ca8278ad3be2bdc038476b1c930",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state export <copy>/review-7/export-1.json",
+                "exit": 0,
+                "output_sha256": "b70e5303595df4671ed28dc67bd8ee8437b55e016ea584138b692ff7464eb313",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state backup <copy>/review-7/transfer.json",
+                "exit": 0,
+                "output_sha256": "cb143a54a16f2b80bce85a180e61e0446822681b36dd571e5fc49c7a6930db79",
+                "observation": "backup written: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/transfer.json (2 projects, 7 tasks)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state task done 2",
+                "exit": 0,
+                "output_sha256": "0fc4fde5574331a7b6ae1274c2e8f7f9ded323658d21accb467ec81e0ba62b55",
+                "observation": "completed task #2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state export <copy>/review-7/export-2.json",
+                "exit": 0,
+                "output_sha256": "b931b1cdfb781164357e11a9d3e30094d8432b3f88b6de3b8fbb241e24021dcb",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state restore <copy>/review-7/transfer.json --yes",
+                "exit": 0,
+                "output_sha256": "5957ae4b4c143093820a77009f2a0dbcd4aa2e10f38b26f246d51ccf65a99b0c",
+                "observation": "safety backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/backups/planner-20261009T221938700534Z.json\nrestored 2 project(s), 7 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/transfer.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-7/state export <copy>/review-7/export-3.json",
+                "exit": 0,
+                "output_sha256": "7539d8b73e6c26c7acb2fa062166eb5077e1c7779f3b7d5716c1c2b54b8e07fe",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-7/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deletion_integrity",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "tasks_after": 6,
+              "dangling_references": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state import <copy>/examples/synthetic-portfolio.json",
+                "exit": 0,
+                "output_sha256": "5dfad0dfce59f1f2ddbb6f928561906eaccebd63d382035c680b820400396da5",
+                "observation": "imported 2 project(s) (bakery-site, dash-tool), 7 task(s), 5 dependencies\ntask ids: 1->#1, 2->#2, 3->#3, 4->#4, 5->#5, 6->#6, 7->#7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state export <copy>/review-8/export-1.json",
+                "exit": 0,
+                "output_sha256": "ede8ef45bb6ac16f87da701c9a90becaa4c8ac65ea60c1e15bf9f3cc6207d1a4",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-8/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state task delete 2",
+                "exit": 1,
+                "output_sha256": "87c3f51e6035d75c23415aab75deb9fd64ff8ba4ee7303efbd5e627776e18231",
+                "observation": "error: cannot delete task #2: still required by #3 (needs #2); use --detach to remove these dependencies\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state export <copy>/review-8/export-2.json",
+                "exit": 0,
+                "output_sha256": "a0084aa208c74bda2fc0ae8450ec88ce295281156e049ade9ebdd6e9f8fb0fb7",
+                "observation": "exported 2 project(s), 7 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-8/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state task delete 2 --detach",
+                "exit": 0,
+                "output_sha256": "e748a33bd8f266aa6e357198e5c6dc23c0fc4f1891938cbbf1a28d8b63d6af34",
+                "observation": "removed dependency: #3 no longer waits for #2\ndeleted task #2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner --db <copy>/review-8/state export <copy>/review-8/export-3.json",
+                "exit": 0,
+                "output_sha256": "878f619bf46ee7f53952c8928c39352bd33e5a0052d1b494024b9c731b5019ba",
+                "observation": "exported 2 project(s), 6 task(s) to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-1fc66nwb/B/review-8/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "own_behavior_suite",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "summary": "es.RuleTests.test_validate_detects_cycle_in_raw_data) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 5.063s\n\nOK\n"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v",
+                "exit": 0,
+                "output_sha256": "0e11c6d4b5d030f05372ea6fe055b1bbd6d3a0666cc7036125b5b6a867ed5e46",
+                "observation": "self_dependency_rejected (test_rules.RuleTests.test_cycle_and_self_dependency_rejected) ... ok\ntest_delete_refuses_then_detaches (test_rules.RuleTests.test_delete_refuses_then_detaches) ... ok\ntest_estimates (test_rules.RuleTests.test_estimates) ... ok\ntest_rank_order_criteria (test_rules.RuleTests.test_rank_order_criteria) ... ok\ntest_suggest_excludes_blocked_and_done (test_rules.RuleTests.test_suggest_excludes_blocked_and_done) ... ok\ntest_validate_detects_cycle_in_raw_data (test_rules.RuleTests.test_validate_detects_cycle_in_raw_data) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 5.063s\n\nOK\n"
+              }
+            ]
+          }
+        }
+      ],
+      "own_test_result": {
+        "summary": "es.RuleTests.test_validate_detects_cycle_in_raw_data) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 5.063s\n\nOK\n"
+      },
+      "trial_label": "opus-native-autonomy-r2-baseline"
+    },
+    {
+      "label": "C",
+      "outcomes": [
+        {
+          "name": "entrypoint_and_demo",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "projects": 2,
+              "tasks": 6,
+              "demo_exit": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-0/state --help",
+                "exit": 0,
+                "output_sha256": "5c1e17ce7c1173a32f889903451942330f3e4e2d7d924abad5980d656d60f98c",
+                "observation": "anner; JSON output, no network. See README.md for examples.\n\npositional arguments:\n  {project,task,overview,next,export,backup,import,restore}\n    project             create, rename or delete projects\n    task                manage work and prerequisites\n    export              validated portable JSON export\n    backup              validated portable JSON backup\n    import              validated portable JSON import\n    restore             validated portable JSON restore\n\noptions:\n  -h, --help            show this help message and exit\n  --state STATE         state file inside this project (default:\n                        data/planner.json)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 examples/demo.py",
+                "exit": 0,
+                "output_sha256": "bd62cd71c71daf1e08a2b18267968d069f233a1efc5f95f7acf1a39636785338",
+                "observation": "Synthetic demonstration passed; report: examples/demo-results.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-0/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-0/state export <copy>/review-0/export-1.json",
+                "exit": 0,
+                "output_sha256": "408960ee1090f6b2d4dad82bee5c3657f341951e1f2d1ff8730f330a75e4426e",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-0/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fresh_process_persistence",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "state_hash": "e114864224d81e6f99b23bbf07cdf6c51d7624d96cf232160e515595410a87dd",
+              "task_count": 1
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-1/state project add p Independent synthetic",
+                "exit": 0,
+                "output_sha256": "90e4a44399422558f8171f387a72640a564712b8e9302ceea6ead493750c324f",
+                "observation": "{\n  \"saved\": true,\n  \"action\": \"project-add\",\n  \"id\": \"p\"\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-1/state task add x --project p --title Independent task --estimate 12",
+                "exit": 0,
+                "output_sha256": "ee58045f2a9438341d6d327f5e8439770cd4d8b75a2f5cc259e459adc693f9a3",
+                "observation": "{\n  \"saved\": true,\n  \"action\": \"task-add\",\n  \"id\": \"x\"\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-1/state overview",
+                "exit": 0,
+                "output_sha256": "0a094a0a62f19e5ab76fcd71431f54990577bbbddf4fcf294e691b952d94a517",
+                "observation": ",\n          \"done\": false,\n          \"project\": \"p\",\n          \"title\": \"Independent task\",\n          \"estimate\": 12,\n          \"priority\": 2,\n          \"depends_on\": [],\n          \"due\": null,\n          \"status\": \"ready\",\n          \"blockers\": []\n        }\n      ],\n      \"counts\": {\n        \"ready\": 1,\n        \"blocked\": 0,\n        \"done\": 0\n      },\n      \"estimate_minutes\": 12,\n      \"remaining_minutes\": 12\n    }\n  ],\n  \"next\": {\n    \"id\": \"x\",\n    \"done\": false,\n    \"project\": \"p\",\n    \"title\": \"Independent task\",\n    \"estimate\": 12,\n    \"priority\": 2,\n    \"depends_on\": [],\n    \"due\": null,\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-1/state export <copy>/review-1/export-1.json",
+                "exit": 0,
+                "output_sha256": "16d45cf6d04028757c07d30e921b75f25f9de3933488b0caee94880fa00c7c5b",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-1/export-1.json\",\n  \"projects\": 1,\n  \"tasks\": 1\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "dependency_block",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "selected": [
+                "a2"
+              ],
+              "preserved": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-2/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-2/state export <copy>/review-2/export-1.json",
+                "exit": 0,
+                "output_sha256": "c307bdd9350d1acb649e63b87b6e5d227ba6b5653931ec58e1971790c273a6e1",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-2/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-2/state task done a3",
+                "exit": 2,
+                "output_sha256": "00878b5760a9441307eec6175621a2d651e3c328d7b78e6e1da611dbc15f5d46",
+                "observation": "error: a3: completed task has unfinished prerequisite a2; operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-2/state export <copy>/review-2/export-2.json",
+                "exit": 0,
+                "output_sha256": "ffce7297a17d7fa9aef7d1fa8e526ab287e628f9adf6414e823f1a4d56778086",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-2/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-2/state next",
+                "exit": 0,
+                "output_sha256": "56155b08611d254c7d2615359fc398263e78d8b2b90a9ede3e41e5bb903fb567",
+                "observation": "{\n  \"next\": {\n    \"id\": \"a2\",\n    \"project\": \"atlas\",\n    \"title\": \"Write sample chapter\",\n    \"estimate\": 90,\n    \"priority\": 2,\n    \"due\": \"2026-08-01\",\n    \"done\": false,\n    \"depends_on\": [\n      \"a1\"\n    ],\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "cycle_rejection",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8",
+              "after_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-3/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-3/state export <copy>/review-3/export-1.json",
+                "exit": 0,
+                "output_sha256": "5a51469cc94435402638714f62bf76755c6ef41832cb1b4216c83476009e1d36",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-3/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-3/state task update a2 --depends-on a3",
+                "exit": 2,
+                "output_sha256": "283c04ffc9fbeacc2193dba95dbfe42bdfb3bdc6c1363571e69791d531abc162",
+                "observation": "error: Dependency cycle detected; operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-3/state export <copy>/review-3/export-2.json",
+                "exit": 0,
+                "output_sha256": "d67afefc66edb2c2863297d4a92922dd9071bde7171b9ebcd9dbd0e461c10a07",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-3/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-3/state export <copy>/review-3/export-3.json",
+                "exit": 0,
+                "output_sha256": "355fc24fa26d10811fa63a8d1441e811ad58f97f9f3f4e5965f14777bdd7e8ba",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-3/export-3.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deterministic_next_and_completed_exclusion",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "repeated_order": [
+                "a2"
+              ],
+              "after_completion": [
+                "a3"
+              ]
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state export <copy>/review-4/export-1.json",
+                "exit": 0,
+                "output_sha256": "0ef622264232518b4f744708f6bb7e4990dc36f318163cbac156c42c17dc2120",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-4/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "56155b08611d254c7d2615359fc398263e78d8b2b90a9ede3e41e5bb903fb567",
+                "observation": "{\n  \"next\": {\n    \"id\": \"a2\",\n    \"project\": \"atlas\",\n    \"title\": \"Write sample chapter\",\n    \"estimate\": 90,\n    \"priority\": 2,\n    \"due\": \"2026-08-01\",\n    \"done\": false,\n    \"depends_on\": [\n      \"a1\"\n    ],\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "56155b08611d254c7d2615359fc398263e78d8b2b90a9ede3e41e5bb903fb567",
+                "observation": "{\n  \"next\": {\n    \"id\": \"a2\",\n    \"project\": \"atlas\",\n    \"title\": \"Write sample chapter\",\n    \"estimate\": 90,\n    \"priority\": 2,\n    \"due\": \"2026-08-01\",\n    \"done\": false,\n    \"depends_on\": [\n      \"a1\"\n    ],\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "56155b08611d254c7d2615359fc398263e78d8b2b90a9ede3e41e5bb903fb567",
+                "observation": "{\n  \"next\": {\n    \"id\": \"a2\",\n    \"project\": \"atlas\",\n    \"title\": \"Write sample chapter\",\n    \"estimate\": 90,\n    \"priority\": 2,\n    \"due\": \"2026-08-01\",\n    \"done\": false,\n    \"depends_on\": [\n      \"a1\"\n    ],\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state task done a2",
+                "exit": 0,
+                "output_sha256": "45ba9be1b6eba9f6a88ce2bc3d4a3ff52f82dcccf357ebf3aa4af3c5d35109a0",
+                "observation": "{\n  \"saved\": true,\n  \"action\": \"done\",\n  \"id\": \"a2\"\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-4/state next",
+                "exit": 0,
+                "output_sha256": "0421493af9cb9738daaaa72bf3780e0cb26b5a8b074b0fe182ba6821be7e70bb",
+                "observation": "{\n  \"next\": {\n    \"id\": \"a3\",\n    \"project\": \"atlas\",\n    \"title\": \"Review sample chapter\",\n    \"estimate\": 30,\n    \"priority\": 1,\n    \"due\": \"2026-07-25\",\n    \"done\": false,\n    \"depends_on\": [\n      \"a2\"\n    ],\n    \"status\": \"ready\",\n    \"blockers\": []\n  }\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "malformed_import_preservation",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "rejections": [
+                "syntax",
+                "dangling",
+                "cycle"
+              ],
+              "preserved_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state export <copy>/review-5/export-1.json",
+                "exit": 0,
+                "output_sha256": "8df371dda26821db6634d907374f91dc8eed797d4de12c6cfb8a6940d43d4a86",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-5/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state import <copy>/review-5/bad.json --yes",
+                "exit": 2,
+                "output_sha256": "756d0f255a90013e63cca09a44af1331b1c6d7c0dc687e3e55115057830f15e7",
+                "observation": "error: Expecting property name enclosed in double quotes: line 1 column 2 (char 1); operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state export <copy>/review-5/export-2.json",
+                "exit": 0,
+                "output_sha256": "1803bd16b9843cb94216dded99686805285ab3dbb9e42cf1108d478c0cf0f30e",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-5/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state import <copy>/review-5/bad.json --yes",
+                "exit": 2,
+                "output_sha256": "60923b652e4478cd736cd52e85831e3dabc432aa4251d5650a4be0e29f14a9b6",
+                "observation": "error: a2: unknown prerequisite missing; operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state export <copy>/review-5/export-3.json",
+                "exit": 0,
+                "output_sha256": "ea6a4b94652e2002de354a367769005976ed2d516616b9dad08e3e15d0f87051",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-5/export-3.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state import <copy>/review-5/bad.json --yes",
+                "exit": 2,
+                "output_sha256": "283c04ffc9fbeacc2193dba95dbfe42bdfb3bdc6c1363571e69791d531abc162",
+                "observation": "error: Dependency cycle detected; operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-5/state export <copy>/review-5/export-4.json",
+                "exit": 0,
+                "output_sha256": "f65d2f0efde22b6a177810dced87e18e8b0fd99747749f0c23fb803213a0e126",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-5/export-4.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "export_import_roundtrip",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8",
+              "after_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-6/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-6/state export <copy>/review-6/export-1.json",
+                "exit": 0,
+                "output_sha256": "d3c4240741e104628c4846dfac6ae4f6b22b8310035e6a0f767cb257d5c1157b",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-6/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-6/state export <copy>/review-6/transfer.json",
+                "exit": 0,
+                "output_sha256": "68b00fbce596e94ba7e644f0a94aa5daac44ac84e8e0e75d9b21c1c3e4491500",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-6/transfer.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-6/other-state import <copy>/review-6/transfer.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-6/other-state export <copy>/review-6/export-2.json",
+                "exit": 0,
+                "output_sha256": "d9ae6c2698ff099dca4ef4db9ed0adc59f47ee1305a2e6eb40c28904a010274b",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-6/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backup_restore",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8",
+              "after_hash": "69ccc480cc86ecdb9f85497540f69ffb67d1551f2dc510189bf26d1aa27973f8",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state export <copy>/review-7/export-1.json",
+                "exit": 0,
+                "output_sha256": "8d53e5fd0e9d92588587bc64382e0f67a5376208884e89bf6797c2467ffe3cdf",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-7/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state backup <copy>/review-7/transfer.json",
+                "exit": 0,
+                "output_sha256": "2fd7b724518ddc6f88caf9c3957184264589b2d4da629ef74ac65433a8dd00da",
+                "observation": "{\n  \"operation\": \"backup\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-7/transfer.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state task done a2",
+                "exit": 0,
+                "output_sha256": "45ba9be1b6eba9f6a88ce2bc3d4a3ff52f82dcccf357ebf3aa4af3c5d35109a0",
+                "observation": "{\n  \"saved\": true,\n  \"action\": \"done\",\n  \"id\": \"a2\"\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state export <copy>/review-7/export-2.json",
+                "exit": 0,
+                "output_sha256": "0b9213a8864181881b3cb37a58ed0dd6a9123fdcab0c2558394da9eb1685feb5",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-7/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state restore <copy>/review-7/transfer.json --yes",
+                "exit": 0,
+                "output_sha256": "49f2fceead88be57d6560930198c207c8fffe82fccc74cabea7f2206fdbb47ae",
+                "observation": "{\n  \"operation\": \"restore\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": [\n        \"atlas\",\n        \"beacon\"\n      ]\n    },\n    \"tasks\": {\n      \"new\": [],\n      \"removed\": [],\n      \"changed\": [\n        \"a2\"\n      ],\n      \"unchanged\": [\n        \"a1\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ]\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-7/state export <copy>/review-7/export-3.json",
+                "exit": 0,
+                "output_sha256": "4c4f47d0fcea1033153e1424fa2ebfbe24a60c4c1ca361a5af061a3852a0a3fc",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-7/export-3.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deletion_integrity",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "tasks_after": 5,
+              "dangling_references": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state import <copy>/fixtures/demo.json --yes",
+                "exit": 0,
+                "output_sha256": "813b54280998335b589e5c69a86a008a4256c07b0a003f04647e58edc04132b1",
+                "observation": "{\n  \"operation\": \"import\",\n  \"saved\": true,\n  \"changes\": {\n    \"projects\": {\n      \"new\": [\n        \"atlas\",\n        \"beacon\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    },\n    \"tasks\": {\n      \"new\": [\n        \"a1\",\n        \"a2\",\n        \"a3\",\n        \"b1\",\n        \"b2\",\n        \"b3\"\n      ],\n      \"removed\": [],\n      \"changed\": [],\n      \"unchanged\": []\n    }\n  },\n  \"errors\": 0,\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state export <copy>/review-8/export-1.json",
+                "exit": 0,
+                "output_sha256": "a67b5c3c1ca5d0e01c10268a54bacf46cfe9fe7821c8281a09b6b2ec7b91820f",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-8/export-1.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state task delete a2 --yes",
+                "exit": 2,
+                "output_sha256": "937c98606ac613df5aac29bf6b4cdf52efa9b0f71461525208cd276b9b6f5e84",
+                "observation": "error: Cannot delete: referenced by a3; operation not completed\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state export <copy>/review-8/export-2.json",
+                "exit": 0,
+                "output_sha256": "3c0a4ff2a3548d0d9f21eeb25bfceee8580db0c9b1c03025be4fa7d2255b47e7",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-8/export-2.json\",\n  \"projects\": 2,\n  \"tasks\": 6\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state task delete b3 --yes",
+                "exit": 0,
+                "output_sha256": "7d71b7e537fa6cb210150a52bbc7acbe1354c8935ca189f2e304eb38c62396d7",
+                "observation": "{\n  \"saved\": true,\n  \"action\": \"task-delete\",\n  \"id\": \"b3\"\n}\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --state <copy>/review-8/state export <copy>/review-8/export-3.json",
+                "exit": 0,
+                "output_sha256": "907b04473150a7136fd68b843d49f81ff7c54fdb74ec3713b5e2877dd94ab513",
+                "observation": "{\n  \"operation\": \"export\",\n  \"file\": \"/private/var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-9oa_ibea/C/review-8/export-3.json\",\n  \"projects\": 2,\n  \"tasks\": 5\n}\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "own_behavior_suite",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "summary": "ileTests.test_strict_json_and_non_overwriting_backup) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 2.521s\n\nOK\n"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v",
+                "exit": 0,
+                "output_sha256": "072f058fe5c738652775cd301766344dab174c155052c66de4164e7b622cd493",
+                "observation": "inTests.test_done_and_reopen_integrity) ... ok\ntest_fixture_overview_and_next (test_planner.DomainTests.test_fixture_overview_and_next) ... ok\ntest_long_dependency_chain (test_planner.DomainTests.test_long_dependency_chain) ... ok\ntest_validation_types_and_dates (test_planner.DomainTests.test_validation_types_and_dates) ... ok\ntest_restart_lock_and_failed_write (test_planner.FileTests.test_restart_lock_and_failed_write) ... ok\ntest_strict_json_and_non_overwriting_backup (test_planner.FileTests.test_strict_json_and_non_overwriting_backup) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 2.521s\n\nOK\n"
+              }
+            ]
+          }
+        }
+      ],
+      "own_test_result": {
+        "summary": "ileTests.test_strict_json_and_non_overwriting_backup) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 2.521s\n\nOK\n"
+      },
+      "trial_label": "sol-autonomy-r1-baseline"
+    },
+    {
+      "label": "D",
+      "outcomes": [
+        {
+          "name": "entrypoint_and_demo",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "projects": 2,
+              "tasks": 8,
+              "demo_exit": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-0/state --help",
+                "exit": 0,
+                "output_sha256": "22054d14ff86d1b28a7621de90af30c8241865f67ad74ecc78e72701f1251054",
+                "observation": "ackups      list backup files\n    restore      replace the current state with a backup/export file\n\noptions:\n  -h, --help     show this help message and exit\n  --data DATA    state file (default: $PLANNER_DATA or data/planner.json)\n  --today TODAY  treat this date (YYYY-MM-DD) as today (default: local date)\n\nexamples:\n  planner.py project add \"Website relaunch\"\n  planner.py task add \"Website relaunch\" \"Write copy\" --estimate 3h --priority high --due 2026-10-20\n  planner.py task add p1 \"Publish\" --after t1,t2\n  planner.py next\n  planner.py overview p1\ndata file: --data PATH, else $PLANNER_DATA, else data/planner.json in the program directory.\n"
+              },
+              {
+                "command": "sh examples/demo.sh",
+                "exit": 0,
+                "output_sha256": "c6d1541c3b35767566dec7097f7ea1b0f65dc5d59a449d203581e633cb139860",
+                "observation": "ror: dependency t2 -> t5 would create a cycle: t2 -> t5 -> t4 -> t2\nerror: task t2 cannot depend on itself\nerror: cannot delete task t6: t7 depends on t6. Use --detach to remove these dependencies as well.\nerror: .scratch/demo/broken.json is not valid JSON (line 1, column 63: Expecting value)\nerror: invalid data:\n  - task t1: is done but prerequisite t5 is not\n  - task t2: depends on missing task 't99'\n  - dependency cycle: t1 -> t5 -> t4 -> t2 -> t1\nerror: saved state is unreadable, nothing was changed.\n.scratch/demo/planner.json is not valid JSON (line 1, column 1: Expecting value)\nRecover with: restore --latest  (or restore <backup file>)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-0/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "6e7990d307a7fc12843e5addf1b6c2926db4297cf447040e34fc689be325baa3",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-0/backups/planner-20261009T221936809511Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-0/state export --out <copy>/review-0/export-1.json",
+                "exit": 0,
+                "output_sha256": "902751f2034d360ba1e7cbefa279457f76bf2d178c08309ce1447e4236758a95",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-0/export-1.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fresh_process_persistence",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "state_hash": "2d8aa6ad03f6ac9998810be1d448227b9e5e388f6d6e2fe1bb05c3c463607c81",
+              "task_count": 1
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-1/state project add Independent synthetic",
+                "exit": 0,
+                "output_sha256": "8e3264b926f9f91403c5cd576be72aecc58411c6e554454f7161bd0032596da6",
+                "observation": "created project p1: Independent synthetic\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-1/state task add p1 Independent task --estimate 12m",
+                "exit": 0,
+                "output_sha256": "ce199a01d7cdded69b40f82e36c2d35b1d021b677dc80ec235b99e0f1b9e0f9b",
+                "observation": "created task t1 in p1: Independent task\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-1/state overview",
+                "exit": 0,
+                "output_sha256": "ea2ae3575a626da875632fe5e15080f340cc13d5c68126da9a5979269edae96f",
+                "observation": "p1  Independent synthetic\n  tasks 1: 0 done, 1 ready, 0 blocked | remaining estimate 12m | next due -\ntoday: 2026-10-10\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-1/state export --out <copy>/review-1/export-1.json",
+                "exit": 0,
+                "output_sha256": "296a0a08278a52f94d3e0c07ce13743497f61bb6656c48df4de798b0e83abd62",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-1/export-1.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "dependency_block",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "selected": [
+                "t6",
+                "t3",
+                "t2",
+                "t8"
+              ],
+              "preserved": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-2/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "d0ec3c06f0559a6d67a881dda3910e57b66f226cb5d3c97135a8d63572ff181a",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-2/backups/planner-20261009T221937108347Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-2/state export --out <copy>/review-2/export-1.json",
+                "exit": 0,
+                "output_sha256": "e840f8f4b0f9b869aa8ff131e9b0cee446c8aaa7f2975eb8984285eaf6a72d25",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-2/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-2/state task done t4",
+                "exit": 1,
+                "output_sha256": "46b12eda10f037cea3f377743751b8d04100c91dd2188b351c941cafb32a28ac",
+                "observation": "error: task t4 is blocked by unfinished prerequisite(s): t2, t3\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-2/state export --out <copy>/review-2/export-2.json",
+                "exit": 0,
+                "output_sha256": "34b1f4b5b525c232e6ba5095d41aa9915243f699866f2ffc6ab1013e80c4aa47",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-2/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-2/state next --limit 20",
+                "exit": 0,
+                "output_sha256": "ff38a6842fcf4dc7d3173a11e7867c0cb522e5944a25329694bd70e897cc35c5",
+                "observation": "1. t6 [p2] Collect receipts\n   due in 1 day(s) (2026-10-11); priority high via t7; unblocks 1 task(s); estimate 1h30m\n2. t3 [p1] Write page copy\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 3h\n3. t2 [p1] Wireframes\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 4h\n4. t8 [p2] Update portfolio\n   priority low; estimate -\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "cycle_rejection",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501",
+              "after_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-3/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "b3eba2e473f58325fd7f901affd1f2c61b81415407b2171c01b87a96b1255023",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-3/backups/planner-20261009T221937347660Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-3/state export --out <copy>/review-3/export-1.json",
+                "exit": 0,
+                "output_sha256": "d98e29dfbfce4e048fe52b53134e07aba29594a7d51a4816664a50989d766f25",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-3/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-3/state task depend t2 t5",
+                "exit": 1,
+                "output_sha256": "9a8ae39e9ab10ec443d3de7f02f201c134d94847bfcff3475f477929c57074c7",
+                "observation": "error: dependency t2 -> t5 would create a cycle: t2 -> t5 -> t4 -> t2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-3/state export --out <copy>/review-3/export-2.json",
+                "exit": 0,
+                "output_sha256": "7148999b809a1d8e8a62f6456ecb7cced8cd0af805771435b29c1ba51b4fe0c9",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-3/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-3/state export --out <copy>/review-3/export-3.json",
+                "exit": 0,
+                "output_sha256": "5e9b42550847d10b06f825ec6f8f875964d6d9104a35950e084dabd50ec0e07c",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-3/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deterministic_next_and_completed_exclusion",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "repeated_order": [
+                "t6",
+                "t3",
+                "t2",
+                "t8"
+              ],
+              "after_completion": [
+                "t3",
+                "t2",
+                "t7",
+                "t8"
+              ]
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "0adc142de71fbe1b22cbaab904086572d360e10754c128923a851691aed3a79f",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-4/backups/planner-20261009T221937602657Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state export --out <copy>/review-4/export-1.json",
+                "exit": 0,
+                "output_sha256": "28f97720a6592aea87256a41d498b1334447ecd7431962234c3265766a4cce25",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-4/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state next --limit 20",
+                "exit": 0,
+                "output_sha256": "ff38a6842fcf4dc7d3173a11e7867c0cb522e5944a25329694bd70e897cc35c5",
+                "observation": "1. t6 [p2] Collect receipts\n   due in 1 day(s) (2026-10-11); priority high via t7; unblocks 1 task(s); estimate 1h30m\n2. t3 [p1] Write page copy\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 3h\n3. t2 [p1] Wireframes\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 4h\n4. t8 [p2] Update portfolio\n   priority low; estimate -\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state next --limit 20",
+                "exit": 0,
+                "output_sha256": "ff38a6842fcf4dc7d3173a11e7867c0cb522e5944a25329694bd70e897cc35c5",
+                "observation": "1. t6 [p2] Collect receipts\n   due in 1 day(s) (2026-10-11); priority high via t7; unblocks 1 task(s); estimate 1h30m\n2. t3 [p1] Write page copy\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 3h\n3. t2 [p1] Wireframes\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 4h\n4. t8 [p2] Update portfolio\n   priority low; estimate -\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state next --limit 20",
+                "exit": 0,
+                "output_sha256": "ff38a6842fcf4dc7d3173a11e7867c0cb522e5944a25329694bd70e897cc35c5",
+                "observation": "1. t6 [p2] Collect receipts\n   due in 1 day(s) (2026-10-11); priority high via t7; unblocks 1 task(s); estimate 1h30m\n2. t3 [p1] Write page copy\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 3h\n3. t2 [p1] Wireframes\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 4h\n4. t8 [p2] Update portfolio\n   priority low; estimate -\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state task done t6",
+                "exit": 0,
+                "output_sha256": "ad77627828274fad4c0687c8c8e106e3c09606127e70af9a42a5c8bef2c680cb",
+                "observation": "done: t6 Collect receipts\nnow ready: t7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-4/state next --limit 20",
+                "exit": 0,
+                "output_sha256": "042b3fb1b56cc037a814b32e2825a4674db275f57d0d168327e8eef3a0599fc6",
+                "observation": "1. t3 [p1] Write page copy\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 3h\n2. t2 [p1] Wireframes\n   due in 10 day(s) (2026-10-20) via t5; priority critical via t5; unblocks 2 task(s); estimate 4h\n3. t7 [p2] File quarterly figures\n   due in 5 day(s) (2026-10-15); priority high; estimate 2h\n4. t8 [p2] Update portfolio\n   priority low; estimate -\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "malformed_import_preservation",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "rejections": [
+                "syntax",
+                "dangling",
+                "cycle"
+              ],
+              "preserved_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "c971988eb8c0efbcce1aa7fc36280bedefc1f52bdfacd90de5aebc889ba87c57",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/backups/planner-20261009T221937950287Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state export --out <copy>/review-5/export-1.json",
+                "exit": 0,
+                "output_sha256": "83059a5ee308153b6a867919661c956c4a60c474e36fac82eaedd0c3f41ba83f",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "b71a4ecd868eace37acb8a690164bcc0d1377d1fb25ee0859c20db7e504b776f",
+                "observation": "error: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/bad.json is not valid JSON (line 1, column 2: Expecting property name enclosed in double quotes)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state export --out <copy>/review-5/export-2.json",
+                "exit": 0,
+                "output_sha256": "4ad576f4f61e93924ca76553276b159fcdd0fd5d90b21e100877b54246e4e908",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "8782498eb6e2d96ae16b3404d6877c63b411451a72ab3b1736f05c4ebfe79d5d",
+                "observation": "error: invalid data:\n  - task t2: depends on missing task 'missing'\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state export --out <copy>/review-5/export-3.json",
+                "exit": 0,
+                "output_sha256": "9a0972bd7df963a40eb0209178a56a3459022b427a67fc16e93bcada3432cc65",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/export-3.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state import <copy>/review-5/bad.json --replace",
+                "exit": 1,
+                "output_sha256": "7cbb6faf7f5e7395ca88f25d6f81897c353963dffe1175c9230ea299c5843842",
+                "observation": "error: invalid data:\n  - dependency cycle: t2 -> t5 -> t4 -> t2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-5/state export --out <copy>/review-5/export-4.json",
+                "exit": 0,
+                "output_sha256": "7795abe2c99f603cf50f7e82b06f4b5a88861e2e35eaf30c5b1e0d9fc64b936a",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-5/export-4.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "export_import_roundtrip",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501",
+              "after_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-6/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "e68624f719baae8854773eef67e62307d2dcfbf7374afa6dd31973c5257a11bc",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/backups/planner-20261009T221938359149Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-6/state export --out <copy>/review-6/export-1.json",
+                "exit": 0,
+                "output_sha256": "3494cf22aa442f26c780dd6e7aca858fb58997829157c0d1d2eb44a1a42271ae",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-6/state export --out <copy>/review-6/transfer.json",
+                "exit": 0,
+                "output_sha256": "95c8fedca6e999591a6915aec0cd7e65ad068d03456f7a75b8fbfb581181e9eb",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/transfer.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-6/other-state import <copy>/review-6/transfer.json --replace",
+                "exit": 0,
+                "output_sha256": "81e0666e31b40ba32c45a4c330ba0b757708295adee7e6adae5455479cb0337d",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/backups/planner-20261009T221938515119Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/transfer.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-6/other-state export --out <copy>/review-6/export-2.json",
+                "exit": 0,
+                "output_sha256": "c5dc33f0c6c70c593aff372528b74594966aa5fb84ff98408616099c5d4a9f7c",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-6/export-2.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backup_restore",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "before_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501",
+              "after_hash": "3f412d24beaac9834dfbefcc53fa5efd5133527e884d50e411ed0b28cb389501",
+              "equal": true
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "0c4f336acdfeff5f6ba2cbdec834f2cded8e69779b3cd4c6ba8205f6599d7d15",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/backups/planner-20261009T221938615448Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state export --out <copy>/review-7/export-1.json",
+                "exit": 0,
+                "output_sha256": "fb839dc18f837503376094104e4be306dbb313923f3ee19a1f9cb51bbdd2926d",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state backup",
+                "exit": 0,
+                "output_sha256": "e0568f648ccce68897ee305776a403b9c06b491338a96ed32cb11cc92411abd8",
+                "observation": "backup written: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/backups/planner-20261009T221938714756Z-manual.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state task done t6",
+                "exit": 0,
+                "output_sha256": "ad77627828274fad4c0687c8c8e106e3c09606127e70af9a42a5c8bef2c680cb",
+                "observation": "done: t6 Collect receipts\nnow ready: t7\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state export --out <copy>/review-7/export-2.json",
+                "exit": 0,
+                "output_sha256": "6f41ce3f333c68e75c474b2bebacfbab481988d521fc3f7e464b0e03b94ab9f1",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state restore <copy>/review-7/backups/planner-20261009T221938714756Z-manual.json",
+                "exit": 0,
+                "output_sha256": "c7ac7a2c054427938ea473955785ef6f53795be4d15415ca81a969f33cd40200",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/backups/planner-20261009T221938865988Z-pre-restore.json\nrestored 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/backups/planner-20261009T221938714756Z-manual.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-7/state export --out <copy>/review-7/export-3.json",
+                "exit": 0,
+                "output_sha256": "d1d77d4b34dc1e6f9c0efde416fe8a62c082f9d34a6e6fd3a079e28af4b47eb8",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-7/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "deletion_integrity",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "tasks_after": 7,
+              "dangling_references": 0
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state import <copy>/examples/sample-project.json --replace",
+                "exit": 0,
+                "output_sha256": "b36d1dc86279c4be4656d13b4c13812d5e1491b2e8e5c47f010cda6e50956675",
+                "observation": "backup of previous state: /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-8/backups/planner-20261009T221938970847Z-pre-import.json\nimported (replaced state with) 2 project(s), 8 task(s) from /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/examples/sample-project.json; state now has 2 project(s), 8 task(s)\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state export --out <copy>/review-8/export-1.json",
+                "exit": 0,
+                "output_sha256": "c4d44bf374a41584f22d7befe26a7fb1eb2ff13cdbb3be699d101beb8e51789e",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-8/export-1.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state task delete t2",
+                "exit": 1,
+                "output_sha256": "82485148948b6452d0f86e390d6655e1247a0951946469030fadac9ea8a7a5f1",
+                "observation": "error: cannot delete task t2: t4 depends on t2. Use --detach to remove these dependencies as well.\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state export --out <copy>/review-8/export-2.json",
+                "exit": 0,
+                "output_sha256": "0feb23ed51fedcf2cc235ed31c0d3ad7f616d069bb46f656274c8816b95e54fc",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-8/export-2.json\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state task delete t2 --detach",
+                "exit": 0,
+                "output_sha256": "40ce5b816176dfb9b5408ff0787f37bfd8760a75340d5fd34c1fff2e1a536366",
+                "observation": "deleted task t2: Wireframes\nremoved dependency: t4 no longer depends on t2\n"
+              },
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 <copy>/planner.py --data <copy>/review-8/state export --out <copy>/review-8/export-3.json",
+                "exit": 0,
+                "output_sha256": "7556c8f7a8681492bc3b70711e9ecf8e926b62077f87b8d24cd7bbd5d72d605c",
+                "observation": "exported to /var/folders/pn/4_9rrj2n0bjffnftq_9b7t240000gn/T/planner-review-5unqgppl/D/review-8/export-3.json\n"
+              }
+            ]
+          }
+        },
+        {
+          "name": "own_behavior_suite",
+          "status": "pass",
+          "evidence": {
+            "observations": {
+              "summary": "Ranking.test_urgent_beats_priority_and_overdue_first) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 4.871s\n\nOK\n"
+            },
+            "commands": [
+              {
+                "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v",
+                "exit": 0,
+                "output_sha256": "4dc3150426881dd9aef06fe14ff31fbe73e5d83b55eb3d97c5a5b2eb83f8c9db",
+                "observation": "ormed_imports_leave_state_intact) ... ok\ntest_cli_excludes_blocked_and_done (test_planner.TestNextWork.test_cli_excludes_blocked_and_done) ... ok\ntest_nothing_ready (test_planner.TestNextWork.test_nothing_ready) ... ok\ntest_inherits_from_blocked_dependents_only_while_open (test_planner.TestRanking.test_inherits_from_blocked_dependents_only_while_open) ... ok\ntest_tie_breaks (test_planner.TestRanking.test_tie_breaks) ... ok\ntest_urgent_beats_priority_and_overdue_first (test_planner.TestRanking.test_urgent_beats_priority_and_overdue_first) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 4.871s\n\nOK\n"
+              }
+            ]
+          }
+        }
+      ],
+      "own_test_result": {
+        "summary": "Ranking.test_urgent_beats_priority_and_overdue_first) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 4.871s\n\nOK\n"
+      },
+      "trial_label": "opus-native-autonomy-r2-lean"
+    }
+  ],
+  "copy_correction": {
+    "changes": [
+      {
+        "label": "B",
+        "path": "planner",
+        "source_mode": "0o755",
+        "masked_mode": "0o644"
+      },
+      {
+        "label": "B",
+        "path": "scripts/demo.sh",
+        "source_mode": "0o755",
+        "masked_mode": "0o644"
+      },
+      {
+        "label": "D",
+        "path": "planner.py",
+        "source_mode": "0o755",
+        "masked_mode": "0o644"
+      }
+    ],
+    "cause": "Masking copier used copyfile rather than copy2; no source product content or permissions changed"
+  },
+  "main_review": "Main agent inspected verification script and reran all 40 outcomes plus all four own suites after restoring original copy modes; no product content/permissions changed."
+}

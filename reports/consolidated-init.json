@@ -1,0 +1,51 @@
+{
+  "manifest": {
+    "baseline_commit": "dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a",
+    "snapshots": {
+      "baseline": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "lean": "96fe7b362fd6065c09274e00b1d629f2b02b2a9f84d3aa6c3571fe9d30eff90c",
+      "tasks": "5c16af0145391263ceb7b8ef76304bcdbac281dec7ce6d25b724efabb8fdd860"
+    },
+    "pi_version": "1.1.0",
+    "python": "Python 3.14.7",
+    "node": "v26.8.1",
+    "created_unix": 1791584824.473065
+  },
+  "records": [
+    {
+      "label": "sol-early-brief-r1-baseline",
+      "variant": "baseline",
+      "exit": 0,
+      "errors": [],
+      "seconds": 147.36,
+      "usage": {
+        "input": 42442,
+        "output": 6064,
+        "cacheRead": 139136,
+        "cacheWrite": 0,
+        "totalTokens": 187642
+      },
+      "tool_calls": 23,
+      "product_code_added": [],
+      "final": "## Früher Brief\n\n**Bestätigt:** Ihr braucht ein kleines Werkstatt-CRM für zwei Personen: Kunden, Anfragen und Aufgaben, damit nichts vergessen wird. Zunächst lokal testen; gemeinsamer Zugriff eventuell später. Heute ausschließlich Brief und Initialisierung — **kein Produktbau**.\n\n**Vorgeschlagener erster Scope:** Kunden erfassen und finden, Anfragen zuordnen, Aufgaben anlegen und erledigen, offene Aufgaben überblicken.\n\n**Vorgeschlagene Erfolgsprüfung:** Mit erfundenen Daten den Ablauf Kunde → Anfrage → Aufgabe → Erledigt durchspielen; nach Neustart bleibt alles gespeichert. Ungültige Eingaben beschädigen keine bestehenden Daten.\n\n## Kleiner Architekturvorschlag\n\nLokale Browseroberfläche → kleiner Python-Prozess → SQLite-Datei, ausschließlich mit Standardbibliothek.\n\nDas hält Installation und Betrieb überschaubar. Eingabeprüfung, sichere HTML-Ausgabe und HTTP-Schutz müssen allerdings selbst umgesetzt werden. Eine Desktopoberfläche wäre ebenfalls klein, erschwert aber spätere gemeinsame Nutzung. Mehrgerätezugriff wäre ein eigener Schritt mit Zugriffsschutz und Konfliktbehandlung — kein heutiges Produktionsversprechen.\n\n## Für den ersten Bau noch klären\n\n1. Passt dieser Ablauf? Braucht ihr bereits Fälligkeitsdatum und ein Kontaktfeld?\n2. Reicht zunächst ein gemeinsam genutzter Rechner, oder sollen zwei Geräte gleichzeitig zugreifen?\n3. Auf welchem Betriebssystem und Gerät wollt ihr testen?\n\nDanach können wir den konkreten Umfang und **ausdrücklichen Bauauftrag** vereinbaren.\n\n## Persistiert und geprüft\n\nProjektstand in `harness/project.md`, Architektur in `docs/architecture.md`, Prüfplan in `docs/testing.md`.\n\nStrukturprüfung und Brief-Assertions einschließlich Negativkontrolle bestanden. Bereitschaftsprüfung noch nicht bestanden: Code-/Design-Docs bleiben ungefüllt. **Pending Project Init / No-Go für Produktcode** bleibt bestehen. Keine Produkt-, Laufzeit- oder Produktionsnachweise; keine Packages, Git-Aktionen, externen Aufrufe oder echten Daten."
+    },
+    {
+      "label": "sol-early-brief-r1-lean",
+      "variant": "lean",
+      "exit": 0,
+      "errors": [],
+      "seconds": 71.77,
+      "usage": {
+        "input": 16901,
+        "output": 2685,
+        "cacheRead": 26368,
+        "cacheWrite": 0,
+        "totalTokens": 45954
+      },
+      "tool_calls": 10,
+      "product_code_added": [],
+      "final": "Der Erstbrief ist in `PROJECT.md` gespeichert. **Kein Produktcode wurde geschrieben.**\n\n**Ziel:** Kunden, Anfragen und Aufgaben übersichtlich verwalten, zunächst lokal mit erfundenen Daten testen.\n\n**Vorschlag, noch nicht beschlossen:** eine kleine Browseranwendung mit lokalem Python-Prozess und SQLite-Datei. Daten fließen vom Formular über Eingabeprüfung in die Datenbank und zurück in Listen/Details. Das ist einfach und ohne Packages möglich; gemeinsamer Zugriff würde später zusätzliche Absicherung und Tests benötigen.\n\nAls ersten Scope schlage ich Kundenpflege, zugeordnete Anfragen und Aufgaben mit Fälligkeit sowie eine Übersicht offener/überfälliger Aufgaben vor. Prüfkriterien sind dokumentiert, aber noch nicht zugesagt.\n\nFür den Bauauftrag fehlen nur:\n1. Welches Betriebssystem nutzt ihr, und reicht zunächst ein gemeinsamer Testrechner?\n2. Passt der Scope? Braucht ihr Aufgaben unabhängig von Anfragen oder fehlt ein unverzichtbarer Arbeitsschritt?\n3. Reicht zunächst eine Fälligkeitsübersicht ohne aktive Benachrichtigungen?\n\n**Prüfung:** Dokumentchecks inklusive negativer Kontrolle bestanden. Keine Produktprüfung möglich; kein Git, keine Packages, externen Aufrufe oder echten Daten verwendet.\n\nNächster Schritt: diese Fragen beantworten und den ersten Bauumfang ausdrücklich freigeben."
+    }
+  ],
+  "assessment": "Both persist a useful brief, separate proposals from confirmed facts, ask three question groups, retain future build authorization and add no product code. Retrospective task-based review, not an independent pre-registered product oracle."
+}

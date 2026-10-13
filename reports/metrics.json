@@ -1,0 +1,3535 @@
+{
+  "manifest": {
+    "baseline_commit": "dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a",
+    "snapshots": {
+      "baseline": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "lean": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "tasks": "00f6f8d70a01e4f2f29df77ad611681748e74bb36e19acfc7b5e7be92f356eeb"
+    },
+    "pi_version": "1.1.0",
+    "python": "Python 3.14.7",
+    "node": "v26.8.1",
+    "created_unix": 1791580939.135075
+  },
+  "supplementary_brief_manifest": {
+    "baseline_commit": "dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a",
+    "snapshots": {
+      "baseline": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "lean": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "tasks": "5c16af0145391263ceb7b8ef76304bcdbac281dec7ce6d25b724efabb8fdd860"
+    },
+    "pi_version": "1.1.0",
+    "python": "Python 3.14.7",
+    "node": "v26.8.1",
+    "created_unix": 1791583797.153943
+  },
+  "template_shape": {
+    "baseline": {
+      "markdown_files": 35,
+      "markdown_characters": 95687,
+      "entry_characters": 9102
+    },
+    "lean": {
+      "markdown_files": 19,
+      "markdown_characters": 40037,
+      "entry_characters": 5073
+    }
+  },
+  "trials": [
+    {
+      "case": "autonomy",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 0.93,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "thinking": "medium",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0
+      },
+      "tool_calls": 0,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-autonomy-r1-baseline",
+      "model_errors": 1,
+      "completed_transport": false,
+      "native_bash_unavailable": false,
+      "comparison_eligible": false,
+      "read_calls": 0,
+      "unique_read_paths": 0
+    },
+    {
+      "case": "autonomy",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 0.93,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "thinking": "medium",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0
+      },
+      "tool_calls": 0,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-autonomy-r1-lean",
+      "model_errors": 1,
+      "completed_transport": false,
+      "native_bash_unavailable": false,
+      "comparison_eligible": false,
+      "read_calls": 0,
+      "unique_read_paths": 0
+    },
+    {
+      "case": "autonomy",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 394.75,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "engine": "claude",
+      "thinking": "medium",
+      "usage": {
+        "input": 46,
+        "output": 47024,
+        "cacheRead": 907969,
+        "cacheWrite": 73121,
+        "totalTokens": 1028160
+      },
+      "tool_calls": 38,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-native-autonomy-r1-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": true,
+      "comparison_eligible": false,
+      "read_calls": 13,
+      "unique_read_paths": 13
+    },
+    {
+      "case": "autonomy",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 278.31,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "engine": "claude",
+      "thinking": "medium",
+      "usage": {
+        "input": 28,
+        "output": 33393,
+        "cacheRead": 258110,
+        "cacheWrite": 39187,
+        "totalTokens": 330718
+      },
+      "tool_calls": 23,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-native-autonomy-r1-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": true,
+      "comparison_eligible": false,
+      "read_calls": 3,
+      "unique_read_paths": 3
+    },
+    {
+      "case": "autonomy",
+      "variant": "baseline",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 459.76,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "engine": "claude",
+      "thinking": "medium",
+      "usage": {
+        "input": 48,
+        "output": 48508,
+        "cacheRead": 1346275,
+        "cacheWrite": 93086,
+        "totalTokens": 1487917
+      },
+      "tool_calls": 44,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-native-autonomy-r2-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 7,
+      "unique_read_paths": 7
+    },
+    {
+      "case": "autonomy",
+      "variant": "lean",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 417.82,
+      "model": "claude-opus-5-5",
+      "provider": "anthropic",
+      "engine": "claude",
+      "thinking": "medium",
+      "usage": {
+        "input": 40,
+        "output": 45299,
+        "cacheRead": 786227,
+        "cacheWrite": 60617,
+        "totalTokens": 892183
+      },
+      "tool_calls": 29,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "opus-native-autonomy-r2-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 0,
+      "unique_read_paths": 0
+    },
+    {
+      "case": "autonomy",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 432.13,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 42219,
+        "output": 19274,
+        "cacheRead": 656128,
+        "cacheWrite": 0,
+        "totalTokens": 717621
+      },
+      "tool_calls": 48,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "sol-autonomy-r1-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 20,
+      "unique_read_paths": 20
+    },
+    {
+      "case": "autonomy",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 315.56,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 35077,
+        "output": 13364,
+        "cacheRead": 174464,
+        "cacheWrite": 0,
+        "totalTokens": 222905
+      },
+      "tool_calls": 22,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "f637e1cd42cb9a2f2ef8c47158ba6b9a0a21fa05c926712c7ed767561b84af27",
+      "label": "sol-autonomy-r1-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 8,
+      "unique_read_paths": 8
+    },
+    {
+      "case": "crm",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 221.48,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "thinking": "medium",
+      "usage": {
+        "input": 47669,
+        "output": 11691,
+        "cacheRead": 253312,
+        "cacheWrite": 0,
+        "totalTokens": 312672
+      },
+      "tool_calls": 26,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "b5b82861482fbc051b3c490d85629c13eef18c0aab1e82aaa9925ad07e03105d",
+      "label": "sol-crm-r1-baseline",
+      "model_errors": 1,
+      "completed_transport": false,
+      "native_bash_unavailable": false,
+      "comparison_eligible": false,
+      "read_calls": 9,
+      "unique_read_paths": 9
+    },
+    {
+      "case": "crm",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 171.45,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "thinking": "medium",
+      "usage": {
+        "input": 14097,
+        "output": 10210,
+        "cacheRead": 85888,
+        "cacheWrite": 0,
+        "totalTokens": 110195
+      },
+      "tool_calls": 17,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "b5b82861482fbc051b3c490d85629c13eef18c0aab1e82aaa9925ad07e03105d",
+      "label": "sol-crm-r1-lean",
+      "model_errors": 1,
+      "completed_transport": false,
+      "native_bash_unavailable": false,
+      "comparison_eligible": false,
+      "read_calls": 7,
+      "unique_read_paths": 7
+    },
+    {
+      "case": "crm",
+      "variant": "baseline",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 501.17,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "thinking": "medium",
+      "usage": {
+        "input": 48815,
+        "output": 23013,
+        "cacheRead": 973568,
+        "cacheWrite": 0,
+        "totalTokens": 1045396
+      },
+      "tool_calls": 53,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "b5b82861482fbc051b3c490d85629c13eef18c0aab1e82aaa9925ad07e03105d",
+      "label": "sol-crm-r2-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 18,
+      "unique_read_paths": 18
+    },
+    {
+      "case": "crm",
+      "variant": "lean",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 294.63,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "thinking": "medium",
+      "usage": {
+        "input": 46745,
+        "output": 13059,
+        "cacheRead": 325376,
+        "cacheWrite": 0,
+        "totalTokens": 385180
+      },
+      "tool_calls": 29,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "b5b82861482fbc051b3c490d85629c13eef18c0aab1e82aaa9925ad07e03105d",
+      "label": "sol-crm-r2-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 9,
+      "unique_read_paths": 9
+    },
+    {
+      "case": "dispatch",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 439.66,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 73172,
+        "output": 19237,
+        "cacheRead": 676480,
+        "cacheWrite": 0,
+        "totalTokens": 768889
+      },
+      "tool_calls": 45,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "39fa20ec8d6d4d3dd9353d8c4c2529c4561ab7f682cf42f2d006f92261b7d973",
+      "label": "sol-dispatch-r1-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 19,
+      "unique_read_paths": 19
+    },
+    {
+      "case": "dispatch",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 577.19,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 36457,
+        "output": 20556,
+        "cacheRead": 455424,
+        "cacheWrite": 0,
+        "totalTokens": 512437
+      },
+      "tool_calls": 35,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "39fa20ec8d6d4d3dd9353d8c4c2529c4561ab7f682cf42f2d006f92261b7d973",
+      "label": "sol-dispatch-r1-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 12,
+      "unique_read_paths": 12
+    },
+    {
+      "case": "dispatch",
+      "variant": "baseline",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 571.81,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 73394,
+        "output": 23367,
+        "cacheRead": 1340928,
+        "cacheWrite": 0,
+        "totalTokens": 1437689
+      },
+      "tool_calls": 63,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "39fa20ec8d6d4d3dd9353d8c4c2529c4561ab7f682cf42f2d006f92261b7d973",
+      "label": "sol-dispatch-r2-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 19,
+      "unique_read_paths": 19
+    },
+    {
+      "case": "dispatch",
+      "variant": "lean",
+      "repetition": 2,
+      "exit": 0,
+      "seconds": 617.89,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 44580,
+        "output": 25116,
+        "cacheRead": 780160,
+        "cacheWrite": 0,
+        "totalTokens": 849856
+      },
+      "tool_calls": 46,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "39fa20ec8d6d4d3dd9353d8c4c2529c4561ab7f682cf42f2d006f92261b7d973",
+      "label": "sol-dispatch-r2-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 12,
+      "unique_read_paths": 12
+    },
+    {
+      "case": "import",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 416.08,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 52618,
+        "output": 17422,
+        "cacheRead": 464256,
+        "cacheWrite": 0,
+        "totalTokens": 534296
+      },
+      "tool_calls": 37,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "99972e228c80a020a5389de5e50791b0f2872ca88fe361a21911a0799c5d1a61",
+      "label": "sol-import-r1-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 17,
+      "unique_read_paths": 17
+    },
+    {
+      "case": "import",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 314.07,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 37416,
+        "output": 13608,
+        "cacheRead": 247552,
+        "cacheWrite": 0,
+        "totalTokens": 298576
+      },
+      "tool_calls": 25,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "99972e228c80a020a5389de5e50791b0f2872ca88fe361a21911a0799c5d1a61",
+      "label": "sol-import-r1-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 9,
+      "unique_read_paths": 9
+    },
+    {
+      "case": "early-brief",
+      "variant": "baseline",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 174.45,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 25885,
+        "output": 6462,
+        "cacheRead": 215552,
+        "cacheWrite": 0,
+        "totalTokens": 247899
+      },
+      "tool_calls": 25,
+      "snapshot": "f0591ce92e70cc5c337c27f64b347091e60f6c4736e9e995ee40ac07874cc354",
+      "task_hash": "ef6926e9f423c8ab7afad3f2be7c1638bc2baeb5c2ff8a494bfaa9b3966139fe",
+      "label": "sol-early-brief-r1-baseline",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 15,
+      "unique_read_paths": 15
+    },
+    {
+      "case": "early-brief",
+      "variant": "lean",
+      "repetition": 1,
+      "exit": 0,
+      "seconds": 58.71,
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "engine": "pi",
+      "thinking": "medium",
+      "usage": {
+        "input": 9172,
+        "output": 1952,
+        "cacheRead": 14080,
+        "cacheWrite": 0,
+        "totalTokens": 25204
+      },
+      "tool_calls": 7,
+      "snapshot": "d1ea6d09de99fac2cc7ac9bc70e0b519fb43e932cf65fddefe9d5f03212cd733",
+      "task_hash": "ef6926e9f423c8ab7afad3f2be7c1638bc2baeb5c2ff8a494bfaa9b3966139fe",
+      "label": "sol-early-brief-r1-lean",
+      "model_errors": 0,
+      "completed_transport": true,
+      "native_bash_unavailable": false,
+      "comparison_eligible": true,
+      "read_calls": 4,
+      "unique_read_paths": 4
+    }
+  ],
+  "phases": [
+    {
+      "phase": "change",
+      "exit": 0,
+      "seconds": 247.17,
+      "usage": {
+        "input": 82246,
+        "output": 9499,
+        "cacheRead": 593920,
+        "cacheWrite": 0,
+        "totalTokens": 685665
+      },
+      "tool_calls": 43,
+      "deferred_unchanged": true,
+      "code_unchanged": false,
+      "label": "sol-crm-r2-baseline",
+      "model_errors": 1
+    },
+    {
+      "phase": "change-recovery",
+      "exit": 0,
+      "seconds": 53.83,
+      "usage": {
+        "input": 33489,
+        "output": 1845,
+        "cacheRead": 139264,
+        "cacheWrite": 0,
+        "totalTokens": 174598
+      },
+      "tool_calls": 26,
+      "label": "sol-crm-r2-baseline",
+      "model_errors": 0
+    },
+    {
+      "phase": "resume",
+      "exit": 0,
+      "seconds": 58.52,
+      "usage": {
+        "input": 33685,
+        "output": 1886,
+        "cacheRead": 193280,
+        "cacheWrite": 0,
+        "totalTokens": 228851
+      },
+      "tool_calls": 28,
+      "deferred_unchanged": true,
+      "code_unchanged": true,
+      "label": "sol-crm-r2-baseline",
+      "model_errors": 0
+    },
+    {
+      "phase": "change",
+      "exit": 0,
+      "seconds": 92.47,
+      "usage": {
+        "input": 21309,
+        "output": 4253,
+        "cacheRead": 165248,
+        "cacheWrite": 0,
+        "totalTokens": 190810
+      },
+      "tool_calls": 20,
+      "deferred_unchanged": true,
+      "code_unchanged": false,
+      "label": "sol-crm-r2-lean",
+      "model_errors": 0
+    },
+    {
+      "phase": "resume",
+      "exit": 0,
+      "seconds": 38.16,
+      "usage": {
+        "input": 13397,
+        "output": 1034,
+        "cacheRead": 45440,
+        "cacheWrite": 0,
+        "totalTokens": 59871
+      },
+      "tool_calls": 16,
+      "deferred_unchanged": true,
+      "code_unchanged": true,
+      "label": "sol-crm-r2-lean",
+      "model_errors": 0
+    },
+    {
+      "phase": "blocker",
+      "exit": 0,
+      "seconds": 68.91,
+      "usage": {
+        "input": 20277,
+        "output": 2191,
+        "cacheRead": 98432,
+        "cacheWrite": 0,
+        "totalTokens": 120900
+      },
+      "tool_calls": 18,
+      "deferred_unchanged": true,
+      "code_unchanged": true,
+      "label": "sol-dispatch-r1-baseline",
+      "model_errors": 0
+    },
+    {
+      "phase": "blocker",
+      "exit": 0,
+      "seconds": 32.92,
+      "usage": {
+        "input": 7891,
+        "output": 947,
+        "cacheRead": 12160,
+        "cacheWrite": 0,
+        "totalTokens": 20998
+      },
+      "tool_calls": 6,
+      "deferred_unchanged": true,
+      "code_unchanged": true,
+      "label": "sol-dispatch-r1-lean",
+      "model_errors": 0
+    }
+  ],
+  "acceptance": [
+    {
+      "label": "sol-crm-r2-baseline",
+      "phase": "change-recovery",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-only-and-combined-once",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "failed-edit-atomic-and-terminal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-role-and-tenant-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "competing-title-corrections",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 24
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-only-and-combined-once",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "failed-edit-atomic-and-terminal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-role-and-tenant-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "competing-title-corrections",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 24
+          }
+        }
+      ],
+      "product_hash_before": "a2e540e7bbb26bb8fcf1314589dae9c9c0b5b95d4a172e36f642219d839d0273",
+      "product_hash_after": "a2e540e7bbb26bb8fcf1314589dae9c9c0b5b95d4a172e36f642219d839d0273"
+    },
+    {
+      "label": "sol-crm-r2-baseline",
+      "phase": "initial",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        }
+      ],
+      "product_hash_before": "6a7c38c3e6d340148529332347aa7c28897763c9fa7010c85350b2edd7325bea",
+      "product_hash_after": "6a7c38c3e6d340148529332347aa7c28897763c9fa7010c85350b2edd7325bea"
+    },
+    {
+      "label": "sol-crm-r2-baseline",
+      "phase": "resume",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        }
+      ],
+      "product_hash_before": "50e8059b7b98382b61285c3e99164e172eeed7c77b215bdc34c3c99729928780",
+      "product_hash_after": "50e8059b7b98382b61285c3e99164e172eeed7c77b215bdc34c3c99729928780"
+    },
+    {
+      "label": "sol-crm-r2-lean",
+      "phase": "change",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-only-and-combined-once",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "failed-edit-atomic-and-terminal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-role-and-tenant-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "competing-title-corrections",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 24
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-only-and-combined-once",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "failed-edit-atomic-and-terminal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "title-role-and-tenant-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "competing-title-corrections",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 24
+          }
+        }
+      ],
+      "product_hash_before": "4464dba2935fc28f4bbf54cf9e6556620e334a547f43770d50ceff77224bd619",
+      "product_hash_after": "4464dba2935fc28f4bbf54cf9e6556620e334a547f43770d50ceff77224bd619"
+    },
+    {
+      "label": "sol-crm-r2-lean",
+      "phase": "initial",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        }
+      ],
+      "product_hash_before": "8f0142e49f1035a5f2aad6de342ac1b71299bbe3b023ca32cb65f6e102de4afb",
+      "product_hash_after": "8f0142e49f1035a5f2aad6de342ac1b71299bbe3b023ca32cb65f6e102de4afb"
+    },
+    {
+      "label": "sol-crm-r2-lean",
+      "phase": "resume",
+      "case": "crm",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "authentication-all-business-routes",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-input-validation-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "deal-boundaries-and-viewer-reads",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "role-boundaries",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-resource-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "state-graph-and-stale-versions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "patch-shape-validation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-transitions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-half-up-snapshots",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-invalid-inputs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "non-won-and-missing-invoice-deals",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invoice-idempotency-and-new-intent",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-invoice-requests",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-invoice-requests-one-deal",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-concurrent-voids-once-only",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "void-retains-record-and-prevents-reissue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-scoped-request-id",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "restart-persistence-and-idempotency",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "legacy-migration-preserves-ids-and-tenants",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-ledger-audit-resources",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 20
+          }
+        }
+      ],
+      "product_hash_before": "dde9d3795492b2f7bf40a734f90da65e53d6e740304ecae2c2f7e69a29d9ac8f",
+      "product_hash_after": "dde9d3795492b2f7bf40a734f90da65e53d6e740304ecae2c2f7e69a29d9ac8f"
+    },
+    {
+      "label": "sol-dispatch-r1-baseline",
+      "phase": "initial",
+      "case": "dispatch",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=2, missed=2; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        }
+      ],
+      "product_hash_before": "7f307adc323a590643a36def242f99f599b4ceee3896ae8041f8dcece06d02dd",
+      "product_hash_after": "7f307adc323a590643a36def242f99f599b4ceee3896ae8041f8dcece06d02dd"
+    },
+    {
+      "label": "sol-dispatch-r1-lean",
+      "phase": "initial",
+      "case": "dispatch",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": false,
+              "outcome": "fail",
+              "error": "AssertionError: command failed (1): stderr=''; stdout='{\"error\":\"Provider identity payload conflict\"}\\n'"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 18,
+            "fail": 1,
+            "inconclusive": 2
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": false,
+              "outcome": "fail",
+              "error": "AssertionError: command failed (1): stderr=''; stdout='{\"error\":\"Provider identity payload conflict\"}\\n'"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 18,
+            "fail": 1,
+            "inconclusive": 2
+          }
+        }
+      ],
+      "product_hash_before": "ae6a410a65d8df73a42534bf950a4558c97e5484a2c3c7edc7f4158cdf0c00fa",
+      "product_hash_after": "ae6a410a65d8df73a42534bf950a4558c97e5484a2c3c7edc7f4158cdf0c00fa"
+    },
+    {
+      "label": "sol-dispatch-r2-baseline",
+      "phase": "initial",
+      "case": "dispatch",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=1, missed=3; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=1, missed=3; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        }
+      ],
+      "product_hash_before": "c8dd9fc8a0b6e36dffea9c00cf2a9206ed99ac7686f5c4ed9ca6ffe49363231b",
+      "product_hash_after": "c8dd9fc8a0b6e36dffea9c00cf2a9206ed99ac7686f5c4ed9ca6ffe49363231b"
+    },
+    {
+      "label": "sol-dispatch-r2-lean",
+      "phase": "initial",
+      "case": "dispatch",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "enqueue-durable-and-idle-empty",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "enqueue-invalid-inputs-no-mutation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "canonical-json-object-keys",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "payload-conflicts-and-array-order",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "tenant-identity-status-and-provider-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "ok-delivery-and-replay-not-an-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "accepted-timeout-reconcile-no-attempt",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "permanent-rejection-dead-without-acceptance",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "delayed-retries-exact-three-attempts",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "retry-success-only-at-due-logical-time",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "before-send-crash-same-time-recovery",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "after-accept-crash-same-time-reconcile",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "oldest-eligible-and-at-most-one",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-enqueues",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-competing-workers-provider-truth",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "concurrent-tenants-no-overwrite",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "new-key-new-intent-and-separate-provider-store",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "provider-conflicting-payload-two-local-stores",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-discovered-persistence-visible-failure",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+            },
+            {
+              "name": "seeded-larger-mixed-provider-integrity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "real-sigkill-worker-recovery",
+              "passed": false,
+              "outcome": "inconclusive",
+              "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+            }
+          ],
+          "counts": {
+            "pass": 19,
+            "inconclusive": 2
+          }
+        }
+      ],
+      "product_hash_before": "dcb449373b4c566a93e04b8e738de26de50022990c17b7b2eee3aa2402777ffc",
+      "product_hash_after": "dcb449373b4c566a93e04b8e738de26de50022990c17b7b2eee3aa2402777ffc"
+    },
+    {
+      "label": "sol-import-r1-baseline",
+      "phase": "initial",
+      "case": "import",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "seed-stock-boundaries-and-persistence",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invalid-seeds-are-atomic",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seed-once-and-tenant-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "headers-rejected-without-run",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "group-last-row-failure-atomicity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "nonadjacent-groups-and-intragroup-credit",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-transfer-groups-continue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "empty-group-id-one-rejection",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "global-duplicate-transfer-ids",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "replay-versus-new-intent-and-bytes-conflict",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "exact-byte-identity-not-semantic-csv",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-middle-resume-cumulative-decisions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-after-last-group",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-concurrent-runs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-runs-limited-stock",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "run-identity-tenant-scoped",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "rejected-replay-decisions-persist",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-conservation-and-data-text",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 18
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "seed-stock-boundaries-and-persistence",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invalid-seeds-are-atomic",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seed-once-and-tenant-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "headers-rejected-without-run",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "group-last-row-failure-atomicity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "nonadjacent-groups-and-intragroup-credit",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-transfer-groups-continue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "empty-group-id-one-rejection",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "global-duplicate-transfer-ids",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "replay-versus-new-intent-and-bytes-conflict",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "exact-byte-identity-not-semantic-csv",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-middle-resume-cumulative-decisions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-after-last-group",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-concurrent-runs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-runs-limited-stock",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "run-identity-tenant-scoped",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "rejected-replay-decisions-persist",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-conservation-and-data-text",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 18
+          }
+        }
+      ],
+      "product_hash_before": "6d3b61a0a39b26f3b46203dde43e5412da8d448031dc2eef8735331e89b8f856",
+      "product_hash_after": "6d3b61a0a39b26f3b46203dde43e5412da8d448031dc2eef8735331e89b8f856"
+    },
+    {
+      "label": "sol-import-r1-lean",
+      "phase": "initial",
+      "case": "import",
+      "oracle_sha256": "8511887f4aa2f96a070ca32a837fb3b1fe8bcae919fd7cc3ba17be596acda5f8",
+      "seeds": [
+        {
+          "seed": 1,
+          "groups": [
+            {
+              "name": "seed-stock-boundaries-and-persistence",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invalid-seeds-are-atomic",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seed-once-and-tenant-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "headers-rejected-without-run",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "group-last-row-failure-atomicity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "nonadjacent-groups-and-intragroup-credit",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-transfer-groups-continue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "empty-group-id-one-rejection",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "global-duplicate-transfer-ids",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "replay-versus-new-intent-and-bytes-conflict",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "exact-byte-identity-not-semantic-csv",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-middle-resume-cumulative-decisions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-after-last-group",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-concurrent-runs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-runs-limited-stock",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "run-identity-tenant-scoped",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "rejected-replay-decisions-persist",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-conservation-and-data-text",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 18
+          }
+        },
+        {
+          "seed": 17,
+          "groups": [
+            {
+              "name": "seed-stock-boundaries-and-persistence",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "invalid-seeds-are-atomic",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seed-once-and-tenant-isolation",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "headers-rejected-without-run",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "group-last-row-failure-atomicity",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "nonadjacent-groups-and-intragroup-credit",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "malformed-transfer-groups-continue",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "empty-group-id-one-rejection",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "global-duplicate-transfer-ids",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "replay-versus-new-intent-and-bytes-conflict",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "exact-byte-identity-not-semantic-csv",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-middle-resume-cumulative-decisions",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "interrupted-after-last-group",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-identical-concurrent-runs",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "six-distinct-runs-limited-stock",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "run-identity-tenant-scoped",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "rejected-replay-decisions-persist",
+              "passed": true,
+              "outcome": "pass"
+            },
+            {
+              "name": "seeded-larger-conservation-and-data-text",
+              "passed": true,
+              "outcome": "pass"
+            }
+          ],
+          "counts": {
+            "pass": 18
+          }
+        }
+      ],
+      "product_hash_before": "c9330fa52792ceebcaf23a950e92f8e35c9b49b3b05b3de86500c6435d2734fe",
+      "product_hash_after": "c9330fa52792ceebcaf23a950e92f8e35c9b49b3b05b3de86500c6435d2734fe"
+    }
+  ]
+}

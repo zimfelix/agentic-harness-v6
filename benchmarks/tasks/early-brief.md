@@ -1,0 +1,7 @@
+# Early brief — small workshop CRM, initialization only
+
+Ich möchte ein überschaubares CRM für meine kleine Werkstatt: Kunden, Anfragen und Aufgaben, damit nichts vergessen wird. Wir sind zu zweit, wollen vorerst lokal testen und später vielleicht gemeinsam darauf zugreifen. Es gibt noch keinen Code. Du darfst einfache technische Lösungen empfehlen; ich habe weder Stack noch Hosting festgelegt. Einen Enterprise-Aufbau will ich nicht. Es sollen noch keine echten Kundendaten importiert, Nachrichten versandt oder Dienste gekauft werden.
+
+Das ist heute NUR der erste Brief und die Initialisierung, noch kein Auftrag zum Produktbau. Fasse das Ziel sinnvoll zusammen, erkläre einen kleinen Architektur-/Datenflussvorschlag und die wichtigsten Trade-offs. Halte bekannt, vorgeschlagen/angenommen und wirklich offen auseinander. Frage nur nach den Entscheidungen, die für den ersten Bau wichtig sind, nicht nach einem kompletten CRM-/Compliance-Fragebogen. Erfinde keine Rollen, Rechtsgrundlagen oder benötigten Integrationen. Ein sinnvoller erster Scope und eine prüfbare Erfolgsdefinition dürfen Vorschläge sein, nicht behauptete Zusagen.
+
+Persistiere einen kurzen hilfreichen Projektstand für die nächste Sitzung. Nutze vorhandene Vorlagen nur soweit nötig. Schreibe noch KEINEN Produktcode; lasse den nächsten Schritt und nötige Freigabe erkennbar offen. Keine Packages, Git-Aktionen, externen Aufrufe oder echten Daten. Ziel: ein verständlicher früher Brief, aus dem wir den Bauauftrag in der nächsten Sitzung zügig vereinbaren können.

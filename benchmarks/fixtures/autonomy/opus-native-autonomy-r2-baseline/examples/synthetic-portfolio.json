@@ -1,0 +1,17 @@
+{
+  "format": "local-work-planner",
+  "version": 1,
+  "projects": [
+    {"key": "bakery-site", "name": "Website for fictional Sunrise Bakery"},
+    {"key": "dash-tool", "name": "Internal dashboard for fictional Acme Widgets"}
+  ],
+  "tasks": [
+    {"id": 1, "project": "bakery-site", "title": "Collect content and photos", "priority": "high", "estimate_minutes": 120, "done_at": "2026-10-01T09:00:00Z"},
+    {"id": 2, "project": "bakery-site", "title": "Design page layout", "priority": "high", "estimate_minutes": 240, "due": "2026-10-12", "depends_on": [1]},
+    {"id": 3, "project": "bakery-site", "title": "Build pages", "estimate_minutes": 480, "depends_on": [2]},
+    {"id": 4, "project": "bakery-site", "title": "Launch and handover", "priority": "urgent", "estimate_minutes": 60, "due": "2026-10-20", "depends_on": [3]},
+    {"id": 5, "project": "dash-tool", "title": "Clarify KPI list", "estimate_minutes": 60, "note": "synthetic example"},
+    {"id": 6, "project": "dash-tool", "title": "Set up data export", "priority": "low", "estimate_minutes": 180},
+    {"id": 7, "project": "dash-tool", "title": "Build charts", "priority": "high", "estimate_minutes": 300, "depends_on": [5, 6]}
+  ]
+}

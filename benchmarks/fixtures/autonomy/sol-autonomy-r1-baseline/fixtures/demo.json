@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "projects": [
+    {"id": "atlas", "name": "Synthetic Atlas booklet"},
+    {"id": "beacon", "name": "Synthetic Beacon prototype"}
+  ],
+  "tasks": [
+    {"id": "a1", "project": "atlas", "title": "Draft outline", "estimate": 30, "priority": 2, "due": null, "done": true, "depends_on": []},
+    {"id": "a2", "project": "atlas", "title": "Write sample chapter", "estimate": 90, "priority": 2, "due": "2026-08-01", "done": false, "depends_on": ["a1"]},
+    {"id": "a3", "project": "atlas", "title": "Review sample chapter", "estimate": 30, "priority": 1, "due": "2026-07-25", "done": false, "depends_on": ["a2"]},
+    {"id": "b1", "project": "beacon", "title": "Sketch prototype", "estimate": 45, "priority": 1, "due": "2026-08-02", "done": false, "depends_on": []},
+    {"id": "b2", "project": "beacon", "title": "Build synthetic prototype", "estimate": 120, "priority": 2, "due": null, "done": false, "depends_on": ["b1"]},
+    {"id": "b3", "project": "beacon", "title": "Prepare demo notes", "estimate": 20, "priority": 3, "due": null, "done": false, "depends_on": []}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "projects": [
+    {"id": "atlas", "name": "Synthetic Atlas brochure"},
+    {"id": "beacon", "name": "Synthetic Beacon toolkit"}
+  ],
+  "tasks": [
+    {"id": "a1", "project_id": "atlas", "title": "Gather pretend brief", "estimate_minutes": 30, "priority": 5, "due": "2030-04-01", "done": true, "dependencies": []},
+    {"id": "a2", "project_id": "atlas", "title": "Draft sample layout", "estimate_minutes": 90, "priority": 4, "due": "2030-04-03", "done": false, "dependencies": ["a1"]},
+    {"id": "a3", "project_id": "atlas", "title": "Review sample layout", "estimate_minutes": 45, "priority": 5, "due": "2030-04-02", "done": false, "dependencies": ["a2"]},
+    {"id": "a4", "project_id": "atlas", "title": "Package fake brochure", "estimate_minutes": 20, "priority": 3, "due": null, "done": false, "dependencies": ["a3"]},
+    {"id": "b1", "project_id": "beacon", "title": "Sketch imaginary toolkit", "estimate_minutes": 60, "priority": 3, "due": null, "done": false, "dependencies": []},
+    {"id": "b2", "project_id": "beacon", "title": "Write synthetic guide", "estimate_minutes": 40, "priority": 4, "due": "2030-04-05", "done": false, "dependencies": []},
+    {"id": "b3", "project_id": "beacon", "title": "Bundle pretend toolkit", "estimate_minutes": 15, "priority": 5, "due": null, "done": false, "dependencies": ["b1", "b2"]}
+  ]
+}

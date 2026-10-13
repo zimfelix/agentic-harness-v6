@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- Geräte-Vorschau (website-tools/SKILL.md): die Website gleichzeitig in mehreren
+     Bildschirmbreiten. Der lokale Vorschau-Server liefert diese Datei unverändert unter /_geraete/ aus (gleiche Herkunft wie
+     die Website, nie im Produktions-Build). Optional meldet er unter /_geraete/stand {"stand": <ändert sich nach jedem Neubau>,
+     "seiten": ["/", …]}; dann gibt es eine Seitenauswahl und Neuladen bei Änderungen, sonst Pfad-Eingabe und Knopf. -->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Geräte-Vorschau</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--bg:#e8e6e1;--bar:#fbfaf8;--ink:#1f2321;--muted:#666964;--line:#cfccc5}
+    body{margin:0;background:var(--bg);color:var(--ink)}
+    header{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:10px 20px;background:var(--bar);border-bottom:1px solid var(--line)}
+    h1{margin:0;font-size:15px}
+    header label{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+    select,button,input[type=text]{font:inherit;font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+    button{cursor:pointer}
+    .toggles{display:flex;flex-wrap:wrap;gap:6px}
+    .toggles label{gap:5px;padding:4px 10px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;cursor:pointer}
+    .toggles input{margin:0}
+    .status{margin-left:auto;font-size:12px;color:var(--muted)}
+    main{display:flex;flex-wrap:wrap;align-items:flex-start;gap:28px 24px;padding:22px 20px}
+    figure{margin:0}
+    figcaption{margin-bottom:6px;font-size:12px;color:var(--muted)}
+    figcaption strong{color:var(--ink);font-weight:600}
+    .screen{position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 0 0 1px #0002,0 6px 18px #0001}
+    .screen iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0}
+    footer{padding:0 20px 28px;font-size:12px;color:var(--muted);max-width:900px;line-height:1.5}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Geräte-Vorschau</h1>
+    <label>Seite <select id="page"></select><input id="path" type="text" size="24" hidden aria-label="Pfad der Seite"></label>
+    <label>Größe <input id="size" type="range" min="260" max="900" step="20"></label>
+    <button id="reload" type="button">Neu laden</button>
+    <div class="toggles" id="toggles"></div>
+    <span class="status" id="status" aria-live="polite"></span>
+  </header>
+  <main id="screens"></main>
+  <footer>Jeder Rahmen zeigt die echte Seite in der angegebenen Breite (CSS-Pixel), verkleinert auf eine gemeinsame Höhe. So wirkt sie auch auf dem jeweiligen Bildschirm: Je größer der Bildschirm, desto kleiner erscheint der Inhalt. Klicks in einem Rahmen führen alle Rahmen zur selben Seite; nach Änderungen an den Quellen laden alle Rahmen von selbst neu, sofern der Vorschau-Server den Stand meldet. Touch, Pixeldichte und „Bewegung reduzieren“ werden nicht nachgestellt – dafür ein echtes Handy im selben WLAN.</footer>
+
+  <script type="module">
+    // Gängige Breiten je Geräteklasse; das MacBook entspricht einem 13″-Air mit Standardskalierung.
+    const devices = [
+      { id:'handy-klein', name:'Kleines Handy', w:320, h:640 },
+      { id:'handy', name:'Handy', w:390, h:844 },
+      { id:'tablet', name:'Tablet', w:820, h:1180 },
+      { id:'macbook', name:'MacBook 13″', w:1470, h:956 },
+      { id:'monitor', name:'Monitor', w:1920, h:1080 },
+      { id:'gross', name:'Großer Monitor', w:2560, h:1440 },
+    ];
+    const $ = id => document.getElementById(id);
+    const saved = (key, fallback) => { try { return JSON.parse(localStorage.getItem('geraete-' + key)) ?? fallback; } catch { return fallback; } };
+    const save = (key, value) => { try { localStorage.setItem('geraete-' + key, JSON.stringify(value)); } catch {} };
+
+    let path = saved('seite', '/');
+    let height = saved('hoehe', 440);
+    let shown = saved('geraete', devices.map(d => d.id));
+    const frames = new Map();
+
+    // Rahmen anlegen (nur beim Start und beim Ein-/Ausblenden), Größen getrennt davon setzen.
+    function build() {
+      $('screens').replaceChildren();
+      frames.clear();
+      for (const d of devices.filter(d => shown.includes(d.id))) {
+        const figure = document.createElement('figure');
+        figure.innerHTML = `<figcaption><strong>${d.name}</strong> · ${d.w} × ${d.h}</figcaption><div class="screen"><iframe title="${d.name}" width="${d.w}" height="${d.h}"></iframe></div>`;
+        const frame = figure.querySelector('iframe');
+        frame.addEventListener('load', () => follow(frame));
+        frame.src = path;
+        frames.set(d, frame);
+        $('screens').append(figure);
+      }
+      layout();
+    }
+    function layout() {
+      for (const [d, frame] of frames) {
+        const scale = height / d.h;
+        Object.assign(frame.parentElement.style, { width:Math.round(d.w * scale) + 'px', height:height + 'px' });
+        frame.style.transform = `scale(${scale})`;
+      }
+    }
+    // Navigiert ein Rahmen auf eine andere Seite, folgen alle anderen; nach dem Neuladen die Scrollposition halten.
+    function follow(frame) {
+      let next;
+      try { if (frame.contentWindow.location.protocol === 'about:') return; next = frame.contentWindow.location.pathname + frame.contentWindow.location.hash; } catch { return; }
+      if (frame.dataset.y) { frame.contentWindow.scrollTo({ top:Number(frame.dataset.y), behavior:'instant' }); delete frame.dataset.y; }
+      if (next === path) return;
+      path = next;
+      save('seite', path);
+      showPath();
+      for (const other of frames.values()) if (other !== frame) other.src = path;
+    }
+    function go(next) {
+      path = next.startsWith('/') ? next : '/' + next;
+      save('seite', path);
+      showPath();
+      for (const frame of frames.values()) frame.src = path;
+    }
+    function showPath() { $('page').value = path.split('#')[0]; $('path').value = path; }
+    function reloadAll() {
+      for (const frame of frames.values()) {
+        try { frame.dataset.y = frame.contentWindow.scrollY; frame.contentWindow.location.reload(); } catch { frame.src = path; }
+      }
+    }
+
+    // Steuerleiste
+    $('size').value = height;
+    $('size').addEventListener('input', () => { height = Number($('size').value); save('hoehe', height); layout(); });
+    $('reload').addEventListener('click', reloadAll);
+    $('page').addEventListener('change', () => go($('page').value));
+    $('path').addEventListener('change', () => go($('path').value.trim() || '/'));
+    for (const d of devices) {
+      const label = document.createElement('label');
+      label.innerHTML = `<input type="checkbox" ${shown.includes(d.id) ? 'checked' : ''}> ${d.name}`;
+      label.querySelector('input').addEventListener('change', event => {
+        shown = event.target.checked ? devices.map(x => x.id).filter(id => id === d.id || shown.includes(id)) : shown.filter(id => id !== d.id);
+        save('geraete', shown);
+        build();
+      });
+      $('toggles').append(label);
+    }
+
+    // Seitenliste und Live-Neuladen über /_geraete/stand; meldet der Server das nicht, Pfad-Eingabe und Knopf.
+    let stand = null;
+    async function poll() {
+      let res;
+      try { res = await fetch('/_geraete/stand', { cache:'no-store' }); }
+      catch { $('status').textContent = 'Vorschau-Server nicht erreichbar'; setTimeout(poll, 1500); return; }
+      const data = res.ok && res.headers.get('content-type')?.includes('json') ? await res.json() : null;
+      if (!data) {
+        $('page').hidden = true;
+        $('path').hidden = false;
+        $('status').textContent = 'Ohne Live-Neuladen (Server meldet /_geraete/stand nicht)';
+        return;
+      }
+      if (!$('page').options.length) { $('page').append(...data.seiten.map(route => new Option(route, route))); showPath(); }
+      if (stand !== null && data.stand !== stand) reloadAll();
+      stand = data.stand;
+      $('status').textContent = 'Live – lädt bei Änderungen neu';
+      setTimeout(poll, 1500);
+    }
+    build();
+    poll();
+  </script>
+</body>
+</html>

@@ -1,57 +1,79 @@
-# Agentic Harness v6.1
+# Agentic Harness V6 — schlank, mit überprüfbarem Vergleich
 
-Universelle Vorlage für Softwareprojekte mit KI-Coding-Agenten – insbesondere Automatisierungen, CRM und Geschäftssoftware. Repository: `agentic-harness-v6`; die Produktvorlage liegt ausschließlich unter [`agentic-harness/`](agentic-harness/).
+**Ergebnis:** Für Intermediate-Projekte empfehle ich den schlankeren Ansatz. Kein universeller Codequalitätssieger; beide lösen die meisten Aufgaben, der Kandidat braucht weniger Prozess-/Tokenaufwand. Ein echter Dispatch-Fehler im ersten schlanken Lauf bleibt dokumentiert. [Auswertung und Grenzen](reports/RESULTS.md)
 
 ```text
-Auftrag → Init + dokumentierter Go → Soll/Specs → Umsetzung → Nachweise → Übergabe
+Freier Brief → PROJECT: Ziel, Grenzen, Stack und Entscheidungen
+             → relevante Spec → autonome Umsetzung → gezielte Verification
+                                    ↓
+                         Skills nur bei tatsächlichem Bedarf
 ```
 
-## Neu in v6.1
+## Präzisierungen aus dem Lexware-Pilot
 
-- **Geschäftssoftware:** eindeutige Risikobereiche und bedarfsgeladene Referenzen für Fachmodell, Daten/Migrationen, Importe/Jobs, Geld/Zeit, Rechte/Mandanten, Personendaten, Seiteneffekte und Buchhaltung. Importgrenzen, Vorgangsidentität, Parallelität, Wiederaufnahme und ungewisse externe Ergebnisse ausdrücklich geregelt. Keine universelle Schichten-, Broker- oder Frameworkpflicht. [Profil](agentic-harness/profiles/business-software/profile.md) · [Quellen und Grenzen](agentic-harness/profiles/business-software/references/quellen.md)
-- **Init und Autonomie:** Arbeitsmodus/Delegation im Projektprofil; `--ready` prüft Voraussetzungen und Profilauswahl, `--go` zusätzlich dokumentierten Go/Status. Keine zusätzliche Freigabeschleife für normale delegierte Implementierungsdetails. Beide Checks sind weder fachliche Abnahme noch Schreibsperre.
-- **Nachweise:** Anforderungsabdeckung statt grüner Ersatzprüfungen. Website-Werkzeuge lehnen leere/einseitige Mengen und alte Aufnahmeordner ab, prüfen Routen/Bereitschaft mit Brave und Zeitlimits und zeigen Buildfehler als HTTP 503 statt einen veralteten aktuellen Stand.
-- **Learnings und Pflege:** Projektkontext, Soll/Ist, Belege und offene Fragen lokal sammeln; Wochenreview und beauftragte Übernahme hier. Universelle Harness-Änderungen außerhalb dieses Repositories nur auf konkreten Ausnahmeauftrag. Neue Tests und betroffene Regression bei jeder Übernahme; Agentenregeln passend in frischen Sitzungen erproben.
+Der aktuelle Export macht drei Punkte konkreter: fachliches Verständnis vor größeren Aufgaben spiegeln, Projekt-/Ausführungswechsel ankündigen und eine nächste autorisierte Aktion statt bloß eines Testbefehls festhalten. Kein Pflichtfragebogen oder neues Freigaberitual. [Änderungen, Einordnung und Grenzen](reports/LEXWARE-LEARNINGS.md)
 
-Ein kurzer Einstieg, Core/Init/Verification, Ideas/Specs und ein Ordner `profiles/` bleiben erhalten. Keine neuen nativen Skills, Adapter oder Pi-Extensions.
+Diese Ergänzungen sind nach dem bisherigen Vergleich entstanden; dessen Messwerte beweisen ihre Wirksamkeit nicht. Bestehende Produkte werden nicht automatisch überschrieben.
 
-## Neues Projekt starten
-
-Nur die Vorlage exportieren – **nicht** Repository-`tests/`, diese Root-README, Git-/IDE-Daten oder lokale Auswertungen:
+## Neue Projekte
 
 ```sh
-VERSION=v6.1 sh agentic-harness/tools/export-harness.sh /pfad/zum/leeren-projekt
+# Ziel muss neu oder leer sein; keine überschreibenden Updates:
+python3 tools/export.py /absolute/path/to/project
+
+# Zusätzlich Claude-Skill-Erkennung, ohne kopierte Regeln:
+python3 tools/export.py /absolute/path/to/project --claude
+
+python3 tools/launch.py --project /absolute/path/to/project --client pi
+python3 tools/launch.py --project /absolute/path/to/project --client claude
 ```
 
-Der Export setzt Projektbefüllung und Learning-Einträge zurück, behält Lernregeln und erzeugt eine eigene kurze Start-README. Eine rohe Kopie von `agentic-harness/` kann dagegen lokale Befüllung/Learnings mitnehmen. Bestehende Produktprojekte werden nicht automatisch aktualisiert.
+Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich. `.claude/skills/<name>` ist nur ein relativer Link auf `.agents/skills/<name>`. Keine Projekt-`CLAUDE.md`, keine globalen Änderungen, keine zweite Skill-Quelle. Ohne diese Integration nicht behaupten, ein normaler Claude-Start erkenne AGENTS/`.agents` automatisch. [Client-Kompatibilität](reports/CLIENT-COMPATIBILITY.md)
 
-Projektordner mit dem Agenten öffnen und das Vorhaben beschreiben. Der projektbezogene Einstieg `AGENTS.md` führt durch den Ablauf. [Anleitung und Exportgrenzen](agentic-harness/harness/README.md)
-
-## Struktur und Learnings
+## Aufbau
 
 ```text
-agentic-harness/   exportierbare Regeln, Profile, Tools, Templates und Projektgerüste
-tests/harness/    nur Repository-Pflege: Regression, opt-in Agentenproben, Prüfbericht
+template/          exportierbarer Harness; kein separater profiles-Katalog
+  AGENTS.md        Arbeitsweise + Verification
+  PROJECT.md       konkreter Brief, Architektur/Stack, aktueller Stand
+  specs/           relevantes Verhalten und Nachweise
+  ideas/           optional für offene/größere Vorhaben
+  .agents/skills/  business-software: bedarfsgeladene Risiken
+                  website-tools: Grundlagen + optionale Tools/Referenzen
+benchmarks/        Aufgaben, unabhängige Abnahme, isolierte Agentenläufe
+  fixtures/       synthetische erzeugte Produkte für modellfreie Wiederholung
+tests/             technische Regression und Fehler-Gegenfälle
+reports/           Messwerte, Ergebnisse, Infrastrukturfehler und Grenzen
+tools/             sicherer Export, Client-Start, Ergebnisaufbereitung
 ```
 
-```text
-Produktprojekt → lokale harness-learnings.md mit Herkunft/Auftrag/Nachweisen
-               → Wochenreview auf Auftrag im zentralen v6-Repository
-               → lokal belassen / weiter prüfen / beauftragte Vorlage ändern
-```
+Im normalen Projekt werden nur `template/`-Inhalte exportiert, nicht Benchmarks/Produktsamples/Reports. Regeln und Skripte haben jeweils eine Quelle. Kein Pflicht-Framework, kein Enterprise-Aufbau, keine Freigabe für jedes Implementierungsdetail. Projektentscheidungen bleiben verbindlich; kritische Skill-Leseauslöser stehen direkt in AGENTS.
 
-Normale Projektpflege umfasst Projektprofil, Docs/Specs, Projektkonfiguration und projektspezifische Ergänzungen. Keine automatische Regelübernahme oder Synchronisierung. Erledigte Übernahmen sind aus den aktiven Learnings entfernt; echte Unsicherheiten bleiben mit Kontext erhalten. [Offene Learnings](agentic-harness/harness-learnings.md)
-
-## Prüfstand und Grenzen
+## Tatsächliche Prüfungen
 
 ```sh
-python3 agentic-harness/tools/check-harness.py
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/harness -v
-HARNESS_BRAVE_TESTS=1 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/harness -v
+# Kein Modellverbrauch:
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+HARNESS_BRAVE_TESTS=1 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 -W error::ResourceWarning -m unittest discover -s benchmarks -p 'test_*.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 benchmarks/verify_planners.py --output /tmp/planner-results.json
 ```
 
-24 Regressionstests einschließlich echtem Brave/HTTP/Export bestanden. Die normale Suite überspringt fünf Brave-Fälle ausdrücklich. Drei kleine Projektarten wurden mit Baseline und präzisiertem Harness geprüft; beide bestanden je 23 unabhängige Prüfgruppen. Zwei Job-Erstläufe benötigten nach dem Zeitlimit eine frische Fortsetzung. Ein bewusst fehlender echter Provider-Nachweis blieb korrekt offen.
+Die normale technische Suite überspringt fünf Brave-Fälle ausdrücklich; volle lokale Ausführung nutzt verifiziertes Brave. Oracle-Selbsttests belegen Fehlererkennung/Containment, nicht allein Produktqualität. 59 Stress-Prüfgruppen, getrennte Seeds, frische Fortsetzungen, Anforderungsänderung, externer Blocker, früher Brief und freiere Sol-/Opus-Projekte sind im Bericht einzeln ausgewiesen.
 
-Das ist Screening, kein allgemeiner Leistungs-, Sicherheits-, Produktiv- oder Rechtsbeweis. Die zuletzt ergänzte zentrale Lern-/Pflegegrenze ist dokument-/exportgeprüft, nicht erneut in frischen Agentensitzungen erprobt. Die Vorlage bleibt absichtlich `Pending Project Init`; `--ready`/`--go` scheitern vor Befüllung erwartungsgemäß.
+Abhängigkeiten: Python 3 für Export/Tests; Node.js 22.19+ und Brave nur für optionale Website-Werkzeuge. Keine npm-Pakete. Modellfreie Produktsamples haben ihre dokumentierten Python-/Node-Voraussetzungen. Tatsächlich geprüft: Python 3.14.7, Node 26.8.1, macOS; keine vollständige Runtime-/OS-Matrix.
 
-[Testanleitung](tests/harness/README.md) · [Ergebnisse und Grenzen](tests/harness/RESULTS.md)
+## Vergleiche wiederholen
+
+Modellaufrufe sind opt-in, kosten Quota und benötigen authentifiziertes Pi/CodexBar sowie macOS `sandbox-exec`:
+
+```sh
+python3 benchmarks/run.py --workspace /tmp/new-comparison prepare --baseline /path/to/original-v6
+python3 benchmarks/run.py --workspace /tmp/new-comparison pair crm --run-agents
+```
+
+[Versuchsplan](reports/PLAN.md) · [QA-Szenarien](benchmarks/QA-NOTES.md) · [Messwerte](reports/metrics.json) · [Produktextrakte](benchmarks/fixtures/README.md)
+
+Die Hauptresultate gelten für den eingefrorenen Kandidaten vor der anschließenden Profile→Skills-Konsolidierung. Parität/Export/Client-Start und die ergänzende Init-Gegenprobe prüfen den finalen Aufbau; kein erfundener zusätzlicher Effizienzbeweis. Die frühe Kandidatenfassung bleibt in Git erreichbar.
+
+Keine Rohsessions, Zugangsdaten oder fremden Produktdaten veröffentlicht. Bestehende Projekte werden nicht automatisch umgeschrieben.

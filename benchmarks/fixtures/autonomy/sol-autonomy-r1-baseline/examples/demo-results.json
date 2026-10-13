@@ -1,0 +1,447 @@
+[
+  {
+    "command": "import fixtures/demo.json --yes",
+    "exit": 0,
+    "output": {
+      "operation": "import",
+      "saved": true,
+      "changes": {
+        "projects": {
+          "new": [
+            "atlas",
+            "beacon"
+          ],
+          "removed": [],
+          "changed": [],
+          "unchanged": []
+        },
+        "tasks": {
+          "new": [
+            "a1",
+            "a2",
+            "a3",
+            "b1",
+            "b2",
+            "b3"
+          ],
+          "removed": [],
+          "changed": [],
+          "unchanged": []
+        }
+      },
+      "errors": 0,
+      "projects": 2,
+      "tasks": 6
+    }
+  },
+  {
+    "command": "overview",
+    "exit": 0,
+    "output": {
+      "projects": [
+        {
+          "id": "atlas",
+          "name": "Synthetic Atlas booklet",
+          "tasks": [
+            {
+              "id": "a1",
+              "project": "atlas",
+              "title": "Draft outline",
+              "estimate": 30,
+              "priority": 2,
+              "due": null,
+              "done": true,
+              "depends_on": [],
+              "status": "done",
+              "blockers": []
+            },
+            {
+              "id": "a2",
+              "project": "atlas",
+              "title": "Write sample chapter",
+              "estimate": 90,
+              "priority": 2,
+              "due": "2026-08-01",
+              "done": false,
+              "depends_on": [
+                "a1"
+              ],
+              "status": "ready",
+              "blockers": []
+            },
+            {
+              "id": "a3",
+              "project": "atlas",
+              "title": "Review sample chapter",
+              "estimate": 30,
+              "priority": 1,
+              "due": "2026-07-25",
+              "done": false,
+              "depends_on": [
+                "a2"
+              ],
+              "status": "blocked",
+              "blockers": [
+                "a2"
+              ]
+            }
+          ],
+          "counts": {
+            "ready": 1,
+            "blocked": 1,
+            "done": 1
+          },
+          "estimate_minutes": 150,
+          "remaining_minutes": 120
+        },
+        {
+          "id": "beacon",
+          "name": "Synthetic Beacon prototype",
+          "tasks": [
+            {
+              "id": "b1",
+              "project": "beacon",
+              "title": "Sketch prototype",
+              "estimate": 45,
+              "priority": 1,
+              "due": "2026-08-02",
+              "done": false,
+              "depends_on": [],
+              "status": "ready",
+              "blockers": []
+            },
+            {
+              "id": "b2",
+              "project": "beacon",
+              "title": "Build synthetic prototype",
+              "estimate": 120,
+              "priority": 2,
+              "due": null,
+              "done": false,
+              "depends_on": [
+                "b1"
+              ],
+              "status": "blocked",
+              "blockers": [
+                "b1"
+              ]
+            },
+            {
+              "id": "b3",
+              "project": "beacon",
+              "title": "Prepare demo notes",
+              "estimate": 20,
+              "priority": 3,
+              "due": null,
+              "done": false,
+              "depends_on": [],
+              "status": "ready",
+              "blockers": []
+            }
+          ],
+          "counts": {
+            "ready": 2,
+            "blocked": 1,
+            "done": 0
+          },
+          "estimate_minutes": 185,
+          "remaining_minutes": 185
+        }
+      ],
+      "next": {
+        "id": "a2",
+        "project": "atlas",
+        "title": "Write sample chapter",
+        "estimate": 90,
+        "priority": 2,
+        "due": "2026-08-01",
+        "done": false,
+        "depends_on": [
+          "a1"
+        ],
+        "status": "ready",
+        "blockers": []
+      }
+    }
+  },
+  {
+    "command": "next",
+    "exit": 0,
+    "output": {
+      "next": {
+        "id": "a2",
+        "project": "atlas",
+        "title": "Write sample chapter",
+        "estimate": 90,
+        "priority": 2,
+        "due": "2026-08-01",
+        "done": false,
+        "depends_on": [
+          "a1"
+        ],
+        "status": "ready",
+        "blockers": []
+      }
+    }
+  },
+  {
+    "command": "import <demo>/malformed.json --yes",
+    "exit": 2,
+    "output": "error: Expecting value: line 1 column 12 (char 11); operation not completed"
+  },
+  {
+    "command": "task update a2 --depends-on a3",
+    "exit": 2,
+    "output": "error: Dependency cycle detected; operation not completed"
+  },
+  {
+    "command": "task done a3",
+    "exit": 2,
+    "output": "error: a3: completed task has unfinished prerequisite a2; operation not completed"
+  },
+  {
+    "command": "backup <demo>/backup.json",
+    "exit": 0,
+    "output": {
+      "operation": "backup",
+      "file": "<temporary-demo-directory>/backup.json",
+      "projects": 2,
+      "tasks": 6
+    }
+  },
+  {
+    "command": "task done a2",
+    "exit": 0,
+    "output": {
+      "saved": true,
+      "action": "done",
+      "id": "a2"
+    }
+  },
+  {
+    "command": "next",
+    "exit": 0,
+    "output": {
+      "next": {
+        "id": "a3",
+        "project": "atlas",
+        "title": "Review sample chapter",
+        "estimate": 30,
+        "priority": 1,
+        "due": "2026-07-25",
+        "done": false,
+        "depends_on": [
+          "a2"
+        ],
+        "status": "ready",
+        "blockers": []
+      }
+    }
+  },
+  {
+    "command": "restore <demo>/backup.json --dry-run",
+    "exit": 0,
+    "output": {
+      "operation": "restore",
+      "saved": false,
+      "changes": {
+        "projects": {
+          "new": [],
+          "removed": [],
+          "changed": [],
+          "unchanged": [
+            "atlas",
+            "beacon"
+          ]
+        },
+        "tasks": {
+          "new": [],
+          "removed": [],
+          "changed": [
+            "a2"
+          ],
+          "unchanged": [
+            "a1",
+            "a3",
+            "b1",
+            "b2",
+            "b3"
+          ]
+        }
+      },
+      "errors": 0,
+      "projects": 2,
+      "tasks": 6
+    }
+  },
+  {
+    "command": "restore <demo>/backup.json --yes",
+    "exit": 0,
+    "output": {
+      "operation": "restore",
+      "saved": true,
+      "changes": {
+        "projects": {
+          "new": [],
+          "removed": [],
+          "changed": [],
+          "unchanged": [
+            "atlas",
+            "beacon"
+          ]
+        },
+        "tasks": {
+          "new": [],
+          "removed": [],
+          "changed": [
+            "a2"
+          ],
+          "unchanged": [
+            "a1",
+            "a3",
+            "b1",
+            "b2",
+            "b3"
+          ]
+        }
+      },
+      "errors": 0,
+      "projects": 2,
+      "tasks": 6
+    }
+  },
+  {
+    "command": "overview",
+    "exit": 0,
+    "output": {
+      "projects": [
+        {
+          "id": "atlas",
+          "name": "Synthetic Atlas booklet",
+          "tasks": [
+            {
+              "id": "a1",
+              "project": "atlas",
+              "title": "Draft outline",
+              "estimate": 30,
+              "priority": 2,
+              "due": null,
+              "done": true,
+              "depends_on": [],
+              "status": "done",
+              "blockers": []
+            },
+            {
+              "id": "a2",
+              "project": "atlas",
+              "title": "Write sample chapter",
+              "estimate": 90,
+              "priority": 2,
+              "due": "2026-08-01",
+              "done": false,
+              "depends_on": [
+                "a1"
+              ],
+              "status": "ready",
+              "blockers": []
+            },
+            {
+              "id": "a3",
+              "project": "atlas",
+              "title": "Review sample chapter",
+              "estimate": 30,
+              "priority": 1,
+              "due": "2026-07-25",
+              "done": false,
+              "depends_on": [
+                "a2"
+              ],
+              "status": "blocked",
+              "blockers": [
+                "a2"
+              ]
+            }
+          ],
+          "counts": {
+            "ready": 1,
+            "blocked": 1,
+            "done": 1
+          },
+          "estimate_minutes": 150,
+          "remaining_minutes": 120
+        },
+        {
+          "id": "beacon",
+          "name": "Synthetic Beacon prototype",
+          "tasks": [
+            {
+              "id": "b1",
+              "project": "beacon",
+              "title": "Sketch prototype",
+              "estimate": 45,
+              "priority": 1,
+              "due": "2026-08-02",
+              "done": false,
+              "depends_on": [],
+              "status": "ready",
+              "blockers": []
+            },
+            {
+              "id": "b2",
+              "project": "beacon",
+              "title": "Build synthetic prototype",
+              "estimate": 120,
+              "priority": 2,
+              "due": null,
+              "done": false,
+              "depends_on": [
+                "b1"
+              ],
+              "status": "blocked",
+              "blockers": [
+                "b1"
+              ]
+            },
+            {
+              "id": "b3",
+              "project": "beacon",
+              "title": "Prepare demo notes",
+              "estimate": 20,
+              "priority": 3,
+              "due": null,
+              "done": false,
+              "depends_on": [],
+              "status": "ready",
+              "blockers": []
+            }
+          ],
+          "counts": {
+            "ready": 2,
+            "blocked": 1,
+            "done": 0
+          },
+          "estimate_minutes": 185,
+          "remaining_minutes": 185
+        }
+      ],
+      "next": {
+        "id": "a2",
+        "project": "atlas",
+        "title": "Write sample chapter",
+        "estimate": 90,
+        "priority": 2,
+        "due": "2026-08-01",
+        "done": false,
+        "depends_on": [
+          "a1"
+        ],
+        "status": "ready",
+        "blockers": []
+      }
+    }
+  },
+  {
+    "checks": "restart, blocked completion, malformed import, cycle rejection, next eligibility and restore equality passed",
+    "state_sha256_before_and_after_restore": "c58ae85741b572675f0a8c37c33c2c953483009f431d8fe3de770ae7c0910c7c"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "format": "local-planner",
+  "schema_version": 1,
+  "next_project": 3,
+  "next_task": 9,
+  "projects": [
+    {"id": "p1", "name": "Example Bakery Website", "description": "Synthetic demo client", "created": "2026-10-01T09:00:00Z"},
+    {"id": "p2", "name": "Admin", "description": "Own bookkeeping and portfolio (synthetic)", "created": "2026-10-01T09:05:00Z"}
+  ],
+  "tasks": [
+    {"id": "t1", "project": "p1", "title": "Gather requirements", "priority": "high", "estimate_minutes": 120, "due": null, "depends_on": [], "status": "done", "done_at": "2026-10-02T15:00:00Z", "notes": "", "created": "2026-10-01T09:10:00Z"},
+    {"id": "t2", "project": "p1", "title": "Wireframes", "priority": "normal", "estimate_minutes": 240, "due": null, "depends_on": ["t1"], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:11:00Z"},
+    {"id": "t3", "project": "p1", "title": "Write page copy", "priority": "normal", "estimate_minutes": 180, "due": null, "depends_on": ["t1"], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:12:00Z"},
+    {"id": "t4", "project": "p1", "title": "Build pages", "priority": "normal", "estimate_minutes": 600, "due": null, "depends_on": ["t2", "t3"], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:13:00Z"},
+    {"id": "t5", "project": "p1", "title": "Launch", "priority": "critical", "estimate_minutes": 60, "due": "2026-10-20", "depends_on": ["t4"], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:14:00Z"},
+    {"id": "t6", "project": "p2", "title": "Collect receipts", "priority": "normal", "estimate_minutes": 90, "due": "2026-10-11", "depends_on": [], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:15:00Z"},
+    {"id": "t7", "project": "p2", "title": "File quarterly figures", "priority": "high", "estimate_minutes": 120, "due": "2026-10-15", "depends_on": ["t6"], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:16:00Z"},
+    {"id": "t8", "project": "p2", "title": "Update portfolio", "priority": "low", "estimate_minutes": null, "due": null, "depends_on": [], "status": "open", "done_at": null, "notes": "", "created": "2026-10-01T09:17:00Z"}
+  ]
+}

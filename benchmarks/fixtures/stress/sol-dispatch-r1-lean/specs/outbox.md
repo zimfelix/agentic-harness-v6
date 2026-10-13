@@ -1,0 +1,28 @@
+# S001 — Durable local webhook outbox
+Status: Modified — implementation complete within the existing local/fake-provider scope; amended acceptance blocked on external evidence.
+Source: confirmed dispatch request and confirmed acceptance amendment. External sandbox evidence is required, but endpoint/credentials are unavailable and external network/live actions are not authorized. No substitute implementation or product-code changes are authorized.
+
+## Acceptance
+- Enqueue durably records object payloads under tenant/key identity. Semantic object equality replays the same ID; changed payload conflicts without mutation; array order matters.
+- Tenant-filtered status has exactly pending/uncertain/delivered/dead counts and job attempt counts. Invalid inputs and corrupt existing stores fail with one JSON error and nonzero exit.
+- Work chooses oldest eligible tenant job, at most one per invocation. OK delivers, accepted-timeout is uncertain, rejection is dead; transient retries are due at +2/+4 then dead at three attempts. Early work is idle.
+- Separate provider truth retains original payload and delivery ID, permanently deduplicates tenant/key, and detects changed payloads.
+- Durable uncertain claims survive before-send/after-accept exits and SIGKILL. Recovery at identical logical time reconciles acceptance before resending; no-op reconciliation never increments attempts.
+- Concurrent OS processes preserve jobs, tenant isolation, provider uniqueness and ownership. Atomic snapshots reject malformed or invalid persisted state.
+- Acceptance requires an ACTUAL external sandbox-provider contract check of provider acceptance followed by a lost response. Record actual provider acceptance and response-loss evidence and the observed recovery outcome against the existing dispatch contract. A local fake cannot establish this criterion.
+
+## Check and work plan
+CLI integration suite covering all modes, equality/conflict, due boundaries, oldest eligibility, tenant filtering, concurrent writes/work, injected exits, actual SIGKILL during ownership and after provider acceptance, malformed stores, and snapshot restoration. Challenge assertions with an intentionally false expectation. Review persistence and error boundaries.
+Current: existing local implementation, documentation and local acceptance checks remain complete; their evidence below is unchanged. The newly required external sandbox-provider contract check has NOT RUN, so overall acceptance is blocked. Missing evidence: actual external provider acceptance followed by a lost response and the observed recovery outcome. Endpoint and provider credentials are deliberately unavailable; external network/live actions are not authorized.
+Responsible human action: the requesting human/provider owner must supply an approved sandbox endpoint, credentials through an appropriate secure channel, and explicit authorization for the bounded external check and its recovery scope. Next step: obtain that access and authorization, then run the actual sandbox-provider contract check and record its evidence here; until then, do not attempt external calls, claim the fake proves it, or build a substitute implementation. No product-code changes or unrelated work are authorized; the deferred dashboard remains unassigned. Preserve the single-host/cooperating-process filesystem risk boundary.
+
+## Evidence
+Amended external sandbox criterion: NOT RUN / missing evidence. No endpoint or credentials are available and no external network/live action is authorized. Existing fake-provider results below do not satisfy it. This amendment changes only the acceptance record; implementation and existing local verification status are unchanged, and tests were not rerun for this documentation-only change.
+Current uncommitted files: `node --test tests/*.test.mjs` passed all 13 tests on Node 26.8.1. `node --check app.mjs`, `storage.mjs` and `outbox.mjs` passed. The concurrent-enqueue/worker test also passed in an additional isolated run.
+- Identity, tenant and durable reopen: semantic equality/conflict test verifies unchanged snapshot bytes on conflict and disjoint tenant results.
+- Modes and retries: tests cover OK/reject, accepted-timeout reconciliation, +2/+4 inclusive due boundaries, three-attempt exhaustion, delayed oldest-job skipping, and arbitrary-size logical times.
+- Provider truth: tests inspect payload and delivery IDs through the independent provider command, including multiple local stores sharing one provider, changed-payload refusal and tenant-scoped acceptance.
+- Recovery/attempts: injected abrupt exits and actual SIGSTOP/SIGKILL at claim and provider-commit boundaries restart at the same logical time; six concurrent recovery workers preserve one acceptance/attempt. A killed transient invocation recovers its receipt and original due time.
+- Concurrency: parallel duplicate and distinct enqueues plus tenant workers preserve all 17 jobs, exactly one acceptance each, and clean only their own lock files.
+- Failure/restore: invalid CLI inputs and malformed persisted snapshots fail nonzero with one JSON error; snapshot bytes remain unchanged on rejected operations. Stopped synthetic snapshots restore successfully. The assertion checker rejects a deliberately wrong persisted-job count.
+Limits: Node 22.19 was not separately executed (available runtime 26.8.1 satisfies 22.19+). Power-loss durability, NFS/distributed locking, PID reuse/unreaped-zombie liveness, hostile filesystem access and real providers are not proven. These limits and paired-store recovery guidance are documented in README.md; no live-provider or universal exactly-once claim is made.

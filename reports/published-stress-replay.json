@@ -1,0 +1,915 @@
+[
+  {
+    "label": "sol-crm-r2-baseline",
+    "case": "crm",
+    "counts": {
+      "pass": 20,
+      "fail": 0,
+      "inconclusive": 0,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "authentication-all-business-routes",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "deal-input-validation-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "deal-boundaries-and-viewer-reads",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "role-boundaries",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-resource-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "state-graph-and-stale-versions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "patch-shape-validation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-transitions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-half-up-snapshots",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-invalid-inputs",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "non-won-and-missing-invoice-deals",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-idempotency-and-new-intent",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-invoice-requests",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-distinct-invoice-requests-one-deal",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-concurrent-voids-once-only",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "void-retains-record-and-prevents-reissue",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-scoped-request-id",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "restart-persistence-and-idempotency",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "legacy-migration-preserves-ids-and-tenants",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seeded-larger-ledger-audit-resources",
+        "passed": true,
+        "outcome": "pass"
+      }
+    ]
+  },
+  {
+    "label": "sol-crm-r2-lean",
+    "case": "crm",
+    "counts": {
+      "pass": 20,
+      "fail": 0,
+      "inconclusive": 0,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "authentication-all-business-routes",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "deal-input-validation-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "deal-boundaries-and-viewer-reads",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "role-boundaries",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-resource-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "state-graph-and-stale-versions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "patch-shape-validation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-transitions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-half-up-snapshots",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-invalid-inputs",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "non-won-and-missing-invoice-deals",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invoice-idempotency-and-new-intent",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-invoice-requests",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-distinct-invoice-requests-one-deal",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-concurrent-voids-once-only",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "void-retains-record-and-prevents-reissue",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-scoped-request-id",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "restart-persistence-and-idempotency",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "legacy-migration-preserves-ids-and-tenants",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seeded-larger-ledger-audit-resources",
+        "passed": true,
+        "outcome": "pass"
+      }
+    ]
+  },
+  {
+    "label": "sol-dispatch-r1-baseline",
+    "case": "dispatch",
+    "counts": {
+      "pass": 19,
+      "fail": 0,
+      "inconclusive": 2,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "enqueue-durable-and-idle-empty",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "enqueue-invalid-inputs-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "canonical-json-object-keys",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "payload-conflicts-and-array-order",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-identity-status-and-provider-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "ok-delivery-and-replay-not-an-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "accepted-timeout-reconcile-no-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "permanent-rejection-dead-without-acceptance",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "delayed-retries-exact-three-attempts",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "retry-success-only-at-due-logical-time",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "before-send-crash-same-time-recovery",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "after-accept-crash-same-time-reconcile",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "oldest-eligible-and-at-most-one",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-enqueues",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-workers-provider-truth",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "concurrent-tenants-no-overwrite",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "new-key-new-intent-and-separate-provider-store",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "provider-conflicting-payload-two-local-stores",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "malformed-discovered-persistence-visible-failure",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+      },
+      {
+        "name": "seeded-larger-mixed-provider-integrity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "real-sigkill-worker-recovery",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=2, missed=2; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+      }
+    ]
+  },
+  {
+    "label": "sol-dispatch-r1-lean",
+    "case": "dispatch",
+    "counts": {
+      "pass": 18,
+      "fail": 1,
+      "inconclusive": 2,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "enqueue-durable-and-idle-empty",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "enqueue-invalid-inputs-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "canonical-json-object-keys",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "payload-conflicts-and-array-order",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-identity-status-and-provider-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "ok-delivery-and-replay-not-an-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "accepted-timeout-reconcile-no-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "permanent-rejection-dead-without-acceptance",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "delayed-retries-exact-three-attempts",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "retry-success-only-at-due-logical-time",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "before-send-crash-same-time-recovery",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "after-accept-crash-same-time-reconcile",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "oldest-eligible-and-at-most-one",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-enqueues",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-workers-provider-truth",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "concurrent-tenants-no-overwrite",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "new-key-new-intent-and-separate-provider-store",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "provider-conflicting-payload-two-local-stores",
+        "passed": false,
+        "outcome": "fail",
+        "error": "AssertionError: command failed (1): stderr=''; stdout='{\"error\":\"Provider identity payload conflict\"}\\n'"
+      },
+      {
+        "name": "malformed-discovered-persistence-visible-failure",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+      },
+      {
+        "name": "seeded-larger-mixed-provider-integrity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "real-sigkill-worker-recovery",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+      }
+    ]
+  },
+  {
+    "label": "sol-dispatch-r2-baseline",
+    "case": "dispatch",
+    "counts": {
+      "pass": 19,
+      "fail": 0,
+      "inconclusive": 2,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "enqueue-durable-and-idle-empty",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "enqueue-invalid-inputs-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "canonical-json-object-keys",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "payload-conflicts-and-array-order",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-identity-status-and-provider-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "ok-delivery-and-replay-not-an-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "accepted-timeout-reconcile-no-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "permanent-rejection-dead-without-acceptance",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "delayed-retries-exact-three-attempts",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "retry-success-only-at-due-logical-time",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "before-send-crash-same-time-recovery",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "after-accept-crash-same-time-reconcile",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "oldest-eligible-and-at-most-one",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-enqueues",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-workers-provider-truth",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "concurrent-tenants-no-overwrite",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "new-key-new-intent-and-separate-provider-store",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "provider-conflicting-payload-two-local-stores",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "malformed-discovered-persistence-visible-failure",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+      },
+      {
+        "name": "seeded-larger-mixed-provider-integrity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "real-sigkill-worker-recovery",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=1, missed=3; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+      }
+    ]
+  },
+  {
+    "label": "sol-dispatch-r2-lean",
+    "case": "dispatch",
+    "counts": {
+      "pass": 19,
+      "fail": 0,
+      "inconclusive": 2,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "enqueue-durable-and-idle-empty",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "enqueue-invalid-inputs-no-mutation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "canonical-json-object-keys",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "payload-conflicts-and-array-order",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "tenant-identity-status-and-provider-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "ok-delivery-and-replay-not-an-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "accepted-timeout-reconcile-no-attempt",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "permanent-rejection-dead-without-acceptance",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "delayed-retries-exact-three-attempts",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "retry-success-only-at-due-logical-time",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "before-send-crash-same-time-recovery",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "after-accept-crash-same-time-reconcile",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "oldest-eligible-and-at-most-one",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-enqueues",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-competing-workers-provider-truth",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "concurrent-tenants-no-overwrite",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "new-key-new-intent-and-separate-provider-store",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "provider-conflicting-payload-two-local-stores",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "malformed-discovered-persistence-visible-failure",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: corruption assertion not executed: authoritative persistence target not established by public contract"
+      },
+      {
+        "name": "seeded-larger-mixed-provider-integrity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "real-sigkill-worker-recovery",
+        "passed": false,
+        "outcome": "inconclusive",
+        "error": "Inconclusive: recovery/state checks passed; live SIGKILLs=3, missed=1; durable claim/accept/write windows unobserved (public API cannot establish ownership at kill)"
+      }
+    ]
+  },
+  {
+    "label": "sol-import-r1-baseline",
+    "case": "import",
+    "counts": {
+      "pass": 18,
+      "fail": 0,
+      "inconclusive": 0,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "seed-stock-boundaries-and-persistence",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invalid-seeds-are-atomic",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seed-once-and-tenant-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "headers-rejected-without-run",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "group-last-row-failure-atomicity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "nonadjacent-groups-and-intragroup-credit",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "malformed-transfer-groups-continue",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "empty-group-id-one-rejection",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "global-duplicate-transfer-ids",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "replay-versus-new-intent-and-bytes-conflict",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "exact-byte-identity-not-semantic-csv",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "interrupted-middle-resume-cumulative-decisions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "interrupted-after-last-group",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-concurrent-runs",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-distinct-runs-limited-stock",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "run-identity-tenant-scoped",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "rejected-replay-decisions-persist",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seeded-larger-conservation-and-data-text",
+        "passed": true,
+        "outcome": "pass"
+      }
+    ]
+  },
+  {
+    "label": "sol-import-r1-lean",
+    "case": "import",
+    "counts": {
+      "pass": 18,
+      "fail": 0,
+      "inconclusive": 0,
+      "timeout": 0,
+      "harness_error": 0
+    },
+    "groups": [
+      {
+        "name": "seed-stock-boundaries-and-persistence",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "invalid-seeds-are-atomic",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seed-once-and-tenant-isolation",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "headers-rejected-without-run",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "group-last-row-failure-atomicity",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "nonadjacent-groups-and-intragroup-credit",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "malformed-transfer-groups-continue",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "empty-group-id-one-rejection",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "global-duplicate-transfer-ids",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "replay-versus-new-intent-and-bytes-conflict",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "exact-byte-identity-not-semantic-csv",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "interrupted-middle-resume-cumulative-decisions",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "interrupted-after-last-group",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-identical-concurrent-runs",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "six-distinct-runs-limited-stock",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "run-identity-tenant-scoped",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "rejected-replay-decisions-persist",
+        "passed": true,
+        "outcome": "pass"
+      },
+      {
+        "name": "seeded-larger-conservation-and-data-text",
+        "passed": true,
+        "outcome": "pass"
+      }
+    ]
+  }
+]
