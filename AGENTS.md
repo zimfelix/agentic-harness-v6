@@ -2,7 +2,7 @@
 
 This repository contains a candidate template and its evaluation, not a product waiting for initialization.
 
-- `template/` is the exportable product harness. Its instructions apply to projects exported from it, not to repository maintenance.
+- `harness/` is the exportable product harness. Its instructions apply to projects exported from it, not to repository maintenance.
 - `benchmarks/tasks/` contains the public, versioned task contracts. Freeze them and the candidate before trials.
 - `benchmarks/` contains independent acceptance tests and orchestration. Trial agents must not read hidden acceptance code or other trials.
 - `tests/` checks the harness tools and benchmark mechanics. These tests do not prove agent quality.

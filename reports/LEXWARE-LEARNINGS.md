@@ -18,10 +18,10 @@ The central distinction is functional intent versus implementation details. Arch
 
 ## Changes
 
-- `template/AGENTS.md`: concise intent check, execution-context transparency, concrete continuation semantics.
-- `template/PROJECT.md`: main workflow, integration responsibilities, one active record pointer.
-- `template/specs/README.md`: next implementation action versus mere regression command; completed local milestone versus remaining product goal.
-- `template/README.md`: starter/continuation explanation, without another initialization layer.
+- `harness/AGENTS.md`: concise intent check, execution-context transparency, concrete continuation semantics.
+- `harness/PROJECT.md`: main workflow, integration responsibilities, one active record pointer.
+- `harness/specs/README.md`: next implementation action versus mere regression command; completed local milestone versus remaining product goal.
+- `harness/README.md`: starter/continuation explanation, without another initialization layer.
 - `tests/test_template.py`: exported instruction-content regression, explicitly not an LLM-quality test.
 
 AGENTS + PROJECT remain below the existing 6000-character test limit (5743 characters). Two skills and their risk references remain unchanged. Exporter/client integration is unchanged; an existing project is never automatically re-exported.
@@ -37,4 +37,4 @@ The new wording was added afterward. Historical `reports/RESULTS.md` and benchma
 Done: review and narrow template changes; no product/global changes.
 Verification: technical suite **20 passed, 5 real-Brave cases explicitly skipped** (25 collected); benchmark-mechanics/oracle self-tests **17/17 passed**, ResourceWarnings treated as errors; `git diff --check` clean. The new instruction-content test correctly fails against the previous template's missing intent cue. This counterexample checks text/export regression, not agent quality. No model or new background-agent run; browser tools unchanged, their five integration cases not rerun here.
 Remaining: confirm whether user intends commit + merge into main, rather than merely switch branches; no commit/merge/push until clarified.
-Next action: review the small diff and resolve the main-integration question. Entry command: `git diff -- template/AGENTS.md template/PROJECT.md template/specs/README.md`. A fresh visible intent-clarification trial remains a separate explicit experiment.
+Next action: review the small diff and resolve the main-integration question. Entry command: `git diff -- harness/AGENTS.md harness/PROJECT.md harness/specs/README.md`. A fresh visible intent-clarification trial remains a separate explicit experiment.

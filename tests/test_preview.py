@@ -11,7 +11,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-TOOLS = Path(__file__).resolve().parents[1] / 'template/.agents/skills/website-tools/tools'
+TOOLS = Path(__file__).resolve().parents[1] / 'harness/.agents/skills/website-tools/tools'
 
 
 class PreviewTests(unittest.TestCase):

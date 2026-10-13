@@ -33,7 +33,7 @@ Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich
 ## Aufbau
 
 ```text
-template/          exportierbarer Harness; kein separater profiles-Katalog
+harness/          exportierbarer Harness; kein separater profiles-Katalog
   AGENTS.md        Arbeitsweise + Verification
   PROJECT.md       konkreter Brief, Architektur/Stack, aktueller Stand
   specs/           relevantes Verhalten und Nachweise
@@ -47,7 +47,7 @@ reports/           Messwerte, Ergebnisse, Infrastrukturfehler und Grenzen
 tools/             sicherer Export, Client-Start, Ergebnisaufbereitung
 ```
 
-Im normalen Projekt werden nur `template/`-Inhalte exportiert, nicht Benchmarks/Produktsamples/Reports. Regeln und Skripte haben jeweils eine Quelle. Kein Pflicht-Framework, kein Enterprise-Aufbau, keine Freigabe für jedes Implementierungsdetail. Projektentscheidungen bleiben verbindlich; kritische Skill-Leseauslöser stehen direkt in AGENTS.
+Im normalen Projekt werden nur `harness/`-Inhalte exportiert, nicht Benchmarks/Produktsamples/Reports. Regeln und Skripte haben jeweils eine Quelle. Kein Pflicht-Framework, kein Enterprise-Aufbau, keine Freigabe für jedes Implementierungsdetail. Projektentscheidungen bleiben verbindlich; kritische Skill-Leseauslöser stehen direkt in AGENTS.
 
 ## Tatsächliche Prüfungen
 

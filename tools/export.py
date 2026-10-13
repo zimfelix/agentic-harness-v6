@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 
-SOURCE = Path(__file__).resolve().parents[1] / 'template'
+SOURCE = Path(__file__).resolve().parents[1] / 'harness'
 
 
 def export(destination, source=SOURCE, *, claude=False):

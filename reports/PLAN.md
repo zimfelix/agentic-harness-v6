@@ -5,7 +5,7 @@ Written before trial product implementations or acceptance results. Objective: t
 ## Variants and attribution
 
 - Baseline: exported v6.1, source commit `dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a` of `zimfelix/agentic-harness-v6`.
-- Candidate: `template/`, frozen into a content-hashed snapshot before runs. Short working agreement + PROJECT; coherent specs; optional ideas/docs; risk-triggered business references; static website tooling as one portable skill. No mandatory init checker, complete opt-out catalogue or document-maintenance protocol on every Markdown edit.
+- Candidate: `harness/`, frozen into a content-hashed snapshot before runs. Short working agreement + PROJECT; coherent specs; optional ideas/docs; risk-triggered business references; static website tooling as one portable skill. No mandatory init checker, complete opt-out catalogue or document-maintenance protocol on every Markdown edit.
 - This is a whole-package comparison, not a causal test of each removed sentence. Wording/language, structure and documentation obligations differ. Profiles-to-skills packaging is not isolated by backend tasks.
 
 ## Trials

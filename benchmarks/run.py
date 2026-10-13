@@ -53,7 +53,7 @@ def prepare(workspace, baseline):
     snapshots = workspace / 'snapshots'
     snapshots.mkdir(parents=True)
     subprocess.run(['sh', str(Path(baseline).resolve() / 'agentic-harness/tools/export-harness.sh'), str(snapshots / 'baseline')], check=True)
-    shutil.copytree(REPO / 'template', snapshots / 'lean')
+    shutil.copytree(REPO / 'harness', snapshots / 'lean')
     shutil.copytree(REPO / 'benchmarks/tasks', snapshots / 'tasks')
     meta = {'baseline_commit': subprocess.check_output(['git', '-C', str(baseline), 'rev-parse', 'HEAD'], text=True).strip(),
             'snapshots': {name: digest_tree(snapshots / name) for name in ('baseline', 'lean', 'tasks')},

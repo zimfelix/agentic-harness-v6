@@ -50,7 +50,7 @@ Skills können Verfahren, Skripte, Checklisten und Fachreferenzen bündeln. Ihre
 
 ## Versuchsaufbau und Aussagekraft
 
-Baseline: ursprüngliches v6.1, Commit `dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a`. Kandidat: eingefrorene `template/`-Inhalte, auch im frühen Commit `f06f60b` erreichbar. Content-Hashes, Modell-/Toolversionen, Phasen, Tokens und Abnahmegruppen: [metrics.json](metrics.json).
+Baseline: ursprüngliches v6.1, Commit `dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a`. Kandidat: eingefrorene `harness/`-Inhalte, auch im frühen Commit `f06f60b` erreichbar. Content-Hashes, Modell-/Toolversionen, Phasen, Tokens und Abnahmegruppen: [metrics.json](metrics.json).
 
 Frische getrennte Agentensitzungen, identische Aufgaben, dasselbe Modell/Reasoning/Zeitbudget innerhalb eines Paars, synthetische Daten und lokale Fake-Provider. Pi: `gpt-6.1-sol`, medium. Claude Code: explizit `claude-opus-5-5`, medium; dessen Ergebnisse werden nicht wie ein Pi/Sol-Geschwindigkeitsvergleich behandelt. Native Skills und globale Anpassungen waren in den Produktvergleichen deaktiviert; relevante Dateien blieben explizit lesbar.
 
