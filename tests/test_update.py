@@ -105,6 +105,16 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(len(collector.entries(learnings, include_all=True)), 2)
         self.assertEqual([p.resolve() for p in collector.projects([self.root])], [self.project.resolve()])
 
+    def test_unrouted_doc_becomes_hint_and_routed_doc_does_not(self):
+        (self.project / 'docs/decisions').mkdir(parents=True)
+        (self.project / 'docs/testing.md').write_text('Responsibility: test strategy.\n')
+        (self.project / 'docs/decisions/0001-stack.md').write_text('Responsibility: stack choice.\n')
+        agents = self.project / 'AGENTS.md'
+        agents.write_text(agents.read_text() + '- Tests: read `docs/testing.md`.\n')
+        hints = '\n'.join(updater.plan(self.project, self.source)['hints'])
+        self.assertIn('docs/decisions/0001-stack.md', hints)
+        self.assertNotIn('docs/testing.md', hints)
+
     def test_project_without_marker_is_left_alone(self):
         old = self.root / 'old'
         old.mkdir()

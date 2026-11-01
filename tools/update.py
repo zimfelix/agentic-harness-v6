@@ -2,7 +2,8 @@
 """Bring exported projects to the current harness without touching project content.
 
 Universal parts: AGENTS.md above the harness marker, the learnings.md header above
-its entries marker, specs/README.md and ideas/README.md. PROJECT.md, other
+its entries marker, specs/README.md and ideas/README.md. Docs under docs/ that
+nothing routes to are reported. PROJECT.md, other
 specs/ideas, learnings entries, README.md and code are never written. Where a safe automatic update is
 impossible, a note goes to harness-update.md for review at the next task.
 Default is a dry run; --apply writes.
@@ -79,6 +80,12 @@ def plan(project, source=exporter.SOURCE):
                                'existing notes (also from learning-state.md) below the marker in the new format.')
     else:
         result['writes']['learnings.md'] = wanted
+    routing = text + ((project / 'PROJECT.md').read_text() if (project / 'PROJECT.md').is_file() else '')
+    for doc in sorted((project / 'docs').rglob('*.md')) if (project / 'docs').is_dir() else []:
+        rel = doc.relative_to(project).as_posix()
+        if rel not in routing:
+            result['hints'].append(f'{rel}: neither AGENTS.md nor PROJECT.md routes to it. Add a project rule saying '
+                                   f'when to read it, or merge it into PROJECT.md or a neighbouring doc.')
     before, after = template_at(source, old, 'PROJECT.md'), (source / 'PROJECT.md').read_text()
     if before is None and old != new:
         result['hints'].append('PROJECT.md: previous template unknown; compare the project file with the current '

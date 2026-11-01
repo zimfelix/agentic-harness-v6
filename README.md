@@ -76,7 +76,9 @@ python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b          # nur anzeige
 python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b --apply  # schreiben (v6 vorher committen)
 ```
 
-Universell sind: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, der Kopf von `learnings.md` oberhalb von `<!-- learnings:entries … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, Learnings-Einträge, `README.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
+Universell sind: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, der Kopf von `learnings.md` oberhalb von `<!-- learnings:entries … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, Learnings-Einträge, `README.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage, Docs unter `docs/` ohne Verweis aus `AGENTS.md` oder `PROJECT.md`), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
+
+Wohin Wissen gehört: Projektfakten in `PROJECT.md`, umfangreiches Detail in ein fokussiertes Doc unter `docs/` (erste Zeile: Zuständigkeit und wann lesen, verlinkt aus einer Projektregel); Wissen für eine ganze Projektart in einen Skill hier, vorgeschlagen über `learnings.md`; die Arbeitsweise in den Core.
 
 ## Aufbau
 
