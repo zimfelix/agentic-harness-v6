@@ -25,4 +25,4 @@ Use an empty screenshot output directory. Comparisons require matching nonempty 
 
 Browser must be Brave: `BRAVE_PATH` may choose its executable; never silently substitute Chrome. A single Brave run does not establish Safari/mobile/screenreader compatibility. Failed navigation/readiness/build is failed evidence, not a screenshot success. Preview reports stale/failed builds as 503 and `/_geraete/stand` reports actuality; device preview assets are internal, not copied into production. LAN exposure and persistent macOS service installation require explicit approval.
 
-Optional visual references: `assets/inspiration/README.md`, then only selected cards/images. They are examples of particular preferences, never a required style. No screenshots or image collection needs to be loaded for ordinary code work.
+Design inspiration is collected per project, never in this skill: read `references/inspiration.md` only when recording or using inspiration. No screenshots or image collection needs to be loaded for ordinary code work.

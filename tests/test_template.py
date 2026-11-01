@@ -139,6 +139,8 @@ class TemplateTests(unittest.TestCase):
             self.assertIn('name: ' + skill.parent.name, skill.read_text())
             self.assertIn('description:', skill.read_text())
         self.assertFalse((TEMPLATE / 'profiles').exists())
+        images = [p for p in TEMPLATE.rglob('*') if p.suffix.lower() in {'.jpg', '.jpeg', '.png', '.webp', '.gif'}]
+        self.assertEqual(images, [], 'skills must stay project-neutral: no example designs or screenshots')
         self.assertLess(len((TEMPLATE / 'AGENTS.md').read_text()) + len((TEMPLATE / 'PROJECT.md').read_text()), 6000)
 
     def test_consolidation_preserves_risk_rules_and_website_requirements(self):
