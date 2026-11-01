@@ -12,7 +12,7 @@ import re
 REPO = Path(__file__).resolve().parents[1]
 ROOTS = [Path.home() / 'Code', Path.home() / 'PycharmProjects']
 ENTRIES = '<!-- learnings:entries'
-CORE_REVIEW = 6000  # review signal, not a limit
+CORE_REVIEW = 12000  # review signal, not a limit
 SKIP = {'node_modules', '.venv', '.git', 'dist', 'build'}
 
 
