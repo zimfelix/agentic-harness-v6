@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Bring exported projects to the current harness without touching project content.
+
+Only three files are universal: the AGENTS.md part above the marker line,
+specs/README.md and ideas/README.md. PROJECT.md, other specs/ideas, README.md,
+learning-state.md and code are never written. Where a safe automatic update is
+impossible, a note goes to harness-update.md for review at the next task.
+Default is a dry run; --apply writes.
+"""
+import argparse
+from datetime import date
+import difflib
+import importlib.util
+from pathlib import Path
+import re
+import subprocess
+
+_spec = importlib.util.spec_from_file_location('exporter', Path(__file__).with_name('export.py'))
+exporter = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(exporter)
+
+MARKER_RE = re.compile(r'^<!-- harness-v6@([0-9a-f]+|local)\b.*-->$', re.M)
+UNIVERSAL = ['specs/README.md', 'ideas/README.md']
+NOTE = 'harness-update.md'
+
+
+def template_at(source, version, rel):
+    if version == 'local':
+        return None
+    result = subprocess.run(['git', '-C', str(source), 'show', f'{version}:./{rel}'], capture_output=True, text=True)
+    return result.stdout if result.returncode == 0 else None
+
+
+def plan(project, source=exporter.SOURCE):
+    """Return {'status', 'old', 'new', 'writes': {rel: text}, 'hints': [str]} without writing."""
+    project, source = Path(project).resolve(), Path(source).resolve()
+    agents_path = project / 'AGENTS.md'
+    text = agents_path.read_text() if agents_path.is_file() else ''
+    match = MARKER_RE.search(text)
+    if not match:
+        return {'status': 'no-marker', 'old': None, 'new': None, 'writes': {}, 'hints': []}
+    old, new = match.group(1), exporter.source_version(source)
+    top, rest = text[:match.start()].rstrip('\n'), text[match.end():]
+    current = (source / 'AGENTS.md').read_text()
+    previous = template_at(source, old, 'AGENTS.md')
+    result = {'old': old, 'new': new, 'writes': {}, 'hints': []}
+    if top not in (current.rstrip('\n'), (previous or '').rstrip('\n')):
+        result['status'] = 'conflict'
+        result['hints'].append('AGENTS.md: the part above the marker differs from the harness. Move project rules '
+                               'below the marker or bring the change to the harness repository, then update again.')
+        return result
+    updated = exporter.agents_with_marker(current, new, rest)
+    if updated != text:
+        result['writes']['AGENTS.md'] = updated
+    for rel in UNIVERSAL:
+        target, wanted = project / rel, (source / rel).read_text()
+        have = target.read_text() if target.is_file() else None
+        if have == wanted:
+            continue
+        if have is None or have == template_at(source, old, rel):
+            result['writes'][rel] = wanted
+        else:
+            result['hints'].append(f'{rel}: changed locally, so it was not replaced. Compare with the harness '
+                                   f'version and keep what is project-specific elsewhere.')
+    before, after = template_at(source, old, 'PROJECT.md'), (source / 'PROJECT.md').read_text()
+    if before is None and old != new:
+        result['hints'].append('PROJECT.md: previous template unknown; compare the project file with the current '
+                               'harness template by hand.')
+    elif before is not None and before != after:
+        diff = ''.join(difflib.unified_diff(before.splitlines(True), after.splitlines(True),
+                                            f'PROJECT template {old}', f'PROJECT template {new}'))
+        result['hints'].append('PROJECT.md: the template changed. The project file was not touched; decide which '
+                               'changes it should adopt.\n\n```diff\n' + diff + '```')
+    result['status'] = 'update' if result['writes'] or result['hints'] else 'current'
+    return result
+
+
+def apply(project, result):
+    project = Path(project).resolve()
+    for rel, text in result['writes'].items():
+        (project / rel).parent.mkdir(parents=True, exist_ok=True)
+        (project / rel).write_text(text)
+    if result['hints']:
+        note = project / NOTE
+        header = '' if note.exists() else ('# Harness update – review at the next task\n\n'
+                                           'Discuss each point briefly, agree the step, apply it, then delete this file.\n')
+        entry = f'\n## {date.today()} · {result["old"]} → {result["new"]}\n\n' + '\n\n'.join(
+            f'- {hint}' for hint in result['hints']) + '\n'
+        with note.open('a') as handle:
+            handle.write(header + entry)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('projects', nargs='+', type=Path)
+    parser.add_argument('--apply', action='store_true', help='write changes (default: dry run)')
+    args = parser.parse_args()
+    if args.apply and exporter.source_version() == 'local':
+        parser.exit(1, 'Commit the harness repository first, so projects record a real version.\n')
+    for project in args.projects:
+        result = plan(project)
+        print(f"{project}: {result['status']} ({result['old']} → {result['new']})")
+        for rel in result['writes']:
+            print(f'  write {rel}')
+        for hint in result['hints']:
+            print('  note  ' + hint.splitlines()[0])
+        if args.apply and result['status'] == 'update':
+            apply(project, result)

@@ -50,7 +50,12 @@ class TemplateTests(unittest.TestCase):
         }
         for filename, required in markers.items():
             text = (target / filename).read_text()
-            self.assertEqual(text, (TEMPLATE / filename).read_text())
+            template = (TEMPLATE / filename).read_text()
+            if filename == 'AGENTS.md':
+                self.assertTrue(text.startswith(template.rstrip('\n')))
+                self.assertRegex(text, r'<!-- harness-v6@([0-9a-f]+|local) ')
+            else:
+                self.assertEqual(text, template)
             for marker in required:
                 self.assertIn(marker, text, (filename, marker))
         # These checks preserve instruction/export content, not prove that an LLM follows it.

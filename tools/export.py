@@ -7,9 +7,29 @@ self-contained projects (cloud, other machines); that copy is not synced back.""
 import argparse
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 
 SOURCE = Path(__file__).resolve().parents[1] / 'harness'
+MARKER = '<!-- harness-v6@{version} · project rules below; tools/update.py never changes them -->'
+PROJECT_PART = '\n\n## Project rules\n\nNone yet.\n'
+
+
+def source_version(source=SOURCE):
+    """Short commit of a clean, versioned template; 'local' if uncommitted or unversioned."""
+    source = Path(source)
+    try:
+        dirty = subprocess.run(['git', '-C', str(source), 'status', '--porcelain', '--', '.'],
+                               capture_output=True, text=True, check=True).stdout.strip()
+        head = subprocess.run(['git', '-C', str(source), 'rev-parse', '--short', 'HEAD'],
+                              capture_output=True, text=True, check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return 'local'
+    return 'local' if dirty or not head else head
+
+
+def agents_with_marker(template_text, version, project_part=PROJECT_PART):
+    return template_text.rstrip('\n') + '\n\n' + MARKER.format(version=version) + project_part
 
 
 def export(destination, source=SOURCE, *, with_skills=False):
@@ -36,6 +56,8 @@ def export(destination, source=SOURCE, *, with_skills=False):
             return skipped
 
         shutil.copytree(source, staged, ignore=ignore)
+        agents = staged / 'AGENTS.md'
+        agents.write_text(agents_with_marker(agents.read_text(), source_version(source)))
         if with_skills:
             aliases = staged / '.claude/skills'
             aliases.mkdir(parents=True)

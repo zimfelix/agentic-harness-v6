@@ -30,6 +30,15 @@ python3 tools/launch.py --project /absolute/path/to/project --client claude
 
 **Skills werden nicht ins Projekt kopiert.** Einzige Quelle ist `harness/.agents/skills/` in diesem Repo; Claude Code und Pi sehen sie über globale Links (`~/.claude/skills/<name>`, `~/.pi/agent/skills/<name>` → dieser Ordner). Eine Skill-Verbesserung aus einem beliebigen Projekt landet damit direkt hier und wird hier committet; kein Rückkopieren. `--with-skills` legt eine Kopie samt `.claude/skills`-Links ins Projekt, die nicht zurückfließt. Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich. Keine Projekt-`CLAUDE.md`. Ohne diese Integration nicht behaupten, ein normaler Claude-Start erkenne AGENTS/`.agents` automatisch. [Client-Kompatibilität](reports/CLIENT-COMPATIBILITY.md)
 
+## Bestehende Projekte aktualisieren
+
+```sh
+python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b          # nur anzeigen
+python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b --apply  # schreiben (v6 vorher committen)
+```
+
+Universell sind nur drei Dateien: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, `README.md`, `learning-state.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
+
 ## Aufbau
 
 ```text
