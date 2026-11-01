@@ -39,7 +39,7 @@ def export(destination, source=SOURCE, *, with_skills=False):
     if destination.exists() and (not destination.is_dir() or any(destination.iterdir())):
         raise ValueError('Destination must be new or empty; no project upgrades/overwrites')
     required = ['AGENTS.md', 'PROJECT.md', 'specs/README.md', '.agents/skills/business-software/SKILL.md',
-                '.agents/skills/website-tools/SKILL.md']
+                '.agents/skills/website-tools/SKILL.md', '.agents/skills/testing/SKILL.md']
     if any(not (source / path).is_file() for path in required):
         raise ValueError('Incomplete template')
     if any(p.is_symlink() for p in source.rglob('*')):

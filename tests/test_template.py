@@ -134,8 +134,7 @@ class TemplateTests(unittest.TestCase):
 
     def test_native_skill_single_source(self):
         skills = list(TEMPLATE.rglob('SKILL.md'))
-        self.assertEqual(len(skills), 2)
-        self.assertEqual({s.parent.name for s in skills}, {'website-tools', 'business-software'})
+        self.assertEqual({s.parent.name for s in skills}, {'website-tools', 'business-software', 'testing'})
         for skill in skills:
             self.assertIn('name: ' + skill.parent.name, skill.read_text())
             self.assertIn('description:', skill.read_text())
@@ -157,7 +156,7 @@ class TemplateTests(unittest.TestCase):
                 self.assertTrue((skill / target).is_file(), target)
         agents = (TEMPLATE / 'AGENTS.md').read_text()
         self.assertNotIn('profiles/', agents)
-        for name in ('business-software', 'website-tools'):
+        for name in ('business-software', 'website-tools', 'testing'):
             self.assertIn(f'`{name}` skill', agents)
 
     def tool(self, name, *args):

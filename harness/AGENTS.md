@@ -14,7 +14,7 @@ Read `PROJECT.md` first. This file defines the working agreement, not an impleme
 - For meaningful new/changed behavior, record the observable contract and acceptance checks in the relevant `specs/` file before implementing; read `specs/README.md` when needed. A small change can update an existing spec; refactors and purely visual adjustments don't require invented specs.
 - Use `ideas/` only for unresolved choices or multi-session plans; it is not a mandatory second copy of a spec. Deferred work is not authorized work.
 - Keep architecture decisions in `PROJECT.md`; use `docs/architecture.md` or another focused doc only when the detail is genuinely reusable. Store executable rules/values in code/configuration, not duplicate prose. Replace stale statements instead of appending history.
-- For business logic, persistence, rights or external effects, consult the `business-software` skill and only the relevant risk references. For websites, use the `website-tools` skill. Skills are linked globally; a bundled `.agents/skills/` copy is used only if present. Project requirements override optional examples, not actual safety constraints.
+- For business logic, persistence, rights or external effects, consult the `business-software` skill and only the relevant risk references. For websites, use the `website-tools` skill; for planning, writing or reviewing tests, the `testing` skill. Skills are linked globally; a bundled `.agents/skills/` copy is used only if present. Project requirements override optional examples, not actual safety constraints.
 
 ## Verification and continuation
 
