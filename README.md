@@ -9,6 +9,49 @@ Freier Brief → PROJECT: Ziel, Grenzen, Stack und Entscheidungen
                          Skills nur bei tatsächlichem Bedarf
 ```
 
+## Skills
+
+Eigene Skills liegen nur hier unter `harness/.agents/skills/` und sind global verlinkt (`~/.claude/skills/`, `~/.pi/agent/skills/`); der Core in `harness/AGENTS.md` löst sie aus.
+
+| Eigener Skill | Wofür | Auslöser im Core |
+|---|---|---|
+| `website-tools` | Websites: Inhalte, Responsive, Rechte, Veröffentlichung; optionale Screenshot-/Prüf-Tools | Arbeit an einer Website |
+| `business-software` | Geschäftslogik: Datenintegrität, Migration, Rechte, Geld/Zeit, externe Wirkungen | Geschäftslogik, Persistenz, Rechte, Integrationen |
+| `testing` | Tests, die Verhalten an echten Grenzen prüfen; Mocks nur an fremden Grenzen; wann TDD; wann stoppen | Tests planen, schreiben oder prüfen |
+
+Wie oft die Skills tatsächlich geladen wurden (eigene zuerst, dann importierte):
+
+<!-- skills:start -->
+Stand 2026-11-01, aus lokalen Claude-Code- und Pi-Protokollen (`python3 tools/skill_usage.py --readme`).
+
+| Skill | Herkunft | Ladungen Claude | Ladungen Pi | Sitzungen | zuletzt |
+|---|---|---:|---:|---:|---|
+| `business-software` | eigen (v6) | 8 | 8 | 9 | 2026-11-01 |
+| `website-tools` | eigen (v6) | 8 | 4 | 6 | 2026-11-01 |
+| `testing` | eigen (v6) | 2 | 0 | 1 | 2026-11-01 |
+| `commit` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 29 | 8 | 31 | 2026-11-01 |
+| `sitegeist` | importiert: ~/.local/share/agent-skills | 18 | 0 | 18 | 2026-10-31 |
+| `librarian` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 2 | 7 | 6 | 2026-10-10 |
+| `summarize` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 4 | 0 | 1 | 2026-10-09 |
+| `discuss` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 3 | 0 | 2 | 2026-10-21 |
+| `obsidian-cli` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 3 | 2 | 2026-10-05 |
+| `obsidian-markdown` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 2 | 2 | 2026-10-05 |
+| `json-canvas` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 0 | 0 | – |
+<!-- skills:end -->
+
+Gezählt werden Ladungen, nicht Nützlichkeit; Sitzungen, in denen ein Skill nur bearbeitet wurde, zählen mit. Ein Skill, der über Wochen bei 0 bleibt, ist ein Kandidat zum Entfernen oder für eine bessere Beschreibung.
+
+## Learnings
+
+Jedes Projekt hat eine `learnings.md`: oben ein fester Kopf, der den Ablauf erklärt (bleibt per `tools/update.py` aktuell), darunter Einträge zu Stellen, an denen Core oder Skill nicht funktioniert haben. Der Agent prüft offene Einträge zu Beginn jeder Aufgabe. Gesichtet wird gebündelt hier, etwa wöchentlich:
+
+```sh
+python3 tools/learnings.py        # offene Einträge aller Projekte (automatisch gefunden) + eigene
+python3 tools/learnings.py --all  # alle Status
+```
+
+Übernommen wird nach „Reviewing and adopting learnings“ in [`AGENTS.md`](AGENTS.md): einordnen (die meisten Learnings gehören in einen Skill oder bleiben lokal), knapp formulieren, dann eine Prüfschleife, bis alles passt – sinnvoll als allgemeine Regel, keine Wiederholung, präzise, richtig eingeordnet, ufert nicht aus, wo möglich durch einen Test abgesichert. Ersetzen ist eine Möglichkeit, kein Zwang. Danach Eintrag im Projekt schließen.
+
 ## Neue Projekte
 
 ```sh
@@ -31,7 +74,7 @@ python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b          # nur anzeige
 python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b --apply  # schreiben (v6 vorher committen)
 ```
 
-Universell sind nur drei Dateien: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, `README.md`, `learning-state.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
+Universell sind: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, der Kopf von `learnings.md` oberhalb von `<!-- learnings:entries … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, Learnings-Einträge, `README.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
 
 ## Aufbau
 

@@ -70,7 +70,7 @@ def copy_sample(project, snapshot, destination):
         rel = p.relative_to(project)
         if any(part in ignored for part in rel.parts):
             continue
-        if str(rel) in {'AGENTS.md', 'PROJECT.md', 'document-contract.md', 'harness-learnings.md', 'learning-state.md'}:
+        if str(rel) in {'AGENTS.md', 'PROJECT.md', 'document-contract.md', 'harness-learnings.md', 'learning-state.md', 'learnings.md'}:
             continue
         if p.suffix not in suffixes and p.name not in {'planner', '.gitignore'}:
             continue

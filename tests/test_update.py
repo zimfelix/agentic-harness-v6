@@ -83,6 +83,28 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(result['writes'], {})
         self.assertEqual(agents.read_text(), before)
 
+    def test_learnings_header_updates_and_entries_stay(self):
+        learnings = self.project / 'learnings.md'
+        entry = '## 2026-11-03 · SEO title breaks hero · offen\n- **Ziel:** skill:website-tools\n'
+        learnings.write_text(learnings.read_text() + '\n' + entry)
+        self.change('learnings.md', '')
+        path = self.source / 'learnings.md'
+        path.write_text(path.read_text().replace('# Learnings', '# Learnings\n\nNew header line.', 1))
+        self.commit('v2')
+        updater.apply(self.project, updater.plan(self.project, self.source))
+        text = learnings.read_text()
+        self.assertIn('New header line.', text)
+        self.assertTrue(text.rstrip().endswith(entry.rstrip()))
+
+        spec = importlib.util.spec_from_file_location('collector', ROOT / 'tools/learnings.py')
+        collector = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(collector)
+        learnings.write_text(text.replace('offen', 'verworfen').replace(
+            entry.replace('offen', 'verworfen'), entry.replace('offen', 'verworfen') + '\n' + entry))
+        self.assertEqual(len(collector.entries(learnings)), 1)
+        self.assertEqual(len(collector.entries(learnings, include_all=True)), 2)
+        self.assertEqual([p.resolve() for p in collector.projects([self.root])], [self.project.resolve()])
+
     def test_project_without_marker_is_left_alone(self):
         old = self.root / 'old'
         old.mkdir()

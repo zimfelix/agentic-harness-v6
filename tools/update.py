@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Bring exported projects to the current harness without touching project content.
 
-Only three files are universal: the AGENTS.md part above the marker line,
-specs/README.md and ideas/README.md. PROJECT.md, other specs/ideas, README.md,
-learning-state.md and code are never written. Where a safe automatic update is
+Universal parts: AGENTS.md above the harness marker, the learnings.md header above
+its entries marker, specs/README.md and ideas/README.md. PROJECT.md, other
+specs/ideas, learnings entries, README.md and code are never written. Where a safe automatic update is
 impossible, a note goes to harness-update.md for review at the next task.
 Default is a dry run; --apply writes.
 """
@@ -22,6 +22,7 @@ _spec.loader.exec_module(exporter)
 MARKER_RE = re.compile(r'^<!-- harness-v6@([0-9a-f]+|local)\b.*-->$', re.M)
 UNIVERSAL = ['specs/README.md', 'ideas/README.md']
 NOTE = 'harness-update.md'
+ENTRIES = '<!-- learnings:entries'
 
 
 def template_at(source, version, rel):
@@ -62,6 +63,22 @@ def plan(project, source=exporter.SOURCE):
         else:
             result['hints'].append(f'{rel}: changed locally, so it was not replaced. Compare with the harness '
                                    f'version and keep what is project-specific elsewhere.')
+    learnings, wanted = project / 'learnings.md', (source / 'learnings.md').read_text()
+    if learnings.is_file() and ENTRIES in learnings.read_text():
+        have = learnings.read_text()
+        head, entries = have.split(ENTRIES, 1)
+        new_head = wanted.split(ENTRIES, 1)[0]
+        old_head = (template_at(source, old, 'learnings.md') or '').split(ENTRIES, 1)[0]
+        if head != new_head and head == old_head:
+            result['writes']['learnings.md'] = new_head + ENTRIES + entries
+        elif head != new_head:
+            result['hints'].append('learnings.md: the header differs from the harness and was not replaced. Move '
+                                   'project notes below the entries marker, then update again.')
+    elif learnings.is_file() or (project / 'learning-state.md').is_file():
+        result['hints'].append('learnings.md: no entries marker yet. Put the current harness header on top and move '
+                               'existing notes (also from learning-state.md) below the marker in the new format.')
+    else:
+        result['writes']['learnings.md'] = wanted
     before, after = template_at(source, old, 'PROJECT.md'), (source / 'PROJECT.md').read_text()
     if before is None and old != new:
         result['hints'].append('PROJECT.md: previous template unknown; compare the project file with the current '
