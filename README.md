@@ -21,14 +21,14 @@ Diese Ergänzungen sind nach dem bisherigen Vergleich entstanden; dessen Messwer
 # Ziel muss neu oder leer sein; keine überschreibenden Updates:
 python3 tools/export.py /absolute/path/to/project
 
-# Zusätzlich Claude-Skill-Erkennung, ohne kopierte Regeln:
-python3 tools/export.py /absolute/path/to/project --claude
+# Nur wenn das Projekt ohne globale Skill-Links laufen muss (Cloud, anderer Rechner):
+python3 tools/export.py /absolute/path/to/project --with-skills
 
 python3 tools/launch.py --project /absolute/path/to/project --client pi
 python3 tools/launch.py --project /absolute/path/to/project --client claude
 ```
 
-Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich. `.claude/skills/<name>` ist nur ein relativer Link auf `.agents/skills/<name>`. Keine Projekt-`CLAUDE.md`, keine globalen Änderungen, keine zweite Skill-Quelle. Ohne diese Integration nicht behaupten, ein normaler Claude-Start erkenne AGENTS/`.agents` automatisch. [Client-Kompatibilität](reports/CLIENT-COMPATIBILITY.md)
+**Skills werden nicht ins Projekt kopiert.** Einzige Quelle ist `harness/.agents/skills/` in diesem Repo; Claude Code und Pi sehen sie über globale Links (`~/.claude/skills/<name>`, `~/.pi/agent/skills/<name>` → dieser Ordner). Eine Skill-Verbesserung aus einem beliebigen Projekt landet damit direkt hier und wird hier committet; kein Rückkopieren. `--with-skills` legt eine Kopie samt `.claude/skills`-Links ins Projekt, die nicht zurückfließt. Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich. Keine Projekt-`CLAUDE.md`. Ohne diese Integration nicht behaupten, ein normaler Claude-Start erkenne AGENTS/`.agents` automatisch. [Client-Kompatibilität](reports/CLIENT-COMPATIBILITY.md)
 
 ## Aufbau
 
@@ -38,7 +38,8 @@ harness/          exportierbarer Harness; kein separater profiles-Katalog
   PROJECT.md       konkreter Brief, Architektur/Stack, aktueller Stand
   specs/           relevantes Verhalten und Nachweise
   ideas/           optional für offene/größere Vorhaben
-  .agents/skills/  business-software: bedarfsgeladene Risiken
+  .agents/skills/  einzige Skill-Quelle, global verlinkt, standardmäßig nicht exportiert
+                  business-software: bedarfsgeladene Risiken
                   website-tools: Grundlagen + optionale Tools/Referenzen
 benchmarks/        Aufgaben, unabhängige Abnahme, isolierte Agentenläufe
   fixtures/       synthetische erzeugte Produkte für modellfreie Wiederholung

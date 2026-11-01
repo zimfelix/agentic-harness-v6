@@ -1,5 +1,7 @@
 # Pi and Claude: one content source
 
+**Nachtrag 2026-11-01:** `--claude` wurde durch `--with-skills` ersetzt. Standard ist jetzt: keine Skill-Kopie im Projekt, Skills kommen über globale Links auf `harness/.agents/skills/` dieses Repos (siehe README). Der Bericht unten beschreibt den damaligen Stand.
+
 Integration and skill-catalogue consolidation were added after freezing the main compared harness. Risk rules are preserved by parity tests; loading paths/packaging changed. This is independently tested export/start tooling plus a supplementary initialization probe, not a new broad model-performance claim.
 
 ## Paths matter

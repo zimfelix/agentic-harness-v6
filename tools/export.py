@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Copy only the pristine template into a new/empty project; never overwrite a project."""
+"""Copy only the pristine template into a new/empty project; never overwrite a project.
+
+Skills stay in this repository and reach projects through global links
+(~/.claude/skills, ~/.pi/agent/skills). --with-skills bundles a copy for
+self-contained projects (cloud, other machines); that copy is not synced back."""
 import argparse
 from pathlib import Path
 import shutil
@@ -8,7 +12,7 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / 'harness'
 
 
-def export(destination, source=SOURCE, *, claude=False):
+def export(destination, source=SOURCE, *, with_skills=False):
     source, destination = Path(source).resolve(), Path(destination).resolve()
     if source == destination or source in destination.parents or destination in source.parents:
         raise ValueError('Source and destination must not overlap')
@@ -23,8 +27,16 @@ def export(destination, source=SOURCE, *, claude=False):
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.v6-export-', dir=destination.parent) as temp:
         staged = Path(temp) / 'project'
-        shutil.copytree(source, staged, ignore=shutil.ignore_patterns('__pycache__', '.DS_Store', '.idea'))
-        if claude:
+        patterns = shutil.ignore_patterns('__pycache__', '.DS_Store', '.idea')
+
+        def ignore(directory, names):
+            skipped = set(patterns(directory, names))
+            if not with_skills and Path(directory) == source:
+                skipped.add('.agents')
+            return skipped
+
+        shutil.copytree(source, staged, ignore=ignore)
+        if with_skills:
             aliases = staged / '.claude/skills'
             aliases.mkdir(parents=True)
             for skill in sorted((staged / '.agents/skills').iterdir()):
@@ -40,9 +52,10 @@ def export(destination, source=SOURCE, *, claude=False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('destination', type=Path)
-    parser.add_argument('--claude', action='store_true', help='Add project-local skill symlinks for Claude; no duplicated content')
+    parser.add_argument('--with-skills', action='store_true',
+                        help='Bundle a skill copy plus Claude aliases (self-contained project); default relies on global skill links')
     args = parser.parse_args()
     try:
-        print(export(args.destination, claude=args.claude))
+        print(export(args.destination, with_skills=args.with_skills))
     except (OSError, ValueError) as error:
         parser.exit(1, str(error) + '\n')

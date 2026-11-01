@@ -23,8 +23,7 @@ class TemplateTests(unittest.TestCase):
     def test_export_is_pristine_and_scoped(self):
         target = exporter.export(self.root / 'product')
         self.assertEqual((target / 'PROJECT.md').read_bytes(), (TEMPLATE / 'PROJECT.md').read_bytes())
-        self.assertTrue((target / '.agents/skills/website-tools/SKILL.md').is_file())
-        for name in ('benchmarks', 'reports', 'tests', '.git', '.private'):
+        for name in ('benchmarks', 'reports', 'tests', '.git', '.private', '.agents', '.claude'):
             self.assertFalse((target / name).exists())
 
     def test_brief_and_continuation_contract_is_exported(self):
@@ -59,7 +58,7 @@ class TemplateTests(unittest.TestCase):
         self.assertFalse((target / 'profiles').exists())
 
     def test_claude_alias_has_single_source_and_no_rule_copy(self):
-        target = exporter.export(self.root / 'both-clients', claude=True)
+        target = exporter.export(self.root / 'both-clients', with_skills=True)
         skill = target / '.agents/skills/website-tools'
         alias = target / '.claude/skills/website-tools'
         self.assertTrue(alias.is_symlink())
@@ -154,7 +153,7 @@ class TemplateTests(unittest.TestCase):
         agents = (TEMPLATE / 'AGENTS.md').read_text()
         self.assertNotIn('profiles/', agents)
         for name in ('business-software', 'website-tools'):
-            self.assertIn(f'.agents/skills/{name}/SKILL.md', agents)
+            self.assertIn(f'`{name}` skill', agents)
 
     def tool(self, name, *args):
         return subprocess.run(['node', str(TOOLS / name), *map(str, args)], cwd=self.root,
