@@ -18,6 +18,7 @@ Eigene Skills liegen nur hier unter `harness/.agents/skills/` und sind global ve
 | `website-tools` | Websites: Inhalte, Responsive, Rechte, Veröffentlichung; optionale Screenshot-/Prüf-Tools | Arbeit an einer Website |
 | `business-software` | Geschäftslogik: Datenintegrität, Migration, Rechte, Geld/Zeit, externe Wirkungen | Geschäftslogik, Persistenz, Rechte, Integrationen |
 | `testing` | Tests, die Verhalten an echten Grenzen prüfen; Mocks nur an fremden Grenzen; wann TDD; wann stoppen | Tests planen, schreiben oder prüfen |
+| `handoff` | Knapper Übergabe-Prompt (4–5 Sätze) für einen neuen Chat: Ziel, nächste Schritte, Belege statt Erklärungen | Wechsel in einen neuen Chat, langer Kontext (über die Skill-Beschreibung, kein Core-Auslöser) |
 
 Wie oft die Skills tatsächlich geladen wurden (eigene zuerst, dann importierte):
 
@@ -29,7 +30,8 @@ Stand 2026-11-01, aus lokalen Claude-Code- und Pi-Protokollen (`python3 tools/sk
 | `business-software` | eigen (v6) | 8 | 8 | 9 | 2026-11-01 |
 | `website-tools` | eigen (v6) | 8 | 4 | 6 | 2026-11-01 |
 | `testing` | eigen (v6) | 2 | 0 | 1 | 2026-11-01 |
-| `commit` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 29 | 8 | 31 | 2026-11-01 |
+| `handoff` | eigen (v6) | 0 | 0 | 0 | – |
+| `commit` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 30 | 8 | 32 | 2026-11-01 |
 | `sitegeist` | importiert: ~/.local/share/agent-skills | 18 | 0 | 18 | 2026-10-31 |
 | `librarian` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 2 | 7 | 6 | 2026-10-10 |
 | `summarize` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 4 | 0 | 1 | 2026-10-09 |

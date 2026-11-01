@@ -134,7 +134,7 @@ class TemplateTests(unittest.TestCase):
 
     def test_native_skill_single_source(self):
         skills = list(TEMPLATE.rglob('SKILL.md'))
-        self.assertEqual({s.parent.name for s in skills}, {'website-tools', 'business-software', 'testing'})
+        self.assertEqual({s.parent.name for s in skills}, {'website-tools', 'business-software', 'testing', 'handoff'})
         for skill in skills:
             self.assertIn('name: ' + skill.parent.name, skill.read_text())
             self.assertIn('description:', skill.read_text())
