@@ -2,7 +2,7 @@
 
 ## Scope and commands
 
-Read `REVIEW.md`, all three public `tasks/*.md`, and the prior oracle/notes/tests.
+Read the QA briefing (not retained in this repo), all three public `tasks/*.md`, and the prior oracle/notes/tests.
 Public tasks are unchanged. No product implementation exists here; no product
 acceptance evaluation has been performed. Python standard library only; Dispatch
 requires Node on PATH. All inputs and diagnostics are synthetic.

@@ -50,7 +50,7 @@ Skills können Verfahren, Skripte, Checklisten und Fachreferenzen bündeln. Ihre
 
 ## Versuchsaufbau und Aussagekraft
 
-Baseline: ursprüngliches v6.1, Commit `dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a`. Kandidat: eingefrorene `harness/`-Inhalte, auch im frühen Commit `f06f60b` erreichbar. Content-Hashes, Modell-/Toolversionen, Phasen, Tokens und Abnahmegruppen: [metrics.json](metrics.json).
+Baseline: ursprüngliches v6.1, Commit `dc1af55e0a4abc4be73ddc982ed8c2dc8b8de34a`. Kandidat: eingefrorene `harness/`-Inhalte, belegt über den Content-Hash `lean` in metrics.json; als Commit `f06f60b` im Vorgänger-Repo `zimfelix/agentic-harness-v6-next`, nicht in diesem Repo. Content-Hashes, Modell-/Toolversionen, Phasen, Tokens und Abnahmegruppen: [metrics.json](metrics.json).
 
 Frische getrennte Agentensitzungen, identische Aufgaben, dasselbe Modell/Reasoning/Zeitbudget innerhalb eines Paars, synthetische Daten und lokale Fake-Provider. Pi: `gpt-6.1-sol`, medium. Claude Code: explizit `claude-opus-5-5`, medium; dessen Ergebnisse werden nicht wie ein Pi/Sol-Geschwindigkeitsvergleich behandelt. Native Skills und globale Anpassungen waren in den Produktvergleichen deaktiviert; relevante Dateien blieben explizit lesbar.
 
@@ -128,6 +128,6 @@ Empfohlen: den schlanken Harness in 2–3 echten Intermediate-Projekten einsetze
 
 ## Prüfen und nutzen
 
-Final ausgeführt: **24/24 technische Tests einschließlich fünf echter Brave-Fälle**, **17/17 Oracle-Selbsttests**, modellfreie Wiederholung aller 40 Planer-Ergebnisse/eigenen Suiten und aller acht Stress-Produktextrakte. Normaler CI-Modus überspringt die fünf Brave-Fälle ausdrücklich; er belegt keinen Browserlauf. Technische Regression, Oracle-Gegenprüfungen und Brave-Prüfungen stehen in der Repository-README. Die erzeugten Produkte sind synthetische Beispiele unter `benchmarks/fixtures/`, nicht Bestandteil der exportierten Vorlage. Rohsessions, Authdateien und Koordinator-Kontext werden nicht veröffentlicht.
+Zum Zeitpunkt des Vergleichs ausgeführt: **24/24 technische Tests einschließlich fünf echter Brave-Fälle**, **17/17 Oracle-Selbsttests**, modellfreie Wiederholung aller 40 Planer-Ergebnisse/eigenen Suiten und aller acht Stress-Produktextrakte. Normaler CI-Modus überspringt die fünf Brave-Fälle ausdrücklich; er belegt keinen Browserlauf. Technische Regression, Oracle-Gegenprüfungen und Brave-Prüfungen stehen in der Repository-README. Die erzeugten Produkte sind synthetische Beispiele unter `benchmarks/fixtures/`, nicht Bestandteil der exportierten Vorlage. Rohsessions, Authdateien und Koordinator-Kontext werden nicht veröffentlicht.
 
 Claude liest dieselben Skills per optionalen Symlinks und AGENTS über den expliziten Launcher; keine zweite CLAUDE.md. Details und Grenzen: [CLIENT-COMPATIBILITY.md](CLIENT-COMPATIBILITY.md).

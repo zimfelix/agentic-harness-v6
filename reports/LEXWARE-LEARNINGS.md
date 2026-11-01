@@ -31,10 +31,3 @@ AGENTS + PROJECT remain below the existing 6000-character test limit (5743 chara
 The preceding visible Lexware session really was fresh, but received `continue` **and** a later business clarification, and started with existing uncommitted partial code. It completed a synthetic local milestone; reviewer reran 44 product tests, 21 separate CLI checks, six mutations and Brave. This supports practical continuation in that setting, not a clean sole-continue or causal harness comparison.
 
 The new wording was added afterward. Historical `reports/RESULTS.md` and benchmark contracts/results remain frozen; they do not establish effectiveness or token savings of this refinement. Only technical/export/content checks are being applied here. A new, explicitly arranged visible agent trial is needed to test whether the stronger intent cue actually prevents the observed misunderstanding.
-
-## Active maintenance work
-
-Done: review and narrow template changes; no product/global changes.
-Verification: technical suite **20 passed, 5 real-Brave cases explicitly skipped** (25 collected); benchmark-mechanics/oracle self-tests **17/17 passed**, ResourceWarnings treated as errors; `git diff --check` clean. The new instruction-content test correctly fails against the previous template's missing intent cue. This counterexample checks text/export regression, not agent quality. No model or new background-agent run; browser tools unchanged, their five integration cases not rerun here.
-Remaining: confirm whether user intends commit + merge into main, rather than merely switch branches; no commit/merge/push until clarified.
-Next action: review the small diff and resolve the main-integration question. Entry command: `git diff -- harness/AGENTS.md harness/PROJECT.md harness/specs/README.md`. A fresh visible intent-clarification trial remains a separate explicit experiment.

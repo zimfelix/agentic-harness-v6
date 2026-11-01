@@ -9,12 +9,6 @@ Freier Brief → PROJECT: Ziel, Grenzen, Stack und Entscheidungen
                          Skills nur bei tatsächlichem Bedarf
 ```
 
-## Präzisierungen aus dem Lexware-Pilot
-
-Der aktuelle Export macht drei Punkte konkreter: fachliches Verständnis vor größeren Aufgaben spiegeln, Projekt-/Ausführungswechsel ankündigen und eine nächste autorisierte Aktion statt bloß eines Testbefehls festhalten. Kein Pflichtfragebogen oder neues Freigaberitual. [Änderungen, Einordnung und Grenzen](reports/LEXWARE-LEARNINGS.md)
-
-Diese Ergänzungen sind nach dem bisherigen Vergleich entstanden; dessen Messwerte beweisen ihre Wirksamkeit nicht. Bestehende Produkte werden nicht automatisch überschrieben.
-
 ## Neue Projekte
 
 ```sh
@@ -78,12 +72,12 @@ Abhängigkeiten: Python 3 für Export/Tests; Node.js 22.19+ und Brave nur für o
 Modellaufrufe sind opt-in, kosten Quota und benötigen authentifiziertes Pi/CodexBar sowie macOS `sandbox-exec`:
 
 ```sh
-python3 benchmarks/run.py --workspace /tmp/new-comparison prepare --baseline /path/to/original-v6
+python3 benchmarks/run.py --workspace /tmp/new-comparison prepare --baseline /path/to/original-v6   # Checkout von Commit dc1af55 (v6.1)
 python3 benchmarks/run.py --workspace /tmp/new-comparison pair crm --run-agents
 ```
 
 [Versuchsplan](reports/PLAN.md) · [QA-Szenarien](benchmarks/QA-NOTES.md) · [Messwerte](reports/metrics.json) · [Produktextrakte](benchmarks/fixtures/README.md)
 
-Die Hauptresultate gelten für den eingefrorenen Kandidaten vor der anschließenden Profile→Skills-Konsolidierung. Parität/Export/Client-Start und die ergänzende Init-Gegenprobe prüfen den finalen Aufbau; kein erfundener zusätzlicher Effizienzbeweis. Die frühe Kandidatenfassung bleibt in Git erreichbar.
+Die Hauptresultate gelten für den eingefrorenen Kandidaten vor der anschließenden Profile→Skills-Konsolidierung. Parität/Export/Client-Start und die ergänzende Init-Gegenprobe prüfen den finalen Aufbau; kein erfundener zusätzlicher Effizienzbeweis. Die frühe Kandidatenfassung liegt als Commit `f06f60b` im Vorgänger-Repo `zimfelix/agentic-harness-v6-next`; die Ergänzungen aus dem Lexware-Pilot danach sind nicht mitgemessen ([Einordnung](reports/LEXWARE-LEARNINGS.md)).
 
 Keine Rohsessions, Zugangsdaten oder fremden Produktdaten veröffentlicht. Bestehende Projekte werden nicht automatisch umgeschrieben.

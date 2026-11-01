@@ -1,6 +1,6 @@
 # Pi and Claude: one content source
 
-**Nachtrag 2026-11-01:** `--claude` wurde durch `--with-skills` ersetzt. Standard ist jetzt: keine Skill-Kopie im Projekt, Skills kommen über globale Links auf `harness/.agents/skills/` dieses Repos (siehe README). Der Bericht unten beschreibt den damaligen Stand.
+**Nachtrag 2026-11-01:** `--claude` wurde durch `--with-skills` ersetzt. Standard ist jetzt: keine Skill-Kopie im Projekt, Skills kommen über globale Links auf `harness/.agents/skills/` dieses Repos (siehe README). Befehle unten sind darauf angepasst; die Alias-Beschreibung gilt für `--with-skills`.
 
 Integration and skill-catalogue consolidation were added after freezing the main compared harness. Risk rules are preserved by parity tests; loading paths/packaging changed. This is independently tested export/start tooling plus a supplementary initialization probe, not a new broad model-performance claim.
 
@@ -11,8 +11,11 @@ Integration and skill-catalogue consolidation were added after freezing the main
 - Claude Code does not automatically apply project `AGENTS.md` in the same way as Pi. A project `CLAUDE.md` copy is deliberately NOT maintained.
 
 ```sh
-# New/empty project, with Claude discovery aliases as well as Pi support:
-python3 tools/export.py /path/to/project --claude
+# New/empty project; skills come from the global links:
+python3 tools/export.py /path/to/project
+
+# Only without global links (cloud, other machine): bundled copy + Claude aliases
+python3 tools/export.py /path/to/project --with-skills
 
 # Pi: normal discovery.
 python3 tools/launch.py --project /path/to/project --client pi
@@ -24,7 +27,7 @@ python3 tools/launch.py --project /path/to/project --client claude
 python3 tools/launch.py --project /path/to/project --client claude --dry-run
 ```
 
-`--claude` adds one relative directory symlink per skill:
+`--with-skills` copies the skills and adds one relative directory symlink per skill:
 
 ```text
 .agents/skills/business-software/   ← risk references, single source
@@ -33,7 +36,7 @@ python3 tools/launch.py --project /path/to/project --client claude --dry-run
 AGENTS.md                         ← sole project working agreement
 ```
 
-Aliases contain no second rule text; edits need no synchronization. No global directory/configuration is touched. Native clients still require appropriate trust/permissions; the wrapper does not bypass them. Without `--claude`, direct SKILL.md paths in AGENTS remain readable, but native Claude skill discovery must not be claimed. There is no separate profiles directory in the final template.
+Aliases contain no second rule text; edits need no synchronization. No global directory/configuration is touched. Native clients still require appropriate trust/permissions; the wrapper does not bypass them. Without `--with-skills` or the global links, direct SKILL.md paths in AGENTS remain readable, but native Claude skill discovery must not be claimed. There is no separate profiles directory in the final template.
 
 ## Limits and checks
 
