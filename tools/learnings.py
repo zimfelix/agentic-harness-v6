@@ -12,6 +12,7 @@ import re
 REPO = Path(__file__).resolve().parents[1]
 ROOTS = [Path.home() / 'Code', Path.home() / 'PycharmProjects']
 ENTRIES = '<!-- learnings:entries'
+CORE_REVIEW = 6000  # review signal, not a limit
 SKIP = {'node_modules', '.venv', '.git', 'dist', 'build'}
 
 
@@ -56,3 +57,6 @@ if __name__ == '__main__':
         for block in found:
             print(block + '\n')
     print(f'\n{total} Einträge' + ('' if args.all else ' offen'))
+    core = sum(len((REPO / 'harness' / name).read_text()) for name in ('AGENTS.md', 'PROJECT.md'))
+    print(f'Core (harness/AGENTS.md + PROJECT.md): {core} Zeichen'
+          + (' – Qualitätsprüfung fällig: Wiederholungen, Zeilen für einen Skill, ungenaue Formulierungen.' if core > CORE_REVIEW else ''))

@@ -32,7 +32,7 @@ entry → 1 classify → 2 draft → 3 review loop ──all yes──▶ 4 adop
    - Is it categorized correctly, so that not everything ends up in `AGENTS.md`?
    - Does the target file stay focused and readable instead of growing out of proportion? Replacing or merging text is an option when it improves precision, never an obligation.
    - Where the problem is checkable: is there a test or fixture that would have caught it?
-4. **Adopt.** Commit with the learning's title, run the full suite and roll out with `tools/update.py`. The core size test is a signal to run this review again, not a reason to delete text mechanically.
+4. **Adopt.** Commit with the learning's title, run the full suite and roll out with `tools/update.py`. There is no fixed size limit. `tools/learnings.py` shows the core size; when it grows (roughly above 6,000 characters for `harness/AGENTS.md` plus `PROJECT.md`), review the core's quality: repetition, lines that belong in a skill or reference, imprecise wording. Shorten only where that review finds it.
 5. **Close.** Mark the project entry `übernommen (v6 <commit>)`, delete it there and remove project rules the harness now covers.
 
 Preserve genuine failures, timeouts and interventions in benchmark results. Never relax an acceptance test to make a candidate win. No destructive or real business actions.
