@@ -10,4 +10,6 @@ Use shared components/tokens for known shared roles; follow the chosen framework
 
 For reusable static-site checks/screenshots/preview, load `../../.agents/skills/website-tools/SKILL.md`. Its scripts need Node.js and Brave and do NOT replace dynamic application/authentication tests. Use existing equivalent framework tools instead when they fit better. No mandatory custom build system.
 
+For server code, login, stored or sent form data or user content, read `references/web-app.md` before building or changing those parts.
+
 Before publication, confirm actual content/legal/assets approvals, contact delivery, host/domain/indexing and the agreed compatibility checks. Keep incomplete production gates visible; don't impose a full release audit on every small visual iteration.
