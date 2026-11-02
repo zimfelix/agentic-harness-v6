@@ -153,7 +153,7 @@ class TemplateTests(unittest.TestCase):
             'load `../../.agents/skills/website-tools/SKILL.md`.')
         self.assertEqual(website, expected)
         for skill in (TEMPLATE / '.agents/skills').iterdir():
-            for target in re.findall(r'`(references/[^`]+\\.md)`', (skill / 'SKILL.md').read_text()):
+            for target in re.findall(r'`(references/[^`]+\.md)`', (skill / 'SKILL.md').read_text()):
                 self.assertTrue((skill / target).is_file(), target)
         agents = (TEMPLATE / 'AGENTS.md').read_text()
         self.assertNotIn('profiles/', agents)
