@@ -20,3 +20,5 @@ Leave out what the next chat loads anyway (AGENTS.md, global instructions, skill
 Durable versus temporary: knowledge every future project needs belongs in files (skill, README, AGENTS.md); propose that separately instead of putting it in the prompt. Knowledge needed only for this task stays in the prompt and is not written into files.
 
 Before writing, check that referenced commits exist and paths are correct; name uncommitted work explicitly.
+
+Always copy the prompt to the clipboard as well, with exactly the text from the code block (macOS: `pbcopy` via a quoted heredoc, e.g. `cat <<'EOF' | pbcopy`). Say in one line that it has been copied; if copying fails, say so instead.
