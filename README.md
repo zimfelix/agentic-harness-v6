@@ -45,7 +45,7 @@ Gezählt werden Ladungen, nicht Nützlichkeit; Sitzungen, in denen ein Skill nur
 
 ## Learnings
 
-Jedes Projekt hat eine `learnings.md`: oben ein fester Kopf, der den Ablauf erklärt (bleibt per `tools/update.py` aktuell), darunter Einträge zu Stellen, an denen Core oder Skill nicht funktioniert haben. Der Agent prüft offene Einträge zu Beginn jeder Aufgabe. Gesichtet wird gebündelt hier, etwa wöchentlich:
+Jedes Projekt hat eine `harness/learnings.md`: oben ein fester Kopf, der den Ablauf erklärt (bleibt per `tools/update.py` aktuell), darunter Einträge zu Stellen, an denen Core oder Skill nicht funktioniert haben. Der Agent prüft offene Einträge zu Beginn jeder Aufgabe. Gesichtet wird gebündelt hier, etwa wöchentlich:
 
 ```sh
 python3 tools/learnings.py        # offene Einträge aller Projekte (automatisch gefunden) + eigene
@@ -67,6 +67,15 @@ python3 tools/launch.py --project /absolute/path/to/project --client pi
 python3 tools/launch.py --project /absolute/path/to/project --client claude
 ```
 
+Projektaufbau nach dem Export (Pfade in Regeln und Docs gelten ab Projekt-Root):
+
+```text
+AGENTS.md        Einstieg: v6-Core, Markierung, Projektregeln darunter
+README.md        Produkt-README (ersetzt die Starter-Datei)
+harness/         Projektgedächtnis: PROJECT.md · specs/ · ideas/ · docs/ · learnings.md
+src/, scripts/…  Produktcode und -werkzeuge bleiben außerhalb von harness/
+```
+
 **Skills werden nicht ins Projekt kopiert.** Einzige Quelle ist `harness/.agents/skills/` in diesem Repo; Claude Code und Pi sehen sie über globale Links (`~/.claude/skills/<name>`, `~/.pi/agent/skills/<name>` → dieser Ordner). Eine Skill-Verbesserung aus einem beliebigen Projekt landet damit direkt hier und wird hier committet; kein Rückkopieren. `--with-skills` legt eine Kopie samt `.claude/skills`-Links ins Projekt, die nicht zurückfließt. Der Claude-Launcher lädt die aktuelle projektbezogene `AGENTS.md` ausdrücklich. Keine Projekt-`CLAUDE.md`. Ohne diese Integration nicht behaupten, ein normaler Claude-Start erkenne AGENTS/`.agents` automatisch. [Client-Kompatibilität](reports/CLIENT-COMPATIBILITY.md)
 
 ## Bestehende Projekte aktualisieren
@@ -74,16 +83,21 @@ python3 tools/launch.py --project /absolute/path/to/project --client claude
 ```sh
 python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b          # nur anzeigen
 python3 tools/update.py ~/Code/projekt-a ~/Code/projekt-b --apply  # schreiben (v6 vorher committen)
+
+# Einmalig für Projekte mit flachem Aufbau (PROJECT.md im Root; update.py meldet `flat-layout`):
+python3 tools/relayout.py ~/Code/projekt-a --diff    # Verschiebungen + Text-Diff anzeigen
+python3 tools/relayout.py ~/Code/projekt-a --apply   # verschieben, danach update.py --apply
 ```
 
-Universell sind: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, der Kopf von `learnings.md` oberhalb von `<!-- learnings:entries … -->`, `specs/README.md` und `ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, Learnings-Einträge, `README.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage, Docs unter `docs/` ohne Verweis aus `AGENTS.md` oder `PROJECT.md`), landet als Hinweis in `harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
+Universell sind: `AGENTS.md` **oberhalb** der Markierungszeile `<!-- harness-v6@<version> … -->`, der Kopf von `harness/learnings.md` oberhalb von `<!-- learnings:entries … -->`, `harness/specs/README.md` und `harness/ideas/README.md`. Projektregeln stehen unterhalb der Markierung; `PROJECT.md`, übrige Specs/Ideas, Learnings-Einträge, `README.md` und Code schreibt das Update nie. Was sich nicht sicher automatisch ersetzen lässt (lokal geänderte Dateien, geänderte `PROJECT.md`-Vorlage, Docs unter `harness/docs/` ohne Verweis aus `AGENTS.md` oder `harness/PROJECT.md`), landet als Hinweis in `harness/harness-update.md` im Projekt; der Agent bespricht ihn bei der nächsten Aufgabe und löscht die Datei danach. Projekte ohne Markierung (alter Harness) bleiben unberührt und brauchen einmal einen Umzug.
 
-Wohin Wissen gehört: Projektfakten in `PROJECT.md`, umfangreiches Detail in ein fokussiertes Doc unter `docs/` (erste Zeile: Zuständigkeit und wann lesen, verlinkt aus einer Projektregel); Wissen für eine ganze Projektart in einen Skill hier, vorgeschlagen über `learnings.md`; die Arbeitsweise in den Core.
+Wohin Wissen gehört: Projektfakten in `harness/PROJECT.md`, umfangreiches Detail in ein fokussiertes Doc unter `harness/docs/` (erste Zeile: Zuständigkeit und wann lesen, verlinkt aus einer Projektregel); Wissen für eine ganze Projektart in einen Skill hier, vorgeschlagen über `learnings.md`; die Arbeitsweise in den Core.
 
 ## Aufbau
 
 ```text
 harness/          exportierbarer Harness; kein separater profiles-Katalog
+                  Export: AGENTS.md/README.md in den Projekt-Root, Rest nach <projekt>/harness/
   AGENTS.md        Arbeitsweise + Verification
   PROJECT.md       konkreter Brief, Architektur/Stack, aktueller Stand
   specs/           relevantes Verhalten und Nachweise
@@ -95,7 +109,7 @@ benchmarks/        Aufgaben, unabhängige Abnahme, isolierte Agentenläufe
   fixtures/       synthetische erzeugte Produkte für modellfreie Wiederholung
 tests/             technische Regression und Fehler-Gegenfälle
 reports/           Messwerte, Ergebnisse, Infrastrukturfehler und Grenzen
-tools/             sicherer Export, Client-Start, Ergebnisaufbereitung
+tools/             sicherer Export, Update, einmaliger Umzug (relayout), Client-Start, Ergebnisaufbereitung
 ```
 
 Im normalen Projekt werden nur `harness/`-Inhalte exportiert, nicht Benchmarks/Produktsamples/Reports. Regeln und Skripte haben jeweils eine Quelle. Kein Pflicht-Framework, kein Enterprise-Aufbau, keine Freigabe für jedes Implementierungsdetail. Projektentscheidungen bleiben verbindlich; kritische Skill-Leseauslöser stehen direkt in AGENTS.

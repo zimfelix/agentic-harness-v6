@@ -22,7 +22,10 @@ class TemplateTests(unittest.TestCase):
 
     def test_export_is_pristine_and_scoped(self):
         target = exporter.export(self.root / 'product')
-        self.assertEqual((target / 'PROJECT.md').read_bytes(), (TEMPLATE / 'PROJECT.md').read_bytes())
+        self.assertEqual(sorted(p.name for p in target.iterdir()), ['AGENTS.md', 'README.md', 'harness'])
+        self.assertEqual(sorted(p.name for p in (target / 'harness').iterdir()),
+                         ['PROJECT.md', 'ideas', 'learnings.md', 'specs'])
+        self.assertEqual((target / 'harness/PROJECT.md').read_bytes(), (TEMPLATE / 'PROJECT.md').read_bytes())
         for name in ('benchmarks', 'reports', 'tests', '.git', '.private', '.agents', '.claude'):
             self.assertFalse((target / name).exists())
 
@@ -49,7 +52,7 @@ class TemplateTests(unittest.TestCase):
             ),
         }
         for filename, required in markers.items():
-            text = (target / filename).read_text()
+            text = (target / exporter.project_path(filename)).read_text()
             template = (TEMPLATE / filename).read_text()
             if filename == 'AGENTS.md':
                 self.assertTrue(text.startswith(template.rstrip('\n')))

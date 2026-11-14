@@ -2,7 +2,7 @@
 
 Gestaltung kommt aus Brief, Auftraggeber und den Vorbildern, die er **für dieses Projekt** nennt. Dieser Skill enthält bewusst keine Beispielentwürfe: Sobald konkrete Beispiele mitreisen, sehen neue Websites wie das alte Projekt aus.
 
-- **Ablage im Projekt:** `docs/inspiration/` mit einem Index (`README.md`) und je Eintrag einem Ordner mit Steckbrief und Bildern. Kein Rückkopieren in diesen Skill.
+- **Ablage im Projekt:** `harness/docs/inspiration/` mit einem Index (`README.md`) und je Eintrag einem Ordner mit Steckbrief und Bildern. Kein Rückkopieren in diesen Skill.
 - **Andere Projekte** dienen nur als Inspiration, wenn der Auftraggeber sie ausdrücklich nennt („wie bei Projekt X, aber …“). Dann deren Steckbrief lesen, nicht pauschal übernehmen.
 - **Maßstab, keine Vorlage:** übernommen werden Prinzip und Mittel, nicht Texte, Logos, Bilder oder ganze Layouts. Beim Erkunden mehrerer Entwürfe bekommt jeder eine eigene Gestaltung.
 

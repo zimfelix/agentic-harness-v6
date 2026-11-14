@@ -1,6 +1,6 @@
 # Project starter — Agentic Harness V6
 
-Describe the desired outcome and delegated scope. The agent reads `AGENTS.md` and `PROJECT.md`, briefly reflects the intended workflow/boundaries, resolves consequential ambiguity and works toward observable acceptance checks. No separate init checker, mandatory questionnaire or extra approval for already clear/delegated work. A fresh chat in this project should use the active work record linked from PROJECT; its next action is not necessarily just another test run.
+Describe the desired outcome and delegated scope. The agent reads `AGENTS.md` and `harness/PROJECT.md` (project memory lives in `harness/`), briefly reflects the intended workflow/boundaries, resolves consequential ambiguity and works toward observable acceptance checks. No separate init checker, mandatory questionnaire or extra approval for already clear/delegated work. A fresh chat in this project should use the active work record linked from PROJECT; its next action is not necessarily just another test run.
 
 After the first implementation, replace this file with the product's purpose, actual setup/start/test commands and known limitations.
 

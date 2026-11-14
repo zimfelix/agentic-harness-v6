@@ -17,7 +17,7 @@ client facts ──▶ search terms ──▶ intents ──▶ page plan (proof
 1. **Collect client facts** (table below). Missing facts become questions, never invented text.
 2. **Collect search terms cheaply:** the client's own words for jobs and products, Google autocomplete and „People also ask“, competitors' page names, Keyword Planner ranges; after launch, Search Console queries. No invented search volumes.
 3. **Group by intent.** Each main intent gets one page; two intents get two pages only if the client offers both as relevant services, otherwise a section. Several own pages ranking for one query are not a problem in themselves; near-duplicates are.
-4. **Fill the page plan**, then review it with the client before design. Record it in the project (e.g. `docs/page-plan.md`).
+4. **Fill the page plan**, then review it with the client before design. Record it in the project (e.g. `harness/docs/page-plan.md`).
 5. **Link deliberately:** home → every main page; service ↔ related services, matching references and contact; references → their service; descriptive anchor text; breadcrumbs from depth 2.
 
 Page plan template (copy into the project, fill there):

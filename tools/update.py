@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Bring exported projects to the current harness without touching project content.
 
-Universal parts: AGENTS.md above the harness marker, the learnings.md header above
-its entries marker, specs/README.md and ideas/README.md. Docs under docs/ that
-nothing routes to are reported. PROJECT.md, other
-specs/ideas, learnings entries, README.md and code are never written. Where a safe automatic update is
-impossible, a note goes to harness-update.md for review at the next task.
-Default is a dry run; --apply writes.
+Universal parts: AGENTS.md above the harness marker, the harness/learnings.md header
+above its entries marker, harness/specs/README.md and harness/ideas/README.md. Docs
+under harness/docs/ that nothing routes to are reported. PROJECT.md, other specs/ideas,
+learnings entries, README.md and code are never written. Where a safe automatic update
+is impossible, a note goes to harness/harness-update.md for review at the next task.
+Projects with the older flat layout (PROJECT.md in the root) are reported as
+`flat-layout` and need tools/relayout.py once. Default is a dry run; --apply writes.
 """
 import argparse
 from datetime import date
@@ -21,8 +22,9 @@ exporter = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(exporter)
 
 MARKER_RE = re.compile(r'^<!-- harness-v6@([0-9a-f]+|local)\b.*-->$', re.M)
-UNIVERSAL = ['specs/README.md', 'ideas/README.md']
-NOTE = 'harness-update.md'
+UNIVERSAL = ['specs/README.md', 'ideas/README.md']  # template-relative
+NOTE = exporter.project_path('harness-update.md')
+P = exporter.project_path
 ENTRIES = '<!-- learnings:entries'
 
 
@@ -41,6 +43,10 @@ def plan(project, source=exporter.SOURCE):
     match = MARKER_RE.search(text)
     if not match:
         return {'status': 'no-marker', 'old': None, 'new': None, 'writes': {}, 'hints': []}
+    if (project / 'PROJECT.md').is_file() and not (project / P('PROJECT.md')).is_file():
+        return {'status': 'flat-layout', 'old': match.group(1), 'new': None, 'writes': {},
+                'hints': ['flat layout: run tools/relayout.py once to move project memory into '
+                          f'{exporter.MEMORY}/, then update again.']}
     old, new = match.group(1), exporter.source_version(source)
     top, rest = text[:match.start()].rstrip('\n'), text[match.end():]
     current = (source / 'AGENTS.md').read_text()
@@ -55,45 +61,48 @@ def plan(project, source=exporter.SOURCE):
     if updated != text:
         result['writes']['AGENTS.md'] = updated
     for rel in UNIVERSAL:
-        target, wanted = project / rel, (source / rel).read_text()
+        target, wanted = project / P(rel), (source / rel).read_text()
         have = target.read_text() if target.is_file() else None
         if have == wanted:
             continue
         if have is None or have == template_at(source, old, rel):
-            result['writes'][rel] = wanted
+            result['writes'][P(rel)] = wanted
         else:
-            result['hints'].append(f'{rel}: changed locally, so it was not replaced. Compare with the harness '
+            result['hints'].append(f'{P(rel)}: changed locally, so it was not replaced. Compare with the harness '
                                    f'version and keep what is project-specific elsewhere.')
-    learnings, wanted = project / 'learnings.md', (source / 'learnings.md').read_text()
+    learnings, wanted = project / P('learnings.md'), (source / 'learnings.md').read_text()
     if learnings.is_file() and ENTRIES in learnings.read_text():
         have = learnings.read_text()
         head, entries = have.split(ENTRIES, 1)
         new_head = wanted.split(ENTRIES, 1)[0]
         old_head = (template_at(source, old, 'learnings.md') or '').split(ENTRIES, 1)[0]
         if head != new_head and head == old_head:
-            result['writes']['learnings.md'] = new_head + ENTRIES + entries
+            result['writes'][P('learnings.md')] = new_head + ENTRIES + entries
         elif head != new_head:
-            result['hints'].append('learnings.md: the header differs from the harness and was not replaced. Move '
+            result['hints'].append(f'{P("learnings.md")}: the header differs from the harness and was not replaced. Move '
                                    'project notes below the entries marker, then update again.')
     elif learnings.is_file() or (project / 'learning-state.md').is_file():
-        result['hints'].append('learnings.md: no entries marker yet. Put the current harness header on top and move '
+        result['hints'].append(f'{P("learnings.md")}: no entries marker yet. Put the current harness header on top and move '
                                'existing notes (also from learning-state.md) below the marker in the new format.')
     else:
-        result['writes']['learnings.md'] = wanted
-    routing = text + ((project / 'PROJECT.md').read_text() if (project / 'PROJECT.md').is_file() else '')
-    for doc in sorted((project / 'docs').rglob('*.md')) if (project / 'docs').is_dir() else []:
+        result['writes'][P('learnings.md')] = wanted
+    brief = project / P('PROJECT.md')
+    brief_text = brief.read_text() if brief.is_file() else ''
+    docs = project / P('docs')
+    for doc in sorted(docs.rglob('*.md')) if docs.is_dir() else []:
         rel = doc.relative_to(project).as_posix()
-        if rel not in routing:
-            result['hints'].append(f'{rel}: neither AGENTS.md nor PROJECT.md routes to it. Add a project rule saying '
-                                   f'when to read it, or merge it into PROJECT.md or a neighbouring doc.')
+        linked = '](' + doc.relative_to(brief.parent).as_posix()  # Markdown link relative to PROJECT.md
+        if rel not in text + brief_text and linked not in brief_text:
+            result['hints'].append(f'{rel}: neither AGENTS.md nor {P("PROJECT.md")} routes to it. Add a project rule '
+                                   f'saying when to read it, or merge it into PROJECT.md or a neighbouring doc.')
     before, after = template_at(source, old, 'PROJECT.md'), (source / 'PROJECT.md').read_text()
     if before is None and old != new:
-        result['hints'].append('PROJECT.md: previous template unknown; compare the project file with the current '
+        result['hints'].append(f'{P("PROJECT.md")}: previous template unknown; compare the project file with the current '
                                'harness template by hand.')
     elif before is not None and before != after:
         diff = ''.join(difflib.unified_diff(before.splitlines(True), after.splitlines(True),
                                             f'PROJECT template {old}', f'PROJECT template {new}'))
-        result['hints'].append('PROJECT.md: the template changed. The project file was not touched; decide which '
+        result['hints'].append(f'{P("PROJECT.md")}: the template changed. The project file was not touched; decide which '
                                'changes it should adopt.\n\n```diff\n' + diff + '```')
     result['status'] = 'update' if result['writes'] or result['hints'] else 'current'
     return result

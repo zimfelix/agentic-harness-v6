@@ -50,7 +50,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     total = 0
     for folder in [REPO] + projects():
-        found = entries(folder / 'learnings.md', args.all)
+        nested = folder / 'harness/learnings.md'  # flat projects (before tools/relayout.py) keep it in the root
+        found = entries(nested if folder != REPO and nested.is_file() else folder / 'learnings.md', args.all)
         total += len(found)
         label = 'agentic-harness-v6 (eigene)' if folder == REPO else str(folder).replace(str(Path.home()), '~')
         print(f'\n### {label}: {len(found)}')

@@ -25,8 +25,8 @@ class UpdateTests(unittest.TestCase):
         self.project = exporter.export(self.root / 'project', self.source)
         agents = self.project / 'AGENTS.md'
         agents.write_text(agents.read_text().replace('None yet.', '- Dictation: "Futter" means footer.'))
-        (self.project / 'PROJECT.md').write_text('# Project\n\nGoal: real product facts.\n')
-        (self.project / 'specs/S001-area.md').write_text('project spec\n')
+        (self.project / 'harness/PROJECT.md').write_text('# Project\n\nGoal: real product facts.\n')
+        (self.project / 'harness/specs/S001-area.md').write_text('project spec\n')
 
     def git(self, *args):
         subprocess.run(['git', '-C', str(self.repo), '-c', 'user.name=t', '-c', 'user.email=t@t', *args],
@@ -50,9 +50,9 @@ class UpdateTests(unittest.TestCase):
         agents = (self.project / 'AGENTS.md').read_text()
         self.assertIn('New core rule.', agents)
         self.assertIn('"Futter" means footer.', agents)
-        self.assertIn('New spec guidance.', (self.project / 'specs/README.md').read_text())
-        self.assertEqual((self.project / 'PROJECT.md').read_text(), '# Project\n\nGoal: real product facts.\n')
-        self.assertEqual((self.project / 'specs/S001-area.md').read_text(), 'project spec\n')
+        self.assertIn('New spec guidance.', (self.project / 'harness/specs/README.md').read_text())
+        self.assertEqual((self.project / 'harness/PROJECT.md').read_text(), '# Project\n\nGoal: real product facts.\n')
+        self.assertEqual((self.project / 'harness/specs/S001-area.md').read_text(), 'project spec\n')
         self.assertFalse((self.project / updater.NOTE).exists())
         self.assertEqual(updater.plan(self.project, self.source)['status'], 'current')
 
@@ -61,18 +61,18 @@ class UpdateTests(unittest.TestCase):
         self.commit('v2')
         result = updater.plan(self.project, self.source)
         updater.apply(self.project, result)
-        self.assertEqual((self.project / 'PROJECT.md').read_text(), '# Project\n\nGoal: real product facts.\n')
+        self.assertEqual((self.project / 'harness/PROJECT.md').read_text(), '# Project\n\nGoal: real product facts.\n')
         note = (self.project / updater.NOTE).read_text()
         self.assertIn('PROJECT.md: the template changed', note)
         self.assertIn('+New template section.', note)
 
     def test_locally_edited_core_or_readme_is_not_overwritten(self):
-        (self.project / 'ideas/README.md').write_text('own ideas guidance\n')
+        (self.project / 'harness/ideas/README.md').write_text('own ideas guidance\n')
         self.change('ideas/README.md', '\nNew ideas guidance.\n')
         self.commit('v2')
         result = updater.plan(self.project, self.source)
         updater.apply(self.project, result)
-        self.assertEqual((self.project / 'ideas/README.md').read_text(), 'own ideas guidance\n')
+        self.assertEqual((self.project / 'harness/ideas/README.md').read_text(), 'own ideas guidance\n')
         self.assertIn('ideas/README.md: changed locally', (self.project / updater.NOTE).read_text())
 
         agents = self.project / 'AGENTS.md'
@@ -84,7 +84,7 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(agents.read_text(), before)
 
     def test_learnings_header_updates_and_entries_stay(self):
-        learnings = self.project / 'learnings.md'
+        learnings = self.project / 'harness/learnings.md'
         entry = '## 2026-11-03 · SEO title breaks hero · offen\n- **Ziel:** skill:website-tools\n'
         learnings.write_text(learnings.read_text() + '\n' + entry)
         self.change('learnings.md', '')
@@ -106,14 +106,37 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual([p.resolve() for p in collector.projects([self.root])], [self.project.resolve()])
 
     def test_unrouted_doc_becomes_hint_and_routed_doc_does_not(self):
-        (self.project / 'docs/decisions').mkdir(parents=True)
-        (self.project / 'docs/testing.md').write_text('Responsibility: test strategy.\n')
-        (self.project / 'docs/decisions/0001-stack.md').write_text('Responsibility: stack choice.\n')
+        (self.project / 'harness/docs/decisions').mkdir(parents=True)
+        (self.project / 'harness/docs/testing.md').write_text('Responsibility: test strategy.\n')
+        (self.project / 'harness/docs/decisions/0001-stack.md').write_text('Responsibility: stack choice.\n')
         agents = self.project / 'AGENTS.md'
-        agents.write_text(agents.read_text() + '- Tests: read `docs/testing.md`.\n')
+        agents.write_text(agents.read_text() + '- Tests: read `harness/docs/testing.md`.\n')
         hints = '\n'.join(updater.plan(self.project, self.source)['hints'])
-        self.assertIn('docs/decisions/0001-stack.md', hints)
-        self.assertNotIn('docs/testing.md', hints)
+        self.assertIn('harness/docs/decisions/0001-stack.md', hints)
+        self.assertNotIn('harness/docs/testing.md', hints)
+
+    def test_doc_linked_relative_to_project_brief_counts_as_routed(self):
+        (self.project / 'harness/docs').mkdir()
+        (self.project / 'harness/docs/design.md').write_text('Responsibility: design.\n')
+        brief = self.project / 'harness/PROJECT.md'
+        self.assertIn('harness/docs/design.md', '\n'.join(updater.plan(self.project, self.source)['hints']))
+        brief.write_text(brief.read_text() + 'Design: [rules](docs/design.md).\n')
+        self.assertNotIn('harness/docs/design.md', '\n'.join(updater.plan(self.project, self.source)['hints']))
+
+    def test_flat_layout_is_reported_not_written(self):
+        flat = self.root / 'flat'
+        shutil.copytree(self.project, flat)
+        for entry in (flat / 'harness').iterdir():
+            entry.rename(flat / entry.name)
+        (flat / 'harness').rmdir()
+        before = {p: p.read_bytes() for p in flat.rglob('*') if p.is_file()}
+        self.change('AGENTS.md', '\nNew core rule.\n')
+        self.commit('v2')
+        result = updater.plan(flat, self.source)
+        self.assertEqual(result['status'], 'flat-layout')
+        self.assertEqual(result['writes'], {})
+        self.assertIn('relayout.py', result['hints'][0])
+        self.assertEqual({p: p.read_bytes() for p in flat.rglob('*') if p.is_file()}, before)
 
     def test_project_without_marker_is_left_alone(self):
         old = self.root / 'old'

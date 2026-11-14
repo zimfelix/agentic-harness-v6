@@ -9,7 +9,7 @@
 - **Sessions and login:** use the framework session or an established auth library, no own password hashing or crypto. Cookies `HttpOnly`, `Secure`, `SameSite`; CSRF protection for cookie-authenticated state changes; rate-limit login and public forms. HTTPS only.
 - **Secrets and configuration:** environment variables or the host's secret store; `.env` ignored by git, a committed `.env.example` without values. Never in client bundles, logs, error pages or the repository. Separate development and production values.
 - **Dependencies:** commit the lockfile; add a package only for a real need. Run the ecosystem's audit (e.g. `npm audit`, `pip-audit`) after adding packages and before a release; treat major upgrades as a change with its own check.
-- **Deployment:** record environments, host, deploy and rollback steps and where logs are, in `PROJECT.md` or one focused operations doc. Back up before a production migration; migrations move forward. No deploy or production data change without explicit authorization.
+- **Deployment:** record environments, host, deploy and rollback steps and where logs are, in `harness/PROJECT.md` or one focused operations doc. Back up before a production migration; migrations move forward. No deploy or production data change without explicit authorization.
 
 ## Checks
 

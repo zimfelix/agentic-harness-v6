@@ -3,13 +3,13 @@
 This repository is the single source of the agentic harness and its own skills, plus their evaluation. It is not a product waiting for initialization.
 
 - `harness/` is the exportable product harness; its instructions apply to exported projects, not to repository maintenance. `harness/.agents/skills/` holds the own skills, linked globally and never copied into projects by default.
-- `tools/` exports (`export.py`), updates existing projects (`update.py`), collects project learnings (`learnings.py`) and counts skill usage (`skill_usage.py`).
+- `tools/` exports (`export.py`; project memory lands in `<project>/harness/`), updates existing projects (`update.py`), moves flat projects once (`relayout.py`), collects project learnings (`learnings.py`) and counts skill usage (`skill_usage.py`).
 - `benchmarks/` contains task contracts, independent acceptance tests and orchestration. Trial agents must not read hidden acceptance code or other trials.
 - `tests/` checks the harness tools and template invariants. These tests do not prove agent quality.
 - `reports/` contains sanitized results, limitations and provenance; no credentials or raw model reasoning.
 - `learnings.md` holds this repository's own open observations, in the same format as project learnings.
 
-Own skills and the harness stay project-neutral: no example designs, screenshots, client names or project values. Such material lives in the project it came from (e.g. `docs/inspiration/`).
+Own skills and the harness stay project-neutral: no example designs, screenshots, client names or project values. Such material lives in the project it came from (e.g. `harness/docs/inspiration/`).
 
 Mode: shipping with concise explanations. Global agent configuration (`~/.claude/CLAUDE.md`, `~/.pi/agent/AGENTS.md`) changes only on Felix's explicit request. No commits or pushes unless requested.
 

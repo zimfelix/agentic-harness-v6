@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Copy only the pristine template into a new/empty project; never overwrite a project.
 
-Skills stay in this repository and reach projects through global links
+Layout: AGENTS.md and README.md stay in the project root; project memory (PROJECT.md,
+specs/, ideas/, learnings.md and later docs/) goes to harness/. Skills stay in this repository and reach projects through global links
 (~/.claude/skills, ~/.pi/agent/skills). --with-skills bundles a copy for
 self-contained projects (cloud, other machines); that copy is not synced back."""
 import argparse
@@ -13,6 +14,14 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / 'harness'
 MARKER = '<!-- harness-v6@{version} · project rules below; tools/update.py never changes them -->'
 PROJECT_PART = '\n\n## Project rules\n\nNone yet.\n'
+MEMORY = 'harness'  # project folder for harness files; everything except ROOT_ENTRIES lives there
+ROOT_ENTRIES = {'AGENTS.md', 'README.md', '.agents', '.claude'}
+
+
+def project_path(rel):
+    """Template-relative path -> project-relative path."""
+    rel = Path(rel).as_posix()
+    return rel if rel.split('/', 1)[0] in ROOT_ENTRIES else f'{MEMORY}/{rel}'
 
 
 def source_version(source=SOURCE):
@@ -56,6 +65,10 @@ def export(destination, source=SOURCE, *, with_skills=False):
             return skipped
 
         shutil.copytree(source, staged, ignore=ignore)
+        (staged / MEMORY).mkdir()
+        for entry in sorted(staged.iterdir()):
+            if entry.name not in ROOT_ENTRIES | {MEMORY}:
+                entry.rename(staged / MEMORY / entry.name)
         agents = staged / 'AGENTS.md'
         agents.write_text(agents_with_marker(agents.read_text(), source_version(source)))
         if with_skills:
