@@ -20,29 +20,6 @@ Eigene Skills liegen nur hier unter `harness/.agents/skills/` und sind global ve
 | `testing` | Tests, die Verhalten an echten Grenzen prüfen; Mocks nur an fremden Grenzen; wann TDD; wann stoppen | Tests planen, schreiben oder prüfen |
 | `handoff` | Knapper Übergabe-Prompt (4–5 Sätze) für einen neuen Chat: Ziel, nächste Schritte, Belege statt Erklärungen | Wechsel in einen neuen Chat, langer Kontext (über die Skill-Beschreibung, kein Core-Auslöser) |
 
-Wie oft die Skills tatsächlich geladen wurden (eigene zuerst, dann importierte):
-
-<!-- skills:start -->
-Stand 2026-11-01, aus lokalen Claude-Code- und Pi-Protokollen (`python3 tools/skill_usage.py --readme`).
-
-| Skill | Herkunft | Ladungen Claude | Ladungen Pi | Sitzungen | zuletzt |
-|---|---|---:|---:|---:|---|
-| `business-software` | eigen (v6) | 8 | 8 | 9 | 2026-11-01 |
-| `website-tools` | eigen (v6) | 8 | 4 | 6 | 2026-11-01 |
-| `testing` | eigen (v6) | 2 | 0 | 1 | 2026-11-01 |
-| `handoff` | eigen (v6) | 0 | 0 | 0 | – |
-| `commit` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 30 | 8 | 32 | 2026-11-01 |
-| `sitegeist` | importiert: ~/.local/share/agent-skills | 18 | 0 | 18 | 2026-10-31 |
-| `librarian` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 2 | 7 | 6 | 2026-10-10 |
-| `summarize` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 4 | 0 | 1 | 2026-10-09 |
-| `discuss` | importiert: ~/.local/share/agent-skills/mitsuhiko-agent-stuff | 3 | 0 | 2 | 2026-10-21 |
-| `obsidian-cli` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 3 | 2 | 2026-10-05 |
-| `obsidian-markdown` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 2 | 2 | 2026-10-05 |
-| `json-canvas` | importiert: ~/.local/share/agent-skills/obsidian-skills | 0 | 0 | 0 | – |
-<!-- skills:end -->
-
-Gezählt werden Ladungen, nicht Nützlichkeit; Sitzungen, in denen ein Skill nur bearbeitet wurde, zählen mit. Ein Skill, der über Wochen bei 0 bleibt, ist ein Kandidat zum Entfernen oder für eine bessere Beschreibung.
-
 ## Learnings
 
 Jedes Projekt hat eine `harness/learnings.md`: oben ein fester Kopf, der den Ablauf erklärt (bleibt per `tools/update.py` aktuell), darunter Einträge zu Stellen, an denen Core oder Skill nicht funktioniert haben. Der Agent prüft offene Einträge zu Beginn jeder Aufgabe. Gesichtet wird gebündelt hier, etwa wöchentlich:
@@ -109,7 +86,7 @@ benchmarks/        Aufgaben, unabhängige Abnahme, isolierte Agentenläufe
   fixtures/       synthetische erzeugte Produkte für modellfreie Wiederholung
 tests/             technische Regression und Fehler-Gegenfälle
 reports/           Messwerte, Ergebnisse, Infrastrukturfehler und Grenzen
-tools/             sicherer Export, Update, einmaliger Umzug (relayout), Client-Start, Ergebnisaufbereitung
+tools/             sicherer Export, Update, einmaliger Umzug (relayout), Client-Start, Learnings sammeln
 ```
 
 Im normalen Projekt werden nur `harness/`-Inhalte exportiert, nicht Benchmarks/Produktsamples/Reports. Regeln und Skripte haben jeweils eine Quelle. Kein Pflicht-Framework, kein Enterprise-Aufbau, keine Freigabe für jedes Implementierungsdetail. Projektentscheidungen bleiben verbindlich; kritische Skill-Leseauslöser stehen direkt in AGENTS.
@@ -135,6 +112,8 @@ Modellaufrufe sind opt-in, kosten Quota und benötigen authentifiziertes Pi/Code
 ```sh
 python3 benchmarks/run.py --workspace /tmp/new-comparison prepare --baseline /path/to/original-v6   # Checkout von Commit dc1af55 (v6.1)
 python3 benchmarks/run.py --workspace /tmp/new-comparison pair crm --run-agents
+# Bereinigte Messwerte nach reports/ (keine Rohsessions):
+python3 benchmarks/collect_results.py --workspace /tmp/new-comparison --brief-workspace /tmp/new-brief-comparison
 ```
 
 [Versuchsplan](reports/PLAN.md) · [QA-Szenarien](benchmarks/QA-NOTES.md) · [Messwerte](reports/metrics.json) · [Produktextrakte](benchmarks/fixtures/README.md)

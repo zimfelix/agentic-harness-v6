@@ -99,6 +99,36 @@ def broken_links(project, files):
     return broken
 
 
+def _local(path):
+    return bool(path) and '://' not in path and not path.startswith(('/', 'mailto:'))
+
+
+def _exists_after(project, new_path):
+    """Whether new_path will exist once the moves are done (nothing is moved yet)."""
+    head, _, rest = new_path.partition('/')
+    if head == MEMORY:
+        return rest.split('/', 1)[0] in MOVED and (project / rest).exists()
+    return head not in MOVED and (project / new_path).exists()
+
+
+def _newly_broken(project, files, writes):
+    """Links that resolve today but would not after the move; checked before anything is written."""
+    broken = []
+    for rel in files:
+        if not rel.endswith('.md') or not (project / rel).is_file():
+            continue
+        old_text = (project / rel).read_text(errors='ignore')
+        new_rel, new_text = writes.get(rel, (moved(rel), old_text))
+        targets = lambda text: [m.group(2).partition('#')[0] for m in LINK.finditer(text)]
+        for before, after in zip(targets(old_text), targets(new_text)):  # rewrite keeps the link order
+            old_target = posixpath.normpath(posixpath.join(posixpath.dirname(rel), before))
+            new_target = posixpath.normpath(posixpath.join(posixpath.dirname(new_rel), after))
+            if _local(before) and not old_target.startswith('..') and (project / old_target).exists() \
+                    and not _exists_after(project, new_target):
+                broken.append(f'{new_rel} -> {after}')
+    return broken
+
+
 def plan(project):
     """Return {'moves': [(old, new)], 'writes': {old_rel: (new_rel, text)}, 'diff': str, 'notes': [str]}."""
     project = Path(project).resolve()
@@ -130,6 +160,9 @@ def plan(project):
                                                       f'a/{rel}', f'b/{moved(rel)}')))
             if not rel.endswith('.md'):
                 code.append(rel)
+    broken = _newly_broken(project, files, writes)
+    if broken:
+        raise ValueError('The move would break links, nothing was changed: ' + ', '.join(broken))
     notes = [f'outside Markdown (review): {rel}' for rel in code]
     notes += [f'link already broken before the move: {rel} -> {target}'
               for rel, target in sorted(broken_links(project, files))]
@@ -138,7 +171,6 @@ def plan(project):
 
 def apply(project, result):
     project = Path(project).resolve()
-    before = broken_links(project, result['files'])
     for rel, (_, text) in result['writes'].items():
         (project / rel).write_text(text)
     (project / MEMORY).mkdir()
@@ -147,12 +179,6 @@ def apply(project, result):
             git(project, 'mv', old, new)
         else:
             os.rename(project / old, project / new)
-    after_files = [moved(rel) for rel in result['files']]
-    known = {(moved(rel), t) for rel, t in before}
-    broken = broken_links(project, after_files) - known
-    if broken:
-        raise RuntimeError('Links broken by the move: ' + ', '.join(f'{r} -> {t}' for r, t in sorted(broken)))
-    return broken
 
 
 if __name__ == '__main__':

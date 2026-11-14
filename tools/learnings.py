@@ -35,6 +35,12 @@ def projects(roots=ROOTS, depth=3):
     return found
 
 
+def learnings_file(folder):
+    """harness/learnings.md in projects; the root file in this repository and in flat projects."""
+    nested = Path(folder) / 'harness/learnings.md'
+    return nested if Path(folder).resolve() != REPO and nested.is_file() else Path(folder) / 'learnings.md'
+
+
 def entries(learnings, include_all=False):
     text = learnings.read_text() if learnings.is_file() else ''
     if ENTRIES not in text:
@@ -50,8 +56,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     total = 0
     for folder in [REPO] + projects():
-        nested = folder / 'harness/learnings.md'  # flat projects (before tools/relayout.py) keep it in the root
-        found = entries(nested if folder != REPO and nested.is_file() else folder / 'learnings.md', args.all)
+        found = entries(learnings_file(folder), args.all)
         total += len(found)
         label = 'agentic-harness-v6 (eigene)' if folder == REPO else str(folder).replace(str(Path.home()), '~')
         print(f'\n### {label}: {len(found)}')

@@ -3,7 +3,7 @@
 This repository is the single source of the agentic harness and its own skills, plus their evaluation. It is not a product waiting for initialization.
 
 - `harness/` is the exportable product harness; its instructions apply to exported projects, not to repository maintenance. `harness/.agents/skills/` holds the own skills, linked globally and never copied into projects by default.
-- `tools/` exports (`export.py`; project memory lands in `<project>/harness/`), updates existing projects (`update.py`), moves flat projects once (`relayout.py`), collects project learnings (`learnings.py`) and counts skill usage (`skill_usage.py`).
+- `tools/` exports (`export.py`; project memory lands in `<project>/harness/`), updates existing projects (`update.py`), moves flat projects once (`relayout.py`), and collects project learnings (`learnings.py`).
 - `benchmarks/` contains task contracts, independent acceptance tests and orchestration. Trial agents must not read hidden acceptance code or other trials.
 - `tests/` checks the harness tools and template invariants. These tests do not prove agent quality.
 - `reports/` contains sanitized results, limitations and provenance; no credentials or raw model reasoning.

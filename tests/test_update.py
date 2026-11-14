@@ -1,4 +1,6 @@
+import contextlib
 import importlib.util
+import io
 from pathlib import Path
 import shutil
 import subprocess
@@ -53,8 +55,28 @@ class UpdateTests(unittest.TestCase):
         self.assertIn('New spec guidance.', (self.project / 'harness/specs/README.md').read_text())
         self.assertEqual((self.project / 'harness/PROJECT.md').read_text(), '# Project\n\nGoal: real product facts.\n')
         self.assertEqual((self.project / 'harness/specs/S001-area.md').read_text(), 'project spec\n')
-        self.assertFalse((self.project / updater.NOTE).exists())
+        note = (self.project / updater.NOTE).read_text()
+        self.assertIn('the harness core changed. Check the project rules below the marker', note)
+        self.assertIn('+New core rule.', note)
         self.assertEqual(updater.plan(self.project, self.source)['status'], 'current')
+
+    def test_readme_change_alone_leaves_no_note(self):
+        self.change('specs/README.md', '\nNew spec guidance.\n')
+        self.commit('v2')
+        updater.apply(self.project, updater.plan(self.project, self.source))
+        self.assertIn('New spec guidance.', (self.project / 'harness/specs/README.md').read_text())
+        self.assertFalse((self.project / updater.NOTE).exists())
+
+    def test_apply_refuses_uncommitted_harness(self):
+        self.change('AGENTS.md', '\nUncommitted core rule.\n')
+        before = (self.project / 'AGENTS.md').read_text()
+        with self.assertRaises(SystemExit) as stop, contextlib.redirect_stderr(io.StringIO()):
+            updater.main([str(self.project), '--apply'], source=self.source)
+        self.assertEqual(stop.exception.code, 1)
+        self.assertEqual((self.project / 'AGENTS.md').read_text(), before)
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            updater.main([str(self.project)], source=self.source)  # a dry run is still allowed
+        self.assertIn('local', out.getvalue())
 
     def test_project_template_change_becomes_review_note(self):
         self.change('PROJECT.md', '\nNew template section.\n')
@@ -104,6 +126,12 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(len(collector.entries(learnings)), 1)
         self.assertEqual(len(collector.entries(learnings, include_all=True)), 2)
         self.assertEqual([p.resolve() for p in collector.projects([self.root])], [self.project.resolve()])
+        self.assertEqual(collector.learnings_file(self.project), self.project / 'harness/learnings.md')
+        flat = self.root / 'flat'
+        flat.mkdir()
+        (flat / 'learnings.md').write_text(text)
+        self.assertEqual(collector.learnings_file(flat), flat / 'learnings.md')
+        self.assertEqual(collector.learnings_file(collector.REPO), collector.REPO / 'learnings.md')
 
     def test_unrouted_doc_becomes_hint_and_routed_doc_does_not(self):
         (self.project / 'harness/docs/decisions').mkdir(parents=True)

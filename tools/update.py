@@ -5,7 +5,8 @@ Universal parts: AGENTS.md above the harness marker, the harness/learnings.md he
 above its entries marker, harness/specs/README.md and harness/ideas/README.md. Docs
 under harness/docs/ that nothing routes to are reported. PROJECT.md, other specs/ideas,
 learnings entries, README.md and code are never written. Where a safe automatic update
-is impossible, a note goes to harness/harness-update.md for review at the next task.
+is impossible, a note goes to harness/harness-update.md for review at the next task; a
+changed core also leaves a note there, so the agent checks the project rules against it.
 Projects with the older flat layout (PROJECT.md in the root) are reported as
 `flat-layout` and need tools/relayout.py once. Default is a dry run; --apply writes.
 """
@@ -60,6 +61,17 @@ def plan(project, source=exporter.SOURCE):
     updated = exporter.agents_with_marker(current, new, rest)
     if updated != text:
         result['writes']['AGENTS.md'] = updated
+    if top != current.rstrip('\n'):
+        # The rules are replaced mechanically; whether project rules still fit is the agent's judgment.
+        check = ('AGENTS.md: the harness core changed. Check the project rules below the marker and '
+                 f'{P("PROJECT.md")} against this change: duplicate → propose removing it; contradiction or a new '
+                 'open decision → ask the user; apply nothing silently.')
+        if previous is None:
+            result['hints'].append(check + ' The previous core is unknown; compare with the current core.')
+        else:
+            diff = ''.join(difflib.unified_diff(previous.splitlines(True), current.splitlines(True),
+                                                f'core {old}', f'core {new}'))
+            result['hints'].append(check + '\n\n```diff\n' + diff + '```')
     for rel in UNIVERSAL:
         target, wanted = project / P(rel), (source / rel).read_text()
         have = target.read_text() if target.is_file() else None
@@ -123,15 +135,27 @@ def apply(project, result):
             handle.write(header + entry)
 
 
-if __name__ == '__main__':
+def discover():
+    """All v6 projects on this machine, found like tools/learnings.py does."""
+    spec = importlib.util.spec_from_file_location('collector', Path(__file__).with_name('learnings.py'))
+    collector = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(collector)
+    return collector.projects()
+
+
+def main(argv=None, source=exporter.SOURCE):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('projects', nargs='+', type=Path)
+    parser.add_argument('projects', nargs='*', type=Path)
+    parser.add_argument('--all', action='store_true', help='every v6 project below ~/Code and ~/PycharmProjects')
     parser.add_argument('--apply', action='store_true', help='write changes (default: dry run)')
-    args = parser.parse_args()
-    if args.apply and exporter.source_version() == 'local':
+    args = parser.parse_args(argv)
+    projects = args.projects + (discover() if args.all else [])
+    if not projects:
+        parser.error('name projects or use --all')
+    if args.apply and exporter.source_version(source) == 'local':
         parser.exit(1, 'Commit the harness repository first, so projects record a real version.\n')
-    for project in args.projects:
-        result = plan(project)
+    for project in projects:
+        result = plan(project, source)
         print(f"{project}: {result['status']} ({result['old']} → {result['new']})")
         for rel in result['writes']:
             print(f'  write {rel}')
@@ -139,3 +163,7 @@ if __name__ == '__main__':
             print('  note  ' + hint.splitlines()[0])
         if args.apply and result['status'] == 'update':
             apply(project, result)
+
+
+if __name__ == '__main__':
+    main()

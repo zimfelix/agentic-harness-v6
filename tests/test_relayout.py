@@ -90,6 +90,16 @@ class RelayoutTests(unittest.TestCase):
         self.assertIn('PROJECT.md -> harness/PROJECT.md', status)  # staged rename, rewrite unstaged
         self.assertEqual(updater.plan(self.project, self.source)['status'], 'current')
 
+    def test_a_rewrite_that_would_break_links_stops_before_writing(self):
+        before = {p: p.read_bytes() for p in self.project.rglob('*') if p.is_file() and '.git' not in p.parts}
+        original = relayout._link
+        relayout._link = lambda target, old_rel, new_rel: target  # simulated bug: links are not recomputed
+        self.addCleanup(setattr, relayout, '_link', original)
+        with self.assertRaisesRegex(ValueError, r'break links.*harness/specs/S1.md -> \.\./src/app.py'):
+            relayout.plan(self.project)
+        self.assertEqual({p: p.read_bytes() for p in self.project.rglob('*') if p.is_file() and '.git' not in p.parts},
+                         before)
+
     def test_refuses_unsafe_starts(self):
         self.write('PROJECT.md', self.read('PROJECT.md') + 'uncommitted\n')
         with self.assertRaisesRegex(ValueError, 'uncommitted'):
