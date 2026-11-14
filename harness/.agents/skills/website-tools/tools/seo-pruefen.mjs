@@ -144,7 +144,9 @@ const knoten = (x, alle = []) => {
   else if (x && typeof x === 'object') { alle.push(x); Object.values(x).forEach(y => knoten(y, alle)); }
   return alle;
 };
-const GENERISCH = new Set(['hier', 'mehr', 'mehr erfahren', 'weiterlesen', 'hier klicken', 'klicken sie hier', 'link', 'click here', 'read more', 'more', 'here']);
+const GENERISCH = new Set(['hier', 'mehr', 'mehr erfahren', 'mehr lesen', 'mehr infos', 'weiterlesen', 'weiter', 'details', 'hier klicken', 'klicken sie hier', 'link', 'click here', 'read more', 'learn more', 'more', 'here']);
+// Pfeile, Satz- und Sonderzeichen zählen nicht: „Mehr erfahren →“ und „» weiterlesen …“ sind so nichtssagend wie ohne.
+const linkwort = t => t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 
 if (livegang && !site) hart('Website', 'seo.siteUrl fehlt in website.config.mjs (eine Quelle für canonical, Sitemap und og:url)');
 else if (ziel.length && !site) hinweis('Website', 'seo.siteUrl fehlt: canonical und Sitemap werden nur nach Pfad geprüft');
@@ -173,7 +175,7 @@ for (const s of seiten) {
     kanten.get(r).add(t.route);
     const anker = decodeURIComponent(u.hash.slice(1));
     if (anker && anker !== 'top' && !t.ids.has(anker)) hart(r, `Anker fehlt im Ziel: ${href}`);
-    if (imZiel && GENERISCH.has(a.text.toLowerCase())) hinweis(r, `nichtssagender Linktext „${a.text}“ (Ziel benennen)`);
+    if (imZiel && GENERISCH.has(linkwort(a.text))) hinweis(r, `nichtssagender Linktext „${a.text}“ (Ziel benennen)`);
   }
 
   // JSON-LD (alle Seiten)
@@ -282,10 +284,13 @@ else if (sitemap) {
   const drin = new Set(locs.map(vergleich));
   for (const s of ziel) if (!drin.has(vergleich(soll(s)))) hart(s.route, 'fehlt in sitemap.xml');
   const erwartet = new Set(ziel.map(s => vergleich(soll(s))));
+  let ruhend = 0; // ganzer Build noindex (Vorschau = Produktion + noindex): der Abgleich ruht wie die übrigen Index-Regeln
   for (const loc of locs) if (!erwartet.has(vergleich(loc))) {
     const t = nachRoute.get(pfadVon(loc));
+    if (t?.noindex && !ziel.length) { ruhend++; continue; }
     hart('Website', t?.noindex ? `noindex-Seite in sitemap.xml: ${loc}` : `sitemap.xml nennt eine URL ohne passende indexierbare Seite: ${loc}`);
   }
+  if (ruhend) hinweis('Website', `sitemap.xml nennt ${ruhend} noindex-Seiten: ruht, solange keine Seite indexierbar ist (Vorschau); der Produktions-Build ohne noindex muss passen`);
   const lastmod = [...sitemap.matchAll(/<lastmod>\s*([^<]+?)\s*<\/lastmod>/gi)].map(m => m[1]);
   if (lastmod.length > 3 && new Set(lastmod).size === 1) hinweis('Website', 'alle lastmod gleich: Datum der Inhaltsänderung verwenden oder weglassen');
   if (/<(priority|changefreq)>/i.test(sitemap)) hinweis('Website', 'priority/changefreq ignoriert Google');

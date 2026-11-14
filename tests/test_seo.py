@@ -141,6 +141,14 @@ class SeoCheckTests(unittest.TestCase):
         self.pages['/versteckt/'] = self.pages['/versteckt/'].replace('<a href="/impressum/">Impressum</a>', '')
         self.assertFails('Pflichtlink fehlt: /impressum/')
 
+    def test_generic_link_text_ignores_arrows_and_punctuation(self):
+        self.pages['/kontakt/'] = self.pages['/kontakt/'].replace(
+            '</p>', ' <a href="/leistung/">Mehr erfahren →</a> <a href="/">» Weiterlesen …</a></p>')
+        out = self.run_tool().stdout
+        self.assertIn('nichtssagender Linktext „Mehr erfahren →“', out)
+        self.assertIn('nichtssagender Linktext „» Weiterlesen …“', out)
+        self.assertNotIn('Linktext „Ablauf der Baumfällung“', out)
+
     def test_privacy_and_placeholders(self):
         fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">'
         self.pages['/leistung/'] = self.pages['/leistung/'].replace('</head>', fonts + '</head>')
@@ -163,6 +171,17 @@ class SeoCheckTests(unittest.TestCase):
         self.assertIn('Index-Regeln ruhen', result.stdout)
         self.assertFails('genau ein canonical im <head> nötig', '--livegang')
         self.assertIn('Seiten tragen noch noindex', self.run_tool('--livegang').stdout)  # info, not one error per page
+
+    def test_preview_is_production_plus_noindex(self):
+        for route in self.pages:
+            self.pages[route] = self.pages[route].replace('<title>', '<meta name="robots" content="noindex"><title>')
+        result = self.run_tool()
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn('ruht, solange keine Seite indexierbar ist', result.stdout)
+        result = self.run_tool('--livegang')
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.sitemap.append('/weg/')
+        self.assertFails('ohne passende indexierbare Seite')  # a URL without any page stays a hard error
 
     def serve(self, routes):
         class Handler(http.server.BaseHTTPRequestHandler):

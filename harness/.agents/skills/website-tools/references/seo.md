@@ -22,7 +22,7 @@ Classes say how `tools/seo-pruefen.mjs` treats a rule: **H** fails the check · 
 - **H** `noindex` via meta robots or `X-Robots-Tag`, never combined with a robots.txt `Disallow` for the same URL (the crawler never sees it). Google also honours robots meta in `<body>`; generate it in `<head>`.
 - **H** (`--live`) The production home page and sitemap URLs are not `noindex`; robots.txt neither blocks `/` for Google nor answers 5xx/429 (Google then treats the site as blocked).
 - **J** Preview/prototype is protected per environment (HTTP auth or `X-Robots-Tag: noindex`); production output inherits no preview `noindex`. Error and thank-you pages may stay `noindex` (`seo.sonderseiten`).
-- **H** *House rule:* `sitemap.xml` exists and lists exactly the canonical indexable pages. **W** identical `lastmod` everywhere (use real content dates or omit), `priority`/`changefreq` (ignored); the ping endpoint is gone.
+- **H** *House rule:* `sitemap.xml` exists and lists exactly the canonical indexable pages; while the whole build is `noindex` (preview = production plus `noindex`), listed pages only warn. **W** identical `lastmod` everywhere (use real content dates or omit), `priority`/`changefreq` (ignored); the ping endpoint is gone.
 - **H** *House rule:* `robots.txt` exists with a `Sitemap:` line. **W** rules that block CSS, JS or images; `noindex` or `crawl-delay` lines (unsupported by Google).
 - **H** (`--live`) Unknown URLs return a real 404, not a soft 404. **J** The error page speaks the site language and links onward.
 

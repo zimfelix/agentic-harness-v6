@@ -1,0 +1,11 @@
+{
+  "name": "website",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.19" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:prod": "node scripts/build.mjs --produktion",
+    "test": "node --test scripts/build.test.mjs"
+  }
+}

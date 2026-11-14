@@ -7,7 +7,7 @@
 One message, at most seven questions; anything unanswered becomes a default recorded as an assumption in PROJECT.
 
 1. Business, place and the **main action** of a visitor: call, enquiry, visit, order or booking.
-2. Top three services or products, with prices or ranges if they exist.
+2. Services or products in the order the client wants them, with prices or ranges, and for each how often it is asked for and how much it matters to the business.
 3. Audience, form of address (Sie/du), language and region (e.g. de-DE, de-AT).
 4. Existing material: logo, colours, fonts, own photos and videos (quality, rights), references, team photos.
 5. Must-show facts: hours, area served, address and parking, shop or booking link; who delivers contact messages.
@@ -19,10 +19,12 @@ One message, at most seven questions; anything unanswered becomes a default reco
 ## Procedure
 
 ```text
-intake ─▶ 2–3 directions in text: one-sentence idea + axis values, ≥ 3 axes different
+intake ─▶ page plan (page-plan.md): offers ranked, search terms in customers' words, proof per page
+          the client confirms ranking and wording
+       ─▶ 2–3 directions in text: one-sentence idea + axis values, ≥ 3 axes different
           colours from the client's material (logo, product, place, photos), never from earlier projects
        ─▶ client picks one or more ─▶ per direction one static draft in entwuerfe/<name>/
-          first screen + 2–3 key sections + footer, the client's own words where available
+          first screen + 2–3 key sections + footer, real content; order, H1 and headings from the page plan
        ─▶ checks: ORDNER=entwuerfe pruefen.mjs · screenshots 1440/390 · contrast on real images
        ─▶ present side by side ─▶ STOP for the client's choice
        ─▶ the chosen draft becomes the base and keeps its design; the others go to the project archive
@@ -34,4 +36,4 @@ Drafts share only content and measuring tools, never components or styles; merge
 
 ## Speed with quality
 
-Real content first, the section catalog for structure, the baseline hard checks of `pruefen.mjs`, measured contrast on the real image and one review at 390 px width. From the chosen draft on, build with the project's site data as the single source and run `seo-pruefen.mjs` before every handover.
+Real content first, the section catalog for structure, the baseline hard checks of `pruefen.mjs`, measured contrast on the real image and one review at 390 px width. From the chosen draft on, build with the project's site data as the single source (a static site without a framework: the starter in `tooling.md`) and run `seo-pruefen.mjs` before every handover. When the brief already fixes one direction, e.g. a single landing page from one prompt, skip the direction step (not the page plan) and draft directly in the starter: its preview is `noindex` and may carry marked placeholders.
