@@ -19,7 +19,12 @@ node <skill>/tools/screens.mjs --compare /tmp/before /tmp/after
 node <skill>/tools/style-snapshot.mjs /tmp/current-styles.json
 node <skill>/tools/style-snapshot.mjs --compare /tmp/before.json /tmp/current-styles.json
 node <skill>/tools/device-preview.mjs
+node <skill>/tools/seo-pruefen.mjs              # static SEO rules on the build, no browser
+node <skill>/tools/seo-pruefen.mjs --livegang   # as if noindex were removed: what blocks go-live
+node <skill>/tools/seo-pruefen.mjs --live       # after deploy: redirects, real 404, sitemap URLs (GET only)
 ```
+
+SEO checker settings live under `seo` in `website.config.mjs`: `siteUrl` (production URL, one source for canonical, sitemap and `og:url`), `schraegstrich` (`'immer'` for `/leistung/`, `'nie'` for `/leistung`), `sonderseiten` (error/thank-you routes that may stay noindex), `platzhalter` (regex strings), `pflichtLinks` (e.g. imprint and privacy routes). It reads only generated HTML; content injected by JavaScript needs a browser check. Its rules and classes are explained in `references/seo.md`.
 
 Use an empty screenshot output directory. Comparisons require matching nonempty route/state sets; changed baselines need deliberate review. Style hashes are supplemental evidence, not a pixel/behavior proof. CSS helpers (`css-audit.mjs`, `unused-css.mjs`) identify candidates; don't delete selectors blindly.
 

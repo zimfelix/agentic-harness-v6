@@ -18,12 +18,13 @@ const standard = {
   routen: null,              // erwartete statische Routen; null = entdecken, Soll-Abgleich separat
   bereit: null,             // optionaler JS-Ausdruck für projektspezifische Layoutbereitschaft
   warteMs: 15000,            // begrenztes Browser-/CDP-/Zustandswarten
+  seo: {},                   // seo-pruefen.mjs: { siteUrl, schraegstrich, sonderseiten, platzhalter, pflichtLinks }; Standards dort
 };
 
 const datei = join(process.cwd(), 'website.config.mjs');
 const projekt = existsSync(datei) ? (await import(pathToFileURL(datei).href)).default : {};
 
-// Statischer Ordner ohne Build (z. B. Entwürfe beim Erkunden, init.md Abschnitt 0): ORDNER=entwuerfe liefert und prüft
+// Statischer Ordner ohne Build (z. B. Entwürfe, references/drafts.md dieses Skills): ORDNER=entwuerfe liefert und prüft
 // diesen Ordner direkt, ohne website.config.mjs und ohne Build; interne Ordner gibt es dann nicht.
 const ordner = process.env.ORDNER;
 const statisch = ordner ? { quelle: ordner, ausgabe: ordner, styles: ordner, build: null, interneOrdner: [] } : {};

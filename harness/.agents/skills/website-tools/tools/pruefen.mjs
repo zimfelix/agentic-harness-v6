@@ -1,9 +1,10 @@
-// Misst die Pflichtregeln aus Teil A des Website-Profils auf allen gebauten Seiten und Prüfbreiten (konfig.breiten):
+// Misst die Grundregeln („Baseline“ in SKILL.md dieses Skills) auf allen gebauten Seiten und Prüfbreiten (konfig.breiten):
 // horizontaler Überlauf, geladene Schriften, Skriptfehler, fehlende Dateien, Formularfelder unter 16 px,
 // zu kleine Bedienelemente (unter 24 × 24 px) und Textkontrast (WCAG: 4,5 bzw. 3 bei großer Schrift).
 // Aufruf aus dem Projektordner, vorher bauen:  node <webtools>/pruefen.mjs [build-ordner]
-// Ergebnis: eine Zeile je Seite und Breite; Exit-Code 1 bei harten Fehlern (Überlauf, Skriptfehler, 404, Feldgröße, Schrift nicht geladen).
-// Hinweise (Kontrast, kleine Bedienelemente) brechen nicht ab, sondern werden zur Beurteilung aufgelistet.
+// Ergebnis: eine Zeile je Seite und Breite; Exit-Code 1 bei harten Fehlern (Überlauf, Skriptfehler, 404, Schrift nicht geladen,
+// Feld unter 16 px bis 1366 px Breite). Hinweise (Kontrast, kleine Bedienelemente, breite Felder) brechen nicht ab.
+// Kontrast über Bildern, Verläufen und Videos misst das Skript nicht: dort im Screenshot am echten Bild prüfen.
 import { launch, open, checkedRoutes, serve } from './browser.mjs';
 import { konfig } from './konfig.mjs';
 
@@ -69,7 +70,9 @@ try {
       if (m.schriftFehlt.length) { zeile.push(`❌ Schrift nicht geladen: ${m.schriftFehlt.join(', ')}`); harte.push(`${route}@${breite} Schrift`); }
       if (m.fehler.length) { zeile.push(`❌ Skriptfehler: ${m.fehler.join(' | ')}`); harte.push(`${route}@${breite} Skript`); }
       if (m.dateien404.length) { zeile.push(`❌ fehlt: ${m.dateien404.join(', ')}`); harte.push(`${route}@${breite} Datei`); }
-      if (m.felder.length) { zeile.push(`❌ Feld unter 16 px: ${m.felder.join(', ')}`); harte.push(`${route}@${breite} Feld`); }
+      // iOS zoomt nur auf Touch-Geräten in Felder unter 16 px; breite Desktop-Ansichten sind ein Hinweis, kein Fehler.
+      if (m.felder.length && breite <= 1366) { zeile.push(`❌ Feld unter 16 px: ${m.felder.join(', ')}`); harte.push(`${route}@${breite} Feld`); }
+      else if (m.felder.length) { zeile.push(`⚠️ Feld unter 16 px: ${m.felder.join(', ')}`); hinweise++; }
       if (m.klein.length) { zeile.push(`⚠️ klein: ${m.klein.join(' | ')}`); hinweise++; }
       if (m.kontrast.length) { zeile.push(`⚠️ Kontrast: ${m.kontrast.join(' | ')}`); hinweise++; }
       console.log(`${route} @${breite}: ${zeile.length ? zeile.join(' · ') : '✅'}`);

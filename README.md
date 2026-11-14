@@ -15,7 +15,7 @@ Eigene Skills liegen nur hier unter `harness/.agents/skills/` und sind global ve
 
 | Eigener Skill | Wofür | Auslöser im Core |
 |---|---|---|
-| `website-tools` | Websites: Inhalte, Responsive, Rechte, Veröffentlichung; optionale Screenshot-/Prüf-Tools | Arbeit an einer Website |
+| `website-tools` | Websites: Seitenplan und SEO by Design, Inhalte, Responsive, Rechte, Veröffentlichung; optionale SEO-, Screenshot- und Prüf-Tools | Arbeit an einer Website |
 | `business-software` | Geschäftslogik: Datenintegrität, Migration, Rechte, Geld/Zeit, externe Wirkungen | Geschäftslogik, Persistenz, Rechte, Integrationen |
 | `testing` | Tests, die Verhalten an echten Grenzen prüfen; Mocks nur an fremden Grenzen; wann TDD; wann stoppen | Tests planen, schreiben oder prüfen |
 | `handoff` | Knapper Übergabe-Prompt (4–5 Sätze) für einen neuen Chat: Ziel, nächste Schritte, Belege statt Erklärungen | Wechsel in einen neuen Chat, langer Kontext (über die Skill-Beschreibung, kein Core-Auslöser) |
