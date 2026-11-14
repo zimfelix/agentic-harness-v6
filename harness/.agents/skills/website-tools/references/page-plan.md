@@ -7,7 +7,7 @@
 One page per real search intent (Search Intent: what the searcher wants, e.g. „Baum fällen lassen“ ≠ „Baumpflege“), carrying proof only the client has. **No client facts, no indexable page:** drafts may use visibly marked placeholders (`noindex`), but an empty proof field blocks the page at go-live instead of being filled with generic text; `seo-pruefen.mjs --livegang` fails on placeholders. Subpages catch existing demand; they create none. Demand and prominence come from the client's reputation (business profile, reviews, mentions), which the site supports but cannot replace.
 
 ```text
-client facts ──▶ search terms ──▶ intents ──▶ page plan (proof per page) ──▶ client review ──▶ design + build
+client facts ──▶ search terms ──▶ ranking, intents ──▶ page plan (proof per page) ──▶ client review ──▶ design + build
      ▲                                              │ proof empty?
      └────────────── ask the client ◀───────────────┘ → placeholder in the draft; before go-live fill, merge or drop
 ```
@@ -15,10 +15,11 @@ client facts ──▶ search terms ──▶ intents ──▶ page plan (proof
 ## Steps
 
 1. **Collect client facts** (table below). Missing facts become questions, never invented text.
-2. **Collect search terms cheaply:** the client's own words for jobs and products, Google autocomplete and „People also ask“, competitors' page names, Keyword Planner ranges; after launch, Search Console queries. No invented search volumes.
-3. **Group by intent.** Each main intent gets one page; two intents get two pages only if the client offers both as relevant services, otherwise a section. Several own pages ranking for one query are not a problem in themselves; near-duplicates are.
-4. **Fill the page plan**, then review it with the client before design. Record it in the project (e.g. `docs/page-plan.md`).
-5. **Link deliberately:** home → every main page; service ↔ related services, matching references and contact; references → their service; descriptive anchor text; breadcrumbs from depth 2.
+2. **Collect search terms cheaply:** the words end customers use for jobs and products (ask the client what callers say; trade terms such as „Fassadenbeschichtung“ are rarely typed), Google autocomplete and „People also ask“, competitors' page names, Keyword Planner ranges; after launch, Search Console queries. No invented search volumes.
+3. **Rank the offers.** Compare the client's order with demand (search terms, frequent enquiries), business value and available proof. Where they disagree, say so with the reason and propose an order; the client decides. The ranking sets home order, navigation and build order; an offer without demand or proof becomes a section, not the lead.
+4. **Group by intent.** Each main intent gets one page; two intents get two pages only if the client offers both as relevant services, otherwise a section. Several own pages ranking for one query are not a problem in themselves; near-duplicates are.
+5. **Fill the page plan and word it:** title, H1, first sentence and link text carry the page's main search term in the customers' words; the trade term may follow in the text („Fassade streichen lassen“, then „Beschichtung mit Silikonharzfarbe“). Review ranking and wording with the client before design, adopt corrections and repeat until confirmed; after launch, revisit with Search Console queries. Record it in the project (e.g. `docs/page-plan.md`).
+6. **Link deliberately:** home → every main page; service ↔ related services, matching references and contact; references → their service; descriptive anchor text; breadcrumbs from depth 2.
 
 Page plan template (copy into the project, fill there):
 
