@@ -1,0 +1,39 @@
+/* Baseline aus der SKILL.md des website-tools-Skills, keine Gestaltung: Tokens, Fokus, Sprunglink, Felder ≥ 16 px,
+   Anker unter dem Kopf, Reduced Motion, sichtbare Platzhalter. Gestaltung kommt in eigene Dateien oder ersetzt die Tokens. */
+:root {
+  --farbe-text: #1d1d1b;
+  --farbe-grund: #ffffff;
+  --farbe-akzent: #3b5b4f;
+  --farbe-fokus: #1a56c4;
+  --schrift: system-ui, sans-serif;
+  --abstand: clamp(1rem, 3vw, 2rem);
+  --breite: 72rem;
+  --kopfhoehe: 4.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--schrift); line-height: 1.5; color: var(--farbe-text); background: var(--farbe-grund); }
+img, video, svg { max-width: 100%; height: auto; }
+h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; } /* lange Wörter („Datenschutzerklärung“) laufen bei 320 px sonst über */
+
+:focus-visible { outline: 3px solid var(--farbe-fokus); outline-offset: 2px; }
+[id] { scroll-margin-top: calc(var(--kopfhoehe) + 1rem); }
+
+.sprunglink { position: absolute; left: 1rem; top: -100vh; z-index: 100; padding: 0.5rem 1rem; background: var(--farbe-grund); color: var(--farbe-text); }
+.sprunglink:focus { top: 1rem; }
+
+nav a, .knopf, button { display: inline-block; min-block-size: 24px; min-inline-size: 24px; }
+input, select, textarea, button { font: inherit; }
+input, select, textarea { font-size: max(1rem, 16px); }
+
+.platzhalter { background: #fff1a8; color: #4a3b00; outline: 1px dashed currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

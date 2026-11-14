@@ -282,10 +282,13 @@ else if (sitemap) {
   const drin = new Set(locs.map(vergleich));
   for (const s of ziel) if (!drin.has(vergleich(soll(s)))) hart(s.route, 'fehlt in sitemap.xml');
   const erwartet = new Set(ziel.map(s => vergleich(soll(s))));
+  let ruhend = 0; // ganzer Build noindex (Vorschau = Produktion + noindex): der Abgleich ruht wie die übrigen Index-Regeln
   for (const loc of locs) if (!erwartet.has(vergleich(loc))) {
     const t = nachRoute.get(pfadVon(loc));
+    if (t?.noindex && !ziel.length) { ruhend++; continue; }
     hart('Website', t?.noindex ? `noindex-Seite in sitemap.xml: ${loc}` : `sitemap.xml nennt eine URL ohne passende indexierbare Seite: ${loc}`);
   }
+  if (ruhend) hinweis('Website', `sitemap.xml nennt ${ruhend} noindex-Seiten: ruht, solange keine Seite indexierbar ist (Vorschau); der Produktions-Build ohne noindex muss passen`);
   const lastmod = [...sitemap.matchAll(/<lastmod>\s*([^<]+?)\s*<\/lastmod>/gi)].map(m => m[1]);
   if (lastmod.length > 3 && new Set(lastmod).size === 1) hinweis('Website', 'alle lastmod gleich: Datum der Inhaltsänderung verwenden oder weglassen');
   if (/<(priority|changefreq)>/i.test(sitemap)) hinweis('Website', 'priority/changefreq ignoriert Google');

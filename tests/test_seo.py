@@ -164,6 +164,17 @@ class SeoCheckTests(unittest.TestCase):
         self.assertFails('genau ein canonical im <head> nötig', '--livegang')
         self.assertIn('Seiten tragen noch noindex', self.run_tool('--livegang').stdout)  # info, not one error per page
 
+    def test_preview_is_production_plus_noindex(self):
+        for route in self.pages:
+            self.pages[route] = self.pages[route].replace('<title>', '<meta name="robots" content="noindex"><title>')
+        result = self.run_tool()
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn('ruht, solange keine Seite indexierbar ist', result.stdout)
+        result = self.run_tool('--livegang')
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.sitemap.append('/weg/')
+        self.assertFails('ohne passende indexierbare Seite')  # a URL without any page stays a hard error
+
     def serve(self, routes):
         class Handler(http.server.BaseHTTPRequestHandler):
             def do_GET(self):

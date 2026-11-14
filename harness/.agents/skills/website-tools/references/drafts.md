@@ -34,4 +34,4 @@ Drafts share only content and measuring tools, never components or styles; merge
 
 ## Speed with quality
 
-Real content first, the section catalog for structure, the baseline hard checks of `pruefen.mjs`, measured contrast on the real image and one review at 390 px width. From the chosen draft on, build with the project's site data as the single source and run `seo-pruefen.mjs` before every handover.
+Real content first, the section catalog for structure, the baseline hard checks of `pruefen.mjs`, measured contrast on the real image and one review at 390 px width. From the chosen draft on, build with the project's site data as the single source (a static site without a framework: the starter in `tooling.md`) and run `seo-pruefen.mjs` before every handover. When the brief already fixes one direction, e.g. a single landing page from one prompt, skip the direction step and draft directly in the starter: its preview is `noindex` and may carry marked placeholders.
