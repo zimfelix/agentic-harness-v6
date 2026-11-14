@@ -24,6 +24,7 @@ h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; } /* lange Wörter („Da
 .sprunglink:focus { top: 1rem; }
 
 nav a, .knopf, button { display: inline-block; min-block-size: 24px; min-inline-size: 24px; }
+[hidden] { display: none !important; } /* sonst heben display-Regeln wie die obige hidden auf */
 input, select, textarea, button { font: inherit; }
 input, select, textarea { font-size: max(1rem, 16px); }
 

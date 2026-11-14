@@ -141,6 +141,14 @@ class SeoCheckTests(unittest.TestCase):
         self.pages['/versteckt/'] = self.pages['/versteckt/'].replace('<a href="/impressum/">Impressum</a>', '')
         self.assertFails('Pflichtlink fehlt: /impressum/')
 
+    def test_generic_link_text_ignores_arrows_and_punctuation(self):
+        self.pages['/kontakt/'] = self.pages['/kontakt/'].replace(
+            '</p>', ' <a href="/leistung/">Mehr erfahren →</a> <a href="/">» Weiterlesen …</a></p>')
+        out = self.run_tool().stdout
+        self.assertIn('nichtssagender Linktext „Mehr erfahren →“', out)
+        self.assertIn('nichtssagender Linktext „» Weiterlesen …“', out)
+        self.assertNotIn('Linktext „Ablauf der Baumfällung“', out)
+
     def test_privacy_and_placeholders(self):
         fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">'
         self.pages['/leistung/'] = self.pages['/leistung/'].replace('</head>', fonts + '</head>')

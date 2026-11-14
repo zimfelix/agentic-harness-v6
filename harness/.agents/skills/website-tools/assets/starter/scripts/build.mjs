@@ -75,9 +75,9 @@ function sperren(site, gebaut, statisch) {
   }
   for (const { seite, html } of gebaut) {
     const roh = html.replace(/<!--[\s\S]*?-->/g, ''); // Attribute zählen mit (description, og:*), Kommentare nicht
-    const imText = roh.replace(/<[^>]+>/g, ' ').match(new RegExp(`(?:${PLATZHALTER.source}).{0,50}`, 'i'));
-    if (imText) s.push(`${seite.route}: Platzhalter „${imText[0].replace(/\s+/g, ' ').trim()}“`);
-    else if (PLATZHALTER.test(roh)) s.push(`${seite.route}: Platzhalter in einem Attribut (z. B. description)`);
+    const imText = [...roh.replace(/<[^>]+>/g, ' ').matchAll(new RegExp(`(?:${PLATZHALTER.source}).{0,50}`, 'gi'))];
+    for (const m of imText) s.push(`${seite.route}: Platzhalter „${m[0].replace(/\s+/g, ' ').trim()}“`); // alle, damit die Kundenliste vollständig ist
+    if (!imText.length && PLATZHALTER.test(roh)) s.push(`${seite.route}: Platzhalter in einem Attribut (z. B. description)`);
   }
   return s;
 }

@@ -126,6 +126,15 @@ test('Produktions-Build sperrt Platzhalter, fehlenden Beleg, Beispiel-URL und fe
   }
 });
 
+test('Die Livegang-Liste nennt jeden Platzhalter einer Seite, nicht nur den ersten', async () => {
+  const site = beispiel();
+  site.seiten[1].inhalt = { text: 'Platzhalter: Preise vom Kunden. Dazu ein längerer echter Satz über den Ablauf vor Ort. Platzhalter: Link zum Unternehmensprofil' };
+  const { offen } = await bau(site);
+  const treffer = offen.filter(o => o.startsWith('/leistungen/e-check/: Platzhalter'));
+  assert.equal(treffer.length, 2, treffer.join('\n'));
+  assert.ok(treffer.some(o => o.includes('Unternehmensprofil')));
+});
+
 test('Eingaben: doppelter Title, falsche Route, deutsche Tage und nationale Telefonnummer werden abgelehnt', async () => {
   const faelle = [
     [s => { s.seiten[2].title = s.seiten[0].title; }, /gleicher Title/],
