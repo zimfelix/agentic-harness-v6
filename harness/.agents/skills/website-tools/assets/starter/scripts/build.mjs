@@ -38,7 +38,7 @@ export function datenPruefen(site, wurzel = WURZEL) {
   const routen = new Set(), titel = new Map();
   for (const s of seiten) {
     const wo = s.route || '(ohne route)';
-    if (!['suche', 'recht', 'sonder', undefined].includes(s.art)) f.push(`${wo}: art muss 'suche', 'recht' oder 'sonder' sein`);
+    if (!['suche', 'info', 'recht', 'sonder', undefined].includes(s.art)) f.push(`${wo}: art muss 'suche', 'info', 'recht' oder 'sonder' sein`);
     if (seo.istSonder(s) ? !/^\/[a-z0-9-]+\.html$/.test(s.route || '') : !/^\/([a-z0-9-]+\/)*$/.test(s.route || ''))
       f.push(`${wo}: Route klein, mit Bindestrichen, mit / am Ende (Sonderseiten: /name.html)`);
     if (routen.has(s.route)) f.push(`${wo}: Route doppelt`);

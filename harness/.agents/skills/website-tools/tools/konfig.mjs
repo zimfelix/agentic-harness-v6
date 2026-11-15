@@ -1,4 +1,4 @@
-// Einstellungen der Webtools (Profil Website): Standardwerte des Profils, überschrieben von `website.config.mjs` im Projektordner.
+// Einstellungen der Webtools dieses Skills: Standardwerte hier, überschrieben von `website.config.mjs` im Projektordner.
 // Das Projekt nennt dort nur, was bei ihm anders ist (Pfade, Build-Befehl, Port, interne Routen, ruhende CSS-Dateien).
 // Die Webtools laufen aus dem Projektordner (process.cwd()), z. B. über npm-Skripte.
 import { existsSync } from 'node:fs';
@@ -13,7 +13,7 @@ const standard = {
   stylesOhne: [],             // CSS-Dateien, die gerade bewusst nicht eingebunden sind
   build: ['node', 'scripts/build.mjs'], // Befehl, der `ausgabe` erzeugt
   port: 4173,                 // lokale Vorschau
-  interneOrdner: ['konzepte'],// gebaut, aber nicht Teil der Website (Konzeptseiten): von Prüfungen ausgenommen
+  interneOrdner: ['entwuerfe'], // gebaut, aber nicht Teil der Website (Entwürfe, references/drafts.md): von Prüfungen ausgenommen
   breiten: [1440, 390, 320],  // Projekt-Prüfgrößen; nur Overrides in website.config.mjs
   routen: null,              // erwartete statische Routen; null = entdecken, Soll-Abgleich separat
   bereit: null,             // optionaler JS-Ausdruck für projektspezifische Layoutbereitschaft

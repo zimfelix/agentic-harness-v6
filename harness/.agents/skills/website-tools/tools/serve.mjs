@@ -1,4 +1,4 @@
-// Lokale Vorschau einer gebauten Website (Profil Website): liefert konfig.ausgabe aus, baut bei Änderungen in
+// Lokale Vorschau einer gebauten Website (website-tools, references/tooling.md): liefert konfig.ausgabe aus, baut bei Änderungen in
 // konfig.quelle selbst neu (Browser-Refresh genügt), zeigt unbekannte Adressen mit der eigenen 404-Seite
 // und bietet die Geräte-Vorschau unter /_geraete/. Aufruf aus dem Projektordner: node <webtools>/serve.mjs
 import { createServer } from 'node:http';
@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { routesIn } from './browser.mjs';
 import { konfig, dateitypen } from './konfig.mjs';
 const root = join(process.cwd(), konfig.ausgabe);
-// Geräte-Vorschau: Vorlage aus dem Website-Profil, unverändert ausgeliefert (eine Quelle für Projekt und Harness-Vorlage).
+// Geräte-Vorschau: Vorlage aus assets/ dieses Skills, unverändert ausgeliefert, nie in den Build kopiert.
 const devicePreview = fileURLToPath(new URL('../assets/device-preview.html', import.meta.url));
 const types = dateitypen;
 // Inhalts-/Dateimengenabgleich erkennt auch Löschen und Änderungen bei alten mtimes.

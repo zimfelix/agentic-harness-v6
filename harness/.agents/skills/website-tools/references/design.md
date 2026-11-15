@@ -20,7 +20,7 @@
 | Sticky mobile action bar (call, enquiry) | the main action is a call or enquiry | covers no content or footer at the end of the page |
 | Contact revealed by click (against simple scrapers) | secondary routes such as e-mail | imprint stays plain text (DE § 5 DDG, AT § 5 ECG); the main action and the phone from the JSON-LD stay visible links; a working fallback without JavaScript; headless scrapers click too |
 
-Record chosen patterns in the project's design doc; unchosen ones don't apply.
+Record chosen patterns in the project's design doc. A chosen pattern or convention applies wherever its role occurs; unchosen ones don't apply.
 
 ## Working through design corrections
 
@@ -31,4 +31,4 @@ Record chosen patterns in the project's design doc; unchosen ones don't apply.
 
 ## Consistency audit
 
-After cross-cutting changes and before handover: header, footer and repeated blocks identical on all routes · fonts actually loaded, headings on the scale · no horizontal overflow at 1440/390/320 · agreed alignments measured (about 2 px tolerance) and chosen patterns kept · buttons and links follow their components, link texts descriptive · internal links and anchors resolve (`seo-pruefen.mjs`) · no unused selectors (`css-audit.mjs`) or unlinked pages. Go-live list: `seo.md`.
+After cross-cutting changes and before handover; `pruefen.mjs` reports the measurable parts: header, footer and repeated blocks identical on all routes · `:hover` only under `(hover: hover)` · fonts actually loaded, headings on the scale · no horizontal overflow at 1440/390/320 · agreed alignments measured (about 2 px tolerance) and chosen patterns kept · buttons and links follow their components, link texts descriptive · internal links and anchors resolve (`seo-pruefen.mjs`) · no unused selectors (`css-audit.mjs`) or unlinked pages. Go-live list: `seo.md`.

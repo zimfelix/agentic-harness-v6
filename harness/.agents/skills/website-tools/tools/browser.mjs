@@ -142,5 +142,54 @@ export async function open(page, url, width, height = 900) {
   if (konfig.bereit) {
     await page.evaluate(`new Promise((accept, reject) => { const end = Date.now() + ${konfig.warteMs}; const check = () => { try { if (${konfig.bereit}) return accept(true); if (Date.now() >= end) return reject(new Error('Bereitschaftszustand: Zeitlimit')); requestAnimationFrame(check); } catch (e) { reject(e); } }; check(); })`);
   }
-  await page.evaluate('new Promise(accept => requestAnimationFrame(() => requestAnimationFrame(() => accept(true))))');
+  await page.evaluate(ZWEI_FRAMES);
+}
+
+const ZWEI_FRAMES = 'new Promise(accept => requestAnimationFrame(() => requestAnimationFrame(() => accept(true))))';
+// Fensterhöhe des ersten Bildschirms: Desktop 900 px, Handy 844 px (gängiges Smartphone).
+export const bildschirm = breite => (breite < 800 ? 844 : 900);
+const MAX_HOEHE = 16384; // Grenze einer Browser-Aufnahme; längere Seiten werden abgeschnitten und gemeldet
+// Lazy-Bilder und Einblendungen auslösen: in echter Fensterhöhe einmal durchscrollen, begrenzt auf Bilder warten.
+const NACHLADEN = `(async () => {
+  for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight) {
+    scrollTo(0, y); await new Promise(r => requestAnimationFrame(() => setTimeout(r, 60)));
+  }
+  scrollTo(0, 0);
+  const offen = [...document.images].filter(i => !i.complete).map(i => new Promise(r => { i.addEventListener('load', r, { once:true }); i.addEventListener('error', r, { once:true }); }));
+  await Promise.race([Promise.all(offen), new Promise(r => setTimeout(r, 3000))]);
+  return true;
+})()`;
+// Animationen und Übergänge auf ihren Endstand setzen; endlose stehen auf dem Anfang. Sonst entsteht das Bild mitten im Ablauf.
+const ANIMATIONEN_ENDEN = `(() => { for (const a of document.getAnimations()) { try { a.finish(); } catch { a.pause(); a.currentTime = 0; } } return true; })()`;
+const HOEHEN_MERKEN = `(() => { window.__hoehen = [...document.querySelectorAll('html, body, body *')].map(el => [el, el.getBoundingClientRect().height]);
+  return document.documentElement.scrollHeight; })()`;
+// Nach dem Vergrößern des Fensters: was seine Höhe geändert hat (vh, svh, per JS aus innerHeight), auf die echte Höhe festsetzen.
+const HOEHEN_HALTEN = `(() => { let n = 0;
+  for (const [el, h] of window.__hoehen) if (Math.abs(el.getBoundingClientRect().height - h) > 0.5) {
+    for (const p of ['height', 'min-height', 'max-height']) el.style.setProperty(p, h + 'px', 'important');
+    n++;
+  }
+  return n; })()`;
+
+// Aufnahme einer Seite wie auf dem Gerät: `start` = erster Bildschirm in echter Fensterhöhe, `ganz` = ganze Seite mit denselben
+// Höhen wie im echten Fenster. Für die Ganzseite wird das Fenster auf Seitenhöhe gestreckt; damit vh-Bereiche dabei nicht
+// mitwachsen, werden geänderte Höhen vorher auf den gemessenen Stand festgesetzt. Optionen: format ('png'|'jpeg'), qualitaet, skala (ganz).
+export async function aufnehmen(page, url, breite, { format = 'png', qualitaet, skala = 1 } = {}) {
+  const mobile = breite < 800;
+  await open(page, url, breite, bildschirm(breite));
+  await page.evaluate(NACHLADEN);
+  await page.evaluate(ANIMATIONEN_ENDEN);
+  await page.evaluate(ZWEI_FRAMES);
+  const bild = async clip => Buffer.from((await page.send('Page.captureScreenshot',
+    { format, ...(qualitaet ? { quality:qualitaet } : {}), ...(clip ? { clip } : {}) })).result.data, 'base64');
+  const start = await bild();
+  const gesamt = await page.evaluate(HOEHEN_MERKEN);
+  const hoehe = Math.min(gesamt, MAX_HOEHE);
+  await page.send('Emulation.setDeviceMetricsOverride', { width:breite, height:hoehe, deviceScaleFactor:1, mobile });
+  await page.evaluate(ZWEI_FRAMES);
+  const gehalten = await page.evaluate(HOEHEN_HALTEN);
+  await page.evaluate(ANIMATIONEN_ENDEN); // das Vergrößern kann Einblendungen auslösen
+  await page.evaluate(ZWEI_FRAMES);
+  const ganz = await bild(skala === 1 ? undefined : { x:0, y:0, width:breite, height:hoehe, scale:skala });
+  return { start, ganz, gehalten, abgeschnitten: gesamt > MAX_HOEHE };
 }

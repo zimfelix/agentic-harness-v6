@@ -1,5 +1,5 @@
 // Findet CSS-Selektoren in den Style-Quellen (konfig.styles), die auf keiner gebauten Seite etwas treffen
-// (Profil Website, Konsistenz-Audit Punkt 7). Aufruf aus dem Projektordner, vorher bauen:
+// (Konsistenz-Audit in references/design.md dieses Skills). Aufruf aus dem Projektordner, vorher bauen:
 //   node <webtools>/css-audit.mjs         Liste der ungenutzten Selektoren je Datei
 //   node <webtools>/css-audit.mjs --fix   ungenutzte Selektoren aus den Quelldateien entfernen
 // Wie Zustände gewertet werden: unused-css.mjs.

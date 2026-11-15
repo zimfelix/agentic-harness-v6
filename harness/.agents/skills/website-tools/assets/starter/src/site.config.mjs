@@ -27,7 +27,8 @@ export default {
     { text: 'Leistungen', href: '/#leistungen' },
     { text: 'Kontakt', href: '/#kontakt' },
   ],
-  // art: 'suche' (Standard; braucht absicht und beleg vor dem Livegang) · 'recht' (in jeder Fußzeile) · 'sonder' (noindex, nicht in der Sitemap)
+  // art: 'suche' (Standard; braucht absicht und beleg vor dem Livegang) · 'info' (indexierbar ohne eigene Suchabsicht, z. B. Über uns, Kontakt)
+  //      · 'recht' (in jeder Fußzeile) · 'sonder' (noindex, nicht in der Sitemap). Platzhalter sperren den Livegang bei jeder Art.
   // geaendert: Datum der letzten Inhaltsänderung (JJJJ-MM-TT) für lastmod; ohne Datum entfällt lastmod.
   seiten: [
     {

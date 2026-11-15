@@ -17,9 +17,9 @@
 | Motion tier | 0 none · 1 CSS only · 2 JS per page · 3 avoid | tier 2 needs a JS budget; content always stays in the HTML |
 | AI-generated media | none · labelled | realistic AI photos/videos are labelled and never shown as real work or team (`seo.md`) |
 
-## Home skeleton
+## Home skeleton (default)
 
-● core · ○ optional · ◐ core for local businesses. Default order; the direction may reorder.
+A starting point for local businesses, not a requirement: ● usually present · ○ optional · ◐ usual for local businesses. The brief or the direction may drop, merge or reorder any block.
 
 ```text
 ● header        4–6 links, phone or main CTA; one source for all pages
@@ -56,7 +56,7 @@ Recipes: craftsman — hero, services, references, process, area, about, prices,
 
 These are starting budgets for mid-range phones, not proven thresholds; record deviations in the project.
 
-- **Photo hero** (when strong, licensed, high-resolution photos exist): the full-colour photo carries the atmosphere with deliberately minimal UI over it — fewer controls, calm surfaces, one accent. Propose, don't impose. Use responsive sources sized for the real display, a scrim only where text contrast needs it, and check cropping across viewports.
+- **Photo hero** (when strong, licensed, high-resolution photos exist): responsive sources sized for the real display, a scrim only where text contrast needs it, and check cropping across viewports.
 - **Video hero:** ≤ 2.5 MB desktop and ≤ 1 MB in a separate portrait mobile file, 6–12 s, no audio, `muted playsinline`; poster ≤ 100 KB and preloaded, so poster or H1 is the LCP element; one playback mechanism, never a second download of the same file; save-data and reduced motion show the poster only.
 - **Scroll sequence** (frames or video scrubbed on scroll): motion tier 2. At most about 120–180 frames of ≤ 40 KB (mobile ≤ 25 KB); key frames first, the rest only when the section approaches, never the whole sequence for idle visitors. Pinned length ≤ 300–400 svh with a way to skip; chapter text in the HTML and shown as normal sections without JavaScript or under reduced motion. Lab scores hide this cost because a canvas is not the LCP element: measure transferred bytes.
 - **Anything moving on its own for more than 5 s** (loop video, marquee, carousel) has a visible pause control (WCAG 2.2.2).

@@ -19,6 +19,7 @@ node <skill>/tools/screens.mjs --compare /tmp/before /tmp/after
 node <skill>/tools/style-snapshot.mjs /tmp/current-styles.json
 node <skill>/tools/style-snapshot.mjs --compare /tmp/before.json /tmp/current-styles.json
 node <skill>/tools/device-preview.mjs
+node <skill>/tools/vorbild.mjs <url> <projekt>-<kurzname>   # Vorbild für harness/docs/inspiration/ (inspiration.md)
 node <skill>/tools/seo-pruefen.mjs              # static SEO rules on the build, no browser
 node <skill>/tools/seo-pruefen.mjs --livegang   # as if noindex were removed: what blocks go-live
 node <skill>/tools/seo-pruefen.mjs --live       # after deploy: redirects, real 404, sitemap URLs (GET only)
@@ -40,7 +41,7 @@ src/layout.mjs ──────┘   (generators: scripts/seo.mjs)            
 - `npm run build` is the preview: every page `noindex`, otherwise identical to production, so `seo-pruefen.mjs --livegang` on it shows the real go-live blockers. `npm run build:prod` drops `noindex` and fails on marked placeholders, missing intent or proof, an example `siteUrl` or missing image files.
 - `npm test` runs the starter's own generator tests and works in CI without this skill (CI: `npm test && npm run build:prod`); `seo-pruefen.mjs` stays the independent audit before handover and go-live. A public preview additionally needs host protection (HTTP auth or `X-Robots-Tag: noindex`); the starter writes no host configuration.
 
-Use an empty screenshot output directory. Comparisons require matching nonempty route/state sets; changed baselines need deliberate review. Style hashes are supplemental evidence, not a pixel/behavior proof. CSS helpers (`css-audit.mjs`, `unused-css.mjs`) identify candidates; don't delete selectors blindly.
+`screens.mjs` writes per route and width the whole page (`…@390.png`) and the first screen at real window height (`…@390-start.png`); lazy images are loaded, animations at their end state, and viewport-unit heights (`vh`, `svh`) keep their real-window value instead of growing with the stretched capture window. Use an empty screenshot output directory. Comparisons require matching nonempty route/state sets; changed baselines need deliberate review. Style hashes are supplemental evidence, not a pixel/behavior proof. CSS helpers (`css-audit.mjs`, `unused-css.mjs`) identify candidates; don't delete selectors blindly.
 
 Browser must be Brave: `BRAVE_PATH` may choose its executable; never silently substitute Chrome. A single Brave run does not establish Safari/mobile/screenreader compatibility. Failed navigation/readiness/build is failed evidence, not a screenshot success. Preview reports stale/failed builds as 503 and `/_geraete/stand` reports actuality; device preview assets are internal, not copied into production. LAN exposure and persistent macOS service installation require explicit approval.
 

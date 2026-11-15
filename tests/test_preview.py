@@ -122,7 +122,8 @@ class BraveTests(unittest.TestCase):
         shots = self.root / 'shots'
         p = self.tool('screens.mjs', shots)
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
-        self.assertEqual(len(list(shots.glob('*.png'))), 2)
+        self.assertEqual(len(list(shots.glob('*.png'))), 4)
+        self.assertTrue((shots / '%2Fabout%2F@390-start.png').is_file())
         other = self.root / 'other-shots'
         p = self.tool('screens.mjs', other)
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
@@ -138,6 +139,90 @@ class BraveTests(unittest.TestCase):
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
         states = json.loads(a.read_text())
         self.assertTrue(states); self.assertTrue(all(states.values()))
+
+    def png_height(self, path):
+        return int.from_bytes(path.read_bytes()[20:24], 'big')
+
+    def png_pixel(self, path, x, y):
+        """RGB of one pixel of an 8-bit RGB/RGBA PNG (decodes rows 0..y only)."""
+        import zlib
+        data, pos, idat = path.read_bytes(), 8, b''
+        while pos < len(data):
+            size, kind = int.from_bytes(data[pos:pos + 4], 'big'), data[pos + 4:pos + 8]
+            if kind == b'IHDR': width, depth, colour = int.from_bytes(data[pos + 8:pos + 12], 'big'), data[pos + 16], data[pos + 17]
+            if kind == b'IDAT': idat += data[pos + 8:pos + 8 + size]
+            pos += 12 + size
+        self.assertEqual((depth, colour in (2, 6)), (8, True))
+        bpp = 3 if colour == 2 else 4
+        raw, stride, prev = zlib.decompressobj().decompress(idat, (y + 1) * (width * bpp + 1)), width * bpp, bytearray(width * bpp)
+        for row in range(y + 1):
+            kind, line = raw[row * (stride + 1)], bytearray(raw[row * (stride + 1) + 1:(row + 1) * (stride + 1)])
+            for i in range(stride):
+                a = line[i - bpp] if i >= bpp else 0; b = prev[i]; c = prev[i - bpp] if i >= bpp else 0
+                pa, pb, pc = abs(b - c), abs(a - c), abs(a + b - 2 * c)
+                line[i] = (line[i] + (0, a, b, (a + b) // 2, a if pa <= pb and pa <= pc else b if pb <= pc else c)[kind]) & 255
+            prev = line
+        return tuple(prev[x * bpp:x * bpp + 3])
+
+    def test_full_page_keeps_real_viewport_heights(self):
+        # 46vh at 844 px window = 388 px; a stretched capture window must not grow it (was > 1500 px).
+        (self.root / 'dist/index.html').write_text('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:,">'
+            '<style>body{margin:0}.hero{height:46vh;background:#f00}.rest{height:3000px;background:#00f}</style><div class="hero"></div><div class="rest"></div><script>window.fixtureReady=true</script>')
+        (self.root / 'website.config.mjs').write_text("export default {breiten:[390],routen:['/','/about/'],bereit:'window.fixtureReady === true',warteMs:5000};")
+        shots = self.root / 'shots'
+        p = self.tool('screens.mjs', shots)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        self.assertEqual(self.png_height(shots / '%2F@390.png'), 388 + 3000)
+        self.assertEqual(self.png_pixel(shots / '%2F@390.png', 10, 300), (255, 0, 0))
+        self.assertEqual(self.png_pixel(shots / '%2F@390.png', 10, 600), (0, 0, 255))  # hero ends at 388, not ~1560
+        self.assertEqual(self.png_height(shots / '%2F@390-start.png'), 844)
+
+    def test_pruefen_reports_hover_outside_media_and_differing_footer(self):
+        css = 'a:hover{color:red} @media (hover: hover){.ok:hover{color:blue}}'
+        page = lambda foot: (f'<meta charset="utf-8"><link rel="icon" href="data:,"><style>{css}</style><header><a href="/">Start</a></header>'
+                             f'<main><h1>X</h1><article><footer>Artikel</footer></article></main><footer>{foot}</footer><script>window.fixtureReady=true</script>')
+        (self.root / 'dist/index.html').write_text(page('Fuß A'))
+        (self.root / 'dist/about/index.html').write_text(page('Fuß A'))
+        (self.root / 'dist/other').mkdir()
+        (self.root / 'dist/other/index.html').write_text(page('Fuß B'))
+        (self.root / 'website.config.mjs').write_text("export default {breiten:[390],bereit:'window.fixtureReady === true',warteMs:5000};")
+        p = self.tool('pruefen.mjs')
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)  # hints, not hard failures
+        hover = next(line for line in p.stdout.splitlines() if ':hover außerhalb' in line)
+        self.assertIn('a:hover', hover); self.assertNotIn('.ok:hover', hover)
+        self.assertIn('Fußzeile anders als auf den übrigen Seiten: /other/', p.stdout)
+        self.assertNotIn('Kopfzeile anders', p.stdout)
+
+    def test_vorbild_records_entry_and_section(self):
+        handler = lambda *a: None
+        import http.server, threading, functools
+        site = self.root / 'dist'
+        (site / 'index.html').write_text('<meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0}.hero{height:80vh;background:#246}</style>'
+                                         '<div class="hero"></div><section id="leistungen" style="height:500px">Leistungen</section>')
+        server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(site)))
+        server.RequestHandlerClass.log_message = handler
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        self.addCleanup(server.server_close); self.addCleanup(server.shutdown)
+        url = f'http://127.0.0.1:{server.server_address[1]}/'
+        (self.root / 'website.config.mjs').write_text('export default {warteMs:5000};')
+        entry = self.root / 'harness/docs/inspiration/kunde-vorbild'
+        p = self.tool('vorbild.mjs', url, 'kunde-vorbild')
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        for name in ('start.jpg', 'ganz.jpg'):
+            self.assertEqual((entry / name).read_bytes()[:2], b'\xff\xd8', name)
+        self.assertLess(sum(f.stat().st_size for f in entry.glob('*.jpg')), 1024 * 1024)
+        brief = (entry / 'steckbrief.md').read_text()
+        self.assertIn('lokale Adressen sind keine Quelle', brief); self.assertNotIn(url, brief)
+        index = (self.root / 'harness/docs/inspiration/README.md').read_text()
+        self.assertEqual(index.count('[kunde-vorbild](kunde-vorbild/steckbrief.md)'), 1)
+        p = self.tool('vorbild.mjs', url, 'kunde-vorbild')
+        self.assertNotEqual(p.returncode, 0); self.assertIn('gibt es schon', p.stderr)
+        p = self.tool('vorbild.mjs', url, 'kunde-vorbild', '--abschnitt', 'leistungen=#leistungen')
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        self.assertTrue((entry / 'abschnitt-leistungen.jpg').is_file())
+        self.assertEqual((self.root / 'harness/docs/inspiration/README.md').read_text(), index)
+        p = self.tool('vorbild.mjs', url, 'kunde-vorbild', '--abschnitt', 'x=.fehlt')
+        self.assertNotEqual(p.returncode, 0); self.assertIn('Abschnitt nicht gefunden', p.stderr)
 
     def test_navigation_http_error_is_failure(self):
         script = f'''import {{launch,open}} from {str((TOOLS / 'browser.mjs').as_uri())!r};

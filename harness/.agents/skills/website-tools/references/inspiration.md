@@ -12,12 +12,9 @@ Index im Projekt, Spalten: Eintrag · Art (ganzer Entwurf/Abschnitt) · Stark in
 
 Nur, was der Auftraggeber als gelungen bewertet. Lob für einen Teil gehört an den Abschnitt, nicht an die ganze Seite.
 
-1. Ordner `<projekt>-<kurzname>/` (beschreibender Name), Bilder als JPEG (Ziel unter 1 MB je Eintrag):
-   - ganzer Entwurf: `start.jpg` (Desktop 1440 px, erster Bildschirm) und `ganz.jpg` (ganze Seite);
-   - Abschnitt: `abschnitt-<name>.jpg`.
-   Aufnahme mit `tools/browser.mjs` dieses Skills oder als Bildschirmausschnitt.
-2. `steckbrief.md` nach dem Muster unten. Die Worte des Auftraggebers wörtlich unter „Auftraggeber“; fehlt eigenes Lob, das offen sagen.
-3. Zeile im Index ergänzen. Lob für einen Teil eines bestehenden Eintrags: Abschnitt dort ergänzen statt neuer Eintrag.
+1. Aufnehmen mit `node <skill>/tools/vorbild.mjs <url> <projekt>-<kurzname>` aus dem Projekt-Root: legt den Ordner mit `start.jpg` (Desktop 1440 px, erster Bildschirm), `ganz.jpg` (ganze Seite, halbe Größe), Steckbrief-Gerüst und Indexzeile an, Bilder zusammen unter 1 MB. Gelobter Abschnitt: `--abschnitt <name>=<css-selektor>` ergibt `abschnitt-<name>.jpg`, bei einem bestehenden Eintrag nur das Bild. Ohne URL (App, Bildschirmausschnitt): JPEG mit denselben Namen, Ordner und Steckbrief von Hand.
+2. Bilder ansehen (Cookie-Banner, Anmeldefenster?), dann `steckbrief.md` nach dem Muster unten füllen. Die Worte des Auftraggebers wörtlich unter „Auftraggeber“; fehlt eigenes Lob, das offen sagen.
+3. In der Indexzeile „Stark in“ und Stichworte ergänzen. Lob für einen Teil eines bestehenden Eintrags: Abschnitt dort ergänzen statt neuer Eintrag.
 
 Bilder sind die Hauptquelle: Sie sind ohne laufende Vorschau lesbar. Repo und Datei unter „Herkunft“ helfen nur, wenn das Repo erreichbar ist; lokale Adressen (`127.0.0.1:…`) nie als Quelle. Höchstens etwa zehn Einträge; schwächere werden ersetzt, nicht angehäuft.
 

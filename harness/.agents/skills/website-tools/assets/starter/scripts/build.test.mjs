@@ -126,6 +126,17 @@ test('Produktions-Build sperrt Platzhalter, fehlenden Beleg, Beispiel-URL und fe
   }
 });
 
+test("art 'info': indexierbar und in der Sitemap ohne absicht und beleg; Platzhalter sperren trotzdem", async () => {
+  const site = beispiel();
+  site.seiten.splice(2, 0, { route: '/ueber-uns/', art: 'info', vorlage: 'seite', title: 'Über uns – Muster Elektro', h1: 'Über uns',
+    description: 'Wer bei Muster Elektro arbeitet: Meister, Gesellen und Auszubildende aus Musterstadt.' });
+  const r = await bau(site, true);
+  assert.ok(!noindex(r.lies('/ueber-uns/')));
+  assert.match(r.datei('sitemap.xml'), /<loc>https:\/\/www\.beispiel\.de\/ueber-uns\/<\/loc>/);
+  site.seiten[2].inhalt = { text: 'Platzhalter: Teamfoto' };
+  await assert.rejects(bauen({ site, wurzel: wurzel(), produktion: true }), /\/ueber-uns\/: Platzhalter/);
+});
+
 test('Die Livegang-Liste nennt jeden Platzhalter einer Seite, nicht nur den ersten', async () => {
   const site = beispiel();
   site.seiten[1].inhalt = { text: 'Platzhalter: Preise vom Kunden. Dazu ein längerer echter Satz über den Ablauf vor Ort. Platzhalter: Link zum Unternehmensprofil' };

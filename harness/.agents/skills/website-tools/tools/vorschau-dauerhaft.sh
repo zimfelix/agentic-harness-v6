@@ -1,5 +1,5 @@
 #!/bin/sh
-# Hält die lokale Vorschau einer Website dauerhaft erreichbar (macOS, Profil Website), z. B. http://127.0.0.1:4173/
+# Hält die lokale Vorschau einer Website dauerhaft erreichbar (macOS, website-tools), z. B. http://127.0.0.1:4173/
 # Hintergrunddienst (launchd): baut beim Start, startet beim Anmelden und nach Abstürzen neu; serve.mjs baut bei Änderungen selbst neu.
 # Name und Port kommen aus website.config.mjs des Projekts. Nur auf diesem Rechner erreichbar.
 # Aufruf aus dem Projektordner:

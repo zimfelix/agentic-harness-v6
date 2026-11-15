@@ -1,9 +1,10 @@
 // Misst die Grundregeln („Baseline“ in SKILL.md dieses Skills) auf allen gebauten Seiten und Prüfbreiten (konfig.breiten):
 // horizontaler Überlauf, geladene Schriften, Skriptfehler, fehlende Dateien, Formularfelder unter 16 px,
-// zu kleine Bedienelemente (unter 24 × 24 px) und Textkontrast (WCAG: 4,5 bzw. 3 bei großer Schrift).
+// zu kleine Bedienelemente (unter 24 × 24 px), Textkontrast (WCAG: 4,5 bzw. 3 bei großer Schrift), :hover-Regeln außerhalb
+// von @media (hover: hover) und Kopf-/Fußzeilen, die auf einzelnen Seiten anders sind als auf den übrigen (eine Quelle?).
 // Aufruf aus dem Projektordner, vorher bauen:  node <webtools>/pruefen.mjs [build-ordner]
 // Ergebnis: eine Zeile je Seite und Breite; Exit-Code 1 bei harten Fehlern (Überlauf, Skriptfehler, 404, Schrift nicht geladen,
-// Feld unter 16 px bis 1366 px Breite). Hinweise (Kontrast, kleine Bedienelemente, breite Felder) brechen nicht ab.
+// Feld unter 16 px bis 1366 px Breite). Hinweise (Kontrast, kleine Bedienelemente, breite Felder, Hover, Kopf/Fuß) brechen nicht ab.
 // Kontrast über Bildern, Verläufen und Videos misst das Skript nicht: dort im Screenshot am echten Bild prüfen.
 import { launch, open, checkedRoutes, serve } from './browser.mjs';
 import { konfig } from './konfig.mjs';
@@ -50,6 +51,20 @@ const MESSUNG = `(() => {
     if (k < (gross ? 3 : 4.5)) r.kontrast.push(k.toFixed(2) + ' „' + text.slice(0, 32) + '“');
   }
   r.kontrast = [...new Set(r.kontrast)].slice(0, 6);
+  // :hover nur unter @media (hover: hover) bzw. (any-hover: hover): Auf Touch-Geräten bleibt Hover sonst nach dem Tippen hängen.
+  const hoverFrei = /\\(\\s*(any-)?hover\\s*:\\s*hover\\s*\\)/;
+  r.hover = [];
+  const regeln = (liste, geschuetzt, quelle) => { for (const regel of liste) {
+    const g = geschuetzt || hoverFrei.test(regel.media?.mediaText || '');
+    if (regel.selectorText?.includes(':hover') && !g) r.hover.push(regel.selectorText.replace(/\\s+/g, ' ') + ' (' + quelle + ')');
+    try { if (regel.cssRules) regeln(regel.cssRules, g, quelle); if (regel.styleSheet) regeln(regel.styleSheet.cssRules, g, quelle); } catch { /* fremde Herkunft */ }
+  } };
+  for (const blatt of document.styleSheets) { try { regeln(blatt.cssRules, false, blatt.href ? blatt.href.split('/').pop() : 'inline'); } catch { /* fremde Herkunft */ } }
+  // Kopf- und Fußzeile als Inhalt (Linkziele und Text); aria-current und Klassen der aktiven Seite zählen nicht.
+  const rahmen = sel => { const el = [...document.querySelectorAll(sel)].find(e => !e.parentElement.closest('main, article, section, aside, dialog'));
+    return el ? [...el.querySelectorAll('a')].map(a => a.getAttribute('href')).join(' ') + ' | ' + el.textContent.replace(/\\s+/g, ' ').trim() : null; };
+  r.kopf = rahmen('header, [role=banner]');
+  r.fuss = rahmen('footer, [role=contentinfo]');
   return r;
 })()`;
 
@@ -58,6 +73,7 @@ const server = await serve(root);
 let page;
 const harte = [];
 let hinweise = 0;
+const hover = new Set(), rahmen = { Kopfzeile: new Map(), Fußzeile: new Map() };
 try {
   page = await launch();
   await page.send('Page.addScriptToEvaluateOnNewDocument', { source: FEHLERFANG });
@@ -66,6 +82,10 @@ try {
       await open(page, server.base + route, breite);
       const m = await page.evaluate(MESSUNG);
       const zeile = [];
+      if (breite === konfig.breiten[0]) {
+        m.hover.forEach(h => hover.add(h));
+        rahmen.Kopfzeile.set(route, m.kopf); rahmen.Fußzeile.set(route, m.fuss);
+      }
       if (m.ueberlauf > 0) { zeile.push(`❌ Überlauf ${m.ueberlauf}px (${m.zuBreit.join(', ')})`); harte.push(`${route}@${breite} Überlauf`); }
       if (m.schriftFehlt.length) { zeile.push(`❌ Schrift nicht geladen: ${m.schriftFehlt.join(', ')}`); harte.push(`${route}@${breite} Schrift`); }
       if (m.fehler.length) { zeile.push(`❌ Skriptfehler: ${m.fehler.join(' | ')}`); harte.push(`${route}@${breite} Skript`); }
@@ -81,6 +101,14 @@ try {
 } finally {
   await page?.close();
   server.close();
+}
+if (hover.size) { console.log(`⚠️ :hover außerhalb von @media (hover: hover): ${[...hover].slice(0, 8).join(' | ')}${hover.size > 8 ? ` (+${hover.size - 8})` : ''}`); hinweise++; }
+for (const [teil, je] of Object.entries(rahmen)) {
+  const zaehl = new Map(); for (const v of je.values()) zaehl.set(v, (zaehl.get(v) || 0) + 1);
+  if (zaehl.size < 2) continue;
+  const ueblich = [...zaehl].sort((a, b) => b[1] - a[1])[0][0];
+  const anders = [...je].filter(([, v]) => v !== ueblich).map(([r, v]) => v === null ? `${r} (fehlt)` : r);
+  console.log(`⚠️ ${teil} anders als auf den übrigen Seiten: ${anders.join(', ')} (eine Quelle für alle Seiten?)`); hinweise++;
 }
 console.log(harte.length ? `\n❌ ${harte.length} harte Fehler: ${harte.join(', ')}` : `\n✅ Keine harten Fehler${hinweise ? ` · ${hinweise} Hinweise zur Beurteilung` : ''}.`);
 process.exitCode = harte.length ? 1 : 0;
